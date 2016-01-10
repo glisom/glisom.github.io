@@ -1,0 +1,14 @@
+---
+layout: post
+title:  "Passel"
+start_date:   2015-01-01 12:28:56 -0600
+end_date:   2016-01-01 12:28:56 -0600
+categories: projects
+---
+[Passel][3469644a] is a Kansas City based startup trying to re-invent the calendar by bringing the things we love about social networks and integrate them directly into the calendar. From comments, tagging, and the ability to follow and unfollow a calendar like you would do on Twitter, they are pushing to make shareable calendars better. My role in this project was lead programmer from January 2015 to 2106. I built the intial iOS, Android, and Web apps during this period. I worked with [Evan Nichols][779562eb] who helped design the apps to the liking of Aaron Dewitt and Neal Pfieffer, co-founders of Passel.
+
+  [3469644a]: http://mypassel.com/#/welcome "Passel"
+  [779562eb]: http://etnichols.com "Evan Nichols"
+
+
+<a href="https://geo.itunes.apple.com/us/app/passel-calendar-app-for-everyone./id1016703880?mt=8" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;"></a>

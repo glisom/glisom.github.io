@@ -1,0 +1,13 @@
+---
+layout: post
+title:  "PrepsKC"
+start_date:   2014-04-01 12:28:56 -0600
+end_date:   2014-05-01 12:28:56 -0600
+categories: projects
+---
+This is a small port I did for [PrepsKC][f1e04c68] turning their mobile website into native Android and iOS apps. They can be downloaded from the links below.
+
+  [f1e04c68]: http://prepskc.com "PrepsKC"
+
+
+<a href="https://geo.itunes.apple.com/us/app/prepskc/id853112976?mt=8" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;"></a>

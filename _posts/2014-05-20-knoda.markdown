@@ -1,0 +1,10 @@
+---
+layout: post
+title:  "Knoda"
+start_date:   2014-05-20 12:28:56 -0600
+end_date:   2014-08-20 12:28:56 -0600
+categories: internship
+---
+[Knoda][6c8a81b7] was a social network startup based on generating content around a user's predictions of the future. Over the summer I worked on their iOS app and Ruby on Rails web app. Not only was I exposed to the development of the software, but also the company. Knoda gave me an opportunity to see what an early stage startup is really like. Sadly, this past year Knoda has closed it doors. I will always be thankful of my time there, and the amazing learning opportunity they gave me.
+
+  [6c8a81b7]: knoda.com "Knoda"

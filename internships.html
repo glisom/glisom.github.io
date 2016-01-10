@@ -1,0 +1,24 @@
+---
+layout: page
+title: Internships
+permalink: /internships/
+---
+
+
+<div class="home">
+
+    <ul class="post-list">
+      {% for post in site.posts %}
+      {% if post.categories contains 'internship' %}
+        <li>
+          <span class="post-meta">From {{ post.start_date | date: "%b %Y" }} to {{ post.end_date | date: "%b %Y" }}</span>
+
+          <h2>
+            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          </h2>
+        </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+
+   </div>
