@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>helpful-link.html</title>
+<style>
+* {
+    overflow: visible !important;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    box-decoration-break: clone;
+}
+
+html, body {
+    background: #FFF;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+    word-wrap: break-word;
+	hyphens: auto;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 4px solid #EEE;
+}
+
+code {
+    padding: .1em .4em .2em;
+    display: inline-block;
+    background-color: #f9f2f4;
+    color: #c7254e;
+    border-radius: 3px;
+    border: 0 none;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    hyphens: manual;
+}
+
+pre code {
+    padding: 16px;
+    display: block;
+    background-color: #F9F9F9;
+    color: #333;
+    box-shadow: inset -1px -1px 0 rgba(0, 0, 0, .08);
+    word-wrap: normal;
+}
+
+/* replace light background for some hljs themes */
+code.github-css,
+code.github-gist-css,
+code.tomorrow-css,
+code.default-css,
+code.googlecode-css,
+code.ascetic-css,
+code.color-brewer-css,
+code.grayscale-css,
+code.idea-css,
+code.vs-css,
+code.xcode-css {
+    background-color: #F9F9F9 !important;
+}
+
+blockquote {
+    padding: 10px 20px;
+    margin: 10px 0 20px;
+    color: #777;
+    border: 0 none;
+    border-left: 4px solid #EEE;
+}
+
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child {
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #FFF;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+}
+
+table div {
+    page-break-inside: avoid;
+}
+
+th, td {
+    text-align: left;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    padding: 8px 14px;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+}
+
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+table > tbody + tbody {
+    border-top: 2px solid #DDD;
+}
+
+table table {
+    background-color: #FFF;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    border: 1px solid #DDD;
+}
+
+table > thead > tr > th,
+table > thead > tr > td {
+    border-bottom-width: 2px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+    background-color: #F9F9F9;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #111;
+    margin-bottom: 10px;
+    page-break-after: avoid;
+}
+
+h1, h2 {
+    border-bottom: 1px solid #EEE;
+}
+
+h1, h2, h3 {
+    padding-bottom: 12px;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+h6 {
+    font-size: 14px;
+    color: #555;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+    position: relative;
+    bottom: 1px;
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+ul li,
+ol li {
+    margin-bottom: 2px;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+    margin-bottom: 0;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+dt,
+dd {
+    line-height: 1.42857143;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+a[href]:after {
+    content: " " attr(href);
+    color: #337AB7;
+}
+
+.ir a:after,
+a[href^="javascript:"]:after,
+a[href^="#"]:after {
+    content: "";
+    text-decoration: none;
+    margin-left: 0;
+}
+
+.new-page,
+.page-break,
+.next-page,
+.page-end {
+    page-break-before: always;
+}
+
+#pageHeader {
+    color: #888;
+}
+
+#pageHeader span {
+    vertical-align: middle;
+}
+
+#pageFooter {
+    border-top: 2px solid #EEE;
+    padding-top: 10px;
+    color: #888;
+    font-size: 80%;
+}
+
+/**
+ * Your markdown-themeable-pdf custom styles
+ *
+ * The default file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/templates
+ * The base css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/css
+ * The current highlight.js css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/node_modules/highlight.js/styles
+ */
+
+/*
+html, body {
+	color: red;
+}
+*/
+
+/**
+ * GitHub Gist Theme
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
+
+.hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-meta {
+  color: #969896;
+}
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute {
+  color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c;
+}
+
+.hljs-tag {
+  color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3;
+}
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+pre { white-space: pre-wrap !important; word-break: break-word !important; overflow: hidden !important;}
+</style>
+</head>
+<body>
+<div id="pageContent">
+<p>Here's a comprehensive list of Top blogs, plugins, frameworks, code samples and more! If you have any suggestions on good resources to add - let us know!</p>
+<p><a href="https://github.com/vsouza/awesome-ios">Awesome iOS</a> &lt;&lt; <strong>The most EPIC list of resources I've found</strong></p>
+<h2><strong>Top Blogs</strong></h2>
+<ul>
+<li><a href="http://www.raywenderlich.com/">Ray Wenderlich</a> (THE premier blog)</li>
+<li><a href="http://www.objc.io/">Objc.io</a> (A periodical about best practices and advanced
+techniques in Objective-C.)</li>
+<li><a href="http://nsscreencast.com/">NS Screencast</a></li>
+<li><a href="http://nscookbook.com/">NS Cookbook</a></li>
+<li><a href="http://maniacdev.com/">Maniac Dev</a></li>
+<li><a href="http://cocoamanifest.net/">Cocoa Manifest</a></li>
+<li><a href="http://bobueland.com/cocos2d/">Cocos 2d tutorials</a></li>
+<li><a href="http://iosdevweekly.com/">iOS Dev Weekly</a> (Weekly curated iOS Newsletter)</li>
+<li><a href="http://www.cocoawithlove.com/">Cocoa With Love</a></li>
+</ul>
+<h2><strong>Reference</strong></h2>
+<ul>
+<li><a href="https://github.com/iwasrobbed/Swift-CheatSheet">Swift Cheatsheet</a></li>
+<li><a href="http://www.raywenderlich.com/downloads/RW-Objective-C-Cheatsheet-v-1-5.pdf">Objective C Cheatsheet</a></li>
+<li><a href="https://github.com/iwasrobbed/Objective-C-CheatSheet">Another Objective C Cheatsheet</a></li>
+<li><a href="http://www.raywenderlich.com/12444/objectively-speaking-a-crash-course-in-objective-c">Objectively Speaking: A Crash Course in in Objective C</a></li>
+<li><a href="http://stackoverflow.com/questions/1402174/what-xcode-keyboard-shortcuts-do-you-use-regularly">X Code Shortcuts</a></li>
+<li><a href="http://objc.toodarkpark.net/">OOP &amp; Objective C</a></li>
+<li><a href="http://taybenlor.com/2013/05/21/designing-for-ios.html">Starters Guide To iOS Design</a></li>
+<li><a href="http://bigocheatsheet.com/">Big O Cheatsheet</a>  &lt;&lt;&lt; important</li>
+<li><a href="http://stackoverflow.com/">Stack Overflow</a> !!! when you're stuck, go here.</li>
+<li><a href="http://rogerdudler.github.io/git-guide/">Git: The Simple Guide</a></li>
+<li><a href="https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf">Git Cheatsheet</a></li>
+</ul>
+<h2><strong>Tools/Plugins</strong></h2>
+<ul>
+<li><a href="https://github.com/sanketfirodiya/awesome-ios-plugins">Awesome List</a> of Xcode Plugins</li>
+<li><a href="http://maniacdev.com/2013/01/tool-highly-configurable-objective-c-source-code-beautifier-with-easy-to-set-options/">Uncrustify: Source code beautifier</a></li>
+<li><a href="http://popapp.in/#overview">Popapp</a> (wireframing)</li>
+<li><a href="http://alcatraz.io/">Alcatraz</a> (package manager for X Code)</li>
+<li><a href="https://github.com/travisjeffery/ClangFormat-Xcode">X Code Source Formatting</a></li>
+<li><a href="http://taplytics.com/">Tapalytics</a> (Taplytics: A/B testing on iOS without App Store
+updates.)</li>
+<li><a href="http://revealapp.com/">Reveal App</a> (Runtime Testing for iOS Apps)</li>
+<li><a href="http://www.kevincallahan.org/software/accessorizer.html">Accessorizer</a> (Boilerplate code generator. Converts ivars to
+properties, etc.)</li>
+<li><a href="http://gentlebytes.com/appledoc/">AppleDoc</a> (Objective-C API documentation generator)</li>
+<li><a href="http://codepilot.cc/">CodePilot</a> (Project navigator. Makes it easy to find files and
+text snippets.)</li>
+<li><a href="https://github.com/CocoaLumberjack/CocoaLumberjack">CocoaLumberjack</a> (A fast &amp; simple, yet powerful &amp; flexible
+logging framework for Mac and iOS)</li>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh">Oh My Zsh</a>  &lt;&lt; an AMAZING command shell</li>
+</ul>
+<h2><strong>Frameworks/Libraries</strong></h2>
+<ul>
+<li><a href="http://nimbuskit.info/">Nimbus Kit</a></li>
+<li><a href="https://github.com/AFNetworking/AFNetworking">AF Networking</a></li>
+<li><a href="http://cocoapods.org/">CocoaPods</a> (dependency management library)</li>
+<li><a href="https://github.com/CocoaLumberjack/CocoaLumberjack">CocoaLumberjack</a> (flexible logging framework for iOS)</li>
+<li><a href="http://nshipster.com/network-link-conditioner/">Network Link Conditioner</a></li>
+<li><a href="https://github.com/samvermette/SVProgressHUD">SVProgressHUD</a> - A clean and lightweight progress HUD for your
+iOS app</li>
+<li><a href="https://github.com/johnezang/JSONKit">JSONKit</a> - A Very High Performance Objective-C JSON Library</li>
+<li><a href="https://github.com/magicalpanda/MagicalRecord">MagicalRecord</a> - Super Awesome Easy Fetching for Core Data</li>
+<li><a href="https://github.com/trending?l=objective-c">Github</a> - Objective C Trending repos</li>
+</ul>
+<h2><strong>UX/UI Components</strong></h2>
+<ul>
+<li><a href="http://uxarchive.com/">UX Archive</a> (Good Mobile UX examples)</li>
+<li><a href="https://www.cocoacontrols.com/">Cocoa Controls</a></li>
+<li><a href="http://nathanbarry.com/25-free-ios-design-resources/">25 Free iOS Design Resources</a></li>
+<li><a href="http://www.appdesignvault.com/navbars">27 Free Navigation Bar Designs</a></li>
+<li><a href="http://designmodo.com/square-free">Square UI Kit</a></li>
+<li><a href="https://github.com/Grouper/FlatUIKit">Open Source Flat-UI Inspired Components</a></li>
+<li><a href="http://%20http://www.appdesignvault.com/iphone-flat-ui-design-patterns/">Stay on the bleeding edge of App Design With These UI Templates</a></li>
+<li><a href="http://signalvnoise.com/posts/3553-designing-app-store-screenshots">Designing App Store &quot;Screenshots&quot;</a></li>
+<li><a href="http://www.swiftbootstrap.com">Swift Bootstrap</a>  (creates color palates, screenshots, spinners &amp; more)</li>
+</ul>
+<h2><strong>Lessons Learned/Misc Resources</strong></h2>
+<ul>
+<li><a href="https://medium.com/tech-talk/d5f8051afce2">Always Be Coding</a></li>
+<li><a href="http://www.appdesignvault.com/start-advice/">13 things to know starting on iOS</a></li>
+<li><a href="http://pulkitgoyal.in/ios-resources/">Useful iOS Resources</a></li>
+<li><a href="http://blog.mengto.com/prototype-xcode-storyboard/">How To Prototype in X Code Using Storyboard</a></li>
+<li><a href="http://edsancha.com/blog/tools/development/me/2014/01/28/whats-in-my-iOS-toolbox.html">What's in my iOS Toolbox?</a> &lt;&lt; Favorite</li>
+<li><a href="http://www.cocoawithlove.com/2008/06/doing-things-in-cocoa-with.html">The Difference Between Nill, Null and NSNull</a></li>
+<li><a href="https://medium.com/ios-os-x-development/how-to-become-a-badass-ios-developer-a87a1c78f609">How To Become A Badass iOS Developer</a>  &lt;&lt; great read</li>
+<li><a href="https://medium.com/@tosinaf/core-data-reading-list-10d1eb0a89d4">Core Data Reading List</a> &lt;&lt; MUST read</li>
+</ul>
+<h2><strong>Code Samples/Tutorials</strong></h2>
+<ul>
+<li><a href="https://developer.apple.com/library/ios/navigation/#section=Resource%20Types&amp;topic=Sample%20Code">Apple iOS Developer Library</a> &lt;&lt; search for specific terms in the &quot;documents&quot; bar</li>
+<li><a href="http://code4app.net/">Code4app</a></li>
+<li><a href="http://idevrecipes.com/">iDev Recipes</a></li>
+<li><a href="https://github.com/dkhamsing/open-source-ios-apps/blob/master/README.md">HUGE list of open source iOS apps</a> &lt;&lt;</li>
+</ul>
+<h2><strong>Services</strong></h2>
+<ul>
+<li><a href="https://www.parse.com/">Parse</a> (Backend as a service)</li>
+<li><a href="https://www.crittercism.com/">Crittercism</a>  (Mobile App Performance Monitoring and Crash
+Reporting)</li>
+</ul>
+
+</div></body>
+</html>
