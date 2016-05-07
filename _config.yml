@@ -11,7 +11,7 @@ email: grant.isom@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
     Computer Science student at the University of Kansas, SELF
     Fellow, Member of the Catalyst Entrepreneurship Program, Mobile/Web Software Developer,
-    and Consultant
+    and Entrepreneur
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "grantisom.com" # the base hostname & protocol for your site
 twitter_username: grantisom
