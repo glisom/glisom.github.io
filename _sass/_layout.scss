@@ -250,3 +250,31 @@
         }
     }
 }
+
+// Redesign Code
+.home-title {
+
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu-item {
+    align-self: auto;
+}
+
+.links{
+    display: flex;
+    flex-direction: row;
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+
+.link {
+    padding: 10px;
+}
