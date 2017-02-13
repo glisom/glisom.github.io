@@ -1,0 +1,111 @@
+body {
+    font-family: -apple-system, sans-serif;
+}
+
+p {
+    font-size: 11px;
+}
+
+.gradient {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #2E323A;
+    background-image: linear-gradient(0deg, #3CD3AD 0%, #0B8BAD 100%);
+    overflow: hidden;
+}
+
+.container {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    margin: 0px 20px 0px 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  height: 360px;
+  margin: 1rem;
+  position: relative;
+  width: 300px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card--image {
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+    height: 80%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: solid 1px #E0DFE0;
+}
+
+.card--container {
+    height: 20%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow:hidden;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.card--apple {
+    height: 50%;
+    width: 20%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: solid 1px #E0DFE0;
+    border-right: solid 1px #E0DFE0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card--android {
+    height: 47%;
+    width: 20%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-right: solid 1px #E0DFE0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card--description {
+    width: 80%;
+    height: 100%;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+
+
+}
+
+.image {
+    height: 25px;
+    width: 25px;
+}
+
+.card--apple:hover {
+    background-color: #E0DFE0;
+}
+
+.card--android:hover {
+    background-color: #E0DFE0;
+}
+
+.healthelife {
+    background-image: url("../images/healthelife.png");
+}
