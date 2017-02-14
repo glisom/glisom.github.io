@@ -1,0 +1,36 @@
+# Site settings
+title: Grant
+subtitle: Isom
+email: grant.isom@gmail.com
+description: Sofware Engineer working on all things mobile.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "grantisom.com" # the base hostname & protocol for your site
+author: Grant Isom
+street_address: 2003 W 47th Ter
+city: Kansas City
+state: KS
+zip_code: 66205
+country: United States of America
+phone: (918) 691-9891
+
+# Homepage tiles
+tiles-source: posts # accepts "posts" or "pages"
+tiles-count: 6
+
+# Social settings
+500px_url:
+facebook_url:
+github_url: https://github.com/glisom
+gitlab_url:
+googleplus_url:
+instagram_url:
+linkedin_url: https://www.linkedin.com/in/grantisom
+pinterest_url:
+slack_url:
+twitter_url: https://twitter.com/grantisom
+
+# Build settings
+markdown: kramdown
+
+sass:
+  style: compressed
