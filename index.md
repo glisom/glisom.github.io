@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Home
-landing-title: "What's up, I'm Grant"
+landing-title: "Under Construction"
 description: null
 image: null
 author: null
