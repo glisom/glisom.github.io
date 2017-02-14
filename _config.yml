@@ -1,21 +1,36 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
-
 # Site settings
-title: Grant Isom
+title: Grant
+subtitle: Isom
 email: grant.isom@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-    Computer Science student at the University of Kansas, SELF
-    Fellow, Member of the Catalyst Entrepreneurship Program, Mobile/Web Software Developer,
-    and Entrepreneur
+description: Sofware Engineer working on all things mobile.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "grantisom.com" # the base hostname & protocol for your site
-twitter_username: grantisom
-github_username:  glisom
+author: Grant Isom
+street_address: 2003 W 47th Ter
+city: Kansas City
+state: KS
+zip_code: 66205
+country: United States of America
+phone: (918) 691-9891
+
+# Homepage tiles
+tiles-source: posts # accepts "posts" or "pages"
+tiles-count: 6
+
+# Social settings
+500px_url:
+facebook_url:
+github_url: https://github.com/glisom
+gitlab_url:
+googleplus_url:
+instagram_url:
+linkedin_url: https://www.linkedin.com/in/grantisom
+pinterest_url:
+slack_url:
+twitter_url: https://twitter.com/grantisom
 
 # Build settings
 markdown: kramdown
+
+sass:
+  style: compressed
