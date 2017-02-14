@@ -7,4 +7,4 @@ image: null
 author: null
 ---
 
-Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet pharetra et feugiat tempus.
+Hey there, my name is Grant, a software engineer working on mainly mobile applications. I currently work full-time at Cerner in Kansas City. Along with that I continue to work at my consulting company, Caliber. We mainly do web, mobile, and design projects for businesses of all shapes and sizes. I also work on the myHomework iOS application, a leading educational software platform used across the globe. I'm pretty busy right now, but for inquiries about Caliber or my work or really anything use the form below to email me!
