@@ -6,12 +6,6 @@ description: Sofware Engineer working on all things mobile.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "grantisom.com" # the base hostname & protocol for your site
 author: Grant Isom
-# street_address: 2003 W 47th Ter
-# city: Kansas City
-# state: KS
-# zip_code: 66205
-# country: United States of America
-phone: (918) 691-9891
 google_analytics: UA-49331805-1
 
 # Homepage tiles
