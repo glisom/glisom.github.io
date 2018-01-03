@@ -10,3 +10,5 @@ Hey there, my name is Grant, a software engineer working on mainly mobile applic
 If you are looking for information about Caliber, we have recently shut the doors. For general inquires into software consulting, please use the email above to get in touch.
 
 Resume: [Download](/assets/files/Grant_Isom_Resume.pdf)
+
+<a href="{{ '/work' | prepend: site.baseurl }}">Old posts about stuff I do/did</a>
