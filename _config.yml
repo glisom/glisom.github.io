@@ -1,31 +1,32 @@
-# Site settings
-title: Grant
-subtitle: Isom
-email: grant.isom@gmail.com
-description: Sofware Engineer working on all things mobile.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "grantisom.com" # the base hostname & protocol for your site
-author: Grant Isom
+# Permalinks
+permalink:      /:year-:month-:day/:title
+
+# Setup
+title:          Grant L. Isom
+paginate:       5
+baseurl:        ""
+url:            "http://grantisom.com"
 google_analytics: UA-49331805-1
 
-# Homepage tiles
-tiles-source: posts # accepts "posts" or "pages"
-tiles-count: 6
-
-# Social settings
-500px_url:
-facebook_url:
-github_url: https://github.com/glisom
-gitlab_url:
-googleplus_url:
-instagram_url:
-linkedin_url: https://www.linkedin.com/in/grantisom
-pinterest_url:
-slack_url:
-twitter_url: https://twitter.com/grantisom
+# Assets
+sass:
+  sass_dir:     _sass
+  style:        :compressed
 
 # Build settings
-markdown: kramdown
+markdown:       kramdown
 
-sass:
-  style: compressed
+# About
+author:
+  name:         Grant Isom
+  url:          http://grantisom.com
+  email:        grant.isom@gmail.com
+
+# Custom vars
+version:        3.4.1
+github:
+  repo:         https://github.com/glisom/glisom.github.io
+
+# Gems
+plugins:
+  - jekyll-paginate

@@ -2,7 +2,7 @@
 layout: post
 title: Internships
 description: Cerner, Knoda, Cerner
-image: assets/images/pic05.jpg
+tags: about
 ---
 
 My freshman to sophomore summer of college I interned on Cerner's Physician Strategy team working on mobile applications that had embedded SMART apps inside of them. Was a great experience and had the opportunity to learn a lot about how engineering teams work at a major corporation.
