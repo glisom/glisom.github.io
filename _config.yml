@@ -3,10 +3,16 @@ permalink:      /:year-:month-:day/:title
 
 # Setup
 title:          Grant L. Isom
-paginate:       5
 baseurl:        ""
 url:            "http://grantisom.com"
 google_analytics: UA-49331805-1
+
+# Paginator
+pagination:
+  enabled: true
+  per_page: 5
+  collection: 'posts'
+  category: 'posts'
 
 # Assets
 sass:
@@ -29,4 +35,4 @@ github:
 
 # Gems
 plugins:
-  - jekyll-paginate
+  - jekyll-paginate-v2

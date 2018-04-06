@@ -2,7 +2,9 @@
 layout: post
 title: myHomework
 description: Software Engineering Consultant
-tags: about
+pagination:
+  enabled: true
+  category: about
 ---
 
 Recently I have been working on the myHomework iOS application performing bug fixes, minor feature improvements, and adding an Apple Watch app. It has been a great experience working on such a large application with such a large user base and learning from Keith Entzeroth, CEO of Instin, one of the cofounders of myHomework. It has also been an awesome challenge figuring out how to manipulate Core Data across the parent application and the WatchOS 3 Framework. See the new WatchOS 3 app below, along with other improvements made to the iOS application.

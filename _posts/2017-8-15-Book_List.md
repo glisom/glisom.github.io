@@ -2,7 +2,9 @@
 layout: post
 title: What I am reading in 2017.
 description: What I am reading in 2017.
-tags: post
+pagination:
+  enabled: true
+  category: post
 ---
 Here are all of the books I have read in 2017. All are linked to somewhere you can find a copy.
 
