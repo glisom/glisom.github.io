@@ -19,6 +19,12 @@ display:block; margin-top:150px;}
       <input class="btn btn-primary button" type="submit" value="Test Video Visits">
     </form>
 
+    <form class="button" onsubmit="openAppToBundleID()">
+      <input class="input" type="text" id="bundleId2" placeholder="Bundle ID">
+      <br><br>
+      <input class="btn btn-primary button" type="submit" value="Open this page in app">
+    </form>
+
     <script type="text/javascript">
       function startVisit() {
         var bundleId = document.getElementById("bundleId").value;
@@ -26,8 +32,24 @@ display:block; margin-top:150px;}
         var scheduleId = currentDate.getHours().toString() + currentDate.getDay().toString() + currentDate.getMonth().toString();
         var tenantKey = currentDate.getMonth().toString() + currentDate.getDay().toString() + currentDate.getHours().toString();
         setTimeout(function() {
-        window.location.href = bundleId + "://test/video?schedule_id=videotests" + scheduleId + "&tenant_key=videotests" + tenantKey;
+        window.location.href = bundleId + "://test/video?schedule_id=" + scheduleId + "&tenant_key=" + tenantKey;
       }, 1);
+
+      function openAppToBundleID() {
+        var bundleId = document.getElementById("bundleId").value;
+        var currentDate = new Date();
+        var scheduleId = currentDate.getHours().toString() + currentDate.getDay().toString() + currentDate.getMonth().toString();
+        var tenantKey = currentDate.getMonth().toString() + currentDate.getDay().toString() + currentDate.getHours().toString();
+        setTimeout(function() {
+        window.location.href = bundleId + "://tenants/url?next_url=" + document.URL;
+      }, 1);
+
+      function openVisit() {
+        var currentDate = new Date();
+        var scheduleId = currentDate.getHours().toString() + currentDate.getDay().toString() + currentDate.getMonth().toString();
+        var tenantKey = currentDate.getMonth().toString() + currentDate.getDay().toString() + currentDate.getHours().toString();
+        window.webkit.messageHandlers.vv.postMessage([tenantKey, scheduleId, "Test User"]);
+      }
       }
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
