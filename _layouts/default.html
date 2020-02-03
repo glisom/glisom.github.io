@@ -1,19 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
   {% include head.html %}
-
   <body>
-    
-
-    <main>
+    <main class="u-container">
       {{ content }}
     </main>
-
-    <footer>
-      <span>
-        &copy; <time datetime="{{ site.time }}">{{ site.time | date: '%Y' }}</time> {{ site.author.name }}.
-      </span>
-    </footer>
+    {% if jekyll.environment == 'production' %}
+    {% include analytics.html %}
+    {% endif %}
   </body>
 </html>

@@ -1,38 +1,26 @@
-# Permalinks
-permalink:      /:year-:month-:day/:title
+# Site settings
+title: "Paper Jekyll Theme"
+description: > 
+  Write a description of your website here.
 
-# Setup
-title:          Grant L. Isom
-baseurl:        ""
-url:            "http://grantisom.com"
-google_analytics: UA-49331805-1
+author: Johnny Appleseed
+email: johnny@appleseed.com
+twitter_username: _HairForceOne
+github_username: mkchoi212
 
-# Paginator
-pagination:
-  enabled: true
-  per_page: 5
-  collection: 'posts'
-  category: 'posts'
+baseurl: "/paper-jekyll-theme" # the subpath of your site, e.g. /blog
+url: "https://deadbeef.me" # the base hostname & protocol for your site
 
-# Assets
-sass:
-  sass_dir:     _sass
-  style:        :compressed
+google_analytics_id: UA-1111111111-1
+disqus_id:
 
 # Build settings
-markdown:       kramdown
+include: [_pages]
+markdown: kramdown
+permalink: /:year/:month/:title.html
 
-# About
-author:
-  name:         Grant Isom
-  url:          http://grantisom.com
-  email:        grant.isom@gmail.com
+sass:
+    style: compressed
 
-# Custom vars
-version:        3.4.1
-github:
-  repo:         https://github.com/glisom/glisom.github.io
+exclude: [vendor]
 
-# Gems
-plugins:
-  - jekyll-paginate-v2

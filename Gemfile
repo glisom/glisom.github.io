@@ -1,11 +1,9 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-require 'json'
-require 'open-uri'
-versions = JSON.parse(open('https://pages.github.com/versions.json').read)
+gem "jekyll", "3.4.3"
+gem "html-proofer"
+gem "rb-fsevent", "0.9.8"
 
-gem 'github-pages', versions['github-pages']
 group :jekyll_plugins do
-  gem "jekyll-paginate-v2"
-  gem "jekyll-feed"
+      gem 'jekyll-livereload'
 end
