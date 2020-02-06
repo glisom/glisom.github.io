@@ -4,15 +4,8 @@ title: Projects
 permalink: /projects/
 ---
 
-Show off your projects here!
-- [Awesome Project]()
-- [Cool Project]()
-- [New Project]()
-- [Old Project]()
-- [Hard Project]()
-- [School Project]()
-- [Project's Project]()
+- [drip, A Coffee Journal](https://apps.apple.com/us/app/drip-a-coffee-journal/id1411538274)
+- [ListWithMe](https://apps.apple.com/us/app/listwithme/id1224284271)
 
 # Talks
-- How to ????
-
+- Coming Soon
