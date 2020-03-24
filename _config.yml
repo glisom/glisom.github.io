@@ -1,4 +1,6 @@
 # Site settings
+plugins:
+  - jekyll-feed
 title: "Grant Isom"
 description: >
   Software Engineer from Kansas City.
