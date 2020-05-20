@@ -30,17 +30,26 @@
 .c-article__title {
     @include fs--heading-1;
     color: $c-base__02;
+    @media (prefers-color-scheme: dark) {
+      color: $c-base__3;
+    }
 }
 
 .c-article__time {
     @include fs--body;
     color: $c-base__01;
+    @media (prefers-color-scheme: dark) {
+      color: $c-base__1;
+    }
 }
 
 .c-article__main {
     margin-bottom: 5rem; // 50px
     @include fs--body;
     color: $c-base__01;
+    @media (prefers-color-scheme: dark) {
+      color: $c-base__1;
+    }
 
     > * {
         margin-bottom: 1.8rem; // 18px
@@ -65,6 +74,9 @@
     strong {
         color: $c-base__02;
         font-weight: 700;
+        @media (prefers-color-scheme: dark) {
+          color: $c-base__3;
+        }
     }
 
     blockquote {
@@ -133,4 +145,3 @@
   float: right;
   text-align: right;
 }
-

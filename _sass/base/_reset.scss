@@ -6,6 +6,12 @@
 
 /* Base Reset */
 
+/* Dark Mode Support */
+
+:root {
+    color-scheme: light dark;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -52,6 +58,9 @@ h5,
 h6 {
     font-weight: 400;
     color: $c-base__02;
+    @media (prefers-color-scheme: dark) {
+      color: $c-base__3;
+    }
 }
 
 
@@ -85,13 +94,16 @@ svg {
 }
 
 .center {
-  text-align: center; 
+  text-align: center;
 }
 
 /* Links */
 
 a {
     color: $c-accent__blue;
+    @media (prefers-color-scheme: dark) {
+      color: $c-accent__light;
+    }
     background-color: transparent;
     text-decoration: none;
 
@@ -99,7 +111,7 @@ a {
     display: inline-block;
     padding: 0px 1px;
     transition: color ease 0.3s;
-    
+
     /* Hover animation effect for all buttons */
     &::after {
       content: '';
@@ -110,6 +122,9 @@ a {
       left: 0;
       bottom: 0;
       background-color: $c-accent__blue;
+      @media (prefers-color-scheme: dark) {
+        background-color: $c-accent__light;
+      }
       transition: all ease 0.3s;
     }
 
@@ -127,14 +142,14 @@ a.no-hov {
 	&:after {
 		content: none
 	}
-	
+
 	&:hover {
 		color: $c-accent__darkblue
 	}
 }
 
 a.nav {
-  padding: 10px 35px;  
+  padding: 10px 35px;
   overflow:hidden;
 }
 a.nav:before {
@@ -176,4 +191,3 @@ code, pre {
 small {
         color: gray;
 }
-

@@ -6,8 +6,10 @@
     margin-right: .45rem;
     margin-left: .25rem;
     color: $c-base__01;
+    @media (prefers-color-scheme: dark) {
+      color: $c-base__1;
+    }
     &:after {
         content: '\00a0/';
     }
 }
-

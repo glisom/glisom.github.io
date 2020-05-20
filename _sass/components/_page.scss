@@ -13,6 +13,9 @@
         margin-bottom: 2.5rem; // 25px
         @include fs--heading-2;
         color: $c-base__02;
+        @media (prefers-color-scheme: dark) {
+          color: $c-base__3;
+        }
     }
 
     p {
@@ -40,6 +43,8 @@
     p {
         @include fs--body;
         color: $c-base__01;
+        @media (prefers-color-scheme: dark) {
+          color: $c-base__3;
+        }
     }
 }
-
