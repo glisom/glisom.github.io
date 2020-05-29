@@ -16,12 +16,12 @@
 
 // Font families
 @mixin ff--sans-serif($font-weight: normal) {
-    font-family: 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
+    font-family: -apple-system,'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
     font-weight: $font-weight;
 }
 
 @mixin ff--code {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'SF Mono', 'Roboto Mono', monospace;
 }
 
 // Font sizing
@@ -81,4 +81,3 @@
     overflow: hidden;
     clip: rect(0 0 0 0);
 }
-
