@@ -32,11 +32,12 @@ layout: page
     </div>
     {% endif %}
   </div>
-  <!-- Disqus comments view -->
-  {% if page.comments != false and site.disqus_id %}
-  <div class="post-disqus">
-    <section id="disqus_thread"></section>
-    {% include disqus.html %}
-  </div>
-  {% endif %}
+  <script src="https://utteranc.es/client.js"
+        repo="glisom/grantisom-com-comments"
+        issue-term="pathname"
+        label="Comment"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
 </article>
