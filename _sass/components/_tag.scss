@@ -5,26 +5,30 @@
 .c-tags {
   list-style: none;
   margin: 0;
-  overflow: hidden; 
+  overflow: hidden;
   padding: 0;
 }
 
 .c-tags li {
-  float: left; 
+  float: left;
 }
 
 .c-tag {
-  background: #eee;
-  border-radius: 3px 0 0 3px;
-  color: #999;
   display: inline-block;
-  height: 26px;
-  line-height: 26px;
   padding: 0 20px 0 23px;
-  position: relative;
   margin: 0 10px 50px 0;
-  text-decoration: none;
   -webkit-transition: color 0.2s;
+  border: 1px solid #dee2e5;
+  background-color: #dee2e5;
+  border-radius: 5px;
+  padding: 6px 15px;
+  color: $c-base__02;
+  @media (prefers-color-scheme: dark) {
+    color: $c-base__3;
+    background-color: $c-base__03;
+  }
+  transition: all 300ms ease-in-out;
+  margin-bottom: 20px;
 }
 
 .c-tag::before {
@@ -69,4 +73,3 @@
         content: '#\2009';
     }
 }
-
