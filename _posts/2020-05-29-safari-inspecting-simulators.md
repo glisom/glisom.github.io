@@ -3,6 +3,7 @@ layout: post
 title: "Using Safari to Inspect Web Views in iOS Simulators & Devices"
 date: "2020-05-29 16:53:45 -0500"
 description: "1m 18s read time"
+excerpt: "This week I wanted to talk about how to use Safari’s Developer Tools with Simulators or iOS devices in Safari or in your application’s web views. This is something that can be extremely helpful when..."
 tags: development iOS
 comments: true
 ---
