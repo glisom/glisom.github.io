@@ -1,10 +1,11 @@
 source "https://rubygems.org"
 
-gem "jekyll", "3.6.3"
+gem "jekyll"
 gem "jekyll-feed"
 gem "html-proofer"
-gem "rb-fsevent", "0.9.8"
+gem "rb-fsevent"
 gem "rake"
+gem "kramdown", ">= 2.3.0"
 
 group :jekyll_plugins do
       gem 'jekyll-livereload'
