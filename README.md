@@ -1,7 +1,7 @@
 
 ## Usage
 ```
-git clone https://github.com/mkchoi212/paper-jekyll-theme.git
+git clone https://github.com/glisom/glisom.github.io.git
 bundle install
 bundle exec rake preview
 ```
@@ -24,7 +24,3 @@ This will create a markdown file in the default folder where all posts are store
 If you wish to **change the directory where posts are saved**, go to the `Rakefile` and edit the `CONFIG = { 'posts': CUSTOM_PATH_HERE }`. This will allow `rake post` to know where to save the new posts to.
 
 The **drafts** you are working on can be saved in the `_drafts` directory. When you push your code to the server, files in this directory will NOT be included to the list of posts.
-
-# License
-
-Please see [LICENSE](./LICENSE)
