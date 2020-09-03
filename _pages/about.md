@@ -17,7 +17,7 @@ I have no personal projects at the moment, but last year released [drip](https:/
 ----
 
 ## The Website
-This site was made on an [Apple MBP](https://www.apple.com/) powered by [Jekyll](https://jekyllrb.com) on [Github Pages](https://pages.github.com).
+This site is powered by [Jekyll](https://jekyllrb.com) on [Github Pages](https://pages.github.com).
 
 ----
 
