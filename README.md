@@ -1,4 +1,5 @@
 # Personal Blog
+> For running locally or cloning, check below.
 
 ## Usage
 ```
