@@ -6,7 +6,4 @@ gem "html-proofer"
 gem "rb-fsevent"
 gem "rake"
 gem "kramdown", ">= 2.3.0"
-
-group :jekyll_plugins do
-      gem 'jekyll-livereload'
-end
+gem "kramdown-parser-gfm"
