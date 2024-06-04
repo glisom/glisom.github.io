@@ -29,4 +29,4 @@ This site is powered by [Jekyll](https://jekyllrb.com) on [Github Pages](https:/
 
 ## Etcetera
 
-- [Instagram](https://www.instagram.com/grantisom17) for 📸
+- [Github](https://www.github.com/glisom)
