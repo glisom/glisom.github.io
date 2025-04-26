@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Dark Mode Toggle 
+   ========================================================================== */
+
+.theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: rgba(0,0,0,0.05);
+    color: $c-base__01;
+    border: none;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: background-color 0.2s ease;
+    
+    @media (prefers-color-scheme: dark) {
+        background-color: rgba(255,255,255,0.05);
+        color: $c-dark__01;
+    }
+    
+    &:hover {
+        background-color: rgba(0,0,0,0.1);
+        
+        @media (prefers-color-scheme: dark) {
+            background-color: rgba(255,255,255,0.1);
+        }
+    }
+}
+
+.dark-theme {
+    background-color: $c-dark__3;
+    color: $c-dark__01;
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: $c-dark__02;
+    }
+    
+    a {
+        color: $c-accent__light;
+        
+        &::after {
+            background-color: $c-accent__light;
+        }
+        
+        &:hover {
+            color: $c-dark__3; /* Dark background color as text for dark mode */
+        }
+    }
+    
+    .c-page__header-title h1 {
+        color: $c-dark__02;
+    }
+    
+    .c-page__header-nav a {
+        color: $c-dark__01;
+        
+        &:hover {
+            color: $c-accent__light;
+        }
+    }
+    
+    .c-archives__year {
+        color: $c-dark__02;
+        border-bottom-color: $c-dark__2;
+    }
+    
+    .c-archives__item {
+        border-bottom-color: rgba(255,255,255,0.05);
+        
+        h3 a {
+            color: $c-dark__02;
+            
+            &:hover {
+                color: $c-base__02;
+            }
+        }
+        
+        small, p {
+            color: $c-dark__00;
+        }
+    }
+
+    .c-tag {
+        color: $c-base__2;
+      }
+    
+    .c-article__main {
+        color: $c-dark__01;
+        
+        strong {
+            color: $c-dark__03;
+        }
+    }
+}

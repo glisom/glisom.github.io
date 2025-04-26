@@ -16,6 +16,9 @@ url: "https://grantisom.com" # the base hostname & protocol for your site
 # Build settings
 include: [_pages]
 markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 permalink: /:year/:month/:day/:title.html
 
 sass:

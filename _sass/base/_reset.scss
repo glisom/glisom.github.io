@@ -11,7 +11,19 @@
 :root {
     color-scheme: light dark;
     @media (prefers-color-scheme: dark) {
-      background-color: #1E1E1E;
+      background-color: $c-dark__3;
+    }
+}
+
+/* Dark mode toggle */
+body {
+    background-color: $c-base__3;
+    color: $c-base__01;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    
+    &.dark-theme {
+        background-color: $c-dark__3;
+        color: $c-dark__01;
     }
 }
 
@@ -132,7 +144,12 @@ a {
     }
 
     &:hover {
-      color: white;
+      color: $c-base__3; /* White text for contrast against accent background */
+      
+      @media (prefers-color-scheme: dark) {
+        color: $c-dark__3; /* Dark background color as text for dark mode */
+      }
+      
       &::after {
         height: 100%;
       }
@@ -186,10 +203,51 @@ hr {
 
 /* Code Blocks */
 
-pre { overflow: auto; }
+pre { 
+    overflow: auto;
+    
+    /* Apply styles only to pre elements that are not inside .highlight */
+    &:not(.highlight):not(.highlight > pre) {
+        padding: 1.2rem;
+        border-radius: 4px;
+        background: #FDFDFD;
+        border: 1px solid #E8E8EB;
+        
+        @media (prefers-color-scheme: dark) {
+            background: #002b36; /* Solarized dark background */
+            border: 1px solid #073642; /* Solarized dark border */
+        }
+        
+        body.dark-theme & {
+            background: #002b36;
+            border: 1px solid #073642;
+        }
+    }
+}
 
-code, pre {
-
+code {
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    background: #f5f5f5;
+    color: #c7254e;
+    
+    @media (prefers-color-scheme: dark) {
+        background: #073642;
+        color: #2aa198;
+    }
+    
+    body.dark-theme & {
+        background: #073642;
+        color: #2aa198;
+    }
+    
+    /* Reset background for code blocks inside pre */
+    pre & {
+        padding: 0;
+        background: transparent;
+        color: inherit;
+        border-radius: 0;
+    }
 }
 small {
         color: gray;

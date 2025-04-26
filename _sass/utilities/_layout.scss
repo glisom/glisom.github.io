@@ -3,11 +3,17 @@
    ========================================================================== */
 
 .u-container {
-    max-width: 72rem; // 620px
+    max-width: 72rem; // Narrower content area
     margin-right: auto;
     margin-left: auto;
-    padding-top: 10rem; // 100px
-    padding-right: 1rem; // 10px
-    padding-left: 1rem; // 10px
+    padding-top: 5rem; // Less top padding
+    padding-right: 2rem; // More side padding
+    padding-left: 2rem; // More side padding
+
+    @media (max-width: $bp__sm) {
+        padding-top: 3rem;
+        padding-right: 1.5rem;
+        padding-left: 1.5rem;
+    }
 }
 

@@ -3,48 +3,97 @@
    ========================================================================== */
 
 .c-archives {
-    margin-bottom: 10rem;
+    margin-bottom: 8rem;
 }
 
 .c-archives__year {
-    margin-bottom: 2.5rem;
-    @include fs--heading-1;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
+    @include fs--heading-2;
+    font-weight: 600;
+    color: $c-base__02;
+    border-bottom: 1px solid $c-base__2;
+    padding-bottom: 0.5rem;
+    
+    @media (prefers-color-scheme: dark) {
+        color: $c-dark__02;
+        border-bottom-color: $c-dark__2;
+    }
+    
+    &:first-of-type {
+        margin-top: 0;
+    }
 }
 
 .c-archives__list {
-    margin-bottom: 2.5rem;
+    margin-bottom: 0;
     list-style: none;
 }
 
 .c-archives__item {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-    border-top: 1px solid #EFF1F3;
-    @media screen and (min-width: $bp__sm) {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-wrap: wrap;
-            -ms-flex-wrap: wrap;
-                flex-wrap: wrap;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-            -ms-flex-pack: justify;
-                justify-content: space-between;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-            -ms-flex-align: center;
-                align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    
+    @media (prefers-color-scheme: dark) {
+        border-bottom-color: rgba(255,255,255,0.05);
+    }
+    
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    
+    @media (min-width: $bp__sm) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 2rem;
     }
 
     h3 {
-        @include fs--body;
+        @include fs--heading-4;
+        margin: 0;
+        font-weight: 500;
+        
+        a {
+            color: $c-base__02;
+            text-decoration: none;
+            
+            @media (prefers-color-scheme: dark) {
+                color: $c-dark__02;
+            }
+            
+            &:hover {
+                color: $c-base__3;
+                
+                @media (prefers-color-scheme: dark) {
+                    color: $c-accent__light;
+                }
+            }
+        }
+        
+        small {
+            display: block;
+            margin-top: 0.5rem;
+            @include fs--body;
+            color: $c-base__00;
+            font-weight: normal;
+            
+            @media (prefers-color-scheme: dark) {
+                color: $c-dark__00;
+            }
+        }
     }
 
     p {
-        @include fs--body;
-        color: #515862;
+        @include fs--meta;
+        color: $c-base__00;
+        margin: 0;
+        flex-shrink: 0;
+        
+        @media (prefers-color-scheme: dark) {
+            color: $c-dark__00;
+        }
     }
 }
 

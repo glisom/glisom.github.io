@@ -26,19 +26,62 @@ pre, code {
     background: #FDFDFD;
     border: 1px solid #E8E8EB;
     color: #93a1a1;
+    margin-bottom: 1.8rem; /* Match paragraph spacing */
+    overflow-x: auto; /* Enable horizontal scrolling for long code */
+
+    /* Dark mode styles */
+    @media (prefers-color-scheme: dark) {
+        background: #002b36; /* Solarized dark background */
+        border: 1px solid #073642; /* Solarized dark border */
+    }
+    
+    body.dark-theme & {
+        background: #002b36; /* Solarized dark background */
+        border: 1px solid #073642; /* Solarized dark border */
+    }
 
     .gutter {
         padding: 1.2rem;
         border-right: 1px solid #E8E8EB;
+        
+        @media (prefers-color-scheme: dark) {
+            border-right: 1px solid #073642;
+        }
+        
+        body.dark-theme & {
+            border-right: 1px solid #073642;
+        }
     }
 
     .code {
         padding: 1.2rem;
     }
+    
+    /* Fix for nested highlight divs */
+    pre.highlight {
+        margin: 0;
+        padding: 1.2rem;
+        border: none;
+        background: transparent;
+        overflow: visible;
+    }
 }
 span.lineno {
-    padding: 1rem;
+    padding: 0 1rem;
     border-right: 1px solid #E8E8EB;
+    color: #93a1a1;
+    display: inline-block;
+    margin-right: 0.5rem;
+    
+    @media (prefers-color-scheme: dark) {
+        border-right: 1px solid #073642;
+        color: #586e75;
+    }
+    
+    body.dark-theme & {
+        border-right: 1px solid #073642;
+        color: #586e75;
+    }
 }
 .highlight .c { color: #586e75 } /* Comment */
 .highlight .err { color: #93a1a1 } /* Error */

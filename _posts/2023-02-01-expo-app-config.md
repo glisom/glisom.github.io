@@ -24,58 +24,62 @@ The first step is to convert the `app.json` file into an `app.config.js` file. T
 
 #### app.config.js
 
-    function getBundleId() {
-        switch (process.env.APP_VARIANT) {
-            case 'development': {
-                return 'com.isom.grant.dev';
-            }
-            case 'qa': {
-                return 'com.isom.grant.qa';
-            }
-            case 'production': {
-                return 'com.isom.grant.prod';
-            }
-            default: {
-                return 'com.isom.grant.dev';
-            }
+```javascript
+function getBundleId() {
+    switch (process.env.APP_VARIANT) {
+        case 'development': {
+            return 'com.isom.grant.dev';
+        }
+        case 'qa': {
+            return 'com.isom.grant.qa';
+        }
+        case 'production': {
+            return 'com.isom.grant.prod';
+        }
+        default: {
+            return 'com.isom.grant.dev';
         }
     }
+}
 
-    export default {
-        name: getName(),
+export default {
+    name: getName(),
+    ...
+    ios: {
+        bundleIdentifier: getBundleId(),
         ...
-        ios: {
-            bundleIdentifier: getBundleId(),
-           ...
-        },
-        android: {
-            package: getBundleId(),
-            ...
-        },
-    	extra: {
-            APP_VARIANT: process.env.APP_VARIANT || 'development',
-        },
-    };
+    },
+    android: {
+        package: getBundleId(),
+        ...
+    },
+    extra: {
+        APP_VARIANT: process.env.APP_VARIANT || 'development',
+    },
+};
+```
 
 #### eas.json
 
-    {
-        "build": {
-            "development": {
-                "distribution": "internal",
-                "developmentClient": true,
-                "autoIncrement": false,
-                "env": {
-                    "APP_VARIANT": "development"
-                },
-                "android": {
-                    "buildType": "apk"
-                }
+```json
+{
+    "build": {
+        "development": {
+            "distribution": "internal",
+            "developmentClient": true,
+            "autoIncrement": false,
+            "env": {
+                "APP_VARIANT": "development"
             },
-            ...
+            "android": {
+                "buildType": "apk"
+            }
         },
         ...
-    }
+    },
+    ...
+}
+```
 
 Now simply providing the `--profile` when running an `eas build` command will set the bundle identifier and package name of your app. You can do this for environment variables as well.
 

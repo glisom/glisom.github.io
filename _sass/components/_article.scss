@@ -48,11 +48,22 @@
     @include fs--body;
     color: $c-base__01;
     @media (prefers-color-scheme: dark) {
-      color: $c-base__1;
+      color: $c-dark__01;
     }
 
     > * {
         margin-bottom: 1.8rem; // 18px
+    }
+    
+    /* Style code blocks in articles */
+    pre {
+        margin-bottom: 1.8rem;
+    }
+    
+    /* Style inline code in articles */
+    code:not([class*="language-"]) {
+        @include ff--code;
+        @include fs--code;
     }
 
     h2 {
@@ -75,7 +86,11 @@
         color: $c-base__02;
         font-weight: 700;
         @media (prefers-color-scheme: dark) {
-          color: $c-base__3;
+          color: $c-dark__03;
+        }
+        
+        body.dark-theme & {
+            color: $c-dark__03;
         }
     }
 
