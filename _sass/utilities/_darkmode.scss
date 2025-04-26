@@ -50,19 +50,21 @@
         }
         
         &:hover {
-            color: $c-dark__3; /* Dark background color as text for dark mode */
+            color: $c-dark__03; /* Brighter text on hover for better readability */
         }
     }
+    .c-page__header {
+        .c-page__header-title h1 {
+            color: $c-dark__03;
+        }
     
-    .c-page__header-title h1 {
-        color: $c-dark__02;
-    }
-    
-    .c-page__header-nav a {
-        color: $c-dark__01;
-        
-        &:hover {
-            color: $c-accent__light;
+        .c-page__header-nav a {
+            color: $c-dark__03;
+            
+            &:hover {
+                color: $c-accent__light;
+            
+            }
         }
     }
     
