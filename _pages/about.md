@@ -29,4 +29,5 @@ This site is powered by [Jekyll](https://jekyllrb.com) on [Github Pages](https:/
 
 ## Etcetera
 
-- [Github](https://www.github.com/glisom)
+- [GitHub](https://www.github.com/glisom)
+- [Resume](/resume/)
