@@ -15,11 +15,6 @@
     border-bottom: 1px solid $c-base__2;
     padding-bottom: 0.5rem;
     
-    @media (prefers-color-scheme: dark) {
-        color: $c-dark__02;
-        border-bottom-color: $c-dark__2;
-    }
-    
     &:first-of-type {
         margin-top: 0;
     }
@@ -34,10 +29,6 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid rgba(0,0,0,0.05);
-    
-    @media (prefers-color-scheme: dark) {
-        border-bottom-color: rgba(255,255,255,0.05);
-    }
     
     display: flex;
     flex-direction: column;
@@ -59,16 +50,8 @@
             color: $c-base__02;
             text-decoration: none;
             
-            @media (prefers-color-scheme: dark) {
-                color: $c-dark__02;
-            }
-            
             &:hover {
                 color: $c-base__3;
-                
-                @media (prefers-color-scheme: dark) {
-                    color: $c-accent__light;
-                }
             }
         }
         
@@ -78,10 +61,6 @@
             @include fs--body;
             color: $c-base__00;
             font-weight: normal;
-            
-            @media (prefers-color-scheme: dark) {
-                color: $c-dark__00;
-            }
         }
     }
 
@@ -90,10 +69,6 @@
         color: $c-base__00;
         margin: 0;
         flex-shrink: 0;
-        
-        @media (prefers-color-scheme: dark) {
-            color: $c-dark__00;
-        }
     }
 }
 

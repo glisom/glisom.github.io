@@ -13,16 +13,38 @@ document.addEventListener('DOMContentLoaded', () => {
   // Apply theme based on saved preference or OS preference
   if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
     body.classList.add('dark-theme');
+    updateThemeIcon(true);
   }
   
   // Toggle theme on button click
   themeToggle.addEventListener('click', () => {
-    if (body.classList.contains('dark-theme')) {
+    const isDarkMode = body.classList.contains('dark-theme');
+    if (isDarkMode) {
       body.classList.remove('dark-theme');
       localStorage.setItem('theme', 'light');
     } else {
       body.classList.add('dark-theme');
       localStorage.setItem('theme', 'dark');
+    }
+    updateThemeIcon(!isDarkMode);
+  });
+  
+  // Update theme icon based on current mode
+  function updateThemeIcon(isDark) {
+    themeToggle.innerHTML = isDark ? '☀️' : '🌓';
+  }
+  
+  // Listen for OS color scheme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    // Only apply OS preference if user hasn't set a manual preference
+    if (!localStorage.getItem('theme')) {
+      if (e.matches) {
+        body.classList.add('dark-theme');
+        updateThemeIcon(true);
+      } else {
+        body.classList.remove('dark-theme');
+        updateThemeIcon(false);
+      }
     }
   });
   

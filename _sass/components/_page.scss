@@ -24,17 +24,11 @@
             @include fs--heading-2;
             font-weight: 600;
             color: $c-base__02;
-            @media (prefers-color-scheme: dark) {
-                color: $c-dark__02;
-            }
         }
 
         .site-description {
             @include fs--body;
             color: $c-base__00;
-            @media (prefers-color-scheme: dark) {
-                color: $c-dark__00;
-            }
         }
     }
 
@@ -54,10 +48,6 @@
             text-decoration: none;
             position: relative;
 
-            @media (prefers-color-scheme: dark) {
-                color: $c-dark__03;
-            }
-
             &::after {
                 content: '';
                 position: absolute;
@@ -68,16 +58,10 @@
                 background-color: $c-accent__blue;
                 transform: scaleX(0);
                 transition: transform 0.2s ease-in-out;
-                @media (prefers-color-scheme: dark) {
-                    background-color: $c-accent__light;
-                }
             }
 
             &:hover {
                 color: $c-accent__blue;
-                @media (prefers-color-scheme: dark) {
-                    color: $c-accent__light;
-                }
 
                 &::after {
                     transform: scaleX(1);
@@ -111,8 +95,5 @@
     p {
         @include fs--body;
         color: $c-base__01;
-        @media (prefers-color-scheme: dark) {
-          color: $c-base__3;
-        }
     }
 }
