@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+.c-hero {
+  padding: 6rem 0 8rem;
+  max-width: 72rem;
+  margin: 0 auto;
+
+  @media (max-width: $bp__sm) {
+    padding: 4rem 0 6rem;
+  }
+}
+
+.c-hero__title {
+  font-size: 4.8rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 1.6rem;
+  color: $c-base__02;
+
+  @media (max-width: $bp__sm) {
+    font-size: 3.6rem;
+  }
+}
+
+.c-hero__subtitle {
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0 0 2.4rem;
+  color: $c-base__01;
+
+  @media (max-width: $bp__sm) {
+    font-size: 2rem;
+  }
+}
+
+.c-hero__description {
+  font-size: 1.8rem;
+  line-height: 1.6;
+  margin: 0 0 3.2rem;
+  color: $c-base__00;
+  max-width: 64rem;
+
+  @media (max-width: $bp__sm) {
+    font-size: 1.7rem;
+  }
+}
+
+.c-hero__links {
+  display: flex;
+  gap: 2.4rem;
+  flex-wrap: wrap;
+
+  @media (max-width: $bp__sm) {
+    gap: 1.6rem;
+  }
+}
+
+.c-hero__link {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: $c-accent__blue;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $c-accent__darkblue;
+  }
+}
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+  .c-hero__title {
+    color: $c-dark__02;
+  }
+
+  .c-hero__subtitle {
+    color: $c-dark__01;
+  }
+
+  .c-hero__description {
+    color: $c-dark__00;
+  }
+
+  .c-hero__link {
+    color: $c-accent__light;
+
+    &:hover {
+      color: $c-accent__blue;
+    }
+  }
+}
+
+.dark-mode {
+  .c-hero__title {
+    color: $c-dark__02;
+  }
+
+  .c-hero__subtitle {
+    color: $c-dark__01;
+  }
+
+  .c-hero__description {
+    color: $c-dark__00;
+  }
+
+  .c-hero__link {
+    color: $c-accent__light;
+
+    &:hover {
+      color: $c-accent__blue;
+    }
+  }
+}

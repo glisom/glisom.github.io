@@ -6,6 +6,30 @@
     margin-bottom: 8rem;
 }
 
+.c-archives__intro {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid $c-base__2;
+
+    h1 {
+        font-size: 3.6rem;
+        font-weight: 700;
+        margin: 0 0 1.6rem;
+        color: $c-base__02;
+
+        @media (max-width: $bp__sm) {
+            font-size: 2.8rem;
+        }
+    }
+
+    p {
+        font-size: 1.8rem;
+        line-height: 1.6;
+        color: $c-base__00;
+        margin: 0;
+    }
+}
+
 .c-archives__year {
     margin-bottom: 2rem;
     margin-top: 4rem;
