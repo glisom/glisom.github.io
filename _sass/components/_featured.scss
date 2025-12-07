@@ -36,22 +36,28 @@
 .c-featured__view-all {
   font-size: 1.5rem;
   font-weight: 500;
-  color: $c-base__00;
+  color: $c-base__02;
   text-decoration: none;
-  transition: color 0.15s ease;
-
-  &:hover {
-    color: $c-base__02;
-  }
+  position: relative;
+  padding-bottom: 0.2rem;
+  display: inline-block;
 
   &::after {
-    content: ' →';
-    transition: transform 0.15s ease;
-    display: inline-block;
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: $c-base__02;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:hover::after {
-    transform: translateX(4px);
+    transform: scaleX(1);
+    transform-origin: left;
   }
 }
 
@@ -97,12 +103,17 @@
   }
 
   a {
-    color: $c-base__01;
+    color: $c-base__02;
     text-decoration: none;
-    transition: color 0.15s ease;
+    position: relative;
+    background-image: linear-gradient(to right, $c-base__02 0%, $c-base__02 100%);
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
-      color: $c-base__02;
+      background-size: 100% 1px;
     }
   }
 }
@@ -137,10 +148,10 @@
   }
 
   .c-featured__view-all {
-    color: $c-dark__00;
+    color: $c-dark__02;
 
-    &:hover {
-      color: $c-dark__02;
+    &::after {
+      background: $c-dark__02;
     }
   }
 
@@ -149,11 +160,8 @@
   }
 
   .c-post-card__title a {
-    color: $c-dark__01;
-
-    &:hover {
-      color: $c-dark__02;
-    }
+    color: $c-dark__02;
+    background-image: linear-gradient(to right, $c-dark__02 0%, $c-dark__02 100%);
   }
 
   .c-post-card__description {
@@ -173,10 +181,10 @@
   }
 
   .c-featured__view-all {
-    color: $c-dark__00;
+    color: $c-dark__02;
 
-    &:hover {
-      color: $c-dark__02;
+    &::after {
+      background: $c-dark__02;
     }
   }
 
@@ -185,11 +193,8 @@
   }
 
   .c-post-card__title a {
-    color: $c-dark__01;
-
-    &:hover {
-      color: $c-dark__02;
-    }
+    color: $c-dark__02;
+    background-image: linear-gradient(to right, $c-dark__02 0%, $c-dark__02 100%);
   }
 
   .c-post-card__description {

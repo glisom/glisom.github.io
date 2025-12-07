@@ -115,70 +115,39 @@ svg {
 /* Links */
 
 a {
-    color: $c-accent__blue;
+    color: $c-base__02;
     @media (prefers-color-scheme: dark) {
-      color: $c-accent__light;
+      color: $c-dark__02;
     }
     background-color: transparent;
     text-decoration: none;
-
     position: relative;
-    display: inline-block;
-    padding: 0px 1px;
-    transition: color ease 0.3s;
-
-    /* Hover animation effect for all buttons */
-    &::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      width: 100%;
-      height: 0%;
-      left: 0;
-      bottom: 0;
-      background-color: $c-accent__blue;
-      @media (prefers-color-scheme: dark) {
-        background-color: $c-accent__light;
-      }
-      transition: all ease 0.3s;
-    }
+    display: inline;
+    background-image: linear-gradient(to right, currentColor 0%, currentColor 100%);
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
-      color: $c-base__3; /* White text for contrast against accent background */
-      
-      @media (prefers-color-scheme: dark) {
-        color: $c-dark__3; /* Dark background color as text for dark mode */
-      }
-      
-      &::after {
-        height: 100%;
-      }
+      background-size: 100% 1px;
     }
-
 }
 
 /* Override hover animation with no-hov class */
 a.no-hov {
-	&:after {
-		content: none
-	}
+	background-image: none;
 
 	&:hover {
-		color: $c-accent__darkblue
+		color: $c-base__02;
+		background-size: 0;
 	}
 }
 
 a.nav {
   padding: 10px 35px;
-  overflow:hidden;
-}
-a.nav:before {
-    font-family: FontAwesome;
-    content:"\f07a";
-    position: absolute;
-    top: 11px;
-    left: -30px;
-    transition: all 200ms ease;
+  overflow: hidden;
+  background-image: none;
 }
 
 abbr[title] { border-bottom: 1px dotted; }

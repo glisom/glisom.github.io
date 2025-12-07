@@ -32,13 +32,18 @@
   }
 
   a {
-    color: $c-base__01;
+    color: $c-base__02;
     text-decoration: none;
-    transition: color 0.15s ease;
     font-weight: 500;
+    position: relative;
+    background-image: linear-gradient(to right, $c-base__02 0%, $c-base__02 100%);
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
-      color: $c-base__02;
+      background-size: 100% 1px;
     }
   }
 }
@@ -57,11 +62,8 @@
     }
 
     a {
-      color: $c-dark__01;
-
-      &:hover {
-        color: $c-dark__02;
-      }
+      color: $c-dark__02;
+      background-image: linear-gradient(to right, $c-dark__02 0%, $c-dark__02 100%);
     }
   }
 }
@@ -79,11 +81,8 @@
     }
 
     a {
-      color: $c-dark__01;
-
-      &:hover {
-        color: $c-dark__02;
-      }
+      color: $c-dark__02;
+      background-image: linear-gradient(to right, $c-dark__02 0%, $c-dark__02 100%);
     }
   }
 }
