@@ -3,41 +3,42 @@
    ========================================================================== */
 
 .c-connect {
-  padding: 4rem 0 8rem;
-  max-width: 72rem;
+  padding: 6rem 0 4rem;
+  max-width: 68rem;
   margin: 0 auto;
-  border-top: 1px solid $c-base__2;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 
   @media (max-width: $bp__sm) {
-    padding: 3rem 0 6rem;
+    padding: 4rem 0 2rem;
   }
 
   h2 {
-    font-size: 2.4rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 700;
     margin: 0 0 1.6rem;
     color: $c-base__02;
+    letter-spacing: -0.02em;
 
     @media (max-width: $bp__sm) {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
   }
 
   p {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     line-height: 1.6;
     color: $c-base__00;
     margin: 0;
   }
 
   a {
-    color: $c-accent__blue;
+    color: $c-base__01;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.15s ease;
     font-weight: 500;
 
     &:hover {
-      color: $c-accent__darkblue;
+      color: $c-base__02;
     }
   }
 }
@@ -45,7 +46,7 @@
 // Dark mode
 @media (prefers-color-scheme: dark) {
   .c-connect {
-    border-top-color: $c-dark__2;
+    border-top-color: rgba(255, 255, 255, 0.06);
 
     h2 {
       color: $c-dark__02;
@@ -56,10 +57,10 @@
     }
 
     a {
-      color: $c-accent__light;
+      color: $c-dark__01;
 
       &:hover {
-        color: $c-accent__blue;
+        color: $c-dark__02;
       }
     }
   }
@@ -67,7 +68,7 @@
 
 .dark-mode {
   .c-connect {
-    border-top-color: $c-dark__2;
+    border-top-color: rgba(255, 255, 255, 0.06);
 
     h2 {
       color: $c-dark__02;
@@ -78,10 +79,10 @@
     }
 
     a {
-      color: $c-accent__light;
+      color: $c-dark__01;
 
       &:hover {
-        color: $c-accent__blue;
+        color: $c-dark__02;
       }
     }
   }
