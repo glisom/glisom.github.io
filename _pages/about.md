@@ -13,10 +13,3 @@ Before RealWork, I led engineering at Illuminate AI, working on NLP systems that
 ## The Website
 
 This site is powered by [Jekyll](https://jekyllrb.com) on [Github Pages](https://pages.github.com).
-
----
-
-## Etcetera
-
-- [GitHub](https://www.github.com/glisom)
-- [Resume](/resume/)
