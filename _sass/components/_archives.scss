@@ -8,7 +8,7 @@
 
 .c-archives__year {
     margin-bottom: 2rem;
-    margin-top: 4rem;
+    margin-top: 4.5rem;
     @include fs--heading-2;
     font-weight: 600;
     color: $c-base__02;
@@ -26,18 +26,18 @@
 }
 
 .c-archives__item {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-top: 2.2rem;
+    padding-bottom: 2.2rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
     
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.8rem;
     
     @media (min-width: $bp__sm) {
         flex-direction: row;
         justify-content: space-between;
-        align-items: baseline;
+        align-items: center;
         gap: 2rem;
     }
 
@@ -45,19 +45,24 @@
         @include fs--heading-4;
         margin: 0;
         font-weight: 500;
+        letter-spacing: 0.01em;
         
         a {
             color: $c-base__02;
             text-decoration: none;
-            
+            box-shadow: none;
+            border-bottom: 1px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+
             &:hover {
-                color: $c-base__3;
+                color: $c-accent__blue;
+                border-bottom-color: rgba(27, 94, 167, 0.5);
             }
         }
         
         small {
             display: block;
-            margin-top: 0.5rem;
+            margin-top: 0.6rem;
             @include fs--body;
             color: $c-base__00;
             font-weight: normal;
@@ -68,7 +73,8 @@
         @include fs--meta;
         color: $c-base__00;
         margin: 0;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
         flex-shrink: 0;
     }
 }
-

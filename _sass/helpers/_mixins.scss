@@ -16,7 +16,12 @@
 
 // Font families
 @mixin ff--sans-serif($font-weight: normal) {
-    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
+    font-family: 'SF Mono', SFMono-Regular, ui-monospace, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-weight: $font-weight;
+}
+
+@mixin ff--serif($font-weight: normal) {
+    font-family: 'Iowan Old Style', 'Palatino', 'Book Antiqua', Georgia, 'Times New Roman', serif;
     font-weight: $font-weight;
 }
 
@@ -26,43 +31,43 @@
 
 // Font sizing
 @mixin fs--title {
-    line-height: 1.5;
-    font-size: 4.8rem; // 48px
+    line-height: 1.25;
+    font-size: 4.2rem; // 42px
 }
 
 @mixin fs--heading-1 {
-    line-height: 1.5;
-    font-size: 3.2rem; // 32px
+    line-height: 1.3;
+    font-size: 3rem; // 30px
 }
 
 @mixin fs--heading-2 {
-    line-height: 1.5;
+    line-height: 1.35;
     font-size: 2.4rem; // 24px
 }
 
 @mixin fs--heading-3 {
-    line-height: 1.5;
+    line-height: 1.4;
     font-size: 2rem; // 20px
 }
 
 @mixin fs--heading-4 {
-    line-height: 1.6;
-    font-size: 1.8rem; // 18px
+    line-height: 1.5;
+    font-size: 1.6rem; // 16px
 }
 
 @mixin fs--body {
-    line-height: 1.5;
-    font-size: 1.8rem; // 18px
+    line-height: 1.8;
+    font-size: 1.6rem; // 16px
 }
 
 @mixin fs--meta {
-    line-height: 1;
-    font-size: 1.8rem; // 18px
+    line-height: 1.4;
+    font-size: 1.3rem; // 13px
 }
 
 @mixin fs--caption {
-    line-height: 1;
-    font-size: 1.6rem; // 16px
+    line-height: 1.4;
+    font-size: 1.5rem; // 15px
 }
 
 @mixin fs--code {

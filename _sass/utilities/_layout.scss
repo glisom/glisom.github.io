@@ -3,17 +3,23 @@
    ========================================================================== */
 
 .u-container {
-    max-width: 72rem; // Narrower content area
+    max-width: 78rem; // Slightly wider content area
     margin-right: auto;
     margin-left: auto;
-    padding-top: 5rem; // Less top padding
-    padding-right: 2rem; // More side padding
-    padding-left: 2rem; // More side padding
+    min-height: 100vh;
+    padding-top: 5.5rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+    padding-bottom: 7rem;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(228, 231, 236, 0.9);
+    border-radius: 0;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
 
     @media (max-width: $bp__sm) {
-        padding-top: 3rem;
-        padding-right: 1.5rem;
-        padding-left: 1.5rem;
+        padding-top: 3.5rem;
+        padding-right: 2rem;
+        padding-left: 2rem;
+        padding-bottom: 5rem;
     }
 }
-

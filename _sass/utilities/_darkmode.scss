@@ -37,6 +37,12 @@
 .dark-theme {
     background-color: $c-dark__3;
     color: $c-dark__01;
+
+    .u-container {
+        background: rgba(15, 23, 42, 0.92);
+        border-color: rgba(31, 41, 55, 0.9);
+        box-shadow: 0 24px 60px rgba(2, 6, 23, 0.55);
+    }
     
     h1, h2, h3, h4, h5, h6 {
         color: $c-dark__02;
@@ -45,15 +51,13 @@
     a {
         color: $c-accent__light;
         
-        &::after {
-            background-color: $c-accent__light;
-        }
-        
         &:hover {
             color: $c-dark__03; /* Brighter text on hover for better readability */
         }
     }
     .c-page__header {
+        border-bottom-color: rgba(71, 85, 105, 0.6);
+
         .c-page__header-title h1 {
             color: $c-dark__03;
         }
@@ -63,7 +67,7 @@
             
             &:hover {
                 color: $c-accent__light;
-            
+                border-bottom-color: rgba(47, 125, 209, 0.6);
             }
         }
     }
@@ -74,13 +78,14 @@
     }
     
     .c-archives__item {
-        border-bottom-color: rgba(255,255,255,0.05);
+        border-bottom-color: rgba(226, 232, 240, 0.08);
         
         h3 a {
             color: $c-dark__02;
             
             &:hover {
-                color: $c-base__02;
+                color: $c-accent__light;
+                border-bottom-color: rgba(47, 125, 209, 0.6);
             }
         }
         
@@ -91,13 +96,26 @@
 
     .c-tag {
         color: $c-base__2;
+        border-color: rgba(71, 85, 105, 0.7);
+        background-color: transparent;
       }
+
+    .c-tag:hover {
+        background-color: rgba(47, 125, 209, 0.15);
+        color: $c-dark__03;
+        border-color: rgba(47, 125, 209, 0.5);
+    }
     
     .c-article__main {
         color: $c-dark__01;
         
         strong {
             color: $c-dark__03;
+        }
+
+        blockquote {
+            background: rgba(30, 41, 59, 0.6);
+            border-left-color: $c-accent__light;
         }
     }
 }

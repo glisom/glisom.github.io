@@ -3,29 +3,29 @@
    ========================================================================== */
 
 // Light mode colors
-$c-base__03: #1c1c1c; // Dark text
-$c-base__02: #2c2c2c; // Headings
-$c-base__01: #444444; // Main text
-$c-base__00: #666666; // Secondary text
-$c-base__0: #888888;  // Light text
-$c-base__1: #aaaaaa;  // Lighter text
-$c-base__2: #f1f1f1;  // Background accent
-$c-base__3: #ffffff;  // Background
+$c-base__03: #101828; // Dark text
+$c-base__02: #0f172a; // Headings
+$c-base__01: #344054; // Main text
+$c-base__00: #475467; // Secondary text
+$c-base__0: #667085;  // Light text
+$c-base__1: #98a2b3;  // Lighter text
+$c-base__2: #e4e7ec;  // Background accent
+$c-base__3: #fdfcf9;  // Background
 
 // Dark mode colors will be used via media queries
-$c-dark__03: #f1f1f1;  // Dark mode light text
-$c-dark__02: #e1e1e1;  // Dark mode headings
-$c-dark__01: #cccccc;  // Dark mode main text
-$c-dark__00: #999999;  // Dark mode secondary text
-$c-dark__0: #777777;   // Dark mode darker text
-$c-dark__1: #555555;   // Dark mode even darker text
-$c-dark__2: #2c2c2c;   // Dark mode background accent
-$c-dark__3: #1c1c1c;   // Dark mode background
+$c-dark__03: #f8fafc;  // Dark mode light text
+$c-dark__02: #e2e8f0;  // Dark mode headings
+$c-dark__01: #cbd5e1;  // Dark mode main text
+$c-dark__00: #94a3b8;  // Dark mode secondary text
+$c-dark__0: #64748b;   // Dark mode darker text
+$c-dark__1: #475569;   // Dark mode even darker text
+$c-dark__2: #1f2937;   // Dark mode background accent
+$c-dark__3: #0b0f16;   // Dark mode background
 
-$c-accent__blue: #0070f3;  // Primary accent
-$c-accent__light: #3291ff;  // Light accent
-$c-accent__darkblue: #0050aa; // Darker accent
-$c-accent__green: #21cc64;  // Success accent
+$c-accent__blue: #1b5ea7;  // Primary accent
+$c-accent__light: #2f7dd1;  // Light accent
+$c-accent__darkblue: #164a85; // Darker accent
+$c-accent__green: #22c55e;  // Success accent
 
 // Breakpoints
 $bp__sm: 45rem; // 450px
