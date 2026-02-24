@@ -55,6 +55,6 @@ ListWithMe 2.0 is available now on the [App Store](#). I'm planning to keep iter
 - Siri integration
 - Widgets for quick access
 
-If you try it out, I'd love to hear what you think. You can reach me at [grant.isom@gmail.com](mailto:grant.isom@gmail.com) or find me on [GitHub](https://github.com/glisom).
+If you try it out, I'd love to hear what you think. You can find me on [GitHub](https://github.com/glisom).
 
 Here's to shared lists and fewer forgotten items.
