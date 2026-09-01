@@ -65,7 +65,9 @@ Worth being loud about: skill-thief never adds a marketplace, enables someone el
 
 One real limitation. A thin host repo weakens the prior-art check. If there's not much of your own tooling to find, every mechanism looks like a gap and it will over-recommend. Verdict quality tracks how much of your conventions actually live in files instead of in people's heads.
 
-I ran it against [obra/superpowers](https://github.com/obra/superpowers) as a dry run and it's checked into the repo under `docs/examples/`. Eight mechanisms scouted, five made the gate table. An independent review of that first run caught two rows mislabeled as rejections when they were really "not applicable at this scale yet," which turned out to be a genuine gap in the ladder itself. That fix is in the skill now. Pretty good outcome for a dry run!
+I ran it against [obra/superpowers](https://github.com/obra/superpowers) as a dry run and it's checked into the repo under `docs/examples/`. Eight mechanisms scouted, three made the gate table (one of each verdict, as it happens). Three of the other five got filed as "you already do this better," and two as "doesn't apply at your size yet."
+
+That last bucket is there because of the dry run. In the first pass those two got labeled Reject, and an independent review caught that both reasons were really about how small the repo is, not about the mechanisms. That's a deferral wearing a rejection's clothes, which the guardrail was supposed to catch and didn't. So the ladder got a new category out of it. Pretty good outcome for a dry run!
 
 ## Try it
 
