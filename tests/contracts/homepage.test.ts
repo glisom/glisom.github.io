@@ -9,11 +9,33 @@ const execFileAsync = promisify(execFile);
 const repositoryRoot = fileURLToPath(new URL('../..', import.meta.url));
 
 let $: CheerioAPI;
+let homeCss: string;
+
+function blockBody(source: string, opening: string): string {
+  const openingIndex = source.indexOf(opening);
+  if (openingIndex === -1) return '';
+
+  const start = source.indexOf('{', openingIndex);
+  if (start === -1) return '';
+
+  let depth = 0;
+  for (let index = start; index < source.length; index += 1) {
+    if (source[index] === '{') depth += 1;
+    if (source[index] === '}') depth -= 1;
+    if (depth === 0) return source.slice(start + 1, index);
+  }
+
+  return '';
+}
 
 beforeAll(async () => {
   await execFileAsync('npm', ['run', 'build'], { cwd: repositoryRoot });
   $ = load(
     await readFile(new URL('../../dist/index.html', import.meta.url), 'utf8'),
+  );
+  homeCss = await readFile(
+    new URL('../../src/styles/home.css', import.meta.url),
+    'utf8',
   );
 }, 60_000);
 
@@ -86,5 +108,38 @@ describe('built homepage', () => {
     expect($('[data-halftone-image]')).toHaveLength(6);
     expect($('[data-halftone-image] picture')).toHaveLength(6);
     expect($('[data-halftone-image] img[width][height]')).toHaveLength(6);
+  });
+
+  it('moves the hero and evidence grid to their safe intermediate layout before the rail breakpoint can squeeze them', () => {
+    const intermediate = blockBody(homeCss, '@media (max-width: 1320px)');
+
+    expect(blockBody(intermediate, '.home-hero')).toContain(
+      'grid-template-columns: 1fr;',
+    );
+    expect(blockBody(intermediate, '.evidence-grid')).toContain(
+      'grid-template-columns: repeat(2, 1fr);',
+    );
+  });
+
+  it('keeps approved grid-row sizes as minimums instead of clipping real content', () => {
+    expect(blockBody(homeCss, '.evidence-grid')).toContain(
+      'grid-template-rows: repeat(3, minmax(162px, auto));',
+    );
+  });
+
+  it('reserves flow space for card actions that remain visually anchored', () => {
+    expect(blockBody(homeCss, '.project-card')).toContain(
+      'padding-bottom: 64px;',
+    );
+    expect(blockBody(homeCss, '.writing-card')).toContain(
+      'padding-bottom: 72px;',
+    );
+  });
+
+  it('does not shrink the shared 44px homepage action target', () => {
+    const actionRule = blockBody(homeCss, '.home-page .arrow-link');
+
+    expect(actionRule).toContain('min-height: 44px;');
+    expect(actionRule).not.toContain('min-height: 0;');
   });
 });
