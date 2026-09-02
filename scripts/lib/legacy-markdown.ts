@@ -16,6 +16,13 @@ export const NOTION_IMAGE_MAP = new Map([
   ['/uploads/2023/6647450a28.png', '/images/6647450a28.png'],
 ]);
 
+const APPROVED_BODY_H1_COUNTS = new Map([
+  ['/2018/11/27/playlists.html', 5],
+  ['/2019/06/04/wwdc-day-1.html', 5],
+]);
+const APPROVED_SPOTIFY_PATH = '/2020/02/10/2019-playlists.html';
+const APPROVED_SPOTIFY_COUNT = 4;
+
 export interface LegacyHeadingSnapshot {
   id: string;
   level?: number;
@@ -59,6 +66,9 @@ export interface MigratedPost {
 const markdown = new MarkdownIt({ html: true });
 const sourceImagesDirectory = fileURLToPath(
   new URL('../../images/', import.meta.url),
+);
+const copiedImagesDirectory = fileURLToPath(
+  new URL('../../src/assets/legacy/', import.meta.url),
 );
 
 export function normalizeSummary(value: unknown): string {
@@ -122,19 +132,114 @@ function normalizeTags(tags: unknown): string[] {
   return [];
 }
 
+function targetAppStoreLinkCount(inlineSource: string): number {
+  const children = markdown.parseInline(inlineSource, {})[0]?.children ?? [];
+  let count = 0;
+  for (let index = 0; index < children.length; index += 1) {
+    const token = children[index];
+    if (token.type !== 'link_open' || token.attrGet('href') !== '#') continue;
+    const close = children.findIndex(
+      (candidate, candidateIndex) =>
+        candidateIndex > index && candidate.type === 'link_close',
+    );
+    if (
+      close === index + 2 &&
+      children[index + 1].type === 'text' &&
+      children[index + 1].content === 'App Store'
+    ) {
+      count += 1;
+    }
+  }
+  return count;
+}
+
+function markdownLinkCount(body: string, text: string, href: string): number {
+  let count = 0;
+  for (const token of markdown.parse(body, {})) {
+    if (token.type !== 'inline') continue;
+    const children = token.children ?? [];
+    for (let index = 0; index < children.length; index += 1) {
+      const child = children[index];
+      if (child.type !== 'link_open' || child.attrGet('href') !== href)
+        continue;
+      const close = children.findIndex(
+        (candidate, candidateIndex) =>
+          candidateIndex > index && candidate.type === 'link_close',
+      );
+      if (
+        close === index + 2 &&
+        children[index + 1].type === 'text' &&
+        children[index + 1].content === text
+      ) {
+        count += 1;
+      }
+    }
+  }
+  return count;
+}
+
+function appStoreLinkRanges(body: string): SourceRange[] {
+  const offsets = lineOffsets(body);
+  const syntax = '[App Store](#)';
+  const ranges: SourceRange[] = [];
+  for (const token of markdown.parse(body, {})) {
+    if (token.type !== 'inline' || !token.map) continue;
+    const linkCount = targetAppStoreLinkCount(token.content);
+    if (linkCount === 0) continue;
+    const windowStart = offsets[token.map[0]];
+    const windowEnd = offsets[token.map[1]] ?? body.length;
+    const contentStart = body.indexOf(token.content, windowStart);
+    if (contentStart === -1 || contentStart >= windowEnd) {
+      throw new Error('Unable to resolve App Store Markdown link source range');
+    }
+    let candidate = token.content.indexOf(syntax);
+    while (candidate !== -1) {
+      const withoutCandidate =
+        token.content.slice(0, candidate) +
+        'App Store' +
+        token.content.slice(candidate + syntax.length);
+      if (targetAppStoreLinkCount(withoutCandidate) === linkCount - 1) {
+        ranges.push({
+          start: contentStart + candidate,
+          end: contentStart + candidate + syntax.length,
+        });
+      }
+      candidate = token.content.indexOf(syntax, candidate + syntax.length);
+    }
+  }
+  return ranges;
+}
+
 function replaceListWithMeAction(body: string, canonicalPath: string): string {
-  if (canonicalPath !== '/2026/02/24/listwithme-returns.html') return body;
-  const placeholder = '[App Store](#)';
-  const occurrences = body.split(placeholder).length - 1;
-  if (occurrences !== 1) {
+  const approvedPath = '/2026/02/24/listwithme-returns.html';
+  const ranges = appStoreLinkRanges(body);
+  if (canonicalPath !== approvedPath && ranges.length > 0) {
     throw new Error(
-      `ListWithMe migration expected 1 App Store placeholder; received ${occurrences}`,
+      `App Store placeholder replacement is only approved for ${approvedPath}`,
     );
   }
-  return body.replace(
-    placeholder,
-    '[App Store](https://apps.apple.com/us/app/listwithme/id1224284271)',
+  if (canonicalPath !== approvedPath) return body;
+  if (ranges.length !== 1) {
+    throw new Error(
+      `ListWithMe migration expected 1 App Store placeholder; received ${ranges.length}`,
+    );
+  }
+  const [range] = ranges;
+  const migratedBody =
+    body.slice(0, range.start) +
+    '[App Store](https://apps.apple.com/us/app/listwithme/id1224284271)' +
+    body.slice(range.end);
+  const outputCount = markdownLinkCount(
+    migratedBody,
+    'App Store',
+    'https://apps.apple.com/us/app/listwithme/id1224284271',
   );
+  if (outputCount !== 1) {
+    throw new Error(
+      `ListWithMe migration expected 1 migrated App Store link; received ${outputCount}`,
+    );
+  }
+  return migratedBody;
 }
 
 function markdownImageSources(body: string): string[] {
@@ -192,71 +297,190 @@ function replaceNotionImagePaths(body: string, canonicalPath: string): string {
         `(!\\[[^\\]\\n]*\\]\\()${escapeRegExp(identity)}(?=(?:\\s+["'])?\\))`,
         'g',
       );
-      result = mapOutsideCodeBlocks(result, (line) =>
-        line.replace(imageUrl, `$1${currentPath}`),
+      result = mapEditableMarkdown(result, (markdownSource) =>
+        markdownSource.replace(imageUrl, `$1${currentPath}`),
+      );
+    }
+  }
+  const outputSources = markdownImageSources(result);
+  for (const [legacyPath, currentPath] of NOTION_IMAGE_MAP) {
+    const remainingSourceCount = outputSources.filter(
+      (src) =>
+        src === legacyPath || src === `https://grantisom.com${legacyPath}`,
+    ).length;
+    const outputCount = outputSources.filter(
+      (src) => src === currentPath,
+    ).length;
+    if (remainingSourceCount !== 0 || outputCount !== 1) {
+      throw new Error(
+        `Notion migration expected 0 source and 1 migrated occurrence for ${legacyPath}; received ${remainingSourceCount}/${outputCount}`,
       );
     }
   }
   return result;
 }
 
-function mapOutsideCodeBlocks(
+interface SourceRange {
+  start: number;
+  end: number;
+}
+
+function mergeRanges(ranges: SourceRange[]): SourceRange[] {
+  const sorted = ranges
+    .filter(({ start, end }) => start < end)
+    .sort((left, right) => left.start - right.start || left.end - right.end);
+  const merged: SourceRange[] = [];
+  for (const range of sorted) {
+    const previous = merged.at(-1);
+    if (!previous || range.start > previous.end) {
+      merged.push({ ...range });
+    } else {
+      previous.end = Math.max(previous.end, range.end);
+    }
+  }
+  return merged;
+}
+
+function lineOffsets(body: string): number[] {
+  const offsets = [0];
+  for (let index = 0; index < body.length; index += 1) {
+    if (body[index] === '\n') offsets.push(index + 1);
+  }
+  return offsets;
+}
+
+function blockProtectedRanges(body: string): SourceRange[] {
+  const offsets = lineOffsets(body);
+  return markdown
+    .parse(body, {})
+    .filter(
+      (token) =>
+        token.map &&
+        (token.type === 'fence' ||
+          token.type === 'code_block' ||
+          token.type === 'html_block'),
+    )
+    .map((token) => ({
+      start: offsets[token.map![0]],
+      end: offsets[token.map![1]] ?? body.length,
+    }));
+}
+
+function inlineHtmlRanges(body: string): SourceRange[] {
+  const offsets = lineOffsets(body);
+  const ranges: SourceRange[] = [];
+  for (const token of markdown.parse(body, {})) {
+    if (token.type !== 'inline' || !token.map) continue;
+    const htmlTokens = (token.children ?? []).filter(
+      (child) => child.type === 'html_inline',
+    );
+    if (htmlTokens.length === 0) continue;
+    const windowStart = offsets[token.map[0]];
+    const windowEnd = offsets[token.map[1]] ?? body.length;
+    let cursor = windowStart;
+    for (const htmlToken of htmlTokens) {
+      const start = body.indexOf(htmlToken.content, cursor);
+      if (start === -1 || start >= windowEnd) {
+        ranges.push({ start: windowStart, end: windowEnd });
+        break;
+      }
+      const end = start + htmlToken.content.length;
+      ranges.push({ start, end });
+      cursor = end;
+    }
+  }
+  return ranges;
+}
+
+function htmlCommentRanges(body: string): SourceRange[] {
+  const ranges: SourceRange[] = [];
+  let cursor = 0;
+  while (cursor < body.length) {
+    const start = body.indexOf('<!--', cursor);
+    if (start === -1) break;
+    const closing = body.indexOf('-->', start + 4);
+    const end = closing === -1 ? body.length : closing + 3;
+    ranges.push({ start, end });
+    cursor = end;
+  }
+  return ranges;
+}
+
+function inlineCodeRanges(
   body: string,
-  transform: (line: string) => string,
+  excluded: SourceRange[],
+): SourceRange[] {
+  const ranges: SourceRange[] = [];
+  const boundaries = [...excluded, { start: body.length, end: body.length }];
+  let editableStart = 0;
+  for (const boundary of boundaries) {
+    let cursor = editableStart;
+    while (cursor < boundary.start) {
+      const start = body.indexOf('`', cursor);
+      if (start === -1 || start >= boundary.start) break;
+      let openingEnd = start + 1;
+      while (openingEnd < boundary.start && body[openingEnd] === '`') {
+        openingEnd += 1;
+      }
+      const delimiterLength = openingEnd - start;
+      let search = openingEnd;
+      let end: number | undefined;
+      while (search < boundary.start) {
+        const candidate = body.indexOf('`', search);
+        if (candidate === -1 || candidate >= boundary.start) break;
+        let candidateEnd = candidate + 1;
+        while (candidateEnd < boundary.start && body[candidateEnd] === '`') {
+          candidateEnd += 1;
+        }
+        if (candidateEnd - candidate === delimiterLength) {
+          end = candidateEnd;
+          break;
+        }
+        search = candidateEnd;
+      }
+      if (end === undefined) {
+        cursor = openingEnd;
+      } else {
+        ranges.push({ start, end });
+        cursor = end;
+      }
+    }
+    editableStart = Math.max(editableStart, boundary.end);
+  }
+  return ranges;
+}
+
+function protectedMarkdownRanges(body: string): SourceRange[] {
+  const blockAndComments = mergeRanges([
+    ...blockProtectedRanges(body),
+    ...inlineHtmlRanges(body),
+    ...htmlCommentRanges(body),
+  ]);
+  return mergeRanges([
+    ...blockAndComments,
+    ...inlineCodeRanges(body, blockAndComments),
+  ]);
+}
+
+function mapEditableMarkdown(
+  body: string,
+  transform: (markdownSource: string) => string,
 ): string {
-  const lines = body.split('\n');
-  let fence: { marker: '`' | '~'; length: number } | undefined;
-  return lines
-    .map((line) => {
-      if (fence) {
-        const closing = new RegExp(
-          `^ {0,3}${fence.marker === '`' ? '`' : '~'}{${fence.length},}\\s*$`,
-        );
-        if (closing.test(line)) fence = undefined;
-        return line;
-      }
-
-      const opening = /^ {0,3}(`{3,}|~{3,})/.exec(line);
-      if (opening) {
-        fence = {
-          marker: opening[1][0] as '`' | '~',
-          length: opening[1].length,
-        };
-        return line;
-      }
-      if (/^(?: {4}|\t)/.test(line)) return line;
-
-      let cursor = 0;
-      let transformed = '';
-      while (cursor < line.length) {
-        const opening = /`+/.exec(line.slice(cursor));
-        if (!opening || opening.index === undefined) {
-          transformed += transform(line.slice(cursor));
-          break;
-        }
-        const openingStart = cursor + opening.index;
-        transformed += transform(line.slice(cursor, openingStart));
-        const delimiter = opening[0];
-        const closingStart = line.indexOf(
-          delimiter,
-          openingStart + delimiter.length,
-        );
-        if (closingStart === -1) {
-          transformed += transform(line.slice(openingStart));
-          break;
-        }
-        const closingEnd = closingStart + delimiter.length;
-        transformed += line.slice(openingStart, closingEnd);
-        cursor = closingEnd;
-      }
-      return transformed;
-    })
-    .join('\n');
+  const protectedRanges = protectedMarkdownRanges(body);
+  let cursor = 0;
+  let result = '';
+  for (const range of protectedRanges) {
+    result += transform(body.slice(cursor, range.start));
+    result += body.slice(range.start, range.end);
+    cursor = range.end;
+  }
+  result += transform(body.slice(cursor));
+  return result;
 }
 
 function convertKramdownButtons(body: string): string {
-  return mapOutsideCodeBlocks(body, (line) =>
-    line.replace(
+  return mapEditableMarkdown(body, (markdownSource) =>
+    markdownSource.replace(
       /\[([^\]\n]+)\]\(([^)\s]+)(?:\s+["']([^"']+)["'])?\)\{:\s*\.button\}/g,
       (_match, label: string, href: string, title?: string) =>
         `<a href="${escapeHtmlAttribute(href)}" class="button"${title ? ` title="${escapeHtmlAttribute(title)}"` : ''}>${label}</a>`,
@@ -307,13 +531,23 @@ function jpegDimensions(
   return null;
 }
 
-function assertSourceDimensions(
-  imagePath: string,
-  enrichment: ImageEnrichment,
-): void {
+export function assertLegacyImageAsset(imagePath: string): void {
+  const enrichment = IMAGE_ENRICHMENTS[
+    imagePath as keyof typeof IMAGE_ENRICHMENTS
+  ] as ImageEnrichment | undefined;
+  if (!enrichment) {
+    throw new Error(`Legacy image has no enrichment: ${imagePath}`);
+  }
   const fileName = imagePath.slice('/images/'.length);
-  const bytes = readFileSync(`${sourceImagesDirectory}${fileName}`);
-  const dimensions = pngDimensions(bytes) ?? jpegDimensions(bytes);
+  const sourceBytes = readFileSync(`${sourceImagesDirectory}${fileName}`);
+  const copiedFileName = enrichment.assetKey.slice('legacy/'.length);
+  const copiedBytes = readFileSync(`${copiedImagesDirectory}${copiedFileName}`);
+  if (!copiedBytes.equals(sourceBytes)) {
+    throw new Error(
+      `Copied legacy image bytes do not match source for ${imagePath}`,
+    );
+  }
+  const dimensions = pngDimensions(copiedBytes) ?? jpegDimensions(copiedBytes);
   if (!dimensions)
     throw new Error(`Unsupported legacy image format: ${imagePath}`);
   if (
@@ -336,8 +570,8 @@ function escapeHtmlAttribute(value: string): string {
 
 function convertImages(body: string): { body: string; converted: boolean } {
   let converted = false;
-  const output = mapOutsideCodeBlocks(body, (line) => {
-    const convertedLine = line.replace(
+  const output = mapEditableMarkdown(body, (markdownSource) => {
+    const convertedSource = markdownSource.replace(
       /!\[([^\]\n]*)\]\((\/images\/[^)\s]+)(?:\s+["']([^"']*)["'])?\)/g,
       (_match, authoredAlt: string, imagePath: string) => {
         const enrichment = IMAGE_ENRICHMENTS[
@@ -349,13 +583,13 @@ function convertImages(body: string): { body: string; converted: boolean } {
             : 'has an empty alt and no image enrichment';
           throw new Error(`Legacy image ${imagePath} ${detail}`);
         }
-        assertSourceDimensions(imagePath, enrichment);
+        assertLegacyImageAsset(imagePath);
         converted = true;
         const alt = authoredAlt || enrichment.alt;
         return `<Figure src="${escapeHtmlAttribute(imagePath)}" assetKey="${escapeHtmlAttribute(enrichment.assetKey)}" alt="${escapeHtmlAttribute(alt)}" width={${enrichment.width}} height={${enrichment.height}} variant="${enrichment.variant}" />`;
       },
     );
-    return convertedLine.replace(/ \/>[ \t]+(?=<Figure )/g, ' />\n\n');
+    return convertedSource.replace(/ \/>[ \t]+(?=<Figure )/g, ' />\n\n');
   });
   return {
     body: output.replace(/(<Figure [^\n]+ \/>)\n(?=<Figure )/g, '$1\n\n'),
@@ -366,9 +600,22 @@ function convertImages(body: string): { body: string; converted: boolean } {
 function applyPreservedHeadingIds(
   body: string,
   baseline: LegacyPageSnapshot,
+  canonicalPath: string,
 ): string {
   const tokens = markdown.parse(body, {});
   const headings = tokens.filter((token) => token.type === 'heading_open');
+  const bodyH1Count = headings.filter((token) => token.tag === 'h1').length;
+  const approvedH1Count = APPROVED_BODY_H1_COUNTS.get(canonicalPath);
+  if (approvedH1Count === undefined && bodyH1Count > 0) {
+    throw new Error(
+      `Body H1 normalization is only approved for ${[...APPROVED_BODY_H1_COUNTS.keys()].join(' and ')}; received ${bodyH1Count} on ${canonicalPath}`,
+    );
+  }
+  if (approvedH1Count !== undefined && bodyH1Count !== approvedH1Count) {
+    throw new Error(
+      `${canonicalPath} expected ${approvedH1Count} body H1 headings; received ${bodyH1Count}`,
+    );
+  }
   if (headings.length !== baseline.headings.length) {
     throw new Error(
       `Heading count mismatch: source has ${headings.length}; baseline has ${baseline.headings.length}`,
@@ -390,7 +637,30 @@ function applyPreservedHeadingIds(
     lines[lineIndex] =
       `${match[1]}${marker}${match[3]}${match[4]} {#${baseline.headings[index].id}}`;
   });
-  return lines.join('\n');
+  const migratedBody = lines.join('\n');
+  const migratedHeadings = markdown
+    .parse(migratedBody, {})
+    .filter((token) => token.type === 'heading_open');
+  const remainingBodyH1s = migratedHeadings.filter(
+    (token) => token.tag === 'h1',
+  ).length;
+  if (remainingBodyH1s !== 0) {
+    throw new Error(
+      `${canonicalPath} expected 0 migrated body H1 headings; received ${remainingBodyH1s}`,
+    );
+  }
+  if (approvedH1Count !== undefined) {
+    const migratedH2Count = headings.filter(
+      (token, index) =>
+        token.tag === 'h1' && migratedHeadings[index]?.tag === 'h2',
+    ).length;
+    if (migratedH2Count !== approvedH1Count) {
+      throw new Error(
+        `${canonicalPath} expected ${approvedH1Count} migrated body H2 headings; received ${migratedH2Count}`,
+      );
+    }
+  }
+  return migratedBody;
 }
 
 function isElement(
@@ -402,6 +672,7 @@ function isElement(
 function convertSpotifyEmbeds(
   body: string,
   title: string,
+  canonicalPath: string,
 ): { body: string; converted: boolean } {
   let converted = false;
   const tokens = markdown.parse(body, {});
@@ -425,6 +696,20 @@ function convertSpotifyEmbeds(
       value: `<EmbedFrame src="${escapeHtmlAttribute(src)}" title="Spotify playlist: ${escapeHtmlAttribute(title)}" />`,
     });
   }
+  const spotifyCount = replacements.size;
+  if (canonicalPath !== APPROVED_SPOTIFY_PATH && spotifyCount > 0) {
+    throw new Error(
+      `Spotify iframe conversion is only approved for ${APPROVED_SPOTIFY_PATH}; received ${spotifyCount} on ${canonicalPath}`,
+    );
+  }
+  if (
+    canonicalPath === APPROVED_SPOTIFY_PATH &&
+    spotifyCount !== APPROVED_SPOTIFY_COUNT
+  ) {
+    throw new Error(
+      `${canonicalPath} expected ${APPROVED_SPOTIFY_COUNT} Spotify iframes; received ${spotifyCount}`,
+    );
+  }
   if (!converted) return { body, converted };
 
   const lines = body.split('\n');
@@ -433,7 +718,14 @@ function convertSpotifyEmbeds(
   )) {
     lines.splice(start, replacement.end - start, replacement.value);
   }
-  return { body: lines.join('\n'), converted };
+  const migratedBody = lines.join('\n');
+  const outputCount = migratedBody.split('<EmbedFrame src=').length - 1;
+  if (outputCount !== APPROVED_SPOTIFY_COUNT) {
+    throw new Error(
+      `${canonicalPath} expected ${APPROVED_SPOTIFY_COUNT} migrated Spotify embeds; received ${outputCount}`,
+    );
+  }
+  return { body: migratedBody, converted };
 }
 
 type BlogEnrichment = {
@@ -466,8 +758,8 @@ export function migratePost(
   body = convertKramdownButtons(body);
   const images = convertImages(body);
   body = images.body;
-  body = applyPreservedHeadingIds(body, baseline);
-  const embeds = convertSpotifyEmbeds(body, title);
+  body = applyPreservedHeadingIds(body, baseline, file.canonicalPath);
+  const embeds = convertSpotifyEmbeds(body, title, file.canonicalPath);
   body = embeds.body;
 
   const enrichment = (

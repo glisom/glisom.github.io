@@ -50,6 +50,60 @@ const FRONTMATTER_KEY_ORDER = [
   'socialImage',
 ] as const;
 
+const APPROVED_MIGRATION_ALLOWANCES = [
+  {
+    id: 'correct-four-notion-image-paths',
+    path: '/2023/01/14/notion-for-software.html',
+    field: 'images',
+    operation: 'replace-exact',
+    replacements: {
+      '/uploads/2023/f159196842.png': '/images/f159196842.png',
+      '/uploads/2023/fa6c5dfe53.png': '/images/fa6c5dfe53.png',
+      '/uploads/2023/5fd90bfbf1.png': '/images/5fd90bfbf1.png',
+      '/uploads/2023/6647450a28.png': '/images/6647450a28.png',
+    },
+    expectedOccurrences: 4,
+  },
+  {
+    id: 'replace-listwithme-placeholder-app-store-link',
+    path: '/2026/02/24/listwithme-returns.html',
+    field: 'links',
+    operation: 'replace-exact',
+    before: '#',
+    after: 'https://apps.apple.com/us/app/listwithme/id1224284271',
+    expectedOccurrences: 1,
+  },
+  {
+    id: 'normalize-playlists-body-h1',
+    path: '/2018/11/27/playlists.html',
+    field: 'headings',
+    operation: 'h1-to-h2',
+    expectedOccurrences: 5,
+  },
+  {
+    id: 'normalize-wwdc-day-1-body-h1',
+    path: '/2019/06/04/wwdc-day-1.html',
+    field: 'headings',
+    operation: 'h1-to-h2',
+    expectedOccurrences: 5,
+  },
+  {
+    id: 'upgrade-spotify-embeds',
+    path: '/2020/02/10/2019-playlists.html',
+    field: 'iframeSources',
+    operation: 'embed-with-fallback',
+    requiredAfter: [
+      'title',
+      'loading=lazy',
+      'fallbackHrefEqualsSource',
+      'fallbackText=Open {title}',
+      'fallbackMarker=data-embed-fallback',
+    ],
+    semanticNormalization: 'exclude-only-marked-fallback-from-text-and-links',
+    expectedOccurrences: 4,
+  },
+] as const;
+
 interface FullLegacyPageSnapshot extends LegacyPageSnapshot {
   url: string;
   iframeSources: string[];
@@ -72,6 +126,7 @@ interface MigrationAllowance {
   before?: string;
   after?: string;
   requiredAfter?: string[];
+  semanticNormalization?: string;
 }
 
 interface SerializableMigratedPost extends Omit<MigratedPost, 'data'> {
@@ -112,19 +167,13 @@ export function assertMigrationAllowances(
   if (!Array.isArray(value) || value.length !== 5) {
     throw new Error('Migration allowances must contain exactly 5 entries');
   }
-  const allowances = value as MigrationAllowance[];
-  const expectedIds = [
-    'correct-four-notion-image-paths',
-    'replace-listwithme-placeholder-app-store-link',
-    'normalize-playlists-body-h1',
-    'normalize-wwdc-day-1-body-h1',
-    'upgrade-spotify-embeds',
-  ];
-  if (allowances.map(({ id }) => id).join('\n') !== expectedIds.join('\n')) {
+  if (JSON.stringify(value) !== JSON.stringify(APPROVED_MIGRATION_ALLOWANCES)) {
     throw new Error(
-      'Migration allowances do not match the five reviewed transforms',
+      'Migration allowances must exactly match the reviewed identities',
     );
   }
+  const allowances =
+    APPROVED_MIGRATION_ALLOWANCES as unknown as MigrationAllowance[];
   const recordByPath = new Map(
     records.map((record) => [record.canonicalPath, record] as const),
   );
