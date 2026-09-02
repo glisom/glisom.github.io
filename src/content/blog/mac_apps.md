@@ -11,7 +11,16 @@ tags:
   - iOS
   - Android
 links: []
-relationships: []
+relationships:
+  - label: Current notes tool
+    collection: app-library
+    id: obsidian
+  - label: One developer workflow
+    collection: blog
+    id: safari-inspecting-simulators
+  - label: Later tools thinking
+    collection: blog
+    id: notion-for-software
 publishedAt: "2020-05-23"
 kind: Post
 comments: true

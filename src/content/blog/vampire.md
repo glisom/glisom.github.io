@@ -13,7 +13,16 @@ tags:
   - security
   - open source
 links: []
-relationships: []
+relationships:
+  - label: Earlier Mac toolkit
+    collection: blog
+    id: mac_apps
+  - label: Another Swift project
+    collection: blog
+    id: healthql-sql-for-healthkit
+  - label: Another app revival
+    collection: blog
+    id: listwithme-returns
 publishedAt: "2026-09-01"
 kind: Post
 comments: true

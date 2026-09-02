@@ -12,12 +12,19 @@ tags:
   - xcode
   - swift
 links: []
-relationships: []
+relationships:
+  - label: Built as
+    collection: projects
+    id: listwithme
+  - label: Rebuilt later
+    collection: blog
+    id: listwithme-returns
 publishedAt: "2019-05-30"
 kind: Post
 comments: true
 preservedHeadingIds: []
 numberHeadings: false
+relatedProject: listwithme
 ---
 Over the past month, I built a small iMessage app that allows users to create editable lists in their conversations. The app itself is nothing too flashy, but it was something I hadn’t found a solid solution to and was a great excuse to get some experience with standalone iMessage apps. My wife and I use it whenever we have errands to run after work or a handful of things to get done during the week. Please check it out and let me know what you think!
 

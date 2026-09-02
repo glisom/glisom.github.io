@@ -1,0 +1,16 @@
+---
+interface Props {
+  label?: string;
+  tone?: 'note' | 'ink';
+}
+
+const { label, tone = 'note' } = Astro.props;
+---
+
+<aside
+  class:list={['article-callout', `article-callout--${tone}`]}
+  data-surface={tone === 'ink' ? 'black' : undefined}
+>
+  {label && <p class="article-callout-label">{label}</p>}
+  <div class="article-callout-body"><slot /></div>
+</aside>

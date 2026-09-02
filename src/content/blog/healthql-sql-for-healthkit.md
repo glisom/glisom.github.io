@@ -12,7 +12,13 @@ tags:
   - healthkit
   - open source
 links: []
-relationships: []
+relationships:
+  - label: Built as
+    collection: projects
+    id: healthql
+  - label: Expanded in
+    collection: blog
+    id: healthql-react-native
 publishedAt: "2026-02-01"
 kind: Post
 comments: true
@@ -23,6 +29,7 @@ preservedHeadingIds:
   - installation
 numberHeadings: false
 originalTimestamp: "2026-02-01T20:00:00.000Z"
+relatedProject: healthql
 ---
 I built a Swift library that lets you query HealthKit data using SQL syntax. Working with HealthKit directly involves a lot of boilerplate—callback-based APIs, type-specific query objects, manual result transformation. HealthQL simplifies this into something more familiar.
 

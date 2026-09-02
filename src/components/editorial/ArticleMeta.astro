@@ -1,0 +1,130 @@
+---
+import type { Media } from '../../types/content';
+import HalftoneImage from '../media/HalftoneImage.astro';
+import Icon from '../media/Icon.astro';
+
+interface RelatedProject {
+  title: string;
+  canonicalPath: string;
+}
+
+interface Props {
+  title: string;
+  titleAccent?: string;
+  summary: string;
+  kind: string;
+  year: string;
+  publishedDate: string;
+  minutes: number;
+  tags: readonly string[];
+  relatedProject?: RelatedProject;
+  featuredArt?: Media;
+}
+
+const {
+  title,
+  titleAccent,
+  summary,
+  kind,
+  year,
+  publishedDate,
+  minutes,
+  tags,
+  relatedProject,
+  featuredArt,
+} = Astro.props;
+const accentIndex = titleAccent ? title.indexOf(titleAccent) : -1;
+const titleBefore = accentIndex >= 0 ? title.slice(0, accentIndex) : title;
+const titleAfter =
+  accentIndex >= 0 && titleAccent
+    ? title.slice(accentIndex + titleAccent.length)
+    : '';
+interface ArticleFact {
+  label: string;
+  value: string;
+  kind: 'text' | 'tags';
+}
+
+const facts: ArticleFact[] = [
+  { label: 'Published', value: publishedDate, kind: 'text' as const },
+  {
+    label: 'Reading time',
+    value: `${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`,
+    kind: 'text' as const,
+  },
+];
+if (tags.length > 0) {
+  facts.push({
+    label: 'Filed under',
+    value: tags.join(' · '),
+    kind: 'tags' as const,
+  });
+}
+---
+
+<header class:list={['article-masthead', { 'has-evidence': featuredArt }]}>
+  <div class="article-masthead-copy">
+    <a class="article-back-link" href="/blog/">
+      <Icon name="arrow-right" decorative={true} class="article-back-icon" />
+      <span>All writing</span>
+    </a>
+    <p class="article-eyebrow">
+      <span class="article-eyebrow-mark" aria-hidden="true"></span>
+      <span>Blog / {kind} · {year}</span>
+    </p>
+    <h1>
+      {titleBefore}{
+        titleAccent && accentIndex >= 0 ? <em>{titleAccent}</em> : null
+      }{titleAfter}
+    </h1>
+    <p class="article-dek">{summary}</p>
+  </div>
+
+  {
+    featuredArt && (
+      <figure class="article-evidence">
+        <HalftoneImage
+          src={featuredArt.src}
+          alt={featuredArt.alt}
+          decorative={featuredArt.decorative}
+          widths={[320, 480, 640, 920]}
+          sizes="(max-width: 820px) calc(100vw - 36px), (max-width: 1023px) calc(100vw - 274px), (max-width: 1219px) 32vw, 30vw"
+          loading="eager"
+          fetchpriority="high"
+          class="article-evidence-image"
+        />
+      </figure>
+    )
+  }
+</header>
+
+<section
+  class="article-facts"
+  aria-label="Article information"
+  style={`--article-fact-count: ${facts.length + (relatedProject ? 1 : 0)}`}
+>
+  {
+    facts.map((fact) => (
+      <div
+        class:list={[
+          'article-fact',
+          { 'article-fact--tags': fact.kind === 'tags' },
+        ]}
+        data-article-fact={fact.label}
+      >
+        <span class="article-meta-label">{fact.label}</span>
+        <strong>{fact.value}</strong>
+      </div>
+    ))
+  }
+  {
+    relatedProject && (
+      <div class="article-fact" data-article-fact="Connected project">
+        <span class="article-meta-label">Connected project</span>
+        <strong>
+          <a href={relatedProject.canonicalPath}>{relatedProject.title}</a>
+        </strong>
+      </div>
+    )
+  }
+</section>

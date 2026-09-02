@@ -12,7 +12,13 @@ tags:
   - agents
   - open source
 links: []
-relationships: []
+relationships:
+  - label: Related authored skill
+    collection: skills
+    id: write-like-grant
+  - label: Related authored skill
+    collection: skills
+    id: goodreads-export
 publishedAt: "2026-09-01"
 kind: Post
 comments: true

@@ -1,0 +1,14 @@
+---
+interface Props {
+  numberHeadings?: boolean;
+}
+
+const { numberHeadings = false } = Astro.props;
+---
+
+<article
+  class:list={['prose', { 'prose--numbered': numberHeadings }]}
+  data-article-prose
+>
+  <slot />
+</article>

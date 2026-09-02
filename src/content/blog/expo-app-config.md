@@ -12,7 +12,13 @@ tags:
   - eas
   - react native
 links: []
-relationships: []
+relationships:
+  - label: Built on this stack
+    collection: blog
+    id: healthql-react-native
+  - label: Another mobile workflow
+    collection: blog
+    id: accessibility-testing-in
 publishedAt: "2023-02-01"
 kind: Post
 comments: true

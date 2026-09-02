@@ -11,7 +11,13 @@ tags:
   - engineering management
   - reflection
 links: []
-relationships: []
+relationships:
+  - label: Where the chapter began
+    collection: blog
+    id: next-chapter
+  - label: Later healthcare software
+    collection: blog
+    id: healthql-sql-for-healthkit
 publishedAt: "2022-11-07"
 kind: Post
 comments: true

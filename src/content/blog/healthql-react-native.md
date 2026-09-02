@@ -13,7 +13,16 @@ tags:
   - open source
   - typescript
 links: []
-relationships: []
+relationships:
+  - label: Built as
+    collection: projects
+    id: healthql
+  - label: Built on
+    collection: blog
+    id: healthql-sql-for-healthkit
+  - label: Related Expo setup
+    collection: blog
+    id: expo-app-config
 publishedAt: "2026-02-07"
 kind: Post
 comments: true
@@ -25,6 +34,7 @@ preservedHeadingIds:
   - platform-support
 numberHeadings: false
 originalTimestamp: "2026-02-07T20:00:00.000Z"
+relatedProject: healthql
 ---
 HealthQL v1.1.0 adds full React Native and Expo support. You can now query Apple HealthKit using the same SQL syntax from JavaScript/TypeScript apps.
 

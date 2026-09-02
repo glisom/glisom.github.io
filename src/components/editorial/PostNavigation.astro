@@ -1,0 +1,42 @@
+---
+interface PostLink {
+  title: string;
+  summary: string;
+  canonicalPath: string;
+}
+
+interface Props {
+  previous: PostLink | null;
+  next: PostLink | null;
+}
+
+const { previous, next } = Astro.props;
+---
+
+{
+  (previous || next) && (
+    <nav class="post-navigation" aria-label="More writing" data-post-navigation>
+      {previous && (
+        <a
+          class="post-navigation-card post-navigation-card--previous"
+          href={previous.canonicalPath}
+        >
+          <span>Previous post</span>
+          <strong>{previous.title}</strong>
+          <small>{previous.summary}</small>
+        </a>
+      )}
+      {next && (
+        <a
+          class="post-navigation-card post-navigation-card--next"
+          href={next.canonicalPath}
+          data-surface="blue"
+        >
+          <span>Next post</span>
+          <strong>{next.title}</strong>
+          <small>{next.summary}</small>
+        </a>
+      )}
+    </nav>
+  )
+}

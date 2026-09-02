@@ -1,0 +1,35 @@
+---
+import type { ResolvedRelationship } from '../../types/content';
+
+interface Props {
+  relationships: readonly ResolvedRelationship[];
+}
+
+const { relationships } = Astro.props;
+---
+
+{
+  relationships.length > 0 && (
+    <section class="related-records" aria-labelledby="related-records-title">
+      <div class="article-section-heading">
+        <p>Connected records</p>
+        <h2 id="related-records-title">Follow the thread</h2>
+      </div>
+      <div class="related-records-grid">
+        {relationships.map((relationship) => (
+          <a
+            class="related-record"
+            href={relationship.canonicalPath}
+            data-related-record
+          >
+            <span class="relationship-label" data-relationship-label>
+              {relationship.label}
+            </span>
+            <strong>{relationship.title}</strong>
+            <span class="relationship-summary">{relationship.summary}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}

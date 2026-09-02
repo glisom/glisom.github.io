@@ -13,7 +13,16 @@ tags:
   - iOS development
   - Android development
 links: []
-relationships: []
+relationships:
+  - label: Related mobile setup
+    collection: blog
+    id: expo-app-config
+  - label: Related local CI workflow
+    collection: blog
+    id: using-act-to
+  - label: Earlier iOS testing
+    collection: blog
+    id: safari-inspecting-simulators
 publishedAt: "2023-07-19"
 kind: Post
 comments: true

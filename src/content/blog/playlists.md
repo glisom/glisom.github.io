@@ -9,7 +9,13 @@ featured: false
 tags:
   - music
 links: []
-relationships: []
+relationships:
+  - label: Continued in
+    collection: blog
+    id: 2019-playlists
+  - label: Another personal archive
+    collection: blog
+    id: reading-list
 publishedAt: "2018-11-27"
 kind: Post
 comments: true

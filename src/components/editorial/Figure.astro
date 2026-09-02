@@ -31,7 +31,10 @@ const avif = await getImage({ src: image, widths, sizes, format: 'avif' });
 const webp = await getImage({ src: image, widths, sizes, format: 'webp' });
 ---
 
-<figure class:list={['article-figure', `article-figure--${variant}`]}>
+<figure
+  class:list={['article-figure', `article-figure--${variant}`]}
+  data-figure-variant={variant}
+>
   <picture>
     <source type="image/avif" srcset={avif.srcSet.attribute} sizes={sizes} />
     <source type="image/webp" srcset={webp.srcSet.attribute} sizes={sizes} />

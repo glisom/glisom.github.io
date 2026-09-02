@@ -11,7 +11,16 @@ tags:
   - ios
   - conferences
 links: []
-relationships: []
+relationships:
+  - label: Previous day
+    collection: blog
+    id: wwdc-day-1
+  - label: Next day
+    collection: blog
+    id: wwdc-day-3
+  - label: Week in review
+    collection: blog
+    id: wwdc-review
 publishedAt: "2019-06-06"
 kind: Post
 comments: true

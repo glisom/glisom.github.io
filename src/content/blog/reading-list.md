@@ -10,7 +10,13 @@ tags:
   - reading
   - books
 links: []
-relationships: []
+relationships:
+  - label: Continued in
+    collection: blog
+    id: mustread-books-for
+  - label: Related skill
+    collection: skills
+    id: goodreads-export
 publishedAt: "2018-04-02"
 kind: Post
 comments: true

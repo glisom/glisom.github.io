@@ -11,7 +11,13 @@ tags:
   - ios
   - conferences
 links: []
-relationships: []
+relationships:
+  - label: Where the week began
+    collection: blog
+    id: wwdc-day-1
+  - label: How the week ended
+    collection: blog
+    id: wwdc-day-4
 publishedAt: "2019-06-09"
 kind: Post
 comments: true

@@ -8,7 +8,13 @@ hasDetailPage: true
 featured: false
 tags: []
 links: []
-relationships: []
+relationships:
+  - label: Another CI test workflow
+    collection: blog
+    id: accessibility-testing-in
+  - label: Another release workflow
+    collection: blog
+    id: expo-app-config
 publishedAt: "2023-05-15"
 kind: Post
 comments: true

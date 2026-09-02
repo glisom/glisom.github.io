@@ -14,16 +14,28 @@ tags:
   - swift
   - swiftui
 links: []
-relationships: []
+relationships:
+  - label: Built as
+    collection: projects
+    id: listwithme
+  - label: Earlier chapter
+    collection: blog
+    id: listwithme
 publishedAt: "2026-02-24"
-kind: Post
+kind: Build log
 comments: true
 preservedHeadingIds:
   - a-complete-rebuild
   - the-technical-side
   - why-imessage-apps-still-matter
   - whats-next
-numberHeadings: false
+numberHeadings: true
+titleAccent: ListWithMe
+featuredArt:
+  src: evidence/listwithme-hand.png
+  alt: A fine blue halftone drawing of a hand holding a pen
+  decorative: false
+relatedProject: listwithme
 ---
 Back in 2019, I built [ListWithMe](/listwithme/)—a simple iMessage app for creating shared shopping lists. My wife and I used it constantly for grocery runs and weekend errands. It was nothing fancy, but it solved a real problem: quickly creating a list that both of us could see and edit in real-time, right inside our conversation.
 
