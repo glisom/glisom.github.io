@@ -1,0 +1,18 @@
+---
+import type { PrimaryCollection } from '../../types/content';
+import MobileNav from './MobileNav.astro';
+
+interface Props {
+  activeCollection?: PrimaryCollection;
+}
+
+const { activeCollection } = Astro.props;
+---
+
+<header class="mobile-header">
+  <a class="mobile-identity" href="/" aria-label="Grant Isom, home">
+    <span class="monogram" aria-hidden="true">GI</span>
+    <span>Grant Isom</span>
+  </a>
+  <MobileNav activeCollection={activeCollection} />
+</header>

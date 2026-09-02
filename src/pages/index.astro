@@ -1,18 +1,13 @@
 ---
-const title = 'Grant Isom';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <main>
-      <h1>Grant Isom</h1>
-      <p>Writer, maker, curious person.</p>
-    </main>
-  </body>
-</html>
+<BaseLayout
+  title="Grant Isom — Writer, maker, tinkerer"
+  description="Writing, small software, useful systems, and the tools and skills shaping how I work."
+  canonicalPath="/"
+  railContext={{ kind: 'home' }}
+>
+  <h1>Grant Isom</h1>
+  <p>Writer, maker, curious person.</p>
+</BaseLayout>

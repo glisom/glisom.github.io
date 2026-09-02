@@ -1,0 +1,57 @@
+---
+import ResponsiveImage from './ResponsiveImage.astro';
+
+interface Props {
+  src: string;
+  alt: string;
+  decorative?: boolean;
+  widths?: number[];
+  sizes?: string;
+  loading?: 'eager' | 'lazy';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  decorative = false,
+  widths,
+  sizes,
+  loading,
+  fetchpriority,
+  class: className,
+} = Astro.props;
+---
+
+<div class:list={['halftone-image', className]} data-halftone-image>
+  <ResponsiveImage
+    src={src}
+    alt={alt}
+    decorative={decorative}
+    widths={widths}
+    sizes={sizes}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    class="halftone-image__asset"
+  />
+</div>
+
+<style>
+  .halftone-image {
+    max-inline-size: 100%;
+    overflow: hidden;
+    background: var(--paper-bright);
+  }
+
+  .halftone-image :global(picture),
+  .halftone-image :global(img) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .halftone-image :global(img) {
+    object-fit: cover;
+    mix-blend-mode: multiply;
+  }
+</style>

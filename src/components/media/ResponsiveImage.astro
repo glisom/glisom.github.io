@@ -1,0 +1,57 @@
+---
+import { Picture } from 'astro:assets';
+import { resolveLocalImage } from '../../lib/media';
+
+interface Props {
+  src: string;
+  alt: string;
+  decorative?: boolean;
+  widths?: number[];
+  sizes?: string;
+  loading?: 'eager' | 'lazy';
+  decoding?: 'async' | 'auto' | 'sync';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  decorative = false,
+  widths,
+  sizes = '100vw',
+  loading = 'lazy',
+  decoding = 'async',
+  fetchpriority,
+  class: className,
+} = Astro.props;
+
+if (decorative && alt !== '') {
+  throw new Error(`Decorative image "${src}" must use an empty alt value.`);
+}
+if (!decorative && !alt.trim()) {
+  throw new Error(`Informative image "${src}" requires nonblank alt text.`);
+}
+
+const image = resolveLocalImage(src);
+const defaultWidths = [320, 640, 960, image.width];
+const responsiveWidths = [...new Set(widths ?? defaultWidths)]
+  .filter((width) => width > 0 && width <= image.width)
+  .sort((a, b) => a - b);
+if (!responsiveWidths.includes(image.width)) responsiveWidths.push(image.width);
+---
+
+<Picture
+  src={image}
+  alt={decorative ? '' : alt}
+  width={image.width}
+  height={image.height}
+  widths={responsiveWidths}
+  sizes={sizes}
+  formats={['avif', 'webp']}
+  loading={loading}
+  decoding={decoding}
+  fetchpriority={fetchpriority}
+  class={className}
+  data-decorative={decorative ? 'true' : undefined}
+/>

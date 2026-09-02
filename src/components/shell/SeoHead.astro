@@ -1,0 +1,47 @@
+---
+import { SITE } from '../../data/site';
+import type { BaseLayoutProps } from '../../types/content';
+
+const {
+  title,
+  description,
+  canonicalPath,
+  canonicalOverride,
+  socialImage,
+  pageType = 'website',
+  noindex = false,
+} = Astro.props as BaseLayoutProps;
+
+const canonicalUrl = new URL(canonicalOverride ?? canonicalPath, SITE.origin)
+  .href;
+const socialImageUrl = socialImage
+  ? new URL(socialImage, SITE.origin).href
+  : undefined;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={`${SITE.name} RSS feed`}
+  href={`${SITE.origin}/feed.xml`}
+/>
+<link rel="icon" href="/favicon.ico" />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<meta property="og:type" content={pageType} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+{socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
+<meta
+  name="twitter:card"
+  content={socialImageUrl ? 'summary_large_image' : 'summary'}
+/>
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{socialImageUrl && <meta name="twitter:image" content={socialImageUrl} />}
