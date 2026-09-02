@@ -1,0 +1,53 @@
+{
+  "name": "grantisom-com",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.20.0",
+    "npm": "11.19.0"
+  },
+  "packageManager": "npm@11.19.0",
+  "scripts": {
+    "preinstall": "node scripts/verify-runtime.mjs",
+    "runtime:check": "node scripts/verify-runtime.mjs",
+    "predev": "npm run runtime:check",
+    "dev": "astro dev",
+    "precheck": "npm run runtime:check",
+    "check": "astro check",
+    "prebuild": "npm run runtime:check",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "pretest": "npm run runtime:check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@astrojs/mdx": "8.0.0",
+    "@astrojs/rss": "4.0.19",
+    "@fontsource/dm-sans": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/source-serif-4": "5.3.0",
+    "@phosphor-icons/web": "2.1.2",
+    "astro": "7.2.10",
+    "markdown-it": "15.0.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.62.1",
+    "@types/markdown-it": "14.2.0",
+    "@types/node": "24.13.3",
+    "cheerio": "1.2.0",
+    "fast-glob": "3.3.3",
+    "gray-matter": "4.0.3",
+    "parse5": "8.0.1",
+    "prettier": "3.9.6",
+    "prettier-plugin-astro": "0.14.1",
+    "sharp": "0.35.4",
+    "tsx": "4.23.13",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11",
+    "yaml": "2.9.0"
+  }
+}
