@@ -1,0 +1,24 @@
+---
+title: WWDC Day 3
+slug: wwdc-day-3
+canonicalPath: /2019/06/07/wwdc-day-3.html
+summary: The majority of the second day was spent in more labs, sessions, and not being able to control my impulses buying swag.
+draft: false
+hasDetailPage: true
+featured: false
+tags:
+  - wwdc
+  - ios
+  - conferences
+links: []
+relationships: []
+publishedAt: "2019-06-07"
+kind: Post
+comments: true
+preservedHeadingIds:
+  - another-day-of-sessions-labs-and-buying-swag
+numberHeadings: false
+---
+## Another Day of Sessions, Labs, and Buying Swag {#another-day-of-sessions-labs-and-buying-swag}
+
+The majority of the second day was spent in more labs, sessions, and not being able to control my impulses buying swag. I had some awesome conversations in the HealthKit Labs with one of the doctors that worked on the Health Records Feature in Apple Health with Cerner which was very cool and then went to some cool lunch and evening panels with the Health teams talking about their new features, how they deal with regulations, and the future of features like the ECG on the watch. It was also super interesting hearing developers voice concern and challenge some of the their blanket statement responses on a couple questions. After that, I grabbed some WWDC swag and headed out for the day over to a WeWork happy hour. That was pretty short, so went home got ready for the night and headed over to Live Near WWDC, a concert put on by James Dempsey and the Breakpoints. It was an awesome event, met so many great people, from some guys from the Target iOS Team, freelances from Australia, Dave Verwer, and then some super cool Apple engineers. All in all, this was by far the most packed and fun day yet.

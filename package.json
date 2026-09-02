@@ -22,6 +22,8 @@
     "test:watch": "vitest",
     "capture:production": "node scripts/capture-production-baseline.mjs",
     "capture:legal": "tsx scripts/capture-listwithme-legal.ts",
+    "migrate:posts": "tsx scripts/migrate-jekyll-posts.ts",
+    "migrate:posts:check": "tsx scripts/migrate-jekyll-posts.ts --check",
     "format:check": "prettier --check ."
   },
   "dependencies": {
@@ -36,6 +38,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
+    "@astrojs/markdown-remark": "7.3.0",
     "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.62.1",
     "@types/markdown-it": "14.2.0",

@@ -1,0 +1,122 @@
+export interface ImageEnrichment {
+  assetKey: `legacy/${string}`;
+  alt: string;
+  width: number;
+  height: number;
+  variant: 'full' | 'wide' | 'portrait' | 'gallery';
+}
+
+export const IMAGE_ENRICHMENTS = {
+  '/images/ec18f32904.jpg': {
+    assetKey: 'legacy/ec18f32904.jpg',
+    alt: 'Cover of Build by Tony Fadell',
+    width: 250,
+    height: 382,
+    variant: 'portrait',
+  },
+  '/images/475c3984d0.jpg': {
+    assetKey: 'legacy/475c3984d0.jpg',
+    alt: 'Cover of The Phoenix Project',
+    width: 250,
+    height: 375,
+    variant: 'portrait',
+  },
+  '/images/7337cde14c.jpg': {
+    assetKey: 'legacy/7337cde14c.jpg',
+    alt: 'Cover of The Hard Thing About Hard Things',
+    width: 250,
+    height: 378,
+    variant: 'portrait',
+  },
+  '/images/a97bedecb3.jpg': {
+    assetKey: 'legacy/a97bedecb3.jpg',
+    alt: 'Cover of Structure and Interpretation of Computer Programs',
+    width: 250,
+    height: 376,
+    variant: 'portrait',
+  },
+  '/images/5f538d59de.jpg': {
+    assetKey: 'legacy/5f538d59de.jpg',
+    alt: 'Cover of A Philosophy of Software Design',
+    width: 250,
+    height: 316,
+    variant: 'portrait',
+  },
+  '/images/45d7f5784d.jpg': {
+    assetKey: 'legacy/45d7f5784d.jpg',
+    alt: 'Cover of The Pragmatic Programmer',
+    width: 250,
+    height: 325,
+    variant: 'portrait',
+  },
+  '/images/e1d2ad7014.jpg': {
+    assetKey: 'legacy/e1d2ad7014.jpg',
+    alt: 'Cover of An Elegant Puzzle',
+    width: 250,
+    height: 369,
+    variant: 'portrait',
+  },
+  '/images/a37debf5ab.jpg': {
+    assetKey: 'legacy/a37debf5ab.jpg',
+    alt: 'Cover of Software Engineering at Google',
+    width: 250,
+    height: 328,
+    variant: 'portrait',
+  },
+  '/images/96ce2ec5a6.jpg': {
+    assetKey: 'legacy/96ce2ec5a6.jpg',
+    alt: 'Cover of Inspired by Marty Cagan',
+    width: 250,
+    height: 378,
+    variant: 'portrait',
+  },
+  '/images/f159196842.png': {
+    assetKey: 'legacy/f159196842.png',
+    alt: 'Notion Work Log calendar showing weekly entries in January 2023',
+    width: 1594,
+    height: 878,
+    variant: 'wide',
+  },
+  '/images/fa6c5dfe53.png': {
+    assetKey: 'legacy/fa6c5dfe53.png',
+    alt: 'Notion weekly work log page with dated daily engineering notes',
+    width: 1671,
+    height: 1287,
+    variant: 'wide',
+  },
+  '/images/5fd90bfbf1.png': {
+    assetKey: 'legacy/5fd90bfbf1.png',
+    alt: 'Notion illustration of a person clipping a page with scissors',
+    width: 750,
+    height: 628,
+    variant: 'wide',
+  },
+  '/images/6647450a28.png': {
+    assetKey: 'legacy/6647450a28.png',
+    alt: 'Notion AI introduction graphic showing writing-assistant actions',
+    width: 1378,
+    height: 754,
+    variant: 'wide',
+  },
+  '/images/logo.png': {
+    assetKey: 'legacy/logo.png',
+    alt: 'Illuminate company logo',
+    width: 350,
+    height: 43,
+    variant: 'full',
+  },
+  '/images/safari_settings.png': {
+    assetKey: 'legacy/safari_settings.png',
+    alt: 'Safari Settings',
+    width: 2400,
+    height: 1600,
+    variant: 'wide',
+  },
+  '/images/develop_menu.png': {
+    assetKey: 'legacy/develop_menu.png',
+    alt: 'Develop Menu',
+    width: 2382,
+    height: 376,
+    variant: 'wide',
+  },
+} as const satisfies Record<string, ImageEnrichment>;

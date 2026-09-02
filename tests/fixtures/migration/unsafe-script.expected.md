@@ -1,0 +1,2 @@
+REJECTED: script
+REJECTED: onerror
