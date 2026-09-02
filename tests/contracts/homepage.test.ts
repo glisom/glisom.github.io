@@ -110,6 +110,28 @@ describe('built homepage', () => {
     expect($('[data-halftone-image] img[width][height]')).toHaveLength(6);
   });
 
+  it('keeps homepage image hints aligned with the 1320px intermediate layout', () => {
+    const responsiveLayoutImages = $(
+      '.hero-art, .production-art, .project-art, .belief-art',
+    );
+
+    expect(responsiveLayoutImages).toHaveLength(5);
+    responsiveLayoutImages.each((_, image) => {
+      const sizeHints = $(image)
+        .find('source[sizes], img[sizes]')
+        .map((__, candidate) => $(candidate).attr('sizes'))
+        .get();
+
+      expect(sizeHints).toHaveLength(3);
+      expect(sizeHints).toEqual(
+        expect.arrayContaining([
+          expect.stringContaining('(max-width: 1320px)'),
+        ]),
+      );
+      expect(sizeHints.join(' ')).not.toContain('(max-width: 1120px)');
+    });
+  });
+
   it('moves the hero and evidence grid to their safe intermediate layout before the rail breakpoint can squeeze them', () => {
     const intermediate = blockBody(homeCss, '@media (max-width: 1320px)');
 
