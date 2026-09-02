@@ -41,7 +41,83 @@ function withoutComponentImports(body: string): string {
   );
 }
 
-function proseTokens(body: string) {
+type MarkdownToken = ReturnType<typeof markdown.parse>[number];
+
+interface TokenSignature {
+  type: string;
+  tag: string;
+  nesting: number;
+  markup: string;
+  content: string;
+  attrs: Array<[string, string]>;
+}
+
+function matchingLinkClose(
+  children: MarkdownToken[],
+  openIndex: number,
+): number {
+  return children.findIndex(
+    (candidate, candidateIndex) =>
+      candidateIndex > openIndex && candidate.type === 'link_close',
+  );
+}
+
+function isExactListWithMeAction(
+  children: MarkdownToken[],
+  openIndex: number,
+  canonicalPath?: string,
+): boolean {
+  const token = children[openIndex];
+  const closeIndex = matchingLinkClose(children, openIndex);
+  return (
+    canonicalPath === '/2026/02/24/listwithme-returns.html' &&
+    token.type === 'link_open' &&
+    token.attrGet('href') === '#' &&
+    token.attrGet('title') === null &&
+    closeIndex === openIndex + 2 &&
+    children[openIndex + 1].type === 'text' &&
+    children[openIndex + 1].content === 'App Store'
+  );
+}
+
+function tokenAttrs(
+  token: MarkdownToken,
+  children?: MarkdownToken[],
+  index?: number,
+  canonicalPath?: string,
+): Array<[string, string]> {
+  const attrs = (token.attrs ?? []).map(
+    ([name, value]) => [name, value] as [string, string],
+  );
+  if (
+    children &&
+    index !== undefined &&
+    isExactListWithMeAction(children, index, canonicalPath)
+  ) {
+    const hrefIndex = attrs.findIndex(([name]) => name === 'href');
+    attrs[hrefIndex] = ['href', APP_STORE_URL];
+  }
+  return attrs.sort(([left], [right]) => left.localeCompare(right));
+}
+
+function tokenSignature(
+  token: MarkdownToken,
+  children?: MarkdownToken[],
+  index?: number,
+  canonicalPath?: string,
+  content = token.content,
+): TokenSignature {
+  return {
+    type: token.type,
+    tag: token.tag,
+    nesting: token.nesting,
+    markup: token.markup,
+    content,
+    attrs: tokenAttrs(token, children, index, canonicalPath),
+  };
+}
+
+function proseTokens(body: string, canonicalPath?: string) {
   const tokens = markdown.parse(withoutComponentImports(body), {});
   return tokens.flatMap((token, tokenIndex) => {
     if (token.type !== 'inline') return [];
@@ -52,12 +128,9 @@ function proseTokens(body: string) {
     const lastTextIndex = token.children?.findLastIndex(
       (child) => child.type === 'text',
     );
-    return (token.children ?? []).flatMap((child, childIndex) => {
-      if (child.type === 'image' || child.type === 'html_inline') return [];
-      if (child.type === 'softbreak' || child.type === 'hardbreak') {
-        return [{ type: child.type, content: '\n' }];
-      }
-      if (child.type !== 'text' && child.type !== 'code_inline') return [];
+    const children = token.children ?? [];
+    return children.flatMap((child, childIndex) => {
+      if (child.type === 'image') return [];
       if (
         containsImage &&
         child.type === 'text' &&
@@ -69,18 +142,99 @@ function proseTokens(body: string) {
         isHeading && childIndex === lastTextIndex
           ? child.content.replace(/ \{#[^}\s]+\}$/, '')
           : child.content;
-      return [{ type: child.type, content }];
+      return [
+        tokenSignature(child, children, childIndex, canonicalPath, content),
+      ];
     });
   });
 }
 
-function links(body: string): string[] {
-  return markdown
-    .parse(withoutComponentImports(body), {})
-    .flatMap((token) => token.children ?? [])
-    .filter((token) => token.type === 'link_open')
-    .map((token) => token.attrGet('href'))
-    .filter((href): href is string => href !== null);
+function links(body: string, canonicalPath?: string) {
+  return markdown.parse(withoutComponentImports(body), {}).flatMap((token) => {
+    if (token.type !== 'inline') return [];
+    const children = token.children ?? [];
+    return children.flatMap((child, index) => {
+      if (child.type !== 'link_open') return [];
+      const closeIndex = matchingLinkClose(children, index);
+      if (closeIndex === -1) {
+        throw new Error('Independent oracle found an unclosed Markdown link');
+      }
+      const attrs = tokenAttrs(child, children, index, canonicalPath);
+      return [
+        {
+          href: attrs.find(([name]) => name === 'href')?.[1] ?? '',
+          title: attrs.find(([name]) => name === 'title')?.[1] ?? null,
+          markup: child.markup,
+          label: children
+            .slice(index + 1, closeIndex)
+            .map((labelToken) => tokenSignature(labelToken)),
+        },
+      ];
+    });
+  });
+}
+
+function isImageOnlyInline(token: MarkdownToken): boolean {
+  return (
+    token.type === 'inline' &&
+    (token.children ?? []).some((child) => child.type === 'image') &&
+    (token.children ?? []).every(
+      (child) =>
+        child.type === 'image' ||
+        (child.type === 'text' && child.content.trim() === ''),
+    )
+  );
+}
+
+function excludedHtmlBlock(content: string): boolean {
+  return (
+    /^<(?:Figure|EmbedFrame)\b[^>]*\/>\s*$/.test(content) ||
+    spotifyIframeSources(content).length > 0
+  );
+}
+
+function blockStructure(body: string, canonicalPath?: string) {
+  const tokens = markdown.parse(withoutComponentImports(body), {});
+  const excludedIndexes = new Set<number>();
+  tokens.forEach((token, index) => {
+    if (token.type === 'heading_open') {
+      excludedIndexes.add(index);
+      excludedIndexes.add(index + 1);
+      excludedIndexes.add(index + 2);
+      return;
+    }
+    if (token.type === 'fence' || token.type === 'code_block') {
+      excludedIndexes.add(index);
+      return;
+    }
+    if (token.type === 'html_block' && excludedHtmlBlock(token.content)) {
+      excludedIndexes.add(index);
+      return;
+    }
+    if (isImageOnlyInline(token)) {
+      excludedIndexes.add(index);
+      if (tokens[index - 1]?.type === 'paragraph_open') {
+        excludedIndexes.add(index - 1);
+      }
+      if (tokens[index + 1]?.type === 'paragraph_close') {
+        excludedIndexes.add(index + 1);
+      }
+    }
+  });
+
+  return tokens.flatMap((token, index) => {
+    if (excludedIndexes.has(index)) return [];
+    if (token.type !== 'inline') return [tokenSignature(token)];
+    const children = token.children ?? [];
+    return [
+      {
+        ...tokenSignature(token, undefined, undefined, canonicalPath, ''),
+        children: children.map((child, childIndex) =>
+          tokenSignature(child, children, childIndex, canonicalPath),
+        ),
+      },
+    ];
+  });
 }
 
 function codeBlocks(body: string) {
@@ -208,15 +362,11 @@ function expectedBodyTokens(
       throw new Error(`Independent image oracle missing ${migratedSrc}`);
     return { src: migratedSrc, ...enrichment, alt: alt || enrichment.alt };
   });
-  const expectedLinks = links(source).map((href) =>
-    canonicalPath === '/2026/02/24/listwithme-returns.html' && href === '#'
-      ? APP_STORE_URL
-      : href,
-  );
   const sourceEmbeds = spotifyIframeSources(source);
   return {
-    prose: proseTokens(source),
-    links: expectedLinks,
+    prose: proseTokens(source, canonicalPath),
+    blocks: blockStructure(source, canonicalPath),
+    links: links(source, canonicalPath),
     code: codeBlocks(source),
     comments: comments(source),
     headings: sourceHeadings.map((heading, index) => ({
@@ -240,6 +390,7 @@ function expectedBodyTokens(
 function actualBodyTokens(output: string, title: string) {
   return {
     prose: proseTokens(output),
+    blocks: blockStructure(output),
     links: links(output),
     code: codeBlocks(output),
     comments: comments(output),
@@ -682,6 +833,87 @@ describe('Jekyll post migration', () => {
     expect(actual.headings).not.toEqual(expected.headings);
     expect(actual.images).not.toEqual(expected.images);
     expect(actual.embeds).not.toEqual(expected.embeds);
+  });
+
+  it('independent token oracle detects removed emphasis structure', () => {
+    const source = '*emphasis*';
+    const output = 'emphasis';
+    const expected = expectedBodyTokens(
+      source,
+      '/2020/01/01/example.html',
+      'Example',
+      { headings: [] },
+      {},
+    );
+    const actual = actualBodyTokens(output, 'Example');
+
+    expect(actual.prose).not.toEqual(expected.prose);
+  });
+
+  it('independent token oracle detects changed Markdown block structure', () => {
+    const source = '- First item\n- Second item';
+    const output = 'First item\nSecond item';
+    const expected = expectedBodyTokens(
+      source,
+      '/2020/01/01/example.html',
+      'Example',
+      { headings: [] },
+      {},
+    );
+    const actual = actualBodyTokens(output, 'Example');
+
+    expect(actual.blocks).not.toEqual(expected.blocks);
+  });
+
+  it('independent token oracle detects removed link titles', () => {
+    const source =
+      'Paragraph with a [label](https://example.com "Reference title").';
+    const output = 'Paragraph with a [label](https://example.com).';
+    const expected = expectedBodyTokens(
+      source,
+      '/2020/01/01/example.html',
+      'Example',
+      { headings: [] },
+      {},
+    );
+    const actual = actualBodyTokens(output, 'Example');
+
+    expect(actual.links).not.toEqual(expected.links);
+  });
+
+  it('independent token oracle detects changed link-label token structure', () => {
+    const source =
+      'Paragraph with a [**formatted label**](https://example.com).';
+    const output = 'Paragraph with a [formatted label](https://example.com).';
+    const expected = expectedBodyTokens(
+      source,
+      '/2020/01/01/example.html',
+      'Example',
+      { headings: [] },
+      {},
+    );
+    const actual = actualBodyTokens(output, 'Example');
+
+    expect(actual.links).not.toEqual(expected.links);
+  });
+
+  it('independent token oracle rejects rewriting an unrelated ListWithMe hash link', () => {
+    const source = '[Documentation](#) and [App Store](#).';
+    const output = `[Documentation](${APP_STORE_URL}) and [App Store](${APP_STORE_URL}).`;
+    const expected = expectedBodyTokens(
+      source,
+      '/2026/02/24/listwithme-returns.html',
+      'ListWithMe Returns',
+      { headings: [] },
+      {},
+    );
+    const actual = actualBodyTokens(output, 'ListWithMe Returns');
+
+    expect(expected.links.map(({ href }) => href)).toEqual([
+      '#',
+      APP_STORE_URL,
+    ]);
+    expect(actual.links).not.toEqual(expected.links);
   });
 
   it('accounts for exactly the five structured migration allowances', async () => {
