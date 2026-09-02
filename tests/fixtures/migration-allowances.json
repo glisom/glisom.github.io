@@ -1,0 +1,53 @@
+[
+  {
+    "id": "correct-four-notion-image-paths",
+    "path": "/2023/01/14/notion-for-software.html",
+    "field": "images",
+    "operation": "replace-exact",
+    "replacements": {
+      "/uploads/2023/f159196842.png": "/images/f159196842.png",
+      "/uploads/2023/fa6c5dfe53.png": "/images/fa6c5dfe53.png",
+      "/uploads/2023/5fd90bfbf1.png": "/images/5fd90bfbf1.png",
+      "/uploads/2023/6647450a28.png": "/images/6647450a28.png"
+    },
+    "expectedOccurrences": 4
+  },
+  {
+    "id": "replace-listwithme-placeholder-app-store-link",
+    "path": "/2026/02/24/listwithme-returns.html",
+    "field": "links",
+    "operation": "replace-exact",
+    "before": "#",
+    "after": "https://apps.apple.com/us/app/listwithme/id1224284271",
+    "expectedOccurrences": 1
+  },
+  {
+    "id": "normalize-playlists-body-h1",
+    "path": "/2018/11/27/playlists.html",
+    "field": "headings",
+    "operation": "h1-to-h2",
+    "expectedOccurrences": 5
+  },
+  {
+    "id": "normalize-wwdc-day-1-body-h1",
+    "path": "/2019/06/04/wwdc-day-1.html",
+    "field": "headings",
+    "operation": "h1-to-h2",
+    "expectedOccurrences": 5
+  },
+  {
+    "id": "upgrade-spotify-embeds",
+    "path": "/2020/02/10/2019-playlists.html",
+    "field": "iframeSources",
+    "operation": "embed-with-fallback",
+    "requiredAfter": [
+      "title",
+      "loading=lazy",
+      "fallbackHrefEqualsSource",
+      "fallbackText=Open {title}",
+      "fallbackMarker=data-embed-fallback"
+    ],
+    "semanticNormalization": "exclude-only-marked-fallback-from-text-and-links",
+    "expectedOccurrences": 4
+  }
+]

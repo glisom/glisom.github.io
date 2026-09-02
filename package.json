@@ -20,6 +20,8 @@
     "pretest": "npm run runtime:check",
     "test": "vitest run",
     "test:watch": "vitest",
+    "capture:production": "node scripts/capture-production-baseline.mjs",
+    "capture:legal": "tsx scripts/capture-listwithme-legal.ts",
     "format:check": "prettier --check ."
   },
   "dependencies": {
