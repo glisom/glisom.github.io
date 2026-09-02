@@ -68,7 +68,6 @@ summary {
 }
 
 :where(
-    .identity-rail,
     .surface-blue,
     [data-surface='blue'],
     .surface-black,
