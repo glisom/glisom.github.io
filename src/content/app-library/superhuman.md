@@ -2,7 +2,7 @@
 title: Superhuman
 slug: superhuman
 canonicalPath: /app-library/superhuman/
-summary: The email app I use to keep the inbox moving without living in it.
+summary: The email attention surface I use to spot drafts, commitments, replies, and waiting loops.
 draft: false
 hasDetailPage: true
 featured: false
@@ -12,8 +12,8 @@ homepageOrder: 4
 tags: [email, communication]
 ownership: used
 category: Email
-reasonItStays: It makes the repetitive parts of email feel quick and predictable.
-cadence: Daily
+reasonItStays: It turns email into structured signal for replies, commitments, and waiting loops without becoming the canonical ledger.
+cadence: Daily and weekly
 reviewedAt: '2026-09-02'
 links:
   - {
@@ -23,19 +23,19 @@ links:
     }
 relationships: []
 facts:
-  - { label: 'Job', value: 'Email' }
-  - { label: 'Cadence', value: 'Daily' }
+  - { label: 'Job', value: 'Email attention and follow-up' }
+  - { label: 'Review', value: 'Unread, starred, drafts, waiting, and sent' }
 fieldNotes:
   - key: workflow
     heading: The job it does
     body:
-      - I use Superhuman to work through email quickly, keep follow-ups visible, and get back to the work outside my inbox.
+      - I use read-only scans of Superhuman to surface drafts, replies, commitments, and waiting loops without sending or changing anything.
   - key: details-i-love
     heading: The details I love
     body:
-      - A fast, keyboard-friendly rhythm keeps routine email from taking more attention than the message itself deserves.
-  - key: who-it-suits
-    heading: Who it suits
+      - It gives me a more useful view than a raw unread count by organizing email around the pieces that may need attention or a decision.
+  - key: friction-and-limits
+    heading: Friction and limits
     body:
-      - It makes the most sense for someone who handles email every day and values speed enough to learn a consistent workflow.
+      - Query windows and stale index state can blur what is current, so I verify an important thread at the source before treating it as final.
 ---

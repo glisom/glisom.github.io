@@ -2,36 +2,36 @@
 title: Codex
 slug: codex
 canonicalPath: /app-library/codex/
-summary: The coding partner I use to explore repositories, make changes, and verify the work.
+summary: The model-driven part of my daily and weekly briefings, where connected sources become something I can review.
 draft: false
 hasDetailPage: true
 featured: false
 displayOrder: 2
 homepageSlot: app-library
 homepageOrder: 2
-tags: [coding, tools]
+tags: [briefings, connected-work, tools]
 ownership: used
-category: Coding
-reasonItStays: It helps me keep the path from an idea to a tested change short.
-cadence: Daily
+category: Briefings and connected work
+reasonItStays: It can reason across files and connected sources before turning that context into a useful artifact.
+cadence: Daily and weekly
 reviewedAt: '2026-09-02'
 links:
   - { label: 'Visit Codex', href: 'https://openai.com/codex/', kind: 'primary' }
 relationships: []
 facts:
-  - { label: 'Job', value: 'Repository work and coding' }
-  - { label: 'Cadence', value: 'Daily' }
+  - { label: 'Job', value: 'Connected-source briefings' }
+  - { label: 'Cadence', value: 'Daily and weekly' }
 fieldNotes:
   - key: workflow
     heading: The job it does
     body:
-      - I use Codex to inspect a codebase, work through a change, and run the checks that tell me whether the result holds together.
+      - I use Codex to reason across files and connected sources, then turn the useful context into a briefing or artifact I can review.
   - key: details-i-love
     heading: The details I love
     body:
-      - It can stay close to the repository and the tools around it, which makes the conversation useful beyond a loose code suggestion.
+      - It is especially useful when several sources need judgment before they become one clear, decision-oriented view of the day or week.
   - key: friction-and-limits
     heading: Friction and limits
     body:
-      - Good context still matters, and I get better work when the goal, constraints, and definition of done are written down clearly.
+      - Permissions, time zones, and filesystem boundaries need to be explicit, so I keep deterministic handoff and delivery outside the model loop.
 ---

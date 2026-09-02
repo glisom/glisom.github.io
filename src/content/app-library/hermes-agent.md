@@ -13,7 +13,7 @@ tags: [agents, local-first]
 ownership: used
 category: Agents and automation
 reasonItStays: It gives me a capable local agent with a workflow I can inspect and extend.
-cadence: Daily
+cadence: Always available
 reviewedAt: '2026-09-02'
 links:
   - {
@@ -24,7 +24,7 @@ links:
 relationships:
   - { collection: projects, id: hermes-ios, label: 'Mobile client I made' }
 facts:
-  - { label: 'Job', value: 'Local agent workflows' }
+  - { label: 'Availability', value: 'Starts at login' }
   - { label: 'Reach', value: 'Sessions, skills, tools, and jobs' }
 fieldNotes:
   - key: workflow
