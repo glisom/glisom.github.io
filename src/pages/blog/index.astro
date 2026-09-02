@@ -1,0 +1,29 @@
+---
+import BlogLedger from '../../components/index/BlogLedger.astro';
+import FeaturedEntry from '../../components/index/FeaturedEntry.astro';
+import { COLLECTIONS } from '../../data/collections';
+import CollectionIndexLayout from '../../layouts/CollectionIndexLayout.astro';
+import { comparePostsNewestFirst } from '../../lib/content/date';
+import { assertValidContentGraph } from '../../lib/content/graph';
+import { groupPostsByYear } from '../../lib/content/grouping';
+import { loadContentGraph } from '../../lib/content/load';
+
+const graph = await loadContentGraph();
+assertValidContentGraph(graph);
+const posts = graph.blog
+  .filter((record) => !record.data.draft)
+  .toSorted(comparePostsNewestFirst);
+const featured = posts.find((record) => record.data.featured) ?? posts[0];
+const copy = COLLECTIONS.blog;
+---
+
+<CollectionIndexLayout
+  collection="blog"
+  count={posts.length}
+  updatedAt={posts[0]?.data.publishedAt}
+  title={copy.title}
+  description={copy.description}
+>
+  {featured && <FeaturedEntry record={featured} />}
+  <BlogLedger groups={groupPostsByYear(posts)} />
+</CollectionIndexLayout>

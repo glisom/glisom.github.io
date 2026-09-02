@@ -1,0 +1,63 @@
+---
+import type { AppLibraryRecord } from '../../types/content';
+import Icon from '../media/Icon.astro';
+
+interface Props {
+  records: readonly AppLibraryRecord[];
+}
+
+const { records } = Astro.props;
+const groups = new Map<string, AppLibraryRecord[]>();
+for (const record of records) {
+  const group = groups.get(record.data.category) ?? [];
+  group.push(record);
+  groups.set(record.data.category, group);
+}
+const destinationFor = (record: AppLibraryRecord) =>
+  record.data.hasDetailPage
+    ? record.data.canonicalPath
+    : record.data.links.find((link) => link.href.startsWith('https://'))?.href;
+---
+
+<div class="section-heading">
+  <h2>Software that earns its place</h2><p>Grouped by the job it does</p>
+</div>
+<div class="tool-groups">
+  {
+    [...groups].map(([category, group], groupIndex) => (
+      <section class="tool-group" data-tool-group={category}>
+        <h2>{category}</h2>
+        {group.map((record, recordIndex) => {
+          const destination = destinationFor(record);
+          const content = (
+            <>
+              <span class="tool-number">
+                {String(groupIndex + recordIndex + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h3>{record.data.title}</h3>
+                <p class="tool-category" data-record-category>
+                  {record.data.category}
+                </p>
+                <p data-record-reason>{record.data.reasonItStays}</p>
+              </div>
+              {destination && <Icon name="arrow-right" decorative={true} />}
+            </>
+          );
+          return destination ? (
+            <a class="tool-record" href={destination} data-tool-record>
+              {content}
+            </a>
+          ) : (
+            <article class="tool-record" data-tool-record>
+              {content}
+              {record.data.actionState && (
+                <p data-action-state>{record.data.actionState}</p>
+              )}
+            </article>
+          );
+        })}
+      </section>
+    ))
+  }
+</div>

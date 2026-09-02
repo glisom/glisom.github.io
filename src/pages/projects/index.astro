@@ -1,0 +1,28 @@
+---
+import AppEvidenceGrid from '../../components/index/AppEvidenceGrid.astro';
+import { COLLECTIONS } from '../../data/collections';
+import CollectionIndexLayout from '../../layouts/CollectionIndexLayout.astro';
+import { assertValidContentGraph } from '../../lib/content/graph';
+import { loadContentGraph } from '../../lib/content/load';
+
+const graph = await loadContentGraph();
+assertValidContentGraph(graph);
+const records = graph.projects
+  .filter((record) => !record.data.draft)
+  .toSorted(
+    (a, b) =>
+      Number(a.data.displayOrder) - Number(b.data.displayOrder) ||
+      a.data.title.localeCompare(b.data.title),
+  );
+const copy = COLLECTIONS.projects;
+---
+
+<CollectionIndexLayout
+  collection="projects"
+  count={records.length}
+  updatedAt={records[0]?.data.reviewedAt}
+  title={copy.title}
+  description={copy.description}
+>
+  <AppEvidenceGrid {records} />
+</CollectionIndexLayout>
