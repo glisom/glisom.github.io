@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Index family · Grant Isom design companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f7f6f2;
+      --paper-bright: #fbfaf6;
+      --ink: #141516;
+      --muted: #62645f;
+      --quiet: #858680;
+      --line: #d5d4ce;
+      --line-dark: #b8b7b0;
+      --blue: #2348f5;
+      --blue-dark: #1739cf;
+      --lime: #bdd600;
+      --black: #111214;
+      --serif: "Source Serif 4", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    body::selection { color: #fff; background: var(--blue); }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 10;
+      display: flex;
+      width: 250px;
+      flex-direction: column;
+      padding: 28px 24px 24px;
+      border-right: 1px solid var(--line);
+      background: rgba(247, 246, 242, .98);
+    }
+    .identity { display: flex; align-items: center; gap: 13px; }
+    .monogram {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid var(--ink);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -.08em;
+    }
+    .identity-copy { display: flex; flex-direction: column; gap: 1px; }
+    .identity-copy strong { font-family: var(--serif); font-size: 19px; font-weight: 600; line-height: 1.05; }
+    .identity-copy small,
+    .rail-label,
+    .utility-label,
+    .eyebrow,
+    .record-meta,
+    .year,
+    .card-kicker,
+    .card-number,
+    .stamp,
+    .companion-kicker {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .identity-copy small { color: var(--muted); font-size: 9px; }
+    .status-line {
+      display: flex;
+      gap: 8px;
+      margin-top: 30px;
+      padding: 12px 0 15px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      flex: 0 0 auto;
+      margin-top: 4px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 2px rgba(189, 214, 0, .18);
+    }
+    .side-nav { display: flex; flex-direction: column; margin-top: 44px; }
+    .rail-label { margin: 0 0 13px; color: var(--quiet); }
+    .side-nav button {
+      position: relative;
+      display: flex;
+      width: 100%;
+      min-height: 39px;
+      align-items: center;
+      padding: 0;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      color: #666761;
+      background: transparent;
+      font-family: var(--serif);
+      font-size: 16px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .side-nav button:hover,
+    .side-nav button.active { padding-left: 4px; color: var(--ink); }
+    .side-nav button.active::before {
+      position: absolute;
+      inset: 0 auto 0 -24px;
+      width: 3px;
+      content: "";
+      background: var(--blue);
+    }
+    .collection-context { margin-top: 30px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .collection-context p { margin: 0; }
+    .collection-context .utility-label { color: var(--blue); }
+    .context-count { margin-top: 8px !important; font-family: var(--serif); font-size: 16px; }
+    .context-date { margin-top: 5px !important; color: var(--muted); font-size: 11px; }
+    .rail-bottom { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); }
+    .rail-links { display: flex; flex-wrap: wrap; gap: 7px 12px; }
+    .rail-links a { color: var(--muted); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
+    .rail-updated { margin: 12px 0 0; color: var(--quiet); font-family: var(--mono); font-size: 8px; text-transform: uppercase; }
+
+    .mobile-header { display: none; }
+    .page { min-height: 100vh; margin-left: 250px; padding-bottom: 115px; }
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(330px, 4fr);
+      gap: clamp(34px, 5vw, 76px);
+      align-items: end;
+      min-height: 430px;
+      padding: 52px clamp(38px, 5vw, 76px) 48px;
+      border-bottom: 1px solid var(--line-dark);
+    }
+    .masthead-copy { align-self: center; }
+    .eyebrow { display: flex; align-items: center; gap: 11px; margin: 0 0 25px; color: var(--blue); }
+    .eyebrow-mark { width: 8px; height: 8px; background: var(--lime); transform: rotate(45deg); }
+    h1 {
+      max-width: 880px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(58px, 6.3vw, 96px);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: .92;
+    }
+    h1 em { color: var(--blue); font-weight: 400; }
+    .masthead-intro {
+      max-width: 640px;
+      margin: 27px 0 0;
+      color: #50514d;
+      font-family: var(--serif);
+      font-size: clamp(19px, 1.5vw, 23px);
+      line-height: 1.48;
+    }
+    .index-mark { overflow: hidden; border: 1px solid var(--line-dark); background: var(--paper-bright); }
+    .index-mark img { width: 100%; min-height: 230px; object-fit: cover; }
+    .index-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .index-caption strong { color: var(--ink); font-weight: 500; }
+
+    .mobile-collection-switcher {
+      display: none;
+      gap: 6px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .mobile-collection-switcher::-webkit-scrollbar { display: none; }
+    .mobile-collection-switcher button {
+      flex: 0 0 auto;
+      min-height: 36px;
+      padding: 0 11px;
+      border: 1px solid var(--line-dark);
+      background: transparent;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .mobile-collection-switcher button.active { border-color: var(--blue); color: #fff; background: var(--blue); }
+
+    .collection-pane { display: none; }
+    .collection-pane.active { display: block; }
+    .collection-body { padding: 48px clamp(38px, 5vw, 76px) 90px; }
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 18px;
+    }
+    .section-heading h2 { margin: 0; font-family: var(--serif); font-size: 32px; font-weight: 600; letter-spacing: -.03em; }
+    .section-heading p { margin: 0; color: var(--quiet); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* Blog index */
+    .featured-story {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, .85fr);
+      min-height: 390px;
+      margin-bottom: 64px;
+      border: 1px solid var(--black);
+      color: #fff;
+      background: var(--black);
+    }
+    .featured-copy { display: flex; flex-direction: column; padding: clamp(30px, 4vw, 55px); }
+    .featured-copy .card-kicker { color: var(--lime); }
+    .featured-copy h2 { max-width: 690px; margin: 30px 0 0; font-family: var(--serif); font-size: clamp(40px, 4.4vw, 66px); font-weight: 400; letter-spacing: -.045em; line-height: .98; }
+    .featured-copy p { max-width: 580px; margin: 22px 0 0; color: #c8c8c5; font-family: var(--serif); font-size: 18px; line-height: 1.55; }
+    .arrow-link { display: inline-flex; width: fit-content; align-items: center; gap: 10px; margin-top: auto; padding-top: 30px; color: inherit; font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+    .arrow-link::after { content: "→"; color: var(--lime); font-size: 17px; }
+    .featured-art { overflow: hidden; border-left: 1px solid #353638; }
+    .featured-art img { width: 100%; height: 100%; object-fit: cover; }
+    .year-group { display: grid; grid-template-columns: 120px minmax(0, 1fr); border-top: 1px solid var(--line-dark); }
+    .year { padding-top: 21px; color: var(--blue); font-size: 11px; }
+    .post-ledger { border-left: 1px solid var(--line); }
+    .post-row {
+      display: grid;
+      grid-template-columns: 100px minmax(0, 1fr) 120px;
+      gap: 24px;
+      align-items: center;
+      min-height: 92px;
+      padding: 15px 0 15px 26px;
+      border-bottom: 1px solid var(--line);
+    }
+    .post-date,
+    .post-kind { color: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; }
+    .post-row h3 { margin: 0; font-family: var(--serif); font-size: 23px; font-weight: 400; line-height: 1.18; }
+    .post-row:hover h3 { color: var(--blue); }
+    .post-kind { justify-self: end; padding-right: 3px; }
+
+    /* App library */
+    .tool-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 48px 1px; background: var(--line); }
+    .tool-group { padding: 0 32px 0 0; background: var(--paper); }
+    .tool-group:nth-child(even) { padding: 0 0 0 32px; }
+    .tool-group h2 { margin: 0 0 15px; color: var(--blue); font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+    .tool-record {
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      min-height: 96px;
+      border-top: 1px solid var(--line-dark);
+    }
+    .tool-record:last-child { border-bottom: 1px solid var(--line-dark); }
+    .tool-number { color: var(--quiet); font-family: var(--mono); font-size: 10px; }
+    .tool-record h3 { margin: 0; font-family: var(--serif); font-size: 23px; font-weight: 600; }
+    .tool-record p { margin: 4px 0 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
+    .tool-arrow { color: var(--blue); font-size: 18px; }
+
+    /* My apps */
+    .app-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line-dark); background: var(--line-dark); }
+    .app-card { display: grid; min-height: 470px; grid-template-rows: 230px 1fr; background: var(--paper-bright); }
+    .app-card.featured { grid-column: 1 / -1; grid-template-columns: 1.2fr 1fr; grid-template-rows: none; min-height: 410px; color: #fff; background: var(--black); }
+    .app-art { overflow: hidden; border-bottom: 1px solid var(--line); }
+    .app-card.featured .app-art { border: 0; border-left: 1px solid #353638; order: 2; }
+    .app-art img { width: 100%; height: 100%; object-fit: cover; }
+    .app-copy { display: flex; flex-direction: column; padding: 25px 28px 27px; }
+    .card-top { display: flex; justify-content: space-between; gap: 16px; }
+    .card-kicker { color: var(--blue); }
+    .app-card.featured .card-kicker { color: var(--lime); }
+    .card-number { color: var(--quiet); }
+    .app-copy h2 { margin: 24px 0 0; font-family: var(--serif); font-size: 37px; font-weight: 400; letter-spacing: -.035em; line-height: 1; }
+    .app-card.featured .app-copy h2 { margin-top: 50px; font-size: 58px; }
+    .app-copy p { margin: 14px 0 0; color: var(--muted); font-family: var(--serif); font-size: 17px; line-height: 1.45; }
+    .app-card.featured .app-copy p { color: #c8c8c5; }
+    .app-copy .arrow-link { color: var(--ink); }
+    .app-card.featured .arrow-link { color: #fff; }
+
+    /* Skill library */
+    .manual-group { display: grid; grid-template-columns: 210px minmax(0, 1fr); border-top: 1px solid var(--line-dark); }
+    .manual-heading { padding: 24px 30px 24px 0; }
+    .manual-heading span { color: var(--blue); font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+    .manual-heading h2 { margin: 9px 0 0; font-family: var(--serif); font-size: 24px; font-weight: 600; }
+    .skill-strips { border-left: 1px solid var(--line); }
+    .skill-strip {
+      display: grid;
+      grid-template-columns: minmax(150px, .8fr) minmax(220px, 1.5fr) 110px;
+      gap: 24px;
+      align-items: center;
+      min-height: 92px;
+      padding: 16px 0 16px 27px;
+      border-bottom: 1px solid var(--line);
+    }
+    .skill-strip h3 { margin: 0; font-family: var(--serif); font-size: 21px; font-weight: 600; }
+    .skill-strip p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .skill-strip .record-meta { justify-self: end; color: var(--quiet); font-size: 8px; }
+
+    /* My skills */
+    .authored-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      min-height: 310px;
+      margin-bottom: 1px;
+      color: #fff;
+      background: var(--black);
+    }
+    .authored-intro-copy { display: flex; flex-direction: column; justify-content: center; padding: 40px clamp(32px, 5vw, 64px); }
+    .authored-intro-copy .utility-label { color: var(--lime); }
+    .authored-intro-copy p { max-width: 640px; margin: 18px 0 0; color: #c8c8c5; font-family: var(--serif); font-size: 21px; line-height: 1.5; }
+    .authored-art { overflow: hidden; border-left: 1px solid #353638; }
+    .authored-art img { width: 100%; height: 100%; object-fit: cover; }
+    .skill-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line-dark); }
+    .skill-card { display: flex; min-height: 340px; flex-direction: column; padding: 28px; background: var(--paper-bright); }
+    .stamp { width: fit-content; padding: 6px 8px; color: var(--black); background: var(--lime); font-size: 8px; }
+    .skill-card h2 { margin: 42px 0 0; font-family: var(--serif); font-size: 30px; font-weight: 400; letter-spacing: -.03em; line-height: 1.08; }
+    .skill-card p { margin: 15px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .skill-card .arrow-link { color: var(--ink); }
+
+    .site-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 28px clamp(38px, 5vw, 76px);
+      border-top: 1px solid var(--line-dark);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .companion-bar {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      left: 268px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 12px 13px 12px 17px;
+      border: 1px solid #2a2b2d;
+      box-shadow: 0 14px 44px rgba(17,18,20,.2);
+      color: #fff;
+      background: rgba(17,18,20,.96);
+      backdrop-filter: blur(12px);
+    }
+    .companion-copy { display: flex; min-width: 0; align-items: baseline; gap: 12px; }
+    .companion-kicker { flex: 0 0 auto; color: var(--lime); font-size: 9px; }
+    .companion-copy p { margin: 0; color: #d6d6d2; font-family: var(--serif); font-size: 14px; }
+    .options { display: flex; flex: 0 0 auto; gap: 8px; }
+    .option {
+      min-height: 38px;
+      padding: 9px 13px;
+      border: 1px solid #4a4b4e;
+      color: #fff;
+      background: transparent;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .option:hover,
+    .option.selected { border-color: var(--lime); color: var(--black); background: var(--lime); }
+
+    @media (max-width: 1050px) {
+      .masthead { grid-template-columns: 1fr 290px; }
+      .featured-story { grid-template-columns: 1fr; }
+      .featured-art { min-height: 280px; border-top: 1px solid #353638; border-left: 0; }
+      .post-row { grid-template-columns: 86px minmax(0, 1fr); }
+      .post-kind { display: none; }
+      .app-card.featured { grid-template-columns: 1fr; }
+      .app-card.featured .app-art { min-height: 270px; border-top: 1px solid #353638; border-left: 0; order: 0; }
+      .manual-group { grid-template-columns: 160px minmax(0, 1fr); }
+      .skill-strip { grid-template-columns: minmax(130px, .8fr) minmax(190px, 1.5fr); }
+      .skill-strip .record-meta { display: none; }
+      .authored-intro { grid-template-columns: 1fr 300px; }
+      .skill-card-grid { grid-template-columns: 1fr; }
+      .skill-card { min-height: 260px; }
+    }
+
+    @media (max-width: 820px) {
+      .sidebar { display: none; }
+      .mobile-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        height: 62px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(247,246,242,.96);
+        backdrop-filter: blur(12px);
+      }
+      .mobile-identity { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 17px; font-weight: 600; }
+      .mobile-identity .monogram { width: 32px; height: 32px; font-size: 10px; }
+      .mobile-label { color: var(--blue); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+      .page { margin-left: 0; }
+      .mobile-collection-switcher { display: flex; }
+      .masthead { grid-template-columns: 1fr; min-height: 0; padding: 43px 18px 34px; }
+      h1 { font-size: clamp(50px, 14vw, 74px); }
+      .masthead-intro { font-size: 19px; }
+      .index-mark { display: none; }
+      .collection-body { padding: 34px 18px 80px; }
+      .featured-story { margin-bottom: 52px; }
+      .featured-copy { min-height: 390px; padding: 27px 24px; }
+      .featured-copy h2 { font-size: 45px; }
+      .featured-art { min-height: 210px; }
+      .year-group { display: block; }
+      .year { padding: 18px 0 12px; }
+      .post-ledger { border-left: 0; }
+      .post-row { grid-template-columns: 72px minmax(0, 1fr); gap: 14px; min-height: 86px; padding-left: 0; }
+      .post-row h3 { font-size: 20px; }
+      .tool-groups { grid-template-columns: 1fr; gap: 38px; background: transparent; }
+      .tool-group,
+      .tool-group:nth-child(even) { padding: 0; }
+      .app-grid { grid-template-columns: 1fr; }
+      .app-card.featured { grid-column: auto; min-height: 480px; }
+      .app-card.featured .app-copy h2 { margin-top: 30px; font-size: 46px; }
+      .manual-group { display: block; }
+      .manual-heading { padding-right: 0; }
+      .skill-strips { border-left: 0; }
+      .skill-strip { grid-template-columns: 1fr; gap: 8px; min-height: 110px; padding-left: 0; }
+      .authored-intro { grid-template-columns: 1fr; }
+      .authored-art { min-height: 220px; border-top: 1px solid #353638; border-left: 0; }
+      .skill-card-grid { grid-template-columns: 1fr; }
+      .site-footer { display: block; padding-right: 18px; padding-left: 18px; }
+      .site-footer span { display: block; margin-top: 8px; }
+      .companion-bar { right: 10px; bottom: 10px; left: 10px; display: block; padding: 12px; }
+      .companion-copy { display: block; }
+      .companion-copy p { display: none; }
+      .options { margin-top: 8px; }
+      .option { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar" aria-label="Site navigation">
+    <a class="identity" href="#">
+      <span class="monogram" aria-hidden="true">GI</span>
+      <span class="identity-copy"><strong>Grant Isom</strong><small>Writer · maker · tinkerer</small></span>
+    </a>
+    <div class="status-line"><span class="status-dot" aria-hidden="true"></span><span>Currently building Hermes iOS</span></div>
+    <nav class="side-nav" aria-label="Preview a collection">
+      <p class="rail-label">Browse</p>
+      <button class="active" type="button" data-view="blog">Blog</button>
+      <button type="button" data-view="app-library">App Library</button>
+      <button type="button" data-view="my-apps">My Apps</button>
+      <button type="button" data-view="skill-library">Skill Library</button>
+      <button type="button" data-view="my-skills">My Skills</button>
+    </nav>
+    <div class="collection-context">
+      <p class="utility-label">Collection index</p>
+      <p class="context-count" id="rail-count">23 pieces of writing</p>
+      <p class="context-date">Last updated September 2026</p>
+    </div>
+    <div class="rail-bottom">
+      <div class="rail-links"><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">RSS</a><a href="#">Email</a></div>
+      <p class="rail-updated">My corner of the internet</p>
+    </div>
+  </aside>
+
+  <header class="mobile-header">
+    <a class="mobile-identity" href="#"><span class="monogram">GI</span><span>Grant Isom</span></a>
+    <span class="mobile-label">Collection index</span>
+  </header>
+
+  <main class="page">
+    <nav class="mobile-collection-switcher" aria-label="Preview a collection">
+      <button class="active" type="button" data-view="blog">Blog</button>
+      <button type="button" data-view="app-library">App Library</button>
+      <button type="button" data-view="my-apps">My Apps</button>
+      <button type="button" data-view="skill-library">Skill Library</button>
+      <button type="button" data-view="my-skills">My Skills</button>
+    </nav>
+
+    <header class="masthead">
+      <div class="masthead-copy">
+        <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span><span id="masthead-eyebrow">Blog / 23 posts</span></p>
+        <h1 id="masthead-title">Things I’ve <em>written.</em></h1>
+        <p class="masthead-intro" id="masthead-intro">Posts, build logs, playlists, and whatever else seemed worth writing down.</p>
+      </div>
+      <figure class="index-mark">
+        <img id="masthead-image" src="http://localhost:4173/assets/evidence-map.png" alt="Abstract blue halftone terrain marked with system checkpoints">
+        <figcaption class="index-caption"><strong id="caption-name">Index / Blog</strong><span id="caption-note">Newest first</span></figcaption>
+      </figure>
+    </header>
+
+    <section class="collection-pane active" data-pane="blog">
+      <div class="collection-body">
+        <article class="featured-story">
+          <div class="featured-copy">
+            <span class="card-kicker">Featured post · Build log</span>
+            <h2>Bringing ListWithMe Back to Life</h2>
+            <p>I rebuilt an app I first shipped in 2019 because I missed using it. A story about old code, new tools, and making software personal again.</p>
+            <a class="arrow-link" href="#">Read the story</a>
+          </div>
+          <div class="featured-art"><img src="http://localhost:4173/assets/production-hands.png" alt="Two blue halftone hands reaching toward one another"></div>
+        </article>
+
+        <div class="section-heading"><h2>All posts</h2><p>23 posts · 2018–2026</p></div>
+        <section class="year-group">
+          <div class="year">2026 / 05</div>
+          <div class="post-ledger">
+            <a class="post-row" href="#"><span class="post-date">Sep 01</span><h3>Vampire</h3><span class="post-kind">Essay · 5 min</span></a>
+            <a class="post-row" href="#"><span class="post-date">Sep 01</span><h3>skill-thief: Steal the Ideas, Not the Install</h3><span class="post-kind">Tools · 7 min</span></a>
+            <a class="post-row" href="#"><span class="post-date">Feb 24</span><h3>Bringing ListWithMe Back to Life</h3><span class="post-kind">Build log · 3 min</span></a>
+            <a class="post-row" href="#"><span class="post-date">Feb 07</span><h3>HealthQL, rebuilt in React Native</h3><span class="post-kind">Open source · 6 min</span></a>
+            <a class="post-row" href="#"><span class="post-date">Feb 01</span><h3>HealthQL: SQL for Apple HealthKit</h3><span class="post-kind">Open source · 4 min</span></a>
+          </div>
+        </section>
+        <section class="year-group">
+          <div class="year">2023 / 05</div>
+          <div class="post-ledger">
+            <a class="post-row" href="#"><span class="post-date">Jul 19</span><h3>Accessibility Testing in Maestro</h3><span class="post-kind">Testing · 5 min</span></a>
+            <a class="post-row" href="#"><span class="post-date">May 15</span><h3>Using act to Test GitHub Actions Locally</h3><span class="post-kind">Tools · 4 min</span></a>
+            <a class="post-row" href="#"><span class="post-date">Feb 01</span><h3>Environment-Specific Expo App Configuration</h3><span class="post-kind">Build log · 5 min</span></a>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="collection-pane" data-pane="app-library">
+      <div class="collection-body">
+        <div class="section-heading"><h2>Software that earns its place</h2><p>Grouped by the job it does</p></div>
+        <div class="tool-groups">
+          <section class="tool-group">
+            <h2>Thinking &amp; making</h2>
+            <a class="tool-record" href="#"><span class="tool-number">01</span><div><h3>Obsidian</h3><p>The durable center of my notes, drafts, and working context.</p></div><span class="tool-arrow">→</span></a>
+            <a class="tool-record" href="#"><span class="tool-number">02</span><div><h3>Codex</h3><p>Where ideas turn into working software alongside me.</p></div><span class="tool-arrow">→</span></a>
+            <a class="tool-record" href="#"><span class="tool-number">03</span><div><h3>Hermes Agent</h3><p>A capable agent I can shape around my own workflows.</p></div><span class="tool-arrow">→</span></a>
+          </section>
+          <section class="tool-group">
+            <h2>Daily infrastructure</h2>
+            <a class="tool-record" href="#"><span class="tool-number">04</span><div><h3>Superhuman</h3><p>Email that gets out of the way once I know what matters.</p></div><span class="tool-arrow">→</span></a>
+            <a class="tool-record" href="#"><span class="tool-number">05</span><div><h3>Raycast</h3><p>The fastest path between an intention and an action on my Mac.</p></div><span class="tool-arrow">→</span></a>
+            <a class="tool-record" href="#"><span class="tool-number">06</span><div><h3>Readwise</h3><p>A reliable bridge from things I read to things I remember.</p></div><span class="tool-arrow">→</span></a>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection-pane" data-pane="my-apps">
+      <div class="collection-body">
+        <div class="app-grid">
+          <article class="app-card featured">
+            <div class="app-copy">
+              <div class="card-top"><span class="card-kicker">Currently building · Open source</span><span class="card-number">01</span></div>
+              <h2>Hermes iOS</h2>
+              <p>My always-on AI agent, in my pocket. A personal interface for the tools and systems I already use.</p>
+              <a class="arrow-link" href="#">Open the project</a>
+            </div>
+            <div class="app-art"><img src="http://localhost:4173/assets/healthql-hands.png" alt="A sequence of fine-line blue hand gestures"></div>
+          </article>
+          <article class="app-card">
+            <div class="app-art"><img src="http://localhost:4173/assets/listwithme-hand.png" alt="A fine blue halftone drawing of a hand holding a pen"></div>
+            <div class="app-copy">
+              <div class="card-top"><span class="card-kicker">App Store · Active</span><span class="card-number">02</span></div>
+              <h2>ListWithMe</h2>
+              <p>Shared lists, rebuilt because my wife and I wanted ours back.</p>
+              <a class="arrow-link" href="#">See the app</a>
+            </div>
+          </article>
+          <article class="app-card">
+            <div class="app-art"><img src="http://localhost:4173/assets/evidence-map.png" alt="Abstract blue halftone terrain marked with system checkpoints"></div>
+            <div class="app-copy">
+              <div class="card-top"><span class="card-kicker">Open source · Experiment</span><span class="card-number">03</span></div>
+              <h2>HealthQL</h2>
+              <p>SQL for Apple Health data, made because I wanted better questions.</p>
+              <a class="arrow-link" href="#">Open the project</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection-pane" data-pane="skill-library">
+      <div class="collection-body">
+        <div class="section-heading"><h2>The skills I reach for</h2><p>A field manual, not a marketplace</p></div>
+        <section class="manual-group">
+          <div class="manual-heading"><span>01 / Research</span><h2>Understand before acting</h2></div>
+          <div class="skill-strips">
+            <a class="skill-strip" href="#"><h3>Deep Research</h3><p>Build a sourced picture of an unfamiliar subject before making recommendations.</p><span class="record-meta">Used weekly</span></a>
+            <a class="skill-strip" href="#"><h3>Browser Control</h3><p>Inspect and verify real interfaces instead of guessing from descriptions.</p><span class="record-meta">Used daily</span></a>
+          </div>
+        </section>
+        <section class="manual-group">
+          <div class="manual-heading"><span>02 / Create</span><h2>Turn context into artifacts</h2></div>
+          <div class="skill-strips">
+            <a class="skill-strip" href="#"><h3>Frontend Design</h3><p>Carry a visual direction through responsive, usable interface decisions.</p><span class="record-meta">Used often</span></a>
+            <a class="skill-strip" href="#"><h3>Documents</h3><p>Create polished files without losing the reasoning that shaped them.</p><span class="record-meta">Used often</span></a>
+            <a class="skill-strip" href="#"><h3>PDF</h3><p>Read, assemble, and validate documents when the page itself matters.</p><span class="record-meta">Used monthly</span></a>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="collection-pane" data-pane="my-skills">
+      <div class="collection-body">
+        <section class="authored-intro">
+          <div class="authored-intro-copy"><span class="utility-label">Made by Grant</span><p>Small, reusable instructions I created because I kept wanting the same work done the same careful way.</p></div>
+          <div class="authored-art"><img src="http://localhost:4173/assets/belief-rings.png" alt="Concentric acid-lime halftone rings"></div>
+        </section>
+        <div class="skill-card-grid">
+          <article class="skill-card"><span class="stamp">Made by Grant</span><h2>write-like-grant</h2><p>Turn a rough thought into language that still sounds like me.</p><a class="arrow-link" href="#">Open the skill</a></article>
+          <article class="skill-card"><span class="stamp">Made by Grant</span><h2>goodreads-export</h2><p>Bring my reading history into a format I can actually use and keep.</p><a class="arrow-link" href="#">Open the skill</a></article>
+          <article class="skill-card"><span class="stamp">Made by Grant</span><h2>hatch-pet</h2><p>A playful little system for turning progress into something alive.</p><a class="arrow-link" href="#">Open the skill</a></article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer"><span>Grant Isom · Writer, maker, curious person</span><span>Chicago, Illinois · My corner of the internet</span></footer>
+  </main>
+
+  <aside class="companion-bar" aria-label="Design companion controls">
+    <div class="companion-copy"><span class="companion-kicker">Index family · 2 of 3</span><p>Use the site navigation to preview all five collection shapes.</p></div>
+    <div class="options">
+      <button class="option" type="button" data-choice="index-approved" onclick="toggleSelect(this)">Feels right</button>
+      <button class="option" type="button" data-choice="index-needs-work" onclick="toggleSelect(this)">Needs changes</button>
+    </div>
+  </aside>
+
+  <script>
+    const collections = {
+      blog: {
+        title: 'Things I’ve <em>written.</em>',
+        intro: 'Posts, build logs, playlists, and whatever else seemed worth writing down.',
+        eyebrow: 'Blog / 23 posts',
+        count: '23 posts',
+        caption: 'Index / Blog',
+        note: 'Newest first',
+        image: 'http://localhost:4173/assets/evidence-map.png',
+        alt: 'Abstract blue halftone terrain marked with system checkpoints'
+      },
+      'app-library': {
+        title: 'Software that <em>earns its place.</em>',
+        intro: 'The apps and tools that hold up my day, with notes on the job each one actually does.',
+        eyebrow: 'App library / Used by Grant',
+        count: 'Software I use',
+        caption: 'Index / Daily tools',
+        note: 'Grouped by job',
+        image: 'http://localhost:4173/assets/groundwork-surveyor.png',
+        alt: 'A technical blue drawing of a surveyor instrument'
+      },
+      'my-apps': {
+        title: 'Small software I wanted enough to <em>make.</em>',
+        intro: 'Personal apps, open-source experiments, and the lessons that came from building them.',
+        eyebrow: 'My apps / Made by Grant',
+        count: 'Projects I made',
+        caption: 'Index / Software',
+        note: 'Current work first',
+        image: 'http://localhost:4173/assets/healthql-hands.png',
+        alt: 'A sequence of fine-line blue hand gestures'
+      },
+      'skill-library': {
+        title: 'Capabilities I keep <em>close.</em>',
+        intro: 'The reusable skills behind my everyday workflows, organized by the moment I reach for them.',
+        eyebrow: 'Skill library / Used by Grant',
+        count: 'Capabilities I use',
+        caption: 'Index / Field manual',
+        note: 'Grouped by trigger',
+        image: 'http://localhost:4173/assets/evidence-map.png',
+        alt: 'Abstract blue halftone terrain marked with system checkpoints'
+      },
+      'my-skills': {
+        title: 'Reusable ways I taught my tools to <em>work.</em>',
+        intro: 'Skills I wrote for myself, shared with the reasoning and examples that make them useful.',
+        eyebrow: 'My skills / Made by Grant',
+        count: 'Skills I created',
+        caption: 'Index / Authored skills',
+        note: 'Lime marks authorship',
+        image: 'http://localhost:4173/assets/belief-rings.png',
+        alt: 'Concentric acid-lime halftone rings'
+      }
+    };
+
+    function showCollection(name) {
+      const config = collections[name];
+      document.querySelectorAll('[data-pane]').forEach(pane => pane.classList.toggle('active', pane.dataset.pane === name));
+      document.querySelectorAll('[data-view]').forEach(button => button.classList.toggle('active', button.dataset.view === name));
+      document.getElementById('masthead-title').innerHTML = config.title;
+      document.getElementById('masthead-intro').textContent = config.intro;
+      document.getElementById('masthead-eyebrow').textContent = config.eyebrow;
+      document.getElementById('rail-count').textContent = config.count;
+      document.getElementById('caption-name').textContent = config.caption;
+      document.getElementById('caption-note').textContent = config.note;
+      const image = document.getElementById('masthead-image');
+      image.src = config.image;
+      image.alt = config.alt;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('[data-view]').forEach(button => {
+      button.addEventListener('click', () => showCollection(button.dataset.view));
+    });
+  </script>
+</body>
+</html>
+
