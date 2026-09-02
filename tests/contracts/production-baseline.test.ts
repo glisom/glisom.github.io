@@ -28,6 +28,31 @@ describe('independent public contract', () => {
     ).toBe(false);
   });
 
+  it('classifies ListWithMe legal routes as utilities', async () => {
+    const fixture = JSON.parse(
+      await readFile(
+        new URL('../fixtures/public-routes.json', import.meta.url),
+        'utf8',
+      ),
+    );
+
+    expect(
+      fixture.routes
+        .filter((route: { canonicalPath: string }) =>
+          ['/listwithme/support/', '/listwithme/privacy/'].includes(
+            route.canonicalPath,
+          ),
+        )
+        .map((route: { canonicalPath: string; kind: string }) => ({
+          canonicalPath: route.canonicalPath,
+          kind: route.kind,
+        })),
+    ).toEqual([
+      { canonicalPath: '/listwithme/support/', kind: 'utility' },
+      { canonicalPath: '/listwithme/privacy/', kind: 'utility' },
+    ]);
+  });
+
   it('captures only article semantic content in document order', () => {
     const html = `
       <h1>Document title</h1>
