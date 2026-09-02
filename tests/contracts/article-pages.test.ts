@@ -247,14 +247,26 @@ function mediaBlocks(query: string): Root[] {
   return matches;
 }
 
+function mediaDeclarations(
+  query: string,
+  selector: string,
+): Record<string, string> {
+  const declarations: Record<string, string> = {};
+  for (const root of mediaBlocks(query)) {
+    root.walkRules((rule) => {
+      if (!rule.selectors.includes(selector)) return;
+      rule.walkDecls((declaration) => {
+        declarations[declaration.prop] = declaration.value;
+      });
+    });
+  }
+  return declarations;
+}
+
 beforeAll(async () => {
-  await execFileAsync(
-    'fnm',
-    ['exec', '--using=.nvmrc', 'npm', 'run', 'build'],
-    {
-      cwd: repositoryRoot,
-    },
-  );
+  await execFileAsync('npm', ['run', 'build'], {
+    cwd: repositoryRoot,
+  });
   legacyPages = JSON.parse(
     await readFile(
       join(repositoryRoot, 'tests/fixtures/legacy-pages.json'),
@@ -433,6 +445,47 @@ describe('article reading modes', () => {
     ).toHaveLength(0);
   });
 
+  it('keeps sentence links inline while preserving mobile action targets', () => {
+    const vampire = article('/2026/09/01/vampire.html').$;
+    const listWithMe = article('/2026/02/24/listwithme-returns.html').$;
+
+    expect(
+      vampire(
+        '.prose p a[href="https://github.com/glisom/vampire/releases/latest"]',
+      ),
+    ).toHaveLength(1);
+    expect(
+      listWithMe('[data-article-fact="Connected project"] a'),
+    ).toHaveLength(1);
+
+    expect(mediaDeclarations('(max-width: 820px)', '.prose a')).toMatchObject({
+      display: 'inline',
+      'min-inline-size': '0',
+      'min-block-size': '0',
+    });
+
+    const mobileActionSelectors = [
+      '.article-back-link',
+      '.article-fact a',
+      '.article-project-link',
+      '.toc-disclosure summary',
+      '.toc-slot a',
+      '.embed-frame figcaption a',
+      '.related-record',
+      '.post-navigation-card',
+      '.article-comments noscript a',
+    ];
+    for (const selector of mobileActionSelectors) {
+      expect(
+        mediaDeclarations('(max-width: 820px)', selector),
+        selector,
+      ).toMatchObject({
+        'min-inline-size': '44px',
+        'min-block-size': '44px',
+      });
+    }
+  });
+
   it('keeps article prose and wide content inside bounded reading regions', () => {
     const css = builtStyles.toString();
     expect(css).toMatch(/\.prose\s*\{[^}]*max-inline-size:\s*720px/s);
@@ -483,6 +536,32 @@ describe('article media and deferred integrations', () => {
   it('renders code-heavy articles as semantic code blocks', () => {
     expect(article('/2026/09/01/vampire.html').$('pre code')).not.toHaveLength(
       0,
+    );
+  });
+
+  it('renders Vampire syntax with the reviewed blue and lime palette', () => {
+    const { $ } = article('/2026/09/01/vampire.html');
+    const syntaxVariables: Record<string, string> = {};
+    builtStyles.walkDecls(/^--astro-code-token-/, (declaration) => {
+      syntaxVariables[declaration.prop] = declaration.value.toUpperCase();
+    });
+    const tokenColors = new Set(
+      $('pre.astro-code code span[style*="color"]')
+        .map((_, token) => {
+          const match = ($(token).attr('style') ?? '').match(
+            /(?:^|;)\s*color:\s*(#[0-9a-f]{6}|var\((--astro-code-token-[^)]+)\))/i,
+          );
+          if (!match) return undefined;
+          return match[2] ? syntaxVariables[match[2]] : match[1].toUpperCase();
+        })
+        .get(),
+    );
+
+    expect(tokenColors).toContain('#7F9AFF');
+    expect(tokenColors).toContain('#D7EE24');
+    expect(tokenColors).not.toContain('#B392F0');
+    expect(builtStyles.toString()).toMatch(
+      /\.prose\s+pre\s*\{[^}]*background:\s*#15171a\s*!important/s,
     );
   });
 

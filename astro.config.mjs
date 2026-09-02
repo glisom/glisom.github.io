@@ -7,6 +7,9 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'ignore',
   build: { format: 'preserve' },
-  markdown: { remarkPlugins: [preservedHeadingIds] },
+  markdown: {
+    remarkPlugins: [preservedHeadingIds],
+    shikiConfig: { theme: 'css-variables' },
+  },
   integrations: [mdx()],
 });

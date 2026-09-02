@@ -336,6 +336,20 @@
   overscroll-behavior-inline: contain;
 }
 
+.prose pre.astro-code {
+  --astro-code-foreground: #efefeb;
+  --astro-code-background: #15171a;
+  --astro-code-token-keyword: #7f9aff;
+  --astro-code-token-function: #7f9aff;
+  --astro-code-token-link: #7f9aff;
+  --astro-code-token-comment: #d7ee24;
+  --astro-code-token-string: #d7ee24;
+  --astro-code-token-string-expression: #d7ee24;
+  --astro-code-token-constant: #d7ee24;
+  --astro-code-token-parameter: #efefeb;
+  --astro-code-token-punctuation: #efefeb;
+}
+
 .prose pre code {
   display: block;
   min-inline-size: max-content;
@@ -979,6 +993,25 @@
 @media (max-width: 820px) {
   .article-column {
     grid-row: 2;
+  }
+
+  .prose a {
+    display: inline;
+    min-inline-size: 0;
+    min-block-size: 0;
+  }
+
+  .article-back-link,
+  .article-fact a,
+  .article-project-link,
+  .toc-disclosure summary,
+  .toc-slot a,
+  .embed-frame figcaption a,
+  .related-record,
+  .post-navigation-card,
+  .article-comments noscript a {
+    min-inline-size: 44px;
+    min-block-size: 44px;
   }
 
   .article-fact:last-child:nth-child(odd) {
