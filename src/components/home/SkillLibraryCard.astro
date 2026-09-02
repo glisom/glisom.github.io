@@ -1,0 +1,48 @@
+---
+import type { SkillLibraryRecord } from '../../types/content';
+import HalftoneImage from '../media/HalftoneImage.astro';
+import Icon from '../media/Icon.astro';
+
+interface Props {
+  records: readonly SkillLibraryRecord[];
+}
+
+const { records } = Astro.props;
+---
+
+<article
+  class="card groundwork-card"
+  data-home-slot="skill-library"
+  aria-labelledby="skill-library-title"
+>
+  <div class="groundwork-copy">
+    <div class="card-label-row">
+      <span class="card-kicker" data-utility-label>Skill Library</span>
+      <span class="card-number" data-utility-label>07</span>
+    </div>
+    <h2 id="skill-library-title">The skills I reach for.</h2>
+    <p class="skill-library-list">
+      {
+        records.map((record, index) => (
+          <>
+            {index > 0 && <span aria-hidden="true">, </span>}
+            <a href={record.data.canonicalPath} data-record-title>
+              {record.data.title}
+            </a>
+          </>
+        ))
+      }.
+    </p>
+    <a class="arrow-link" href="/skill-library/">
+      <span>Browse the library</span>
+      <Icon name="arrow-right" decorative={true} />
+    </a>
+  </div>
+  <HalftoneImage
+    class="skill-library-art"
+    src="evidence/groundwork-surveyor.png"
+    alt="A technical blue drawing of a surveyor’s level"
+    widths={[360, 540, 720, 900]}
+    sizes="(max-width: 820px) 67vw, (max-width: 1120px) 28vw, 24vw"
+  />
+</article>

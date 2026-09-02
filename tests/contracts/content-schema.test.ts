@@ -514,6 +514,43 @@ describe('content graph validation', () => {
 });
 
 describe('homepage selection', () => {
+  it('uses the shared post comparator when publication dates tie', () => {
+    const graph: ContentGraph = {
+      ...validGraph(),
+      blog: [
+        blogRecord({
+          slug: 'listwithme-returns',
+          canonicalPath: '/2026/02/24/listwithme-returns.html',
+        }),
+        blogRecord({
+          slug: 'skill-thief',
+          canonicalPath: '/2026/09/01/skill-thief.html',
+          homepageSlot: undefined,
+          publishedAt: '2026-09-01',
+          originalTimestamp: '2026-09-01T12:00:00.000Z',
+        }),
+        blogRecord({
+          slug: 'vampire',
+          canonicalPath: '/2026/09/01/vampire.html',
+          homepageSlot: undefined,
+          publishedAt: '2026-09-01',
+          originalTimestamp: '2026-09-01T18:00:00.000Z',
+        }),
+        blogRecord({
+          slug: 'healthql-react-native',
+          canonicalPath: '/2026/02/07/healthql-react-native.html',
+          homepageSlot: undefined,
+          publishedAt: '2026-02-07',
+          originalTimestamp: '2026-02-07T20:00:00.000Z',
+        }),
+      ],
+    };
+
+    expect(
+      selectHomepageContent(graph).latestPosts.map(({ id }) => id),
+    ).toEqual(['vampire', 'skill-thief', 'healthql-react-native']);
+  });
+
   it('returns concrete slots and deterministically ordered collections', () => {
     const graph: ContentGraph = {
       blog: [

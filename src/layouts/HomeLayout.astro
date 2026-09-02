@@ -1,0 +1,13 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import '../styles/home.css';
+---
+
+<BaseLayout
+  title="Grant Isom — Writer, maker, tinkerer"
+  description="Writing, small software, useful systems, and the tools and skills shaping how I work."
+  canonicalPath="/"
+  railContext={{ kind: 'home' }}
+>
+  <div class="home-page" data-home-page><slot /></div>
+</BaseLayout>

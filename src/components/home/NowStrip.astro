@@ -1,0 +1,33 @@
+---
+import Icon, { type IconName } from '../media/Icon.astro';
+
+interface NowItem {
+  eyebrow: string;
+  title: string;
+  icon: IconName;
+}
+
+interface Props {
+  items: readonly NowItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="role-index" aria-label="What Grant is doing now">
+  <p class="rail-label" data-utility-label>Right now</p>
+  {
+    items.map((item) => (
+      <div class="role-item">
+        <Icon name={item.icon} decorative={true} />
+        <div>
+          <p class="role-eyebrow" data-utility-label>
+            {item.eyebrow}
+          </p>
+          <p class="role-title">{item.title}</p>
+        </div>
+      </div>
+    ))
+  }
+  <Icon class="role-down" name="arrow-down" decorative={true} />
+</section>

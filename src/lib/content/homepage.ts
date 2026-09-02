@@ -4,6 +4,7 @@ import type {
   HomepageContent,
   SiteRecord,
 } from '../../types/content';
+import { comparePostsNewestFirst } from './date';
 
 const SLOT_COLLECTION = {
   'featured-writing': 'blog',
@@ -56,9 +57,7 @@ export function selectHomepageContent(graph: ContentGraph): HomepageContent {
   const featuredWriting: BlogRecord = singleton('featured-writing');
   const latestPosts = graph.blog
     .filter((record) => !record.data.draft && record.id !== featuredWriting.id)
-    .toSorted((a, b) =>
-      String(b.data.publishedAt).localeCompare(String(a.data.publishedAt)),
-    )
+    .toSorted(comparePostsNewestFirst)
     .slice(0, 3);
   return {
     featuredWriting,
