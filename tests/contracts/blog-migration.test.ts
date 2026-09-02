@@ -186,16 +186,41 @@ function isImageOnlyInline(token: MarkdownToken): boolean {
   );
 }
 
-function excludedHtmlBlock(content: string): boolean {
-  return (
-    /^<(?:Figure|EmbedFrame)\b[^>]*\/>\s*$/.test(content) ||
-    spotifyIframeSources(content).length > 0
-  );
+function normalizedHtmlBlockContent(content: string): string | null {
+  if (/^<(?:Figure|EmbedFrame)\b[^>]*\/>\s*$/.test(content)) return null;
+
+  const fragment = parseFragment(content, { sourceCodeLocationInfo: true });
+  const spotifyRanges: Array<{ start: number; end: number }> = [];
+  const visit = (node: DefaultTreeAdapterMap['node']) => {
+    if (isElement(node) && node.tagName === 'iframe') {
+      const src = node.attrs.find(
+        (attribute) => attribute.name === 'src',
+      )?.value;
+      const location = node.sourceCodeLocation;
+      if (src?.startsWith('https://open.spotify.com/') && location) {
+        spotifyRanges.push({
+          start: location.startOffset,
+          end: location.endOffset,
+        });
+      }
+    }
+    if ('childNodes' in node) node.childNodes.forEach(visit);
+  };
+  fragment.childNodes.forEach(visit);
+
+  let normalized = content;
+  for (const range of spotifyRanges.sort(
+    (left, right) => right.start - left.start,
+  )) {
+    normalized = normalized.slice(0, range.start) + normalized.slice(range.end);
+  }
+  return normalized.trim() || null;
 }
 
 function blockStructure(body: string, canonicalPath?: string) {
   const tokens = markdown.parse(withoutComponentImports(body), {});
   const excludedIndexes = new Set<number>();
+  const normalizedHtml = new Map<number, string>();
   tokens.forEach((token, index) => {
     if (token.type === 'heading_open') {
       excludedIndexes.add(index);
@@ -207,9 +232,13 @@ function blockStructure(body: string, canonicalPath?: string) {
       excludedIndexes.add(index);
       return;
     }
-    if (token.type === 'html_block' && excludedHtmlBlock(token.content)) {
-      excludedIndexes.add(index);
-      return;
+    if (token.type === 'html_block') {
+      const normalized = normalizedHtmlBlockContent(token.content);
+      if (normalized === null) {
+        excludedIndexes.add(index);
+        return;
+      }
+      normalizedHtml.set(index, normalized);
     }
     if (isImageOnlyInline(token)) {
       excludedIndexes.add(index);
@@ -224,7 +253,17 @@ function blockStructure(body: string, canonicalPath?: string) {
 
   return tokens.flatMap((token, index) => {
     if (excludedIndexes.has(index)) return [];
-    if (token.type !== 'inline') return [tokenSignature(token)];
+    if (token.type !== 'inline') {
+      return [
+        tokenSignature(
+          token,
+          undefined,
+          undefined,
+          canonicalPath,
+          normalizedHtml.get(index) ?? token.content,
+        ),
+      ];
+    }
     const children = token.children ?? [];
     return [
       {
@@ -914,6 +953,40 @@ describe('Jekyll post migration', () => {
       APP_STORE_URL,
     ]);
     expect(actual.links).not.toEqual(expected.links);
+  });
+
+  it('independent token oracle detects deleted or changed HTML siblings beside a Spotify iframe', async () => {
+    const source = await fixture('spotify-sibling-html.md');
+    const expected = expectedBodyTokens(
+      source,
+      '/2020/02/10/2019-playlists.html',
+      '2019 Playlists',
+      { headings: [] },
+      {},
+    );
+    const embed =
+      '<EmbedFrame src="https://open.spotify.com/embed/playlist/sibling-test" title="Spotify playlist: 2019 Playlists" />';
+    const mutations = {
+      deleted: embed,
+      changed: `${embed}\n\n<span class="note"><strong>Changed sibling.</strong></span>`,
+    };
+
+    expect(expected.blocks).toEqual([
+      {
+        type: 'html_block',
+        tag: '',
+        nesting: 0,
+        markup: '',
+        content:
+          '<span class="note"><strong>Authored sibling stays exact.</strong></span>',
+        attrs: [],
+      },
+    ]);
+    for (const [mutation, output] of Object.entries(mutations)) {
+      const actual = actualBodyTokens(output, '2019 Playlists');
+      expect(actual.embeds, mutation).toEqual(expected.embeds);
+      expect(actual.blocks, mutation).not.toEqual(expected.blocks);
+    }
   });
 
   it('accounts for exactly the five structured migration allowances', async () => {
