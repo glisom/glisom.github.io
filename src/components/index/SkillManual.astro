@@ -34,9 +34,8 @@ const destinationFor = (record: SkillLibraryRecord) =>
         </div>
         <div class="skill-strips">
           {group.map((record) => {
-            const whereUsed = record.data.cadence
-              ? record.data.cadence
-              : record.data.actionState;
+            const usageKind = record.data.cadence ? 'cadence' : 'trigger';
+            const usageValue = record.data.cadence ?? record.data.trigger;
             const destination = destinationFor(record);
             const content = (
               <>
@@ -47,11 +46,16 @@ const destinationFor = (record: SkillLibraryRecord) =>
                   </p>
                 </div>
                 <p data-capability>{record.data.summary}</p>
-                {whereUsed && (
-                  <span class="record-meta" data-where-used>
-                    {whereUsed}
+                <span
+                  class="record-meta"
+                  data-usage-fact
+                  data-usage-kind={usageKind}
+                >
+                  <span class="record-meta-label">
+                    {usageKind === 'cadence' ? 'Cadence' : 'Trigger'}
                   </span>
-                )}
+                  <span data-usage-value>{usageValue}</span>
+                </span>
                 {destination && <Icon name="arrow-right" decorative={true} />}
               </>
             );

@@ -19,26 +19,33 @@ const { groups } = Astro.props;
     </p>
   </div>
   {
-    [...groups].map(([year, posts]) => (
-      <section class="year-group" data-year-group={year}>
-        <div class="year">
-          {year} / {String(posts.length).padStart(2, '0')}
-        </div>
-        <div class="post-ledger">
-          {posts.map((post) => (
-            <a class="post-row" href={post.data.canonicalPath}>
-              <time class="post-date" datetime={post.data.publishedAt}>
-                {formatPublicDate(post.data.publishedAt, 'short')}
-              </time>
-              <h3>{post.data.title}</h3>
-              <span class="post-kind">
-                {post.data.kind} · {calculateReadingMinutes(post.body ?? '')}{' '}
-                min
-              </span>
-            </a>
-          ))}
-        </div>
-      </section>
-    ))
+    [...groups].map(([year, posts]) => {
+      const labelId = `posts-${year}`;
+      return (
+        <section
+          class="year-group"
+          data-year-group={year}
+          aria-labelledby={labelId}
+        >
+          <div class="year" id={labelId}>
+            {year} / {String(posts.length).padStart(2, '0')}
+          </div>
+          <div class="post-ledger">
+            {posts.map((post) => (
+              <a class="post-row" href={post.data.canonicalPath}>
+                <time class="post-date" datetime={post.data.publishedAt}>
+                  {formatPublicDate(post.data.publishedAt, 'short')}
+                </time>
+                <h3>{post.data.title}</h3>
+                <span class="post-kind">
+                  {post.data.kind} · {calculateReadingMinutes(post.body ?? '')}{' '}
+                  min
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })
   }
 </div>

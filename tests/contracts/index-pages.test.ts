@@ -187,6 +187,36 @@ describe('built collection indexes', () => {
     ).toBe(true);
   });
 
+  it('programmatically labels each blog year group with its visible year and count', () => {
+    const $ = index('/blog/');
+    expect(
+      $('[data-year-group]')
+        .map((_, node) => {
+          const labelledBy = $(node).attr('aria-labelledby');
+          return {
+            labelledBy,
+            label: labelledBy ? $(`#${labelledBy}`).text().trim() : '',
+          };
+        })
+        .get(),
+    ).toEqual([
+      { labelledBy: 'posts-2026', label: '2026 / 05' },
+      { labelledBy: 'posts-2023', label: '2023 / 05' },
+      { labelledBy: 'posts-2022', label: '2022 / 01' },
+      { labelledBy: 'posts-2020', label: '2020 / 04' },
+      { labelledBy: 'posts-2019', label: '2019 / 06' },
+      { labelledBy: 'posts-2018', label: '2018 / 02' },
+    ]);
+  });
+
+  it('renders the selected feature record authored artwork', () => {
+    const $ = index('/blog/');
+    expect($('.featured-art img').attr('src')).toContain('listwithme-hand');
+    expect($('.featured-art img').attr('alt')).toBe(
+      'A fine blue halftone drawing of a hand holding a pen',
+    );
+  });
+
   it('groups the app library by its authored categories and uses dossier destinations', () => {
     const $ = index('/app-library/');
     expect($('.section-heading h2').text()).toBe(
@@ -256,7 +286,7 @@ describe('built collection indexes', () => {
     expect($('[data-app-record] [data-record-platform]')).toHaveLength(4);
   });
 
-  it('credits every field-manual record and omits unavailable cadence labels', () => {
+  it('credits every field-manual record and names its authored trigger honestly', () => {
     const $ = index('/skill-library/');
     expect(
       $('[data-skill-record] h3')
@@ -282,8 +312,43 @@ describe('built collection indexes', () => {
       'OpenAI · OpenAI PDF skill',
     ]);
     expect($('[data-skill-record] [data-capability]')).toHaveLength(5);
-    expect($('[data-skill-record] [data-where-used]')).toHaveLength(5);
-    expect(normalizedText($, '[data-skill-record]')).not.toContain('Cadence:');
+    expect(
+      $('[data-skill-record] [data-usage-fact]')
+        .map((_, node) => ({
+          kind: $(node).attr('data-usage-kind'),
+          value: $(node).find('[data-usage-value]').text().trim(),
+        }))
+        .get(),
+    ).toEqual([
+      {
+        kind: 'trigger',
+        value:
+          'A question needs deeper evidence, source reconciliation, and a durable report.',
+      },
+      {
+        kind: 'trigger',
+        value: 'The task depends on visible or interactive browser state.',
+      },
+      {
+        kind: 'trigger',
+        value:
+          'A new interface needs a visual direction, or an existing one needs a more coherent point of view.',
+      },
+      {
+        kind: 'trigger',
+        value:
+          'A task needs a polished Word document, redline, comment pass, or Google Docs-ready file.',
+      },
+      {
+        kind: 'trigger',
+        value:
+          'A PDF task depends on layout, visual fidelity, or interactive form state.',
+      },
+    ]);
+    expect($('[data-skill-record] [data-where-used]')).toHaveLength(0);
+    expect(normalizedText($, '[data-skill-record]')).not.toContain(
+      'Kept in my toolkit.',
+    );
   });
 
   it('marks every authored skill in text and exposes only its real record action', () => {

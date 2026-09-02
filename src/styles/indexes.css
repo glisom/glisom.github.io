@@ -497,11 +497,19 @@
 }
 
 .skill-strip .record-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   justify-self: end;
   color: var(--muted);
   font-size: var(--utility-small);
   line-height: 1.45;
   text-align: right;
+}
+
+.record-meta-label {
+  color: var(--blue-dark);
+  font-weight: 500;
 }
 
 .skill-strip .icon {
@@ -618,7 +626,7 @@
     padding-bottom: 48px;
   }
 
-  .featured-story {
+  .featured-story.has-art {
     grid-template-columns: minmax(0, 1fr) minmax(330px, 0.85fr);
   }
 
@@ -823,6 +831,7 @@
   .skill-strip > p,
   .skill-strip .record-meta {
     grid-column: 1 / -1;
+    align-items: flex-start;
     justify-self: start;
     text-align: left;
   }
