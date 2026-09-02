@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { validateContentGraph } from '../../src/lib/content/graph';
+import {
+  assertValidContentGraph,
+  validateContentGraph,
+} from '../../src/lib/content/graph';
+import { selectHomepageContent } from '../../src/lib/content/homepage';
+import { resolveRelationships } from '../../src/lib/content/relationships';
 import {
   appLibrarySchema,
   blogSchema,
@@ -224,6 +229,29 @@ describe('content graph validation', () => {
       }),
     );
     expect(codes(graphWithDuplicatePath)).toContain('duplicate-canonical-path');
+  });
+
+  it('aggregates every path-specific issue in the assertion error', () => {
+    const invalidBlog = blogRecord({ titleAccent: 'featured' });
+    const graph: ContentGraph = {
+      ...validGraph(),
+      blog: [invalidBlog],
+      'app-library': [
+        appRecord({
+          slug: 'duplicate-path',
+          canonicalPath: invalidBlog.data.canonicalPath,
+          hasDetailPage: false,
+        }),
+      ],
+    };
+
+    expect(() => assertValidContentGraph(validGraph())).not.toThrow();
+    expect(() => assertValidContentGraph(graph)).toThrow(
+      /\[title-accent-not-found\] \/2026\/09\/01\/featured-post\.html:/,
+    );
+    expect(() => assertValidContentGraph(graph)).toThrow(
+      /\[duplicate-canonical-path\] \/2026\/09\/01\/featured-post\.html:/,
+    );
   });
 
   it('rejects duplicate slugs within a collection', () => {
@@ -472,6 +500,200 @@ describe('content graph validation', () => {
     expect(codes(graphWithFourDetailRelationships)).toContain(
       'too-many-detail-relationships',
     );
+  });
+
+  it('reaches graph-level invalid field-note keys on constructed records', () => {
+    const record = projectRecord({
+      slug: 'invalid-key-project',
+      canonicalPath: '/projects/invalid-key-project/',
+    });
+    Reflect.set(record.data.fieldNotes[0], 'key', 'workflow');
+
+    expect(codes(graphWith(record))).toContain('invalid-field-note-key');
+  });
+});
+
+describe('homepage selection', () => {
+  it('returns concrete slots and deterministically ordered collections', () => {
+    const graph: ContentGraph = {
+      blog: [
+        blogRecord(),
+        blogRecord({
+          slug: 'older-post',
+          canonicalPath: '/2025/01/01/older-post.html',
+          homepageSlot: undefined,
+          publishedAt: '2025-01-01',
+        }),
+        blogRecord({
+          slug: 'newest-post',
+          canonicalPath: '/2026/09/02/newest-post.html',
+          homepageSlot: undefined,
+          publishedAt: '2026-09-02',
+        }),
+        blogRecord({
+          slug: 'middle-post',
+          canonicalPath: '/2026/08/01/middle-post.html',
+          homepageSlot: undefined,
+          publishedAt: '2026-08-01',
+        }),
+        blogRecord({
+          slug: 'third-post',
+          canonicalPath: '/2026/07/01/third-post.html',
+          homepageSlot: undefined,
+          publishedAt: '2026-07-01',
+        }),
+        blogRecord({
+          slug: 'draft-post',
+          canonicalPath: '/2026/12/01/draft-post.html',
+          homepageSlot: undefined,
+          publishedAt: '2026-12-01',
+          draft: true,
+        }),
+      ],
+      projects: validGraph().projects,
+      'app-library': [
+        appRecord({
+          slug: 'second-app',
+          canonicalPath: '/app-library/second-app/',
+          homepageSlot: 'app-library',
+          homepageOrder: 2,
+          hasDetailPage: false,
+        }),
+        appRecord({
+          slug: 'first-app',
+          canonicalPath: '/app-library/first-app/',
+          homepageSlot: 'app-library',
+          homepageOrder: 1,
+          hasDetailPage: false,
+        }),
+      ],
+      'skill-library': [
+        librarySkillRecord({
+          slug: 'second-library-skill',
+          canonicalPath: '/skill-library/second-library-skill/',
+          displayOrder: 2,
+          hasDetailPage: false,
+        }),
+        librarySkillRecord({
+          slug: 'first-library-skill',
+          canonicalPath: '/skill-library/first-library-skill/',
+          displayOrder: 1,
+          hasDetailPage: false,
+        }),
+      ],
+      skills: [
+        authoredSkillRecord({
+          slug: 'second-authored-skill',
+          canonicalPath: '/skills/second-authored-skill/',
+          homepageSlot: 'authored-skills',
+          homepageOrder: 2,
+          hasDetailPage: false,
+        }),
+        authoredSkillRecord({
+          slug: 'first-authored-skill',
+          canonicalPath: '/skills/first-authored-skill/',
+          homepageSlot: 'authored-skills',
+          homepageOrder: 1,
+          hasDetailPage: false,
+        }),
+      ],
+    };
+
+    const selected = selectHomepageContent(graph);
+
+    expect(selected.featuredWriting.id).toBe('featured-post');
+    expect(selected.featuredProjectPrimary.id).toBe('primary-project');
+    expect(selected.featuredProjectSecondary.id).toBe('secondary-project');
+    expect(selected.appLibrary.map(({ id }) => id)).toEqual([
+      'first-app',
+      'second-app',
+    ]);
+    expect(selected.skillLibrary.map(({ id }) => id)).toEqual([
+      'first-library-skill',
+      'second-library-skill',
+    ]);
+    expect(selected.authoredSkills.map(({ id }) => id)).toEqual([
+      'first-authored-skill',
+      'second-authored-skill',
+    ]);
+    expect(selected.latestPosts.map(({ id }) => id)).toEqual([
+      'newest-post',
+      'middle-post',
+      'third-post',
+    ]);
+  });
+
+  it('rejects a missing singleton slot with its record count', () => {
+    expect(() => selectHomepageContent({ ...validGraph(), blog: [] })).toThrow(
+      'featured-writing requires exactly one record; received 0',
+    );
+  });
+});
+
+describe('relationship resolution', () => {
+  const sourceWithRelationship = (id: string) =>
+    blogRecord({
+      relationships: [{ collection: 'projects', id, label: 'Related project' }],
+    });
+
+  it('returns display-ready relationship data for a generated target', () => {
+    const source = sourceWithRelationship('primary-project');
+    const graph: ContentGraph = {
+      ...validGraph(),
+      blog: [source],
+      projects: [
+        projectRecord({
+          slug: 'primary-project',
+          canonicalPath: '/projects/primary-project/',
+          homepageSlot: 'featured-project-primary',
+        }),
+        projectRecord({
+          slug: 'secondary-project',
+          canonicalPath: '/projects/secondary-project/',
+          homepageSlot: 'featured-project-secondary',
+          hasDetailPage: false,
+        }),
+      ],
+    };
+
+    expect(resolveRelationships(source, graph)).toEqual([
+      {
+        collection: 'projects',
+        id: 'primary-project',
+        label: 'Related project',
+        title: 'ListWithMe',
+        summary: 'A complete project fixture.',
+        canonicalPath: '/projects/primary-project/',
+      },
+    ]);
+  });
+
+  it('throws the same path-specific missing and unavailable messages as validation', () => {
+    const missingSource = sourceWithRelationship('missing');
+    const unavailableSource = sourceWithRelationship('primary-project');
+    const missingMessage =
+      '/2026/09/01/featured-post.html references projects/missing, but that relationship target does not exist.';
+    const unavailableMessage =
+      '/2026/09/01/featured-post.html references projects/primary-project, but that relationship target is not published and generated.';
+    const missingGraph = { ...validGraph(), blog: [missingSource] };
+    const unavailableGraph = { ...validGraph(), blog: [unavailableSource] };
+
+    expect(
+      validateContentGraph(missingGraph).find(
+        ({ code }) => code === 'missing-relationship-target',
+      )?.message,
+    ).toBe(missingMessage);
+    expect(
+      validateContentGraph(unavailableGraph).find(
+        ({ code }) => code === 'unpublished-relationship-target',
+      )?.message,
+    ).toBe(unavailableMessage);
+    expect(() => resolveRelationships(missingSource, missingGraph)).toThrow(
+      missingMessage,
+    );
+    expect(() =>
+      resolveRelationships(unavailableSource, unavailableGraph),
+    ).toThrow(unavailableMessage);
   });
 });
 
