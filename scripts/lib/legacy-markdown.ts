@@ -663,6 +663,62 @@ function applyPreservedHeadingIds(
   return migratedBody;
 }
 
+function escapePreservedHeadingIdsForMdx(body: string): string {
+  const lines = body.split('\n');
+  const headings = markdown
+    .parse(body, {})
+    .filter((token) => token.type === 'heading_open');
+
+  for (const [index, token] of headings.entries()) {
+    const lineIndex = token.map?.[0];
+    if (lineIndex === undefined) {
+      throw new Error(`MDX heading ${index + 1} has no source line`);
+    }
+    const marker = /^(.*) \{#([^{}\s]+)\}$/.exec(lines[lineIndex]);
+    if (!marker) {
+      throw new Error(
+        `MDX heading ${index + 1} is missing its preserved heading ID`,
+      );
+    }
+    lines[lineIndex] = `${marker[1]} \\{#${marker[2]}\\}`;
+  }
+
+  return lines.join('\n');
+}
+
+function convertHtmlCommentsForMdx(body: string): string {
+  const offsets = lineOffsets(body);
+  const codeRanges = markdown
+    .parse(body, {})
+    .filter(
+      (token) =>
+        token.map && (token.type === 'fence' || token.type === 'code_block'),
+    )
+    .map((token) => ({
+      start: offsets[token.map![0]],
+      end: offsets[token.map![1]] ?? body.length,
+    }));
+  const comments = htmlCommentRanges(body).filter(
+    (comment) =>
+      !codeRanges.some(
+        (code) => comment.start >= code.start && comment.end <= code.end,
+      ),
+  );
+
+  let result = body;
+  for (const comment of comments.sort(
+    (left, right) => right.start - left.start,
+  )) {
+    const source = body.slice(comment.start, comment.end);
+    const content = source.slice(4, -3);
+    if (content.includes('*/')) {
+      throw new Error('HTML comment cannot be represented safely in MDX');
+    }
+    result = `${result.slice(0, comment.start)}{/*${content}*/}${result.slice(comment.end)}`;
+  }
+  return result;
+}
+
 function isElement(
   node: DefaultTreeAdapterMap['node'],
 ): node is DefaultTreeAdapterMap['element'] {
@@ -761,6 +817,11 @@ export function migratePost(
   body = applyPreservedHeadingIds(body, baseline, file.canonicalPath);
   const embeds = convertSpotifyEmbeds(body, title, file.canonicalPath);
   body = embeds.body;
+  const requiresMdx = images.converted || embeds.converted;
+  if (requiresMdx) {
+    body = escapePreservedHeadingIdsForMdx(body);
+    body = convertHtmlCommentsForMdx(body);
+  }
 
   const enrichment = (
     BLOG_ENRICHMENTS as Record<string, BlogEnrichment | undefined>
@@ -806,9 +867,5 @@ export function migratePost(
   }
   if (imports.length > 0) body = `${imports.join('\n')}\n\n${body}`;
 
-  return {
-    data,
-    body,
-    extension: imports.length > 0 ? '.mdx' : '.md',
-  };
+  return { data, body, extension: requiresMdx ? '.mdx' : '.md' };
 }

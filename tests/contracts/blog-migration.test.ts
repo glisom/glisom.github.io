@@ -35,10 +35,9 @@ interface BaselineOracle {
 }
 
 function withoutComponentImports(body: string): string {
-  return body.replace(
-    /^(?:import (?:EmbedFrame|Figure) from '[^']+';\n)+\n/,
-    '',
-  );
+  return body
+    .replace(/^(?:import (?:EmbedFrame|Figure) from '[^']+';\n)+\n/, '')
+    .replace(/\{\/\*([\s\S]*?)\*\/\}/g, '<!--$1-->');
 }
 
 type MarkdownToken = ReturnType<typeof markdown.parse>[number];
@@ -142,8 +141,17 @@ function proseTokens(body: string, canonicalPath?: string) {
         isHeading && childIndex === lastTextIndex
           ? child.content.replace(/ \{#[^}\s]+\}$/, '')
           : child.content;
+      const signature = tokenSignature(
+        child,
+        children,
+        childIndex,
+        canonicalPath,
+        content,
+      );
       return [
-        tokenSignature(child, children, childIndex, canonicalPath, content),
+        isHeading && childIndex === lastTextIndex
+          ? { ...signature, markup: '' }
+          : signature,
       ];
     });
   });
@@ -308,11 +316,11 @@ function headings(body: string) {
   return tokens.flatMap((token, index) => {
     if (token.type !== 'heading_open') return [];
     const inline = tokens[index + 1];
-    const marker = / \{#([^}\s]+)\}$/.exec(inline.content);
+    const marker = / \\?\{#([^}\\\s]+)\\?\}$/.exec(inline.content);
     return [
       {
         level: Number(token.tag.slice(1)),
-        text: inline.content.replace(/ \{#[^}\s]+\}$/, ''),
+        text: inline.content.replace(/ \\?\{#[^}\\\s]+\\?\}$/, ''),
         id: marker?.[1],
       },
     ];
@@ -543,7 +551,10 @@ describe('Jekyll post migration', () => {
       headings: [{ id: 'build' }],
     });
     expect(result.extension).toBe('.mdx');
-    expect(result.body).toBe(expected.replace('## Build', '## Build {#build}'));
+    expect(result.body).toBe(
+      expected.replace('## Build', '## Build \\{#build\\}'),
+    );
+    expect(result.body).not.toContain('## Build {#build}');
     expect(result.body).toContain(
       "import Figure from '../../components/editorial/Figure.astro';",
     );
