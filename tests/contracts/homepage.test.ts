@@ -28,6 +28,33 @@ function blockBody(source: string, opening: string): string {
   return '';
 }
 
+function resolveSourceSizeAtViewport(
+  sizes: string,
+  viewportWidth: number,
+): number {
+  const resolveLength = (length: string): number => {
+    const calc = /^calc\(([\d.]+)vw - ([\d.]+)px\)$/.exec(length);
+    if (calc) {
+      return (Number(calc[1]) / 100) * viewportWidth - Number(calc[2]);
+    }
+
+    const viewport = /^([\d.]+)vw$/.exec(length);
+    if (viewport) return (Number(viewport[1]) / 100) * viewportWidth;
+
+    throw new Error(`Unsupported source-size length: ${length}`);
+  };
+
+  for (const entry of sizes.split(',').map((value) => value.trim())) {
+    const conditional = /^\(max-width: (\d+)px\) (.+)$/.exec(entry);
+    if (!conditional) return resolveLength(entry);
+    if (viewportWidth <= Number(conditional[1])) {
+      return resolveLength(conditional[2]);
+    }
+  }
+
+  throw new Error(`No source-size matched ${viewportWidth}px`);
+}
+
 beforeAll(async () => {
   await execFileAsync('npm', ['run', 'build'], { cwd: repositoryRoot });
   $ = load(
@@ -110,26 +137,56 @@ describe('built homepage', () => {
     expect($('[data-halftone-image] img[width][height]')).toHaveLength(6);
   });
 
-  it('keeps homepage image hints aligned with the 1320px intermediate layout', () => {
-    const responsiveLayoutImages = $(
-      '.hero-art, .production-art, .project-art, .belief-art',
-    );
+  it('advertises each intermediate image at its rendered slot width', () => {
+    const cases = [
+      {
+        selector: '.hero-art',
+        sizes:
+          '(max-width: 820px) calc(100vw - 32px), (max-width: 1120px) calc(100vw - 266px), (max-width: 1219px) calc(100vw - 284px), (max-width: 1320px) calc(100vw - 337px), 50vw',
+        renderedAt1220: 883,
+      },
+      {
+        selector: '.production-art',
+        sizes:
+          '(max-width: 820px) calc(100vw - 32px), (max-width: 1120px) 50vw, (max-width: 1219px) calc(50vw - 134px), (max-width: 1320px) calc(50vw - 160px), 26vw',
+        renderedAt1220: 449.5,
+      },
+      {
+        selector: '[data-home-slot="featured-project-primary"] .project-art',
+        sizes:
+          '(max-width: 820px) 66vw, (max-width: 1120px) 38vw, (max-width: 1219px) calc(50vw - 140px), (max-width: 1320px) calc(50vw - 166px), 20vw',
+        renderedAt1220: 443.5,
+      },
+      {
+        selector: '[data-home-slot="featured-project-secondary"] .project-art',
+        sizes:
+          '(max-width: 820px) 66vw, (max-width: 1120px) 38vw, (max-width: 1219px) calc(33vw - 92px), (max-width: 1320px) calc(33vw - 109px), 20vw',
+        renderedAt1220: 292.71,
+      },
+      {
+        selector: '.belief-art',
+        sizes:
+          '(max-width: 820px) 43vw, (max-width: 1120px) 20vw, (max-width: 1219px) calc(21.5vw - 60px), (max-width: 1320px) calc(21.5vw - 71px), 10vw',
+        renderedAt1220: 190.705,
+      },
+    ] as const;
 
-    expect(responsiveLayoutImages).toHaveLength(5);
-    responsiveLayoutImages.each((_, image) => {
-      const sizeHints = $(image)
+    for (const { selector, sizes, renderedAt1220 } of cases) {
+      const sizeHints = $(selector)
         .find('source[sizes], img[sizes]')
         .map((__, candidate) => $(candidate).attr('sizes'))
         .get();
 
       expect(sizeHints).toHaveLength(3);
-      expect(sizeHints).toEqual(
-        expect.arrayContaining([
-          expect.stringContaining('(max-width: 1320px)'),
-        ]),
+      expect(sizeHints).toEqual([sizes, sizes, sizes]);
+
+      const advertisedAt1220 = resolveSourceSizeAtViewport(
+        sizeHints[0] ?? '',
+        1220,
       );
-      expect(sizeHints.join(' ')).not.toContain('(max-width: 1120px)');
-    });
+      expect(advertisedAt1220).toBeGreaterThanOrEqual(renderedAt1220);
+      expect(advertisedAt1220 - renderedAt1220).toBeLessThanOrEqual(1);
+    }
   });
 
   it('moves the hero and evidence grid to their safe intermediate layout before the rail breakpoint can squeeze them', () => {
