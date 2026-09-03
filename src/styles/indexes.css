@@ -468,12 +468,16 @@
 
 .skill-strip {
   display: grid;
-  grid-template-columns: minmax(170px, 0.9fr) minmax(220px, 1.5fr) 150px auto;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.5fr) minmax(0, 1fr) auto;
   gap: 24px;
   align-items: center;
   min-height: 112px;
   padding: 16px 0 16px 27px;
   border-bottom: 1px solid var(--line);
+}
+
+.skill-strip > * {
+  min-width: 0;
 }
 
 .skill-strip h3 {
@@ -698,11 +702,16 @@
   }
 
   .skill-strip {
-    grid-template-columns: minmax(140px, 0.8fr) minmax(190px, 1.5fr) auto;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 18px;
   }
 
+  .skill-strip > p,
   .skill-strip .record-meta {
-    display: none;
+    grid-column: 1 / -1;
+    align-items: flex-start;
+    justify-self: start;
+    text-align: left;
   }
 
   .authored-intro {

@@ -487,4 +487,31 @@ describe('built collection indexes', () => {
     );
     expect(baseDeclarations('.app-card.text-only')['grid-column']).toBe('1/-1');
   });
+
+  it('keeps skill usage facts readable through every responsive seam', () => {
+    expect(baseDeclarations('.skill-strip')['grid-template-columns']).toBe(
+      'minmax(0,.9fr) minmax(0,1.5fr) minmax(0,1fr) auto',
+    );
+    expect(baseDeclarations('.skill-strip>*')['min-width']).toBe('0');
+    expect(baseDeclarations('.skill-strip .record-meta')['display']).toBe(
+      'flex',
+    );
+    expect(
+      mediaDeclarations(
+        '(min-width: 821px) and (max-width: 1023px)',
+        '.skill-strip',
+      )['grid-template-columns'],
+    ).toBe('minmax(0,1fr) auto');
+    expect(
+      mediaDeclarations(
+        '(min-width: 821px) and (max-width: 1023px)',
+        '.skill-strip .record-meta',
+      )['grid-column'],
+    ).toBe('1/-1');
+    expect(
+      mediaDeclarations('(max-width: 820px)', '.skill-strip .record-meta')[
+        'grid-column'
+      ],
+    ).toBe('1/-1');
+  });
 });
