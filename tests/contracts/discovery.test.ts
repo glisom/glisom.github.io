@@ -254,6 +254,69 @@ Visible article prose.`,
     expect($.text()).not.toMatch(/(?:import|EmbedFrame|Figure|index\.ts)/);
   });
 
+  it.each([
+    {
+      name: 'binding followed by from on the next line',
+      declaration: `import Figure
+from './Figure.astro'`,
+    },
+    {
+      name: 'import keyword followed by the binding on the next line',
+      declaration: `import
+Figure from './Figure.astro'`,
+    },
+    {
+      name: 'multiline side-effect import',
+      declaration: `import
+'./article.css'`,
+    },
+    {
+      name: 'import with a trailing line comment',
+      declaration: `import Figure from './Figure.astro'; // generated component`,
+    },
+    {
+      name: 'import with a trailing block comment',
+      declaration: `import Figure from './Figure.astro' /* generated component */`,
+    },
+  ])(
+    'consumes a valid MDX $name without swallowing prose',
+    ({ declaration }) => {
+      const rendered = renderRssBody(
+        `${declaration}
+
+Visible article prose.`,
+        'MDX import grammar',
+      );
+      const $ = load(rendered);
+
+      expect($('p').text()).toBe('Visible article prose.');
+      expect($.text()).not.toMatch(
+        /(?:^|\s)(?:import|from|Figure|article\.css|generated component)(?:\s|$)/,
+      );
+    },
+  );
+
+  it('preserves one to three spaces followed by a tab as indented code', () => {
+    const rendered = renderRssBody(
+      ` \timport Figure from '../../components/editorial/Figure.astro';
+ \t<Figure src="/images/keep-one.png" alt="Keep one" />
+  \timport EmbedFrame from '../../components/editorial/EmbedFrame.astro';
+   \t<EmbedFrame src="/keep-three" title="Keep three" />`,
+      'Mixed indentation',
+    );
+    const $ = load(rendered);
+    const code = $('pre code').text();
+
+    expect(code).toBe(
+      `import Figure from '../../components/editorial/Figure.astro';
+<Figure src="/images/keep-one.png" alt="Keep one" />
+import EmbedFrame from '../../components/editorial/EmbedFrame.astro';
+<EmbedFrame src="/keep-three" title="Keep three" />\n`,
+    );
+    expect($('img')).toHaveLength(0);
+    expect($('a')).toHaveLength(0);
+  });
+
   it('preserves safe legacy HTML, strips unsafe markup, and rewrites only root-relative URLs', () => {
     const rendered = renderRssBody(
       `<span class="legacy-note" onclick="alert(1)">Read <a href="/about/" title="About">about</a>.</span>

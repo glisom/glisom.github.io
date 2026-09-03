@@ -1,3 +1,4 @@
+import { parse } from 'acorn';
 import { load } from 'cheerio';
 import MarkdownIt from 'markdown-it';
 import sanitizeHtml from 'sanitize-html';
@@ -8,6 +9,8 @@ const markdown = new MarkdownIt({
   linkify: false,
   typographer: false,
 });
+const maxImportLines = 64;
+const maxImportCharacters = 16_384;
 
 const componentAttribute = /([A-Za-z][\w:-]*)=(?:"([^"]*)"|'([^']*)')/g;
 const headingWithExplicitId =
@@ -35,39 +38,45 @@ function closesFence(line: string, fence: Fence): boolean {
 }
 
 function isIndentedCode(line: string): boolean {
-  return /^(?: {4}|\t)/.test(line);
-}
-
-function startsImportDeclaration(line: string): boolean {
-  if (!/^ {0,3}import\s/.test(line)) return false;
-  const source = line.trimStart();
-  return (
-    /^import\s+['"]/.test(source) ||
-    /^import\s+(?:type\s+)?\{/.test(source) ||
-    /^import\s+\*/.test(source) ||
-    /^import\s+(?:type\s+)?[A-Za-z_$][\w$]*(?:\s*,|\s+from\b)/.test(source)
-  );
-}
-
-function isCompleteImportDeclaration(source: string): boolean {
-  const normalized = source.replace(/\s+/g, ' ').trim();
-  return (
-    /^import\s+['"][^'"]+['"]\s*;?$/.test(normalized) ||
-    /^import\s+[\s\S]+\s+from\s+['"][^'"]+['"]\s*;?$/.test(normalized)
-  );
+  let column = 0;
+  for (const character of line) {
+    if (character === ' ') {
+      column += 1;
+    } else if (character === '\t') {
+      column += 4 - (column % 4);
+    } else {
+      break;
+    }
+    if (column >= 4) return true;
+  }
+  return false;
 }
 
 function importDeclarationEndAt(
   lines: readonly string[],
   start: number,
 ): number | undefined {
-  if (!startsImportDeclaration(lines[start])) return undefined;
+  if (!/^ {0,3}import(?:\s|$)/.test(lines[start])) return undefined;
 
   const declaration: string[] = [];
-  for (let index = start; index < lines.length; index += 1) {
-    const line = lines[index];
-    declaration.push(line);
-    if (isCompleteImportDeclaration(declaration.join('\n'))) return index;
+  const end = Math.min(lines.length, start + maxImportLines);
+  for (let index = start; index < end; index += 1) {
+    declaration.push(lines[index]);
+    const source = declaration.join('\n');
+    if (source.length > maxImportCharacters) return undefined;
+
+    try {
+      const program = parse(source, {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      });
+      return program.body.length === 1 &&
+        program.body[0].type === 'ImportDeclaration'
+        ? index
+        : undefined;
+    } catch {
+      continue;
+    }
   }
   return undefined;
 }
