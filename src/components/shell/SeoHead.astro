@@ -1,5 +1,7 @@
 ---
+import defaultSocialImage from '../../assets/social/default-og.png';
 import { SITE } from '../../data/site';
+import { resolveCanonicalUrl } from '../../lib/discovery/canonical';
 import type { BaseLayoutProps } from '../../types/content';
 
 const {
@@ -9,13 +11,37 @@ const {
   canonicalOverride,
   socialImage,
   pageType = 'website',
+  publishedAt,
+  updatedAt,
   noindex = false,
 } = Astro.props as BaseLayoutProps;
 
-const canonicalUrl = new URL(canonicalOverride ?? canonicalPath, SITE.origin)
-  .href;
-const socialImageUrl = socialImage
-  ? new URL(socialImage, SITE.origin).href
+const canonicalUrl = resolveCanonicalUrl(canonicalPath, canonicalOverride);
+const socialImageUrl = new URL(
+  socialImage ?? defaultSocialImage.src,
+  SITE.origin,
+).href;
+if (pageType === 'article' && !publishedAt) {
+  throw new Error(`Article metadata requires publishedAt: ${canonicalPath}`);
+}
+const articleHeadline = title.endsWith(` — ${SITE.name}`)
+  ? title.slice(0, -` — ${SITE.name}`.length)
+  : title;
+const articleJsonLd =
+  pageType === 'article'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: articleHeadline,
+        datePublished: publishedAt,
+        ...(updatedAt ? { dateModified: updatedAt } : {}),
+        author: { '@type': 'Person', name: SITE.name, url: SITE.origin },
+        image: socialImageUrl,
+        mainEntityOfPage: canonicalUrl,
+      }
+    : undefined;
+const serializedArticleJsonLd = articleJsonLd
+  ? JSON.stringify(articleJsonLd).replace(/</g, '\\u003c')
   : undefined;
 ---
 
@@ -37,11 +63,17 @@ const socialImageUrl = socialImage
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalUrl} />
-{socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
-<meta
-  name="twitter:card"
-  content={socialImageUrl ? 'summary_large_image' : 'summary'}
-/>
+<meta property="og:image" content={socialImageUrl} />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-{socialImageUrl && <meta name="twitter:image" content={socialImageUrl} />}
+<meta name="twitter:image" content={socialImageUrl} />
+{
+  serializedArticleJsonLd && (
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={serializedArticleJsonLd}
+    />
+  )
+}
