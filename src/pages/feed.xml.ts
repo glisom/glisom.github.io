@@ -3,7 +3,15 @@ import { getCollection } from 'astro:content';
 import type { APIRoute } from 'astro';
 import { SITE } from '../data/site';
 import { comparePostsNewestFirst } from '../lib/content/date';
-import { renderRssBody } from '../lib/discovery/rss';
+import { renderRssBody, type RssSourceFormat } from '../lib/discovery/rss';
+
+function sourceFormatFromFilePath(
+  filePath: string | undefined,
+): RssSourceFormat {
+  if (filePath?.endsWith('.mdx')) return 'mdx';
+  if (filePath?.endsWith('.md')) return 'md';
+  throw new Error(`Unsupported blog source format: ${filePath ?? '(missing)'}`);
+}
 
 export const GET: APIRoute = async (context) => {
   const posts = (await getCollection('blog', ({ data }) => !data.draft))
@@ -22,7 +30,11 @@ export const GET: APIRoute = async (context) => {
         post.data.originalTimestamp ?? `${post.data.publishedAt}T12:00:00Z`,
       ),
       link: post.data.canonicalPath,
-      content: renderRssBody(post.body ?? '', post.data.title),
+      content: renderRssBody(
+        post.body ?? '',
+        post.data.title,
+        sourceFormatFromFilePath(post.filePath),
+      ),
     })),
   });
 };

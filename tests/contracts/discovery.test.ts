@@ -6,6 +6,7 @@ import { promisify } from 'node:util';
 import { load, type CheerioAPI } from 'cheerio';
 import fg from 'fast-glob';
 import matter from 'gray-matter';
+import { markdownToMdast, mdxToMdast } from 'satteri';
 import sharp from 'sharp';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { resolveCanonicalUrl } from '../../src/lib/discovery/canonical';
@@ -173,6 +174,7 @@ Before.
 
 After.`,
       'Notes',
+      'mdx',
     );
     const $ = load(rendered);
 
@@ -189,13 +191,13 @@ After.`,
 
   it('removes explicit IDs from real headings without touching prose or fenced code', () => {
     const rendered = renderRssBody(
-      `## First heading {#first-heading}
+      `## First heading \\{#first-heading}
 
 ### Escaped heading \\{#escaped-heading\\}
 
-#### 2018 {#2018}
+#### 2018 \\{#2018}
 
-Literal prose {#not-a-heading}.
+Literal prose \\{#not-a-heading}.
 
 \`\`\`tsx
 import { HealthQL } from 'react-native-healthql';
@@ -203,6 +205,7 @@ import { HealthQL } from 'react-native-healthql';
 ## Code heading {#keep-code-marker}
 \`\`\``,
       'HealthQL',
+      'mdx',
     );
     const $ = load(rendered);
     const code = $('pre code').text();
@@ -223,6 +226,7 @@ import { HealthQL } from 'react-native-healthql';
 \timport EmbedFrame from '../../components/editorial/EmbedFrame.astro';
 \t<EmbedFrame src="/keep/embed" title="Keep embed source" />`,
       'Indented examples',
+      'mdx',
     );
     const $ = load(rendered);
     const code = $('pre code').text();
@@ -247,11 +251,86 @@ import EmbedFrame from '../../components/editorial/EmbedFrame.astro';
 
 Visible article prose.`,
       'Multiline imports',
+      'mdx',
     );
     const $ = load(rendered);
 
     expect($('p').text()).toBe('Visible article prose.');
     expect($.text()).not.toMatch(/(?:import|EmbedFrame|Figure|index\.ts)/);
+  });
+
+  it('pins source-format decisions to the Satteri parser used by Astro MDX', () => {
+    const nodeTypes = (tree: ReturnType<typeof mdxToMdast>) => {
+      expect(tree.type).toBe('root');
+      return tree.type === 'root'
+        ? tree.children.map((child) => child.type)
+        : [];
+    };
+
+    expect(
+      nodeTypes(
+        mdxToMdast(
+          `import\tFigure from './keyword-tab.astro'
+
+Visible.`,
+          { position: true },
+        ),
+      ),
+    ).toEqual(['mdxjsEsm', 'paragraph']);
+    expect(
+      nodeTypes(
+        mdxToMdast(
+          `import
+Figure from './bare-newline.astro'
+
+Visible.`,
+          { position: true },
+        ),
+      ),
+    ).toEqual(['paragraph', 'paragraph']);
+    expect(
+      nodeTypes(
+        mdxToMdast(
+          `\timport Figure from './leading-tab.astro'
+
+Visible.`,
+          { position: true },
+        ),
+      ),
+    ).toEqual(['paragraph', 'paragraph']);
+    expect(
+      nodeTypes(
+        markdownToMdast(
+          `import Figure from './plain-markdown.astro'
+
+Visible.`,
+          { position: true },
+        ),
+      ),
+    ).toEqual(['paragraph', 'paragraph']);
+  });
+
+  it('removes complete Satteri ESM ranges containing imports, comments, and exports', () => {
+    const source = `import First from './First.astro'; // attached line comment
+/* attached block comment */
+import Second from './Second.astro' /* trailing block comment */
+export const secret = 'remove this';
+
+Visible article prose.`;
+    const tree = mdxToMdast(source, { position: true });
+
+    expect(tree.type).toBe('root');
+    expect(
+      tree.type === 'root' ? tree.children.map((child) => child.type) : [],
+    ).toEqual(['mdxjsEsm', 'paragraph']);
+
+    const $ = load(renderRssBody(source, 'Combined ESM', 'mdx'));
+    expect(
+      $('p')
+        .map((_, element) => $(element).text())
+        .get(),
+    ).toEqual(['Visible article prose.']);
+    expect($.text().trim()).toBe('Visible article prose.');
   });
 
   it.each([
@@ -261,14 +340,8 @@ Visible article prose.`,
 from './Figure.astro'`,
     },
     {
-      name: 'import keyword followed by the binding on the next line',
-      declaration: `import
-Figure from './Figure.astro'`,
-    },
-    {
-      name: 'multiline side-effect import',
-      declaration: `import
-'./article.css'`,
+      name: 'tab between the import keyword and binding',
+      declaration: `import\tFigure from './Figure.astro'`,
     },
     {
       name: 'import with a trailing line comment',
@@ -286,6 +359,7 @@ Figure from './Figure.astro'`,
 
 Visible article prose.`,
         'MDX import grammar',
+        'mdx',
       );
       const $ = load(rendered);
 
@@ -301,8 +375,10 @@ Visible article prose.`,
       ` \timport Figure from '../../components/editorial/Figure.astro';
  \t<Figure src="/images/keep-one.png" alt="Keep one" />
   \timport EmbedFrame from '../../components/editorial/EmbedFrame.astro';
-   \t<EmbedFrame src="/keep-three" title="Keep three" />`,
+   \t<EmbedFrame src="/keep-three" title="Keep three" />
+   \t## Keep heading \\{#keep-mixed-heading}`,
       'Mixed indentation',
+      'mdx',
     );
     const $ = load(rendered);
     const code = $('pre code').text();
@@ -311,10 +387,298 @@ Visible article prose.`,
       `import Figure from '../../components/editorial/Figure.astro';
 <Figure src="/images/keep-one.png" alt="Keep one" />
 import EmbedFrame from '../../components/editorial/EmbedFrame.astro';
-<EmbedFrame src="/keep-three" title="Keep three" />\n`,
+<EmbedFrame src="/keep-three" title="Keep three" />
+## Keep heading \\{#keep-mixed-heading}\n`,
     );
     expect($('img')).toHaveLength(0);
     expect($('a')).toHaveLength(0);
+  });
+
+  it.each([
+    {
+      name: 'more than 64 lines',
+      declaration: `import {
+${Array.from({ length: 70 }, (_, index) => `  Name${index},`).join('\n')}
+} from './many-names.js'`,
+    },
+    {
+      name: 'more than 16 KiB',
+      declaration: `import Figure from './Figure.astro' /* ${'x'.repeat(17_000)} */`,
+    },
+  ])('removes a Satteri ESM range spanning $name', ({ declaration }) => {
+    const source = `${declaration}
+
+Visible after a large import.`;
+    const tree = mdxToMdast(source, { position: true });
+    expect(tree.type).toBe('root');
+    expect(tree.type === 'root' ? tree.children[0]?.type : undefined).toBe(
+      'mdxjsEsm',
+    );
+
+    const $ = load(renderRssBody(source, 'Large import', 'mdx'));
+    expect($('p').text()).toBe('Visible after a large import.');
+    expect($.text().trim()).toBe('Visible after a large import.');
+  });
+
+  it.each([
+    {
+      name: 'with attributes',
+      declaration: `import data from './data.json' with { type: 'json' }`,
+    },
+    {
+      name: 'assert attributes',
+      declaration: `import data from './data.json' assert { type: 'json' }`,
+    },
+  ])('removes parser-accepted imports using $name', ({ declaration }) => {
+    const source = `${declaration}
+
+Visible after import attributes.`;
+    const tree = mdxToMdast(source, { position: true });
+    expect(tree.type).toBe('root');
+    expect(tree.type === 'root' ? tree.children[0]?.type : undefined).toBe(
+      'mdxjsEsm',
+    );
+
+    const $ = load(renderRssBody(source, 'Import attributes', 'mdx'));
+    expect($('p').text()).toBe('Visible after import attributes.');
+    expect($.text().trim()).toBe('Visible after import attributes.');
+  });
+
+  it('removes Satteri ESM ranges from CR-only MDX without losing following prose', () => {
+    const source = `import Figure from './Figure.astro'\r\rVisible after CR.`;
+    const tree = mdxToMdast(source, { position: true });
+    expect(tree.type).toBe('root');
+    expect(
+      tree.type === 'root' ? tree.children.map((child) => child.type) : [],
+    ).toEqual(['mdxjsEsm', 'paragraph']);
+
+    const $ = load(renderRssBody(source, 'CR-only import', 'mdx'));
+    expect($('p').text()).toBe('Visible after CR.');
+    expect($.text().trim()).toBe('Visible after CR.');
+  });
+
+  it.each([
+    {
+      name: 'bare import keyword followed by a newline',
+      source: `import
+Figure from './bare-newline.astro'
+
+Visible.`,
+      expected: [`import\nFigure from './bare-newline.astro'`, 'Visible.'],
+    },
+    {
+      name: 'bare side-effect import text split after the keyword',
+      source: `import
+'./bare-side-effect.css'
+
+Visible.`,
+      expected: [`import\n'./bare-side-effect.css'`, 'Visible.'],
+    },
+    {
+      name: 'one-space-prefixed import text',
+      source: ` import Figure from './one-space.astro'
+
+Visible.`,
+      expected: [`import Figure from './one-space.astro'`, 'Visible.'],
+    },
+    {
+      name: 'two-space-prefixed import text',
+      source: `  import Figure from './two-space.astro'
+
+Visible.`,
+      expected: [`import Figure from './two-space.astro'`, 'Visible.'],
+    },
+    {
+      name: 'three-space-prefixed import text',
+      source: `   import Figure from './three-space.astro'
+
+Visible.`,
+      expected: [`import Figure from './three-space.astro'`, 'Visible.'],
+    },
+    {
+      name: 'paragraph-interrupting import text',
+      source: `Paragraph before.
+import Figure from './paragraph-interrupt.astro'
+
+Visible.`,
+      expected: [
+        `Paragraph before.\nimport Figure from './paragraph-interrupt.astro'`,
+        'Visible.',
+      ],
+    },
+  ])('preserves Satteri-paragraph $name in MDX', ({ source, expected }) => {
+    const tree = mdxToMdast(source, { position: true });
+    expect(tree.type).toBe('root');
+    expect(tree.type === 'root' ? tree.children[0]?.type : undefined).toBe(
+      'paragraph',
+    );
+
+    const $ = load(renderRssBody(source, 'Import-looking prose', 'mdx'));
+    expect(
+      $('p')
+        .map((_, element) => $(element).text())
+        .get(),
+    ).toEqual(expected);
+  });
+
+  it('does not create an ESM range by masking adjacent indented paragraph text', () => {
+    const source = `\tcode sample
+import Figure from './paragraph-after-indent.astro'
+
+Visible.`;
+    const tree = mdxToMdast(source, { position: true });
+
+    expect(tree.type).toBe('root');
+    expect(
+      tree.type === 'root' ? tree.children.map((child) => child.type) : [],
+    ).toEqual(['paragraph', 'paragraph']);
+
+    const $ = load(renderRssBody(source, 'Adjacent paragraph text', 'mdx'));
+    expect($('pre code').text()).toBe('code sample\n');
+    expect(
+      $('p')
+        .map((_, element) => $(element).text())
+        .get(),
+    ).toEqual([
+      `import Figure from './paragraph-after-indent.astro'`,
+      'Visible.',
+    ]);
+  });
+
+  it.each([
+    {
+      name: 'column-1 import declaration text',
+      source: `import Figure from './plain-root.astro'
+
+Visible.`,
+      expected: [`import Figure from './plain-root.astro'`, 'Visible.'],
+    },
+    {
+      name: 'keyword-tab import declaration text',
+      source: `import\tFigure from './plain-keyword-tab.astro'
+
+Visible.`,
+      expected: [`import\tFigure from './plain-keyword-tab.astro'`, 'Visible.'],
+    },
+    {
+      name: 'import attributes text',
+      source: `import data from './plain.json' with { type: 'json' }
+
+Visible.`,
+      expected: [
+        `import data from './plain.json' with { type: 'json' }`,
+        'Visible.',
+      ],
+    },
+    {
+      name: 'import and export text',
+      source: `import Figure from './plain-combined.astro'
+export const answer = 42
+
+Visible.`,
+      expected: [
+        `import Figure from './plain-combined.astro'\nexport const answer = 42`,
+        'Visible.',
+      ],
+    },
+    {
+      name: 'bare newline import text',
+      source: `import
+Figure from './plain-bare-newline.astro'
+
+Visible.`,
+      expected: [
+        `import\nFigure from './plain-bare-newline.astro'`,
+        'Visible.',
+      ],
+    },
+    {
+      name: 'leading-space import text',
+      source: `   import Figure from './plain-leading-space.astro'
+
+Visible.`,
+      expected: [
+        `import Figure from './plain-leading-space.astro'`,
+        'Visible.',
+      ],
+    },
+    {
+      name: 'paragraph-interrupting import text',
+      source: `Paragraph before.
+import Figure from './plain-paragraph-interrupt.astro'
+
+Visible.`,
+      expected: [
+        `Paragraph before.\nimport Figure from './plain-paragraph-interrupt.astro'`,
+        'Visible.',
+      ],
+    },
+  ])('never strips $name from a .md source', ({ source, expected }) => {
+    const tree = markdownToMdast(source, { position: true });
+    expect(tree.type).toBe('root');
+    expect(
+      tree.type === 'root'
+        ? tree.children.some((child) => child.type === 'mdxjsEsm')
+        : true,
+    ).toBe(false);
+
+    const $ = load(renderRssBody(source, 'Plain Markdown', 'md'));
+    expect(
+      $('p')
+        .map((_, element) => $(element).text())
+        .get(),
+    ).toEqual(expected);
+  });
+
+  it('does not mistake a leading-tab indented fence marker for a real fence', () => {
+    const rendered = renderRssBody(
+      `\t\`\`\`mdx
+<Figure src="/images/live-after-code.png" alt="Live after code" />
+## Live heading \\{#live-heading}`,
+      'Indented fence marker',
+      'mdx',
+    );
+    const $ = load(rendered);
+
+    expect($('pre code').text()).toBe('```mdx\n');
+    expect($('img').attr('src')).toBe(
+      'https://grantisom.com/images/live-after-code.png',
+    );
+    expect($('img').attr('alt')).toBe('Live after code');
+    expect($('h2').text()).toBe('Live heading');
+    expect($.text()).not.toContain('{#live-heading}');
+  });
+
+  it('keeps a tab-indented fence marker and subsequent transforms inside the open fence', () => {
+    const rendered = renderRssBody(
+      `\`\`\`mdx
+keep
+\t\`\`\`
+import Figure from '../../components/editorial/Figure.astro';
+<Figure src="/images/keep-in-fence.png" alt="Keep in fence" />
+## Code heading {#keep-fence-heading}
+\`\`\`
+
+After the fence.`,
+      'Tab-indented fence marker',
+      'mdx',
+    );
+    const $ = load(rendered);
+
+    expect($('pre code').text()).toBe(
+      `keep
+\t\`\`\`
+import Figure from '../../components/editorial/Figure.astro';
+<Figure src="/images/keep-in-fence.png" alt="Keep in fence" />
+## Code heading {#keep-fence-heading}
+`,
+    );
+    expect(
+      $('p')
+        .map((_, element) => $(element).text())
+        .get(),
+    ).toEqual(['After the fence.']);
+    expect($('img')).toHaveLength(0);
   });
 
   it('preserves safe legacy HTML, strips unsafe markup, and rewrites only root-relative URLs', () => {
@@ -326,6 +690,7 @@ import EmbedFrame from '../../components/editorial/EmbedFrame.astro';
 <a href="javascript:alert(1)">unsafe</a>
 <script>alert('no')</script>`,
       'Legacy HTML',
+      'md',
     );
     const $ = load(rendered);
 

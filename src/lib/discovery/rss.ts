@@ -1,7 +1,7 @@
-import { parse } from 'acorn';
 import { load } from 'cheerio';
 import MarkdownIt from 'markdown-it';
 import sanitizeHtml from 'sanitize-html';
+import { mdxToMdast } from 'satteri';
 import { SITE } from '../../data/site';
 
 const markdown = new MarkdownIt({
@@ -9,76 +9,85 @@ const markdown = new MarkdownIt({
   linkify: false,
   typographer: false,
 });
-const maxImportLines = 64;
-const maxImportCharacters = 16_384;
-
 const componentAttribute = /([A-Za-z][\w:-]*)=(?:"([^"]*)"|'([^']*)')/g;
 const headingWithExplicitId =
   /^(\s{0,3}#{1,6}\s+.*?)(?:\s+\\?\{#[^{}\s]+\\?\})(\s*#*\s*)$/;
 
-interface Fence {
-  marker: '`' | '~';
-  length: number;
+export type RssSourceFormat = 'md' | 'mdx';
+
+interface SourceRange {
+  start: number;
+  end: number;
 }
 
-function fenceAt(line: string): Fence | undefined {
-  const match = /^\s{0,3}(`{3,}|~{3,})/.exec(line);
-  if (!match) return undefined;
-  return {
-    marker: match[1][0] as Fence['marker'],
-    length: match[1].length,
-  };
-}
-
-function closesFence(line: string, fence: Fence): boolean {
-  const match = /^\s{0,3}(`{3,}|~{3,})\s*$/.exec(line);
-  return Boolean(
-    match && match[1][0] === fence.marker && match[1].length >= fence.length,
-  );
-}
-
-function isIndentedCode(line: string): boolean {
-  let column = 0;
-  for (const character of line) {
-    if (character === ' ') {
-      column += 1;
-    } else if (character === '\t') {
-      column += 4 - (column % 4);
-    } else {
-      break;
-    }
-    if (column >= 4) return true;
+function mdxEsmRanges(
+  body: string,
+  protectedLines: ReadonlySet<number>,
+): SourceRange[] {
+  const tree = mdxToMdast(body, { position: true });
+  if (tree.type !== 'root') {
+    throw new Error('Expected the MDX parser to return a root node.');
   }
-  return false;
+
+  return tree.children
+    .filter((node) => node.type === 'mdxjsEsm')
+    .map((node) => {
+      const position = node.position;
+      if (
+        !position ||
+        position.start.offset === undefined ||
+        position.end.offset === undefined
+      ) {
+        throw new Error('Expected every MDX ESM node to have source offsets.');
+      }
+      const start = position.start.offset;
+      const end = position.end.offset;
+      const firstLine = position.start.line - 1;
+      const lastLineExclusive =
+        position.end.column === 1 ? position.end.line - 1 : position.end.line;
+      for (let line = firstLine; line < lastLineExclusive; line += 1) {
+        if (protectedLines.has(line)) return undefined;
+      }
+      return { start, end };
+    })
+    .filter((range): range is SourceRange => range !== undefined);
 }
 
-function importDeclarationEndAt(
-  lines: readonly string[],
-  start: number,
-): number | undefined {
-  if (!/^ {0,3}import(?:\s|$)/.test(lines[start])) return undefined;
+function stripMdxEsm(
+  body: string,
+  sourceFormat: RssSourceFormat,
+  protectedLines: ReadonlySet<number>,
+): string {
+  if (sourceFormat === 'md') return body;
 
-  const declaration: string[] = [];
-  const end = Math.min(lines.length, start + maxImportLines);
-  for (let index = start; index < end; index += 1) {
-    declaration.push(lines[index]);
-    const source = declaration.join('\n');
-    if (source.length > maxImportCharacters) return undefined;
+  return mdxEsmRanges(body, protectedLines)
+    .toSorted((left, right) => right.start - left.start)
+    .reduce((source, range) => {
+      const preservedNewlines = source
+        .slice(range.start, range.end)
+        .replace(/[^\r\n]/g, '');
+      return (
+        source.slice(0, range.start) +
+        preservedNewlines +
+        source.slice(range.end)
+      );
+    }, body);
+}
 
-    try {
-      const program = parse(source, {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
-      });
-      return program.body.length === 1 &&
-        program.body[0].type === 'ImportDeclaration'
-        ? index
-        : undefined;
-    } catch {
+function protectedMarkdownLines(body: string): ReadonlySet<number> {
+  const protectedLines = new Set<number>();
+
+  for (const token of markdown.parse(body, {})) {
+    if ((token.type !== 'fence' && token.type !== 'code_block') || !token.map) {
       continue;
     }
+
+    for (let line = token.map[0]; line < token.map[1]; line += 1) {
+      protectedLines.add(line);
+    }
   }
-  return undefined;
+
+  return protectedLines;
 }
 
 function parseAttributes(source: string): Readonly<Record<string, string>> {
@@ -115,34 +124,21 @@ function transformGeneratedComponent(
   return undefined;
 }
 
-function prepareMarkdown(body: string, postTitle: string): string {
+function prepareMarkdown(
+  body: string,
+  postTitle: string,
+  sourceFormat: RssSourceFormat,
+): string {
   const output: string[] = [];
-  let fence: Fence | undefined;
-  const lines = body.split(/\r?\n/);
+  const protectedLines = protectedMarkdownLines(body);
+  const lines = stripMdxEsm(body, sourceFormat, protectedLines).split(
+    /\r\n|\r|\n/,
+  );
 
   for (let index = 0; index < lines.length; index += 1) {
     const line = lines[index];
-    if (fence) {
+    if (protectedLines.has(index)) {
       output.push(line);
-      if (closesFence(line, fence)) fence = undefined;
-      continue;
-    }
-
-    const openingFence = fenceAt(line);
-    if (openingFence) {
-      fence = openingFence;
-      output.push(line);
-      continue;
-    }
-
-    if (isIndentedCode(line)) {
-      output.push(line);
-      continue;
-    }
-
-    const importEnd = importDeclarationEndAt(lines, index);
-    if (importEnd !== undefined) {
-      index = importEnd;
       continue;
     }
 
@@ -170,8 +166,14 @@ function rewriteInternalUrls(html: string): string {
   return $.html();
 }
 
-export function renderRssBody(body: string, postTitle: string): string {
-  const rendered = markdown.render(prepareMarkdown(body, postTitle));
+export function renderRssBody(
+  body: string,
+  postTitle: string,
+  sourceFormat: RssSourceFormat,
+): string {
+  const rendered = markdown.render(
+    prepareMarkdown(body, postTitle, sourceFormat),
+  );
   const sanitized = sanitizeHtml(rendered, {
     allowedTags: [
       'a',
