@@ -5,9 +5,10 @@ import type { PrimaryCollection } from '../../types/content';
 
 interface Props {
   activeCollection?: PrimaryCollection;
+  activeAbout?: boolean;
 }
 
-const { activeCollection } = Astro.props;
+const { activeCollection, activeAbout = false } = Astro.props;
 ---
 
 <details class="mobile-nav">
@@ -30,7 +31,18 @@ const { activeCollection } = Astro.props;
         );
       })
     }
-    <div class="mobile-nav-row"><a href="/about/">About</a></div>
+    <div class:list={['mobile-nav-row', { 'is-active': activeAbout }]}>
+      <a href="/about/" aria-current={activeAbout ? 'page' : undefined}>
+        About
+      </a>
+      {
+        activeAbout && (
+          <span class="mobile-nav-state" data-utility-label>
+            Current
+          </span>
+        )
+      }
+    </div>
     <div class="mobile-nav-row"><a href="/feed.xml">RSS</a></div>
     <div class="mobile-nav-row"><a href={`mailto:${SITE.email}`}>Email</a></div>
   </nav>

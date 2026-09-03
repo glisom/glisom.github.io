@@ -1,0 +1,109 @@
+---
+import ResponsiveImage from '../../components/media/ResponsiveImage.astro';
+import { NOW_ITEMS } from '../../data/now';
+import { SOCIAL_LINKS } from '../../data/social';
+import UtilityLayout from '../../layouts/UtilityLayout.astro';
+---
+
+<UtilityLayout
+  title="About Grant Isom"
+  description="A little about Grant Isom, what has his attention, and where to find him."
+  canonicalPath="/about/"
+  activeAbout={true}
+  variant="about"
+>
+  <div class="about-page" data-about-page>
+    <header class="about-opening">
+      <div class="about-copy">
+        <p class="eyebrow" data-utility-label>About / Grant Isom</p>
+        <h1>Hi, I'm Grant.</h1>
+        <p class="about-lede" data-about-opening>
+          I’m an app maker, obsessive software user, and writer in Chicago. I’m
+          curious about how software gets made, why some tools stick, and what
+          is worth building for myself. This site is where I keep the things
+          I’ve made and the notes I want to remember.
+        </p>
+      </div>
+
+      <figure class="about-accent" data-about-accent aria-hidden="true">
+        <ResponsiveImage
+          src="evidence/belief-rings.png"
+          alt=""
+          decorative={true}
+          widths={[180, 240, 320, 420]}
+          sizes="(max-width: 820px) 132px, (max-width: 1219px) 180px, 220px"
+        />
+      </figure>
+    </header>
+
+    <div class="about-sections">
+      <section class="about-section">
+        <h2>Right now</h2>
+        <p data-about-right-now>
+          Most of my favorite projects start because I want something to exist,
+          so I try making it. Here’s what has my attention right now.
+        </p>
+        <ul class="about-now-list">
+          {
+            NOW_ITEMS.map((item) => (
+              <li data-now-item>
+                <span data-now-eyebrow data-utility-label>
+                  {item.eyebrow}
+                </span>
+                <strong data-now-title>{item.title}</strong>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="about-section">
+        <h2>A little background</h2>
+        <p data-about-background>
+          I’m from Kansas City and now live in Chicago. I’ve spent more than a
+          decade making mobile, platform, and AI software, and these days I
+          build AI products at Limelight and occasionally help teams through
+          Groundwork AI. I still get most excited by small, useful things one
+          person can shape.
+        </p>
+      </section>
+
+      <section class="about-section">
+        <h2>Outside the screen</h2>
+        <p data-about-outside>
+          I play a lot of tennis, am a dad to a young daughter, and will always
+          have strong opinions about Kansas City barbecue. Chicago is home now,
+          but KC is still part of the wiring.
+        </p>
+      </section>
+
+      <section class="about-section">
+        <h2>Find me elsewhere</h2>
+        <p data-about-elsewhere>
+          GitHub is where the code lives. LinkedIn has the work history. RSS is
+          the quiet way to keep up, and email is always open.
+        </p>
+        <nav
+          class="about-links"
+          aria-label="Find Grant elsewhere"
+          data-about-socials
+        >
+          {
+            SOCIAL_LINKS.map((link) => {
+              const external = link.id === 'github' || link.id === 'linkedin';
+              return (
+                <a
+                  href={link.href}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noreferrer' : undefined}
+                >
+                  {link.label}
+                </a>
+              );
+            })
+          }
+        </nav>
+      </section>
+    </div>
+  </div>
+</UtilityLayout>

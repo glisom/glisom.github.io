@@ -4,9 +4,10 @@ import MobileNav from './MobileNav.astro';
 
 interface Props {
   activeCollection?: PrimaryCollection;
+  activeAbout?: boolean;
 }
 
-const { activeCollection } = Astro.props;
+const { activeCollection, activeAbout = false } = Astro.props;
 ---
 
 <header class="mobile-header">
@@ -14,5 +15,5 @@ const { activeCollection } = Astro.props;
     <span class="monogram" aria-hidden="true">GI</span>
     <span>Grant Isom</span>
   </a>
-  <MobileNav activeCollection={activeCollection} />
+  <MobileNav activeCollection={activeCollection} activeAbout={activeAbout} />
 </header>

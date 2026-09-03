@@ -8,10 +8,11 @@ import Icon, { type IconName } from '../media/Icon.astro';
 
 interface Props {
   activeCollection?: PrimaryCollection;
+  activeAbout?: boolean;
   railContext: RailContext;
 }
 
-const { activeCollection, railContext } = Astro.props;
+const { activeCollection, activeAbout = false, railContext } = Astro.props;
 const socialIcons: Record<(typeof SOCIAL_LINKS)[number]['id'], IconName> = {
   github: 'github-logo',
   linkedin: 'linkedin-logo',
@@ -55,9 +56,23 @@ const socialIcons: Record<(typeof SOCIAL_LINKS)[number]['id'], IconName> = {
     }
   </nav>
 
-  <a class="rail-about" href={ABOUT_LINK.href} data-utility-label>
-    {ABOUT_LINK.label}
-  </a>
+  <div class:list={['rail-about-item', { 'is-active': activeAbout }]}>
+    <a
+      class="rail-about"
+      href={ABOUT_LINK.href}
+      aria-current={activeAbout ? 'page' : undefined}
+      data-utility-label
+    >
+      {ABOUT_LINK.label}
+    </a>
+    {
+      activeAbout && (
+        <span class="rail-about-state" data-utility-label>
+          Current
+        </span>
+      )
+    }
+  </div>
 
   {
     railContext.kind === 'home' && (

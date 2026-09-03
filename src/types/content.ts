@@ -45,6 +45,7 @@ export interface BaseLayoutProps {
   canonicalPath: string;
   canonicalOverride?: string;
   activeCollection?: PrimaryCollection;
+  activeAbout?: boolean;
   railContext: RailContext;
   socialImage?: string;
   pageType?: 'website' | 'article';

@@ -1,0 +1,26 @@
+---
+import UtilityLayout from '../layouts/UtilityLayout.astro';
+---
+
+<UtilityLayout
+  title="Page not found — Grant Isom"
+  railTitle="Page not found"
+  description="That page is not here, but the useful parts of Grant Isom’s site are still close by."
+  canonicalPath="/404.html"
+  noindex={true}
+  variant="not-found"
+>
+  <div class="not-found-page" data-site-404>
+    <p class="eyebrow" data-utility-label>404 / Missing page</p>
+    <h1>That page isn't here.</h1>
+    <p class="not-found-copy" data-404-copy>
+      I may have moved it while tinkering. The useful stuff is still close by.
+    </p>
+    <nav class="not-found-actions" aria-label="Useful places" data-404-actions>
+      <a href="/">Home</a>
+      <a href="/blog/">Blog</a>
+      <a href="/projects/">My Apps</a>
+      <a href="/app-library/">App Library</a>
+    </nav>
+  </div>
+</UtilityLayout>

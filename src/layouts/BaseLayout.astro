@@ -31,9 +31,13 @@ const props = Astro.props as BaseLayoutProps;
     <SkipLink />
     <IdentityRail
       activeCollection={props.activeCollection}
+      activeAbout={props.activeAbout}
       railContext={props.railContext}
     />
-    <MobileHeader activeCollection={props.activeCollection} />
+    <MobileHeader
+      activeCollection={props.activeCollection}
+      activeAbout={props.activeAbout}
+    />
     <div class="site-frame">
       <main id="main-content" tabindex="-1"><slot /></main>
       <SiteFooter />
