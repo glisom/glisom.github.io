@@ -10,10 +10,8 @@ const markdown = new MarkdownIt({
 });
 
 const componentAttribute = /([A-Za-z][\w:-]*)=(?:"([^"]*)"|'([^']*)')/g;
-const importDeclaration =
-  /^\s*import\s+(?:(?:type\s+)?[\w*{][\s\S]*?\s+from\s+)?['"][^'"]+['"]\s*;?\s*$/;
 const headingWithExplicitId =
-  /^(\s{0,3}#{1,6}\s+.*?)(?:\s+\\?\{#[A-Za-z][\w:-]*\\?\})(\s*#*\s*)$/;
+  /^(\s{0,3}#{1,6}\s+.*?)(?:\s+\\?\{#[^{}\s]+\\?\})(\s*#*\s*)$/;
 
 interface Fence {
   marker: '`' | '~';
@@ -34,6 +32,44 @@ function closesFence(line: string, fence: Fence): boolean {
   return Boolean(
     match && match[1][0] === fence.marker && match[1].length >= fence.length,
   );
+}
+
+function isIndentedCode(line: string): boolean {
+  return /^(?: {4}|\t)/.test(line);
+}
+
+function startsImportDeclaration(line: string): boolean {
+  if (!/^ {0,3}import\s/.test(line)) return false;
+  const source = line.trimStart();
+  return (
+    /^import\s+['"]/.test(source) ||
+    /^import\s+(?:type\s+)?\{/.test(source) ||
+    /^import\s+\*/.test(source) ||
+    /^import\s+(?:type\s+)?[A-Za-z_$][\w$]*(?:\s*,|\s+from\b)/.test(source)
+  );
+}
+
+function isCompleteImportDeclaration(source: string): boolean {
+  const normalized = source.replace(/\s+/g, ' ').trim();
+  return (
+    /^import\s+['"][^'"]+['"]\s*;?$/.test(normalized) ||
+    /^import\s+[\s\S]+\s+from\s+['"][^'"]+['"]\s*;?$/.test(normalized)
+  );
+}
+
+function importDeclarationEndAt(
+  lines: readonly string[],
+  start: number,
+): number | undefined {
+  if (!startsImportDeclaration(lines[start])) return undefined;
+
+  const declaration: string[] = [];
+  for (let index = start; index < lines.length; index += 1) {
+    const line = lines[index];
+    declaration.push(line);
+    if (isCompleteImportDeclaration(declaration.join('\n'))) return index;
+  }
+  return undefined;
 }
 
 function parseAttributes(source: string): Readonly<Record<string, string>> {
@@ -73,8 +109,10 @@ function transformGeneratedComponent(
 function prepareMarkdown(body: string, postTitle: string): string {
   const output: string[] = [];
   let fence: Fence | undefined;
+  const lines = body.split(/\r?\n/);
 
-  for (const line of body.split(/\r?\n/)) {
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
     if (fence) {
       output.push(line);
       if (closesFence(line, fence)) fence = undefined;
@@ -88,7 +126,16 @@ function prepareMarkdown(body: string, postTitle: string): string {
       continue;
     }
 
-    if (importDeclaration.test(line)) continue;
+    if (isIndentedCode(line)) {
+      output.push(line);
+      continue;
+    }
+
+    const importEnd = importDeclarationEndAt(lines, index);
+    if (importEnd !== undefined) {
+      index = importEnd;
+      continue;
+    }
 
     const component = transformGeneratedComponent(line, postTitle);
     if (component !== undefined) {

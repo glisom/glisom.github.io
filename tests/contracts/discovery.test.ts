@@ -193,6 +193,8 @@ After.`,
 
 ### Escaped heading \\{#escaped-heading\\}
 
+#### 2018 {#2018}
+
 Literal prose {#not-a-heading}.
 
 \`\`\`tsx
@@ -207,10 +209,49 @@ import { HealthQL } from 'react-native-healthql';
 
     expect($('h2').text()).toBe('First heading');
     expect($('h3').text()).toBe('Escaped heading');
+    expect($('h4').text()).toBe('2018');
     expect($.text()).toContain('Literal prose {#not-a-heading}.');
     expect(code).toContain("import { HealthQL } from 'react-native-healthql';");
     expect(code).toContain('<EmbedFrame src="/keep/code"');
     expect(code).toContain('## Code heading {#keep-code-marker}');
+  });
+
+  it('preserves four-space and tab-indented code without applying MDX transforms', () => {
+    const rendered = renderRssBody(
+      `    import Figure from '../../components/editorial/Figure.astro';
+    <Figure src="/images/keep.png" assetKey="legacy/keep.png" alt="Keep figure source" width={250} height={382} variant="portrait" />
+\timport EmbedFrame from '../../components/editorial/EmbedFrame.astro';
+\t<EmbedFrame src="/keep/embed" title="Keep embed source" />`,
+      'Indented examples',
+    );
+    const $ = load(rendered);
+    const code = $('pre code').text();
+
+    expect(code).toBe(
+      `import Figure from '../../components/editorial/Figure.astro';
+<Figure src="/images/keep.png" assetKey="legacy/keep.png" alt="Keep figure source" width={250} height={382} variant="portrait" />
+import EmbedFrame from '../../components/editorial/EmbedFrame.astro';
+<EmbedFrame src="/keep/embed" title="Keep embed source" />\n`,
+    );
+    expect($('img')).toHaveLength(0);
+    expect($('a')).toHaveLength(0);
+  });
+
+  it('consumes legitimate multiline top-level MDX import declarations', () => {
+    const rendered = renderRssBody(
+      `import {
+  EmbedFrame,
+
+  Figure,
+} from '../../components/editorial/index.ts';
+
+Visible article prose.`,
+      'Multiline imports',
+    );
+    const $ = load(rendered);
+
+    expect($('p').text()).toBe('Visible article prose.');
+    expect($.text()).not.toMatch(/(?:import|EmbedFrame|Figure|index\.ts)/);
   });
 
   it('preserves safe legacy HTML, strips unsafe markup, and rewrites only root-relative URLs', () => {
@@ -246,6 +287,7 @@ describe('built document metadata', () => {
     expect(documents).toHaveLength(49);
 
     const titles: string[] = [];
+    const descriptions: string[] = [];
     const fallbackImages = new Set<string>();
 
     for (const { route, $, html } of documents) {
@@ -269,6 +311,11 @@ describe('built document metadata', () => {
         route.canonicalPath,
       ).toHaveLength(1);
       expect(description, route.canonicalPath).toBeTruthy();
+      if (route.kind === 'post') {
+        expect(description, route.canonicalPath).toBe(
+          `${record?.title} — ${record?.summary}`,
+        );
+      }
       expect(canonical, route.canonicalPath).toHaveLength(1);
       expect(canonical.attr('href'), route.canonicalPath).toBe(
         expectedCanonical,
@@ -320,12 +367,14 @@ describe('built document metadata', () => {
       }
 
       titles.push(title);
+      descriptions.push(description ?? '');
       expect(html, route.canonicalPath).not.toMatch(
         /href="(?:https:\/\/grantisom\.com)?\/rss(?:["/?#])/,
       );
     }
 
     expect(new Set(titles).size).toBe(49);
+    expect(new Set(descriptions).size).toBe(49);
     expect(fallbackImages.size).toBe(1);
   });
 
@@ -423,9 +472,7 @@ describe('built discovery files', () => {
       expect(item.content, item.title).not.toMatch(
         /^import\s+(?:EmbedFrame|Figure)\s+from/m,
       );
-      expect(item.content, item.title).not.toMatch(
-        /\\?\{#[A-Za-z][\w:-]*\\?\}/,
-      );
+      expect(item.content, item.title).not.toMatch(/\\?\{#[^{}\s]+\\?\}/);
     }
 
     const healthQl = items.find(

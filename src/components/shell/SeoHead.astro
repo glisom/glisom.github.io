@@ -27,6 +27,8 @@ if (pageType === 'article' && !publishedAt) {
 const articleHeadline = title.endsWith(` — ${SITE.name}`)
   ? title.slice(0, -` — ${SITE.name}`.length)
   : title;
+const metadataDescription =
+  pageType === 'article' ? `${articleHeadline} — ${description}` : description;
 const articleJsonLd =
   pageType === 'article'
     ? {
@@ -48,7 +50,7 @@ const serializedArticleJsonLd = articleJsonLd
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{title}</title>
-<meta name="description" content={description} />
+<meta name="description" content={metadataDescription} />
 <link rel="canonical" href={canonicalUrl} />
 <link
   rel="alternate"
@@ -61,12 +63,12 @@ const serializedArticleJsonLd = articleJsonLd
 <meta property="og:type" content={pageType} />
 <meta property="og:site_name" content={SITE.name} />
 <meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
+<meta property="og:description" content={metadataDescription} />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:image" content={socialImageUrl} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:description" content={metadataDescription} />
 <meta name="twitter:image" content={socialImageUrl} />
 {
   serializedArticleJsonLd && (
