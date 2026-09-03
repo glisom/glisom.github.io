@@ -1,7 +1,7 @@
 import { load } from 'cheerio';
 import MarkdownIt from 'markdown-it';
 import sanitizeHtml from 'sanitize-html';
-import { mdxToMdast } from 'satteri';
+import { mdxToMdast, type MdastNode } from 'satteri';
 import { SITE } from '../../data/site';
 
 const markdown = new MarkdownIt({
@@ -18,75 +18,300 @@ export type RssSourceFormat = 'md' | 'mdx';
 interface SourceRange {
   start: number;
   end: number;
+  startLine: number;
+  endLineExclusive: number;
 }
 
-function mdxEsmRanges(
-  body: string,
-  protectedLines: ReadonlySet<number>,
-): SourceRange[] {
+interface MarkdownCodeRange extends SourceRange {
+  type: 'fence' | 'code_block';
+}
+
+interface SatteriCodeRange {
+  range: SourceRange;
+  value: string;
+  lang?: string | null;
+  meta?: string | null;
+  inMarkdownContainer: boolean;
+}
+
+interface SourceEdit {
+  start: number;
+  end: number;
+  replacement: string;
+}
+
+function rangeForNode(node: MdastNode): SourceRange {
+  const position = node.position;
+  if (
+    !position ||
+    position.start.offset === undefined ||
+    position.end.offset === undefined
+  ) {
+    throw new Error(`Expected ${node.type} to have source offsets.`);
+  }
+
+  return {
+    start: position.start.offset,
+    end: position.end.offset,
+    startLine: position.start.line - 1,
+    endLineExclusive:
+      position.end.column === 1 ? position.end.line - 1 : position.end.line,
+  };
+}
+
+function visitMdast(
+  node: MdastNode,
+  visitor: (node: MdastNode, ancestors: readonly MdastNode[]) => void,
+  ancestors: readonly MdastNode[] = [],
+): void {
+  visitor(node, ancestors);
+  if (!('children' in node)) return;
+  for (const child of node.children) {
+    visitMdast(child, visitor, [...ancestors, node]);
+  }
+}
+
+function satteriRanges(body: string): {
+  esmRanges: SourceRange[];
+  codeRanges: SatteriCodeRange[];
+} {
   const tree = mdxToMdast(body, { position: true });
   if (tree.type !== 'root') {
     throw new Error('Expected the MDX parser to return a root node.');
   }
 
-  return tree.children
-    .filter((node) => node.type === 'mdxjsEsm')
-    .map((node) => {
-      const position = node.position;
-      if (
-        !position ||
-        position.start.offset === undefined ||
-        position.end.offset === undefined
-      ) {
-        throw new Error('Expected every MDX ESM node to have source offsets.');
-      }
-      const start = position.start.offset;
-      const end = position.end.offset;
-      const firstLine = position.start.line - 1;
-      const lastLineExclusive =
-        position.end.column === 1 ? position.end.line - 1 : position.end.line;
-      for (let line = firstLine; line < lastLineExclusive; line += 1) {
-        if (protectedLines.has(line)) return undefined;
-      }
-      return { start, end };
-    })
-    .filter((range): range is SourceRange => range !== undefined);
+  const esmRanges: SourceRange[] = [];
+  const codeRanges: SatteriCodeRange[] = [];
+  visitMdast(tree, (node, ancestors) => {
+    if (node.type === 'mdxjsEsm') esmRanges.push(rangeForNode(node));
+    if (node.type === 'code') {
+      codeRanges.push({
+        range: rangeForNode(node),
+        value: node.value,
+        lang: node.lang,
+        meta: node.meta,
+        inMarkdownContainer: ancestors.some(
+          (ancestor) =>
+            ancestor.type === 'blockquote' || ancestor.type === 'listItem',
+        ),
+      });
+    }
+  });
+  return { esmRanges, codeRanges };
 }
 
-function stripMdxEsm(
-  body: string,
-  sourceFormat: RssSourceFormat,
-  protectedLines: ReadonlySet<number>,
-): string {
-  if (sourceFormat === 'md') return body;
+function lineStartOffsets(body: string): number[] {
+  const offsets = [0];
+  for (let index = 0; index < body.length; index += 1) {
+    if (body[index] === '\r' && body[index + 1] === '\n') index += 1;
+    if (body[index] === '\r' || body[index] === '\n') {
+      offsets.push(index + 1);
+    }
+  }
+  return offsets;
+}
 
-  return mdxEsmRanges(body, protectedLines)
+function markdownCodeRanges(body: string): MarkdownCodeRange[] {
+  const lineStarts = lineStartOffsets(body);
+  return markdown
+    .parse(body, {})
+    .filter(
+      (token) =>
+        (token.type === 'fence' || token.type === 'code_block') && token.map,
+    )
+    .map((token) => {
+      const [startLine, endLineExclusive] = token.map as [number, number];
+      return {
+        start: lineStarts[startLine] ?? body.length,
+        end: lineStarts[endLineExclusive] ?? body.length,
+        startLine,
+        endLineExclusive,
+        type: token.type as MarkdownCodeRange['type'],
+      };
+    });
+}
+
+function containsOffset(range: SourceRange, offset: number): boolean {
+  return range.start <= offset && offset < range.end;
+}
+
+function containsRange(container: SourceRange, nested: SourceRange): boolean {
+  return container.start <= nested.start && nested.end <= container.end;
+}
+
+function sourceLineEnding(source: string): string {
+  return /\r\n|\r|\n/.exec(source)?.[0] ?? '\n';
+}
+
+function stripBlockquoteDepth(
+  line: string,
+  blockquoteDepth: number,
+): string | undefined {
+  let remainder = line;
+  for (let depth = 0; depth < blockquoteDepth; depth += 1) {
+    const marker = /^[\t ]*>[\t ]?/.exec(remainder);
+    if (!marker) return undefined;
+    remainder = remainder.slice(marker[0].length);
+  }
+  return remainder.trim();
+}
+
+function isClosedFence(source: string, linePrefix: string): boolean {
+  const lines = source.split(/\r\n|\r|\n/);
+  const opening = /^(`{3,}|~{3,})/.exec(lines[0] ?? '');
+  if (!opening || lines.length < 2) return false;
+
+  const lastLine = lines.at(-1) ?? '';
+  const candidates = [lastLine.trim()];
+  if (linePrefix !== '' && lastLine.startsWith(linePrefix)) {
+    candidates.push(lastLine.slice(linePrefix.length).trim());
+  }
+  const blockquoteDepth = linePrefix.match(/>/g)?.length ?? 0;
+  if (blockquoteDepth > 0) {
+    const normalized = stripBlockquoteDepth(lastLine, blockquoteDepth);
+    if (normalized !== undefined) candidates.push(normalized);
+  }
+
+  return candidates.some(
+    (closing) =>
+      closing.length >= opening[1].length &&
+      [...closing].every((character) => character === opening[1][0]),
+  );
+}
+
+function canonicalFence(
+  code: SatteriCodeRange,
+  source: string,
+  linePrefix: string,
+): string {
+  const lineEnding = sourceLineEnding(source);
+  const value = code.value.replace(/\r\n|\r|\n/g, lineEnding);
+  const longestTildeRun = Math.max(
+    0,
+    ...[...value.matchAll(/~+/g)].map((match) => match[0].length),
+  );
+  const marker = '~'.repeat(Math.max(3, longestTildeRun + 1));
+  const info = [code.lang, code.meta]
+    .filter((value): value is string => Boolean(value))
+    .join(' ');
+  const opening = info === '' ? marker : `${marker} ${info}`;
+
+  if (!isClosedFence(source, linePrefix)) {
+    return `${opening}${lineEnding}${value}`;
+  }
+  return `${opening}${lineEnding}${value}${lineEnding}${marker}`;
+}
+
+function needsBlankLineBefore(body: string, offset: number): boolean {
+  if (offset === 0) return false;
+  const prefix = body.slice(0, offset);
+  const withoutLastEnding = prefix.replace(/(?:\r\n|\r|\n)$/, '');
+  if (withoutLastEnding === prefix) return true;
+  const previousLine = withoutLastEnding.split(/\r\n|\r|\n/).at(-1) ?? '';
+  return previousLine.trim() !== '';
+}
+
+function startsWithListMarker(linePrefix: string): boolean {
+  const withoutBlockquotes = linePrefix.replace(/^(?:[\t ]*>[\t ]*)+/, '');
+  return /^(?:[\t ]*)(?:[-+*]|\d+[.)])[\t ]+$/.test(withoutBlockquotes);
+}
+
+function canonicalCodeEdit(
+  body: string,
+  lineStarts: readonly number[],
+  code: SatteriCodeRange,
+): SourceEdit {
+  const lineStart = lineStarts[code.range.startLine] ?? code.range.start;
+  const linePrefix = body.slice(lineStart, code.range.start);
+  const liftFromListMarker = startsWithListMarker(linePrefix);
+  const preserveLinePrefix =
+    !liftFromListMarker &&
+    (code.inMarkdownContainer || !/^[\t ]*$/.test(linePrefix));
+  const start = preserveLinePrefix ? code.range.start : lineStart;
+  const original = body.slice(code.range.start, code.range.end);
+  const lineEnding = sourceLineEnding(original);
+  const canonical = canonicalFence(code, original, linePrefix);
+  const prefixedCanonical = preserveLinePrefix
+    ? canonical.replaceAll(lineEnding, `${lineEnding}${linePrefix}`)
+    : canonical;
+  const boundary = needsBlankLineBefore(body, lineStart)
+    ? preserveLinePrefix
+      ? `${lineEnding}${linePrefix}`
+      : lineEnding
+    : '';
+
+  return {
+    start,
+    end: code.range.end,
+    replacement: `${boundary}${prefixedCanonical}`,
+  };
+}
+
+function applySourceEdits(body: string, edits: readonly SourceEdit[]): string {
+  if (edits.length === 0) return body;
+
+  return edits
     .toSorted((left, right) => right.start - left.start)
-    .reduce((source, range) => {
-      const preservedNewlines = source
-        .slice(range.start, range.end)
-        .replace(/[^\r\n]/g, '');
+    .reduce((source, edit) => {
       return (
-        source.slice(0, range.start) +
-        preservedNewlines +
-        source.slice(range.end)
+        source.slice(0, edit.start) + edit.replacement + source.slice(edit.end)
       );
     }, body);
 }
 
-function protectedMarkdownLines(body: string): ReadonlySet<number> {
+function prepareSourceSyntax(
+  body: string,
+  sourceFormat: RssSourceFormat,
+): string {
+  if (sourceFormat === 'md') return body;
+
+  const lineStarts = lineStartOffsets(body);
+  const markdownRanges = markdownCodeRanges(body);
+  const { esmRanges, codeRanges } = satteriRanges(body);
+  // A Markdown-looking token that begins inside ESM is JavaScript text (often
+  // a comment), not a code block that can override the MDX parser's ESM node.
+  const genuineMarkdownRanges = markdownRanges.filter(
+    (range) =>
+      !esmRanges.some((esmRange) => containsOffset(esmRange, range.start)),
+  );
+  const protectedCodeRanges = [
+    ...codeRanges.map((code) => code.range),
+    ...genuineMarkdownRanges,
+  ];
+  const removableEsmRanges = esmRanges.filter(
+    (esmRange) =>
+      !protectedCodeRanges.some((codeRange) =>
+        containsOffset(codeRange, esmRange.start),
+      ),
+  );
+  // Keep source bytes when Markdown-It already protects the complete Satteri
+  // node. Otherwise materialize that node as an unambiguous fenced block so
+  // adjacent MDX JSX cannot make Markdown-It treat its contents as live HTML.
+  const canonicalCodeRanges = codeRanges.filter(
+    (code) =>
+      !genuineMarkdownRanges.some((range) => containsRange(range, code.range)),
+  );
+  const edits: SourceEdit[] = [
+    ...removableEsmRanges.map((range) => ({
+      start: range.start,
+      end: range.end,
+      replacement: body.slice(range.start, range.end).replace(/[^\r\n]/g, ''),
+    })),
+    ...canonicalCodeRanges.map((code) =>
+      canonicalCodeEdit(body, lineStarts, code),
+    ),
+  ];
+
+  return applySourceEdits(body, edits);
+}
+
+function protectedLines(ranges: readonly SourceRange[]): ReadonlySet<number> {
   const protectedLines = new Set<number>();
-
-  for (const token of markdown.parse(body, {})) {
-    if ((token.type !== 'fence' && token.type !== 'code_block') || !token.map) {
-      continue;
-    }
-
-    for (let line = token.map[0]; line < token.map[1]; line += 1) {
+  for (const range of ranges) {
+    for (let line = range.startLine; line < range.endLineExclusive; line += 1) {
       protectedLines.add(line);
     }
   }
-
   return protectedLines;
 }
 
@@ -124,27 +349,36 @@ function transformGeneratedComponent(
   return undefined;
 }
 
+function ensureBlankBoundary(output: string[]): void {
+  if (output.length > 0 && output.at(-1)?.trim() !== '') output.push('');
+}
+
+function appendFlowBlock(output: string[], block: string): void {
+  ensureBlankBoundary(output);
+  if (block !== '') output.push(block);
+  ensureBlankBoundary(output);
+}
+
 function prepareMarkdown(
   body: string,
   postTitle: string,
   sourceFormat: RssSourceFormat,
 ): string {
   const output: string[] = [];
-  const protectedLines = protectedMarkdownLines(body);
-  const lines = stripMdxEsm(body, sourceFormat, protectedLines).split(
-    /\r\n|\r|\n/,
-  );
+  const source = prepareSourceSyntax(body, sourceFormat);
+  const protectedLineNumbers = protectedLines(markdownCodeRanges(source));
+  const lines = source.split(/\r\n|\r|\n/);
 
   for (let index = 0; index < lines.length; index += 1) {
     const line = lines[index];
-    if (protectedLines.has(index)) {
+    if (protectedLineNumbers.has(index)) {
       output.push(line);
       continue;
     }
 
     const component = transformGeneratedComponent(line, postTitle);
     if (component !== undefined) {
-      output.push(component);
+      appendFlowBlock(output, component);
       continue;
     }
 

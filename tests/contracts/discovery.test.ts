@@ -120,6 +120,15 @@ function rssItems(xml: string) {
     .get();
 }
 
+function mdastNodeTypes(node: unknown): string[] {
+  if (!node || typeof node !== 'object' || !('type' in node)) return [];
+  const record = node as { type: string; children?: unknown[] };
+  return [
+    record.type,
+    ...(record.children ?? []).flatMap((child) => mdastNodeTypes(child)),
+  ];
+}
+
 beforeAll(async () => {
   await execFileAsync('npm', ['run', 'build'], {
     cwd: repositoryRoot,
@@ -187,6 +196,67 @@ After.`,
     expect($('img').attr('alt')).toBe('Cover of Book');
     expect($.text()).toContain('After.');
     expect(rendered).not.toMatch(/(?:EmbedFrame|Figure|assetKey|^import )/m);
+  });
+
+  it('separates a generated Figure from an adjacent authored HTML image', () => {
+    const rendered = renderRssBody(
+      `<img src="/images/authored.png" alt="Authored" />
+<Figure src="/images/generated.png" alt="Generated" />`,
+      'Adjacent HTML',
+      'mdx',
+    );
+    const $ = load(rendered);
+    const bodyChildren = $('body').children();
+
+    expect(bodyChildren.map((_, element) => element.tagName).get()).toEqual([
+      'img',
+      'p',
+    ]);
+    expect(bodyChildren.eq(0).attr('src')).toBe(
+      'https://grantisom.com/images/authored.png',
+    );
+    expect(bodyChildren.eq(1).find('img').attr('src')).toBe(
+      'https://grantisom.com/images/generated.png',
+    );
+  });
+
+  it('keeps a generated Figure between adjacent prose as its own flow block', () => {
+    const rendered = renderRssBody(
+      `Before.
+<Figure src="/images/between.png" alt="Between" />
+After.`,
+      'Between prose',
+      'mdx',
+    );
+    const $ = load(rendered);
+    const paragraphs = $('body > p');
+
+    expect(paragraphs).toHaveLength(3);
+    expect(paragraphs.eq(0).text()).toBe('Before.');
+    expect(paragraphs.eq(1).find('img').attr('src')).toBe(
+      'https://grantisom.com/images/between.png',
+    );
+    expect(paragraphs.eq(2).text()).toBe('After.');
+  });
+
+  it('renders consecutive generated components as separate ordered flow blocks', () => {
+    const rendered = renderRssBody(
+      `<Figure src="/images/first.png" alt="First" />
+<EmbedFrame src="https://open.spotify.com/embed/playlist/abc" title="Second" />
+<Figure src="/images/third.png" alt="Third" />`,
+      'Consecutive components',
+      'mdx',
+    );
+    const $ = load(rendered);
+    const paragraphs = $('body > p');
+
+    expect(paragraphs).toHaveLength(3);
+    expect(paragraphs.eq(0).find('img').attr('alt')).toBe('First');
+    expect(paragraphs.eq(1).find('a').text()).toBe('Second');
+    expect(paragraphs.eq(1).find('a').attr('href')).toBe(
+      'https://open.spotify.com/embed/playlist/abc',
+    );
+    expect(paragraphs.eq(2).find('img').attr('alt')).toBe('Third');
   });
 
   it('removes explicit IDs from real headings without touching prose or fenced code', () => {
@@ -310,6 +380,68 @@ Visible.`,
     ).toEqual(['paragraph', 'paragraph']);
   });
 
+  it('removes a true ESM node nested inside an MDX JSX wrapper', () => {
+    const source = `<Wrapper>
+import Figure from './nested.astro'
+
+Visible inside.
+</Wrapper>`;
+    const tree = mdxToMdast(source, { position: true });
+
+    expect(mdastNodeTypes(tree)).toEqual([
+      'root',
+      'mdxJsxFlowElement',
+      'mdxjsEsm',
+      'paragraph',
+      'text',
+    ]);
+
+    const $ = load(renderRssBody(source, 'Nested ESM', 'mdx'));
+    expect($.text().trim()).toBe('Visible inside.');
+    expect($.text()).not.toMatch(/(?:import|nested\.astro|Figure)/);
+  });
+
+  it.each([
+    { name: 'LF', lineEnding: '\n' },
+    { name: 'CRLF', lineEnding: '\r\n' },
+    { name: 'CR', lineEnding: '\r' },
+  ])(
+    'strips ESM containing fenced and indented JS-comment samples with $name endings',
+    ({ lineEnding }) => {
+      const source = [
+        `import Figure from './Figure.astro'`,
+        '/*',
+        '```mdx',
+        '<Figure src="/fenced-comment.png" alt="Fenced comment" />',
+        '```',
+        '',
+        '    <Figure src="/indented-comment.png" alt="Indented comment" />',
+        '*/',
+        'export const secret = 1',
+        '',
+        'Visible.',
+      ].join(lineEnding);
+      const tree = mdxToMdast(source, { position: true });
+
+      expect(tree.type).toBe('root');
+      expect(
+        tree.type === 'root' ? tree.children.map((child) => child.type) : [],
+      ).toEqual(['mdxjsEsm', 'paragraph']);
+
+      const $ = load(renderRssBody(source, 'Comment samples', 'mdx'));
+      expect(
+        $('p')
+          .map((_, element) => $(element).text())
+          .get(),
+      ).toEqual(['Visible.']);
+      expect($('pre')).toHaveLength(0);
+      expect($('img')).toHaveLength(0);
+      expect($.text()).not.toMatch(
+        /(?:import|export|Figure|comment\.png|secret)/,
+      );
+    },
+  );
+
   it('removes complete Satteri ESM ranges containing imports, comments, and exports', () => {
     const source = `import First from './First.astro'; // attached line comment
 /* attached block comment */
@@ -393,6 +525,89 @@ import EmbedFrame from '../../components/editorial/EmbedFrame.astro';
     expect($('img')).toHaveLength(0);
     expect($('a')).toHaveLength(0);
   });
+
+  it('protects a Satteri code node nested inside an MDX JSX wrapper', () => {
+    const source = `<Wrapper>
+\`\`\`mdx
+import Keep from './keep'
+<Figure src="/images/nested-code.png" alt="Nested code" />
+## Nested heading {#nested-heading}
+\`\`\`
+</Wrapper>`;
+    const tree = mdxToMdast(source, { position: true });
+
+    expect(mdastNodeTypes(tree)).toEqual(['root', 'mdxJsxFlowElement', 'code']);
+
+    const $ = load(renderRssBody(source, 'Nested code', 'mdx'));
+    expect($('pre code').text()).toBe(
+      `import Keep from './keep'
+<Figure src="/images/nested-code.png" alt="Nested code" />
+## Nested heading {#nested-heading}
+`,
+    );
+    expect($('img')).toHaveLength(0);
+    expect($('a')).toHaveLength(0);
+  });
+
+  it.each([
+    {
+      name: 'backtick fence adjacent to a generated Figure',
+      source: `<Figure src="/images/live-before-code.png" alt="Live before code" />
+\`\`\`mdx
+import Keep from './keep'
+<Figure src="/images/literal-code.png" alt="Literal code" />
+## Literal heading {#literal-heading}
+\`\`\`
+
+After.`,
+      liveImage: 'https://grantisom.com/images/live-before-code.png',
+      hasAfter: true,
+      codeEndsWithNewline: true,
+    },
+    {
+      name: 'tilde fence adjacent to another MDX JSX element',
+      source: `<Aside />
+~~~mdx
+import Keep from './keep'
+<Figure src="/images/literal-code.png" alt="Literal code" />
+## Literal heading {#literal-heading}
+~~~
+
+After.`,
+      liveImage: undefined,
+      hasAfter: true,
+      codeEndsWithNewline: true,
+    },
+    {
+      name: 'unclosed fence adjacent to another MDX JSX element',
+      source: `<Aside />
+\`\`\`mdx
+import Keep from './keep'
+<Figure src="/images/literal-code.png" alt="Literal code" />
+## Literal heading {#literal-heading}`,
+      liveImage: undefined,
+      hasAfter: false,
+      codeEndsWithNewline: false,
+    },
+  ])(
+    'uses the Satteri code range for a $name',
+    ({ source, liveImage, hasAfter, codeEndsWithNewline }) => {
+      const tree = mdxToMdast(source, { position: true });
+      expect(mdastNodeTypes(tree)).toContain('code');
+
+      const $ = load(renderRssBody(source, 'Adjacent code', 'mdx'));
+      expect($('pre code').text()).toBe(
+        `import Keep from './keep'
+<Figure src="/images/literal-code.png" alt="Literal code" />
+## Literal heading {#literal-heading}${codeEndsWithNewline ? '\n' : ''}`,
+      );
+      expect($('img')).toHaveLength(liveImage ? 1 : 0);
+      if (liveImage) expect($('img').attr('src')).toBe(liveImage);
+      expect(
+        $('p').filter((_, element) => $(element).text() === 'After.'),
+      ).toHaveLength(hasAfter ? 1 : 0);
+    },
+  );
 
   it.each([
     {
@@ -630,7 +845,7 @@ Visible.`,
     ).toEqual(expected);
   });
 
-  it('does not mistake a leading-tab indented fence marker for a real fence', () => {
+  it('uses Satteri code authority for a leading-tab fenced block', () => {
     const rendered = renderRssBody(
       `\t\`\`\`mdx
 <Figure src="/images/live-after-code.png" alt="Live after code" />
@@ -640,13 +855,219 @@ Visible.`,
     );
     const $ = load(rendered);
 
-    expect($('pre code').text()).toBe('```mdx\n');
-    expect($('img').attr('src')).toBe(
-      'https://grantisom.com/images/live-after-code.png',
+    expect($('pre code').text()).toBe(
+      `<Figure src="/images/live-after-code.png" alt="Live after code" />
+## Live heading \\{#live-heading}`,
     );
-    expect($('img').attr('alt')).toBe('Live after code');
-    expect($('h2').text()).toBe('Live heading');
-    expect($.text()).not.toContain('{#live-heading}');
+    expect($('img')).toHaveLength(0);
+    expect($('h2')).toHaveLength(0);
+  });
+
+  it.each([
+    { name: 'tab', indentation: '\t' },
+    { name: 'space followed by tab', indentation: ' \t' },
+    { name: 'four spaces', indentation: '    ' },
+  ])(
+    'preserves a $name-indented matched fence as one Markdown code block',
+    ({ indentation }) => {
+      const source = `${indentation}\`\`\`mdx
+${indentation}<Figure src="/images/indented-fence.png" alt="Indented fence" />
+${indentation}\`\`\`
+
+After.`;
+      const tree = mdxToMdast(source, { position: true });
+
+      expect(mdastNodeTypes(tree)).toEqual([
+        'root',
+        'code',
+        'paragraph',
+        'text',
+      ]);
+
+      const $ = load(renderRssBody(source, 'Matched indented fence', 'mdx'));
+      expect($('pre code').text()).toBe(
+        `\`\`\`mdx
+<Figure src="/images/indented-fence.png" alt="Indented fence" />
+\`\`\`
+`,
+      );
+      expect($('img')).toHaveLength(0);
+      expect(
+        $('p').filter((_, element) => $(element).text() === 'After.'),
+      ).toHaveLength(1);
+    },
+  );
+
+  it('preserves a MarkdownIt-recognized blockquote fence without rewriting its container prefix', () => {
+    const source = `> \`\`\`mdx
+> <Figure src="/images/quoted-code.png" alt="Quoted code" />
+> \`\`\`
+
+After.`;
+    const tree = mdxToMdast(source, { position: true });
+
+    expect(mdastNodeTypes(tree)).toEqual([
+      'root',
+      'blockquote',
+      'code',
+      'paragraph',
+      'text',
+    ]);
+
+    const $ = load(renderRssBody(source, 'Quoted fence', 'mdx'));
+    expect($('blockquote pre code').text()).toBe(
+      '<Figure src="/images/quoted-code.png" alt="Quoted code" />\n',
+    );
+    expect($('img')).toHaveLength(0);
+    expect(
+      $('p').filter((_, element) => $(element).text() === 'After.'),
+    ).toHaveLength(1);
+  });
+
+  it.each([
+    {
+      name: 'blockquote',
+      source: `> <Aside />
+> \`\`\`mdx
+> <Figure src="/images/container-code.png" alt="Container code" />
+> \`\`\`
+
+After.`,
+      selector: 'blockquote pre code',
+    },
+    {
+      name: 'list item',
+      source: `- <Aside />
+  \`\`\`mdx
+  <Figure src="/images/container-code.png" alt="Container code" />
+  \`\`\`
+
+After.`,
+      selector: 'li pre code',
+    },
+  ])(
+    'keeps a Satteri code node adjacent to JSX inside its $name',
+    ({ source, selector }) => {
+      const tree = mdxToMdast(source, { position: true });
+      expect(mdastNodeTypes(tree)).toContain('mdxJsxFlowElement');
+      expect(mdastNodeTypes(tree)).toContain('code');
+
+      const $ = load(renderRssBody(source, 'Container code', 'mdx'));
+      expect($(selector).text()).toBe(
+        '<Figure src="/images/container-code.png" alt="Container code" />\n',
+      );
+      expect($('img')).toHaveLength(0);
+      expect(
+        $('p').filter((_, element) => $(element).text() === 'After.'),
+      ).toHaveLength(1);
+    },
+  );
+
+  it('recognizes a nested closing fence when blockquote marker spacing changes', () => {
+    const source = `> <Aside />
+>   \`\`\`mdx
+> code
+>\`\`\`
+>
+> After inside.
+
+Outside.`;
+    const tree = mdxToMdast(source, { position: true });
+
+    expect(mdastNodeTypes(tree)).toEqual([
+      'root',
+      'blockquote',
+      'mdxJsxFlowElement',
+      'code',
+      'paragraph',
+      'text',
+      'paragraph',
+      'text',
+    ]);
+
+    const $ = load(renderRssBody(source, 'Quote spacing', 'mdx'));
+    expect($('blockquote pre code').text()).toBe('code\n');
+    expect($('blockquote > p').text()).toBe('After inside.');
+    expect($('body > p').text()).toBe('Outside.');
+  });
+
+  it('does not mistake a quoted marker inside an unclosed top-level fence for a close', () => {
+    const source = `<Aside />
+\`\`\`mdx
+code
+> \`\`\``;
+    const tree = mdxToMdast(source, { position: true });
+
+    expect(mdastNodeTypes(tree)).toEqual(['root', 'mdxJsxFlowElement', 'code']);
+
+    const $ = load(renderRssBody(source, 'Unclosed quoted marker', 'mdx'));
+    expect($('pre code').text()).toBe('code\n> ```');
+  });
+
+  it('does not strip an extra blockquote depth from an unclosed quoted fence', () => {
+    const source = `> <Aside />
+> \`\`\`mdx
+> code
+>> \`\`\``;
+    const tree = mdxToMdast(source, { position: true });
+
+    expect(mdastNodeTypes(tree)).toEqual([
+      'root',
+      'blockquote',
+      'mdxJsxFlowElement',
+      'code',
+    ]);
+
+    const $ = load(renderRssBody(source, 'Quote depth', 'mdx'));
+    expect($('blockquote pre code').text()).toBe('code\n> ```');
+  });
+
+  it('safely lifts a list-marker fence swallowed by adjacent MDX JSX', () => {
+    const source = `<Aside />
+- \`\`\`mdx
+  <Figure src="/images/list-marker-code.png" alt="List marker code" />
+  \`\`\`
+
+After.`;
+    const tree = mdxToMdast(source, { position: true });
+
+    expect(mdastNodeTypes(tree)).toEqual([
+      'root',
+      'mdxJsxFlowElement',
+      'list',
+      'listItem',
+      'code',
+      'paragraph',
+      'text',
+    ]);
+
+    const $ = load(renderRssBody(source, 'List marker fence', 'mdx'));
+    expect($('body > pre code').text()).toBe(
+      '<Figure src="/images/list-marker-code.png" alt="List marker code" />\n',
+    );
+    expect($('img')).toHaveLength(0);
+    expect($('body > p').text()).toBe('After.');
+  });
+
+  it('delimits a canonical fence from a parser-accepted info string beginning with tildes', () => {
+    const source = `<Aside />
+\`\`\`~~~lang
+<Figure src="/images/info-code.png" alt="Info code" />
+\`\`\`
+
+After.`;
+    const tree = mdxToMdast(source, { position: true });
+
+    expect(mdastNodeTypes(tree)).toContain('code');
+
+    const $ = load(renderRssBody(source, 'Info string', 'mdx'));
+    expect($('pre code').text()).toBe(
+      '<Figure src="/images/info-code.png" alt="Info code" />\n',
+    );
+    expect($('img')).toHaveLength(0);
+    expect(
+      $('p').filter((_, element) => $(element).text() === 'After.'),
+    ).toHaveLength(1);
   });
 
   it('keeps a tab-indented fence marker and subsequent transforms inside the open fence', () => {
