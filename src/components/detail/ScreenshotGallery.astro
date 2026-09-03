@@ -1,0 +1,50 @@
+---
+import type { ProjectScreenshot } from '../../types/content';
+import ResponsiveImage from '../media/ResponsiveImage.astro';
+
+interface Props {
+  screenshots: readonly ProjectScreenshot[];
+}
+
+const { screenshots } = Astro.props;
+const ordered = screenshots.toSorted((left, right) => left.order - right.order);
+---
+
+{
+  ordered.length > 0 && (
+    <section
+      class="screenshot-gallery"
+      data-screenshot-gallery
+      aria-labelledby="screenshot-gallery-title"
+    >
+      <div class="screenshot-gallery-head">
+        <h2 id="screenshot-gallery-title">Inside the app</h2>
+        <p>{ordered.length} current iPhone screens</p>
+      </div>
+      <div class="screenshot-grid">
+        {ordered.map((screenshot) => (
+          <figure
+            class="screenshot-card"
+            data-app-screenshot
+            data-screenshot-device={screenshot.device}
+          >
+            <ResponsiveImage
+              src={screenshot.src}
+              alt={screenshot.alt}
+              decorative={false}
+              widths={[320, 480, 640, 960, 1206]}
+              sizes="(max-width: 820px) min(78vw, 300px), (max-width: 1219px) 38vw, 19vw"
+              loading="lazy"
+              decoding="async"
+              class="screenshot-image"
+            />
+            <figcaption>
+              <span>{String(screenshot.order).padStart(2, '0')}</span>
+              <strong>{screenshot.label}</strong>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  )
+}

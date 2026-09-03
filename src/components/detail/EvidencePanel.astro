@@ -1,0 +1,33 @@
+---
+import type { Media } from '../../types/content';
+import HalftoneImage from '../media/HalftoneImage.astro';
+
+interface Props {
+  media?: Media;
+  label: string;
+  note?: string;
+}
+
+const { media, label, note } = Astro.props;
+---
+
+{
+  media && (
+    <figure class="dossier-evidence" data-evidence-panel>
+      <HalftoneImage
+        src={media.src}
+        alt={media.alt}
+        decorative={media.decorative}
+        widths={[320, 480, 640, 920]}
+        sizes="(max-width: 820px) 100vw, (max-width: 1219px) calc(100vw - 210px), 38vw"
+        loading="eager"
+        fetchpriority="high"
+        class="dossier-evidence-image"
+      />
+      <figcaption class="artifact-label">
+        <strong>{label}</strong>
+        {note && <span>{note}</span>}
+      </figcaption>
+    </figure>
+  )
+}

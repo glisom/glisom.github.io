@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import { COLLECTIONS } from '../../../data/collections';
+import DetailLayout from '../../../layouts/DetailLayout.astro';
+import { buildDetailPageProps } from '../../../lib/content/detail';
+import type { DetailPageProps, ProjectRecord } from '../../../types/content';
+
+export async function getStaticPaths() {
+  const visible = (await getCollection('projects'))
+    .map(
+      (entry) =>
+        ({
+          collection: 'projects',
+          id: entry.id,
+          data: entry.data,
+          body: entry.body,
+        }) satisfies ProjectRecord,
+    )
+    .filter((record) => !record.data.draft && record.data.hasDetailPage)
+    .toSorted(
+      (a, b) =>
+        Number(a.data.displayOrder) - Number(b.data.displayOrder) ||
+        a.id.localeCompare(b.id),
+    );
+
+  return visible
+    .filter((record) => record.id !== 'listwithme')
+    .map((record) => ({
+      params: { slug: record.data.slug },
+      props: buildDetailPageProps(visible, COLLECTIONS.projects.label, record),
+    }));
+}
+
+const props = Astro.props as DetailPageProps;
+---
+
+<DetailLayout {...props} />

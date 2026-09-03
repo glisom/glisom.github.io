@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import { COLLECTIONS } from '../../data/collections';
+import DetailLayout from '../../layouts/DetailLayout.astro';
+import { buildDetailPageProps } from '../../lib/content/detail';
+import type { ProjectRecord } from '../../types/content';
+
+const visible = (await getCollection('projects'))
+  .map(
+    (entry) =>
+      ({
+        collection: 'projects',
+        id: entry.id,
+        data: entry.data,
+        body: entry.body,
+      }) satisfies ProjectRecord,
+  )
+  .filter((record) => !record.data.draft && record.data.hasDetailPage)
+  .toSorted(
+    (a, b) =>
+      Number(a.data.displayOrder) - Number(b.data.displayOrder) ||
+      a.id.localeCompare(b.id),
+  );
+const record = visible.find(({ id }) => id === 'listwithme');
+if (!record) throw new Error('Published projects/listwithme was not found.');
+const props = buildDetailPageProps(visible, COLLECTIONS.projects.label, record);
+---
+
+<DetailLayout {...props} />
