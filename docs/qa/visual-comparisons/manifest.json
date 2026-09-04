@@ -1,179 +1,1175 @@
 {
-  "count": 29,
+  "status": "review-candidate-noncanonical",
+  "count": 55,
+  "canonicalMetadata": "Pending Step 7 after visual approval: OS, architecture, Chromium revision, route, viewport, state, and frozen-source checksum binding.",
+  "capturePolicy": {
+    "viewport": "Both halves retain the exact configured viewport dimensions.",
+    "fullPage": "Both halves retain their exact full-page dimensions; each gets the maximum raw width/height canvas, raw pixels remain top-left, and only the bottom/right is paper-padded. Neither side is cropped or scaled.",
+    "interactions": "Interaction comparisons are viewport-only; keyboard focus compares the frozen source with the implementation, while Browse and TOC use honest implementation CLOSED/OPEN pairs because the frozen sources have no equivalent open state. Baseline page-family comparisons include viewport and full-page pairs."
+  },
+  "intentionalDifferences": [
+    "Index references are illustrative switcher states; the implementation preserves the approved source-of-truth rosters of 23 blog posts, 4 used apps, 4 authored apps, 5 used skills, and 3 authored skills.",
+    "Preview and companion controls shown only in the illustrative index mockup are intentionally omitted from the implementation.",
+    "The implementation retains the approved 250px desktop rail, 210px mid-layout rail, and mobile shell breakpoints rather than treating mockup content length as layout truth.",
+    "Detail pages preserve authored copy, actions, and facts, and omit illustrative detail media where the corresponding real record has no media.",
+    "Mobile Browse-open and expanded-TOC captures demonstrate functional additions with no equivalent open state in the frozen references.",
+    "The frozen article mockup overflows its configured width in tablet and phone full-page captures; those reference pixels are preserved and padded, while the implementation remains width-bounded by its no-overflow contract."
+  ],
   "entries": [
     {
-      "path": "docs/qa/visual-comparisons/combined/article-listwithme-desktop.png",
-      "sha256": "2cc36fcd50652ed5c6a91b7f8c7f5a0cbe098219548b82289c6fb9aaacf44215",
+      "path": "docs/qa/visual-comparisons/combined/article-listwithme-desktop-full-page.png",
+      "sha256": "154aeb7d46236aaf3cba2f6c474b1172d869c58ca606987ce2edf30bad4b0918",
       "width": 3200,
-      "height": 992
+      "height": 4758,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-desktop-full-page-reference.png",
+        "sha256": "912279e29b6cfb80fcc8ccae4680193ea45ff836833ef36e06ef0b307c293147",
+        "width": 1586,
+        "height": 2943
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-desktop-full-page-implementation.png",
+        "sha256": "8462cb74ed95b9eb6c9f66e4d2496cb226c1dbce7dec520f0bf4324121a5b9d8",
+        "width": 1586,
+        "height": 4758
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/article-listwithme-phone.png",
-      "sha256": "7369b119e6c90ceb778e77b15e107d258105ae3816242bfbd89fd9b23b15f231",
+      "path": "docs/qa/visual-comparisons/combined/article-listwithme-desktop-viewport.png",
+      "sha256": "f9b4b367abf7cfce86ab8d00e810c3e396d345de05a4efedafc7e658ea2dc9cf",
+      "width": 3200,
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-desktop-viewport-reference.png",
+        "sha256": "e67ccf0d60d03fcc7d467161b22d3b456d21ad55d7930ac3f685f9c37dfcb63b",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-desktop-viewport-implementation.png",
+        "sha256": "5e07fa864a1948ff76a0f1b4afe01e3f302b62f3cd33318e1f5c93fe21d2c8f5",
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/article-listwithme-phone-full-page.png",
+      "sha256": "71d97629cc688136eb988473119e6720cf635529b81167839ed8ca7a71d8c619",
+      "width": 854,
+      "height": 6522,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-phone-full-page-reference.png",
+        "sha256": "9a0a6cbad2f74f4a9cf2b7e46b787eb08adb6c2e7a86ae04de08b5c0d40ae5a7",
+        "width": 413,
+        "height": 3900
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-phone-full-page-implementation.png",
+        "sha256": "169e70567f4d26422d26eb8ebcc0c787849097c042cb4d2907c6482c38c38d64",
+        "width": 390,
+        "height": 6522
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/article-listwithme-phone-viewport.png",
+      "sha256": "29b0a358d56130b479ed31d1e32339f375f5bc1d745aff797671de88817acf94",
       "width": 808,
-      "height": 844
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-phone-viewport-reference.png",
+        "sha256": "9893b020d49c98cdddb9415ca6b68a67dc654dc5e1ecba755a21b04989e94575",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-phone-viewport-implementation.png",
+        "sha256": "3bc95ad3693f84665c2aef8c23e29815981b323f27d8c6ba4bbbd94088efdbbd",
+        "width": 390,
+        "height": 844
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/article-listwithme-tablet.png",
-      "sha256": "c274b4d89b2d44f2b6b84179d80b36781729f2176447503555572305a841032a",
+      "path": "docs/qa/visual-comparisons/combined/article-listwithme-tablet-full-page.png",
+      "sha256": "514f6a9da30be9b8a4cabc5fb634c792466142bded83d6d0dd2752cf793e728a",
+      "width": 2114,
+      "height": 4748,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-tablet-full-page-reference.png",
+        "sha256": "6576b61be03371266ec50c060c25fb30e8e4e3152ef122191b93e7267dacfbe2",
+        "width": 1043,
+        "height": 3189
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-tablet-full-page-implementation.png",
+        "sha256": "8674cc0d2b1de044f77e1a668a68290475b4be3a8360c480f7afcd664d100642",
+        "width": 1024,
+        "height": 4748
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/article-listwithme-tablet-viewport.png",
+      "sha256": "bced0b173408a534d8e825ae149d100a6945ac9738479ac4a6f23fe78818f436",
       "width": 2076,
-      "height": 768
+      "height": 768,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-tablet-viewport-reference.png",
+        "sha256": "1fc92a510c9563c74daf782897af453312fe688e284a5da4ae4c0a6c6defbf55",
+        "width": 1024,
+        "height": 768
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/article-listwithme-tablet-viewport-implementation.png",
+        "sha256": "d920df47970e58515ec7271bf82d849e8ea0310d6da40fdb1d3f0749ebaa673f",
+        "width": 1024,
+        "height": 768
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/detail-my-app-desktop.png",
-      "sha256": "e40771d9b335eb66183b3181f7eaa67d676ff2b235f3993f1005e3288c5649ec",
+      "path": "docs/qa/visual-comparisons/combined/detail-my-app-desktop-full-page.png",
+      "sha256": "ef8a92973dff1243ab20266c5006e635240c955db6ffb005fe3632292be5fb9c",
       "width": 3200,
-      "height": 992
+      "height": 3106,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-desktop-full-page-reference.png",
+        "sha256": "9e5e7dd43eef180e4c08641b447d01a5f42a1f57e08c9b3c71ccc583ef0e2a43",
+        "width": 1586,
+        "height": 2512
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-desktop-full-page-implementation.png",
+        "sha256": "117c1c5fefb5f45ee85103be26841013197cbf1b5bbf1186b71ae2790d3dae53",
+        "width": 1586,
+        "height": 3106
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/detail-my-app-phone.png",
-      "sha256": "e15a098397d9b6c5db3de1e47046affbd4a31e1c1da9e625564d794c0ba482de",
+      "path": "docs/qa/visual-comparisons/combined/detail-my-app-desktop-viewport.png",
+      "sha256": "21908734986a68ece224b5041c3342b7ecbdc71b282313f1f120ea38354bb515",
+      "width": 3200,
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-desktop-viewport-reference.png",
+        "sha256": "d7a623083888053b80e9e11b18582970cda4c2483f655e54f7e3488c83ff0e70",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-desktop-viewport-implementation.png",
+        "sha256": "3e442907d6abd7d08ea6a843adaac7f30bae3eabc35e7df9bb174ee8eed697b8",
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-my-app-phone-full-page.png",
+      "sha256": "1ed3762e6345de2123ec2ff94bd88b1c142792e0837e1b9104276fcde92d9558",
       "width": 808,
-      "height": 844
+      "height": 4298,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-phone-full-page-reference.png",
+        "sha256": "aec9efdb9791dc11a6fd6da93ceb7608527a012154de873d4e2e84089e269986",
+        "width": 390,
+        "height": 3782
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-phone-full-page-implementation.png",
+        "sha256": "f76a68b50b06cfc52880b539d82bbd7825589afcd84f30edd4a104b3d154323b",
+        "width": 390,
+        "height": 4298
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/detail-my-app-tablet.png",
-      "sha256": "1b624d42b4d0dab560802be92b7d431ef54f2a25c2afb056d33d5b45d298b559",
+      "path": "docs/qa/visual-comparisons/combined/detail-my-app-phone-viewport.png",
+      "sha256": "7f7f27756e07f32e212c8e16d1379ddf6760946cf1f2983b591971f7ebc08e7c",
+      "width": 808,
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-phone-viewport-reference.png",
+        "sha256": "316c539c241df0a9480572255860eb36617cdb678ba2f690db218fd31664834f",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-phone-viewport-implementation.png",
+        "sha256": "87f459d5503b86c9f9d783d1fbf4fe4f2e458e904ca666a14b0977dbef6fd72d",
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-my-app-tablet-full-page.png",
+      "sha256": "f88294ae2af2a2b41ebf9605db3497db24c968d4f702a20910385776bff240bd",
       "width": 2076,
-      "height": 768
+      "height": 4303,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-tablet-full-page-reference.png",
+        "sha256": "a527998820725bf7bd7db5dcee1b18f547b95519d053c4a927ee56d5c4159096",
+        "width": 1024,
+        "height": 2994
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-tablet-full-page-implementation.png",
+        "sha256": "abbc17aa11782038f6150dad59b398ce6564101e34b8cf82e459736ab32d049c",
+        "width": 1024,
+        "height": 4303
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/detail-my-skill-desktop.png",
-      "sha256": "95db51faaaffc686c2f1c0dcf0f060710bc35f6372d44ce533309f7b6a86d83f",
+      "path": "docs/qa/visual-comparisons/combined/detail-my-app-tablet-viewport.png",
+      "sha256": "c9c5c72fec681e1b81597aa52b8fa7f4635783a3e9afb52d35a20db4d62ef514",
+      "width": 2076,
+      "height": 768,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-tablet-viewport-reference.png",
+        "sha256": "0f02190d82314031cc13fe9b5c54dc770d57b728cc080c7b30acc6f6cfb50e36",
+        "width": 1024,
+        "height": 768
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-app-tablet-viewport-implementation.png",
+        "sha256": "9e2a3cfbcb6944ebe020212255a775da57971e4df14c8afa262b05f0be0198af",
+        "width": 1024,
+        "height": 768
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-my-skill-desktop-full-page.png",
+      "sha256": "0854bfdbc77380cf30371a29b907acc36d8c60fa5d9b186ecd925b324df9e6b6",
       "width": 3200,
-      "height": 992
+      "height": 2383,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-skill-desktop-full-page-reference.png",
+        "sha256": "1c2c026ffeb3194745879cab760425021348290f54e882488719ce99af197757",
+        "width": 1586,
+        "height": 2383
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-skill-desktop-full-page-implementation.png",
+        "sha256": "d305b4bcac97612e2bb72a64716aec6de53c304f6dbfe460a6047c4ecd821e03",
+        "width": 1586,
+        "height": 1653
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/detail-my-skill-phone.png",
-      "sha256": "7ef8877596be246f73fddbe870b2903c5af43f86612eb8a50df501adfe30665d",
-      "width": 808,
-      "height": 844
-    },
-    {
-      "path": "docs/qa/visual-comparisons/combined/detail-used-app-desktop.png",
-      "sha256": "cf69db142b1c457b3aca3382e798b3845ce426c73c8da5809983e9dfaafaedfe",
+      "path": "docs/qa/visual-comparisons/combined/detail-my-skill-desktop-viewport.png",
+      "sha256": "5913b86c58f6d2ffb5dff0245eb78f417982631fca791a7f9a2504127406ca1a",
       "width": 3200,
-      "height": 992
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-skill-desktop-viewport-reference.png",
+        "sha256": "ccf8a0993e4bc264d77d88a53d6eb02b89d8ecab6e2a5540d0a861769ae8ed7d",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-skill-desktop-viewport-implementation.png",
+        "sha256": "f50adf3efaf545230a9adf6c684f3432b783a44728f0e4bb210b6d65b01f470d",
+        "width": 1586,
+        "height": 992
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/detail-used-app-phone.png",
-      "sha256": "b5e1f45a169bd0c4ba3c0baaa00c636ce289e5c21800b092a05584c88701bc9a",
+      "path": "docs/qa/visual-comparisons/combined/detail-my-skill-phone-full-page.png",
+      "sha256": "48a6e83f3483800a931b598aeedac5e42848ded15a6be7db96077cf375d2a663",
       "width": 808,
-      "height": 844
+      "height": 3677,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-skill-phone-full-page-reference.png",
+        "sha256": "1185b4941ae5969662c853dd95a2246358d0c758b316406cef7ef54e4bb1b39a",
+        "width": 390,
+        "height": 3677
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-skill-phone-full-page-implementation.png",
+        "sha256": "cb0a41a76e5b5b1c8c456c60548f8a4f9a73764eacab4a53836c2f31ee5840a3",
+        "width": 390,
+        "height": 2404
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/detail-used-skill-desktop.png",
-      "sha256": "c664d8d25c1b8f1e91edddd2a26efe02dd19963b8001c32bb0b5da2aa2913bbf",
+      "path": "docs/qa/visual-comparisons/combined/detail-my-skill-phone-viewport.png",
+      "sha256": "35130c8cb04e9cae73c9ca2cac7d530d1739249956e4bee28ad3ed91ed2a303e",
+      "width": 808,
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-skill-phone-viewport-reference.png",
+        "sha256": "68d681076cbcc228643a65e3a8163b57794b65f7ba825ac5cb27e6f39263ed75",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-my-skill-phone-viewport-implementation.png",
+        "sha256": "7c6e870b4dd4dd974a286fef045b91457366c6a08aba0206216c2ddc3e4b928f",
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-used-app-desktop-full-page.png",
+      "sha256": "b9ae448b3662d8efbb4a37a782865f340b44c8f23520eb5ddac133fa774a7cae",
       "width": 3200,
-      "height": 992
+      "height": 2383,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-app-desktop-full-page-reference.png",
+        "sha256": "b93a3b511d5babfa2c34a2d14d8c9b7751f7a8c86f92d806a3af9119ca4c2a3a",
+        "width": 1586,
+        "height": 2383
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-app-desktop-full-page-implementation.png",
+        "sha256": "2fd0d8d59f6f219bb000f5f1585717367711f72b5cc2556efd0086d7df1181c8",
+        "width": 1586,
+        "height": 1832
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/detail-used-skill-phone.png",
-      "sha256": "592c7d49a7ed94512e64d8f97027959c672db1bf84af1cf01ebd345f391c8548",
+      "path": "docs/qa/visual-comparisons/combined/detail-used-app-desktop-viewport.png",
+      "sha256": "60dd78195e236823f5fc45b4ba74c97f209816dcf37f23c56870f8e36780e4c7",
+      "width": 3200,
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-app-desktop-viewport-reference.png",
+        "sha256": "9abf6515ee74e17274a881cea51268204dcc03c28ed7f2dd08237b88fd2f4a15",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-app-desktop-viewport-implementation.png",
+        "sha256": "f63c93543dcf4455e400ca9f65de18ba22446e91b6db5bb5c1c3a0589c72c1fa",
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-used-app-phone-full-page.png",
+      "sha256": "ccab0dd6f76e2bf7c352b0a2dc99b0d731d7616e7ba8130e5f4dd73f9bdb2556",
       "width": 808,
-      "height": 844
+      "height": 3629,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-app-phone-full-page-reference.png",
+        "sha256": "ba5bcbeb8d13116f5fdf67e49ad5b6fd35169111c1636c652f5890329186a9c4",
+        "width": 390,
+        "height": 3629
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-app-phone-full-page-implementation.png",
+        "sha256": "46ea7a017328f1e1ec66586e391fd7730c1abeaad7701a68e807401761562a1f",
+        "width": 390,
+        "height": 2345
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/homepage-desktop.png",
+      "path": "docs/qa/visual-comparisons/combined/detail-used-app-phone-viewport.png",
+      "sha256": "84b828e9c44db456373c366838e32782c1a5b1b69a5ca19fa2145f632f701e3a",
+      "width": 808,
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-app-phone-viewport-reference.png",
+        "sha256": "a5e0dc33b603e597fd30f6e2e7caad6439dd21ce27c9a76b67138ac8a8475981",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-app-phone-viewport-implementation.png",
+        "sha256": "829ab28abcdfc2ecb1784d8465b5534b0ffa85563daf9e3dbac7c2b4af9fc5e8",
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-used-skill-desktop-full-page.png",
+      "sha256": "cbf0d478488438f4256d6e9828f7034ada93ee3dacdc66ec2c21d7247dd4f5c3",
+      "width": 3200,
+      "height": 2383,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-skill-desktop-full-page-reference.png",
+        "sha256": "7fa537b1c03c900177d4f78f73e7173e9ef3a4262c99ae15842d6b05db85c274",
+        "width": 1586,
+        "height": 2383
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-skill-desktop-full-page-implementation.png",
+        "sha256": "e9b13d6bbef693cef32615992bdccea1d36b80cfb6d1838db3d18363769f5f68",
+        "width": 1586,
+        "height": 1653
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-used-skill-desktop-viewport.png",
+      "sha256": "c450ceb83adf8cb57a3b4b01afdd1a43d4dd1803f5df4ca68af4b549379fb738",
+      "width": 3200,
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-skill-desktop-viewport-reference.png",
+        "sha256": "8a24c7894867601aec6382473a2b56678cd536856f447339a3f56364f08fc0cc",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-skill-desktop-viewport-implementation.png",
+        "sha256": "570976b38dd48a1bcb79496d013e84122f292dd54a9050d229b3252c2d86ad1d",
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-used-skill-phone-full-page.png",
+      "sha256": "8ab12682316baa7ff864a42885c6522babd27d7c3b8da133fce79d494086a514",
+      "width": 808,
+      "height": 3686,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-skill-phone-full-page-reference.png",
+        "sha256": "32016ddbfeb516e9c43aaab1bc2d978136c77879a8e1e799346717788f5c7c3c",
+        "width": 390,
+        "height": 3686
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-skill-phone-full-page-implementation.png",
+        "sha256": "9ecfc136f6eb29f90f062e6a0467b4e9cb2f1162d04936565bfe4248ec38f6ef",
+        "width": 390,
+        "height": 2461
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-used-skill-phone-viewport.png",
+      "sha256": "2549544ce16342ec06bf2ea3332c97753afe50b56e440d8c1951cd8374fbe41e",
+      "width": 808,
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-skill-phone-viewport-reference.png",
+        "sha256": "dfa19757a010bf0018454af3e313fdbd1d4a3f17a80c02fddf878b389edff7c2",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/detail-used-skill-phone-viewport-implementation.png",
+        "sha256": "a557104797fb73abc5eaf02cec6a9f71a56faa33f057e222d135e229353c9269",
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/homepage-desktop-full-page.png",
+      "sha256": "a9f5d6a119415b4a238a831a3b1a5f7c2d991d6e10cee5333666278ec2530ce0",
+      "width": 3200,
+      "height": 1200,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-desktop-full-page-reference.png",
+        "sha256": "0747f4334889ec4495d7d8d4f4de75c441f7592f0a5a2829dbc2090fb91e4e71",
+        "width": 1586,
+        "height": 1173
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-desktop-full-page-implementation.png",
+        "sha256": "3d57536c92da394324fcd15962d7dfd235a9dab6bbfeb3b7de012123dc1f87a2",
+        "width": 1586,
+        "height": 1200
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/homepage-desktop-viewport.png",
       "sha256": "fe0ce26eb6306fc47089bb856681c83cab337bc11bd1cdd3e3d0da77afab2ba7",
       "width": 3200,
-      "height": 992
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-desktop-viewport-reference.png",
+        "sha256": "bce3e2634ad286940d1aced28ec66fb033fd1c61550425159dbe30c82207d297",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-desktop-viewport-implementation.png",
+        "sha256": "bf1c6382b11fa0aa9511acc1aa8d9e8b7448de883001b44e5446e883dbf20225",
+        "width": 1586,
+        "height": 992
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/homepage-phone.png",
+      "path": "docs/qa/visual-comparisons/combined/homepage-phone-full-page.png",
+      "sha256": "4af03d30ee4f8458b7c57b272376bd95283ce97f68b6f1130d69aa50bac87851",
+      "width": 808,
+      "height": 3605,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-phone-full-page-reference.png",
+        "sha256": "a2819e92d1cfc1d3a89c89b989adc8252e27b75f435f57bb5ae8b0f06b51eda4",
+        "width": 390,
+        "height": 3562
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-phone-full-page-implementation.png",
+        "sha256": "a6b328352c029d98994e6e21175acc35cb3acb9adbad7ddeda8188964f7e02b0",
+        "width": 390,
+        "height": 3605
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/homepage-phone-viewport.png",
       "sha256": "98039e5fcbdaa980bf8af9efcf8a15001a8cb1fa72b43f6b9966ab003c9ff235",
       "width": 808,
-      "height": 844
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-phone-viewport-reference.png",
+        "sha256": "5edb768edbe83714ce4752319dc5b7b8de1dfcfa7fa2192dd808744be9b5b56e",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-phone-viewport-implementation.png",
+        "sha256": "f57d90ca7e33e8e5d299bb7b10df91ae2ba99157cc686d2538fbcc5303910f56",
+        "width": 390,
+        "height": 844
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/homepage-tablet.png",
+      "path": "docs/qa/visual-comparisons/combined/homepage-tablet-full-page.png",
+      "sha256": "c4d0168aeedb0485cfa94ce7da89bfec35bce03f042ed1522f3f507be0406b33",
+      "width": 2076,
+      "height": 2027,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-tablet-full-page-reference.png",
+        "sha256": "9ff49bcf76a83ee0752ea6940d4dcfc6bca6196246b5fd3b84c84b3ed37f9159",
+        "width": 1024,
+        "height": 2027
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-tablet-full-page-implementation.png",
+        "sha256": "9efbb727d9a92b3bce4ec5e2dddebe32cdeeebf687fd44b854ce13ab0d0af52d",
+        "width": 1024,
+        "height": 2010
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/homepage-tablet-viewport.png",
       "sha256": "659a8f4a3faf990cf223564bbfb8513e7694359ea692f3459ad16add86112a59",
       "width": 2076,
-      "height": 768
+      "height": 768,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-tablet-viewport-reference.png",
+        "sha256": "c3ca010a7f3e4bfc68278bbf80a54fa4bd2a4c24cafd02fc52e4218e4d5b2c93",
+        "width": 1024,
+        "height": 768
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/homepage-tablet-viewport-implementation.png",
+        "sha256": "9ba4acc8fcd6ae41823c972006c45f3d9f2db8809c3f0c190d3519e4b4f33319",
+        "width": 1024,
+        "height": 768
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/index-app-library-desktop.png",
-      "sha256": "32aef509644bd129f3b2e9f1656cf5e3dd07adcbc9cc8851f6fcb4721ff965be",
+      "path": "docs/qa/visual-comparisons/combined/index-app-library-desktop-full-page.png",
+      "sha256": "42824d260d0444ff98451c8b9ff4bf4bf7795f1a15f2ce624bdb10a91c09531d",
       "width": 3200,
-      "height": 992
+      "height": 1129,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-app-library-desktop-full-page-reference.png",
+        "sha256": "ac50e09ee0f1adab888b383c09f78b6b44a2f2d72c1d0b9594984a9d1f5bc4d1",
+        "width": 1586,
+        "height": 1129
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-app-library-desktop-full-page-implementation.png",
+        "sha256": "e122f927cbf5df8f6c4ab04561c641434edb10ca394cf7d630cee1b22285a523",
+        "width": 1586,
+        "height": 1044
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/index-app-library-phone.png",
-      "sha256": "b758f10aa8d5cd670399c07266400c5802676f0fc4098b11173fae8f387a3c92",
-      "width": 808,
-      "height": 844
-    },
-    {
-      "path": "docs/qa/visual-comparisons/combined/index-blog-desktop.png",
-      "sha256": "ae9e2e5752f232d10312e617526315b1a63cab6f6bd2c75d04bb09093c26facc",
+      "path": "docs/qa/visual-comparisons/combined/index-app-library-desktop-viewport.png",
+      "sha256": "7410024a66266c6b04f2daf8b14408e5d43c7292b3bb301cf4d8a3686b7e110b",
       "width": 3200,
-      "height": 992
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-app-library-desktop-viewport-reference.png",
+        "sha256": "9a2b3ca4a3abd96e6774d15d2b6c7fae5a08184afab247c327a7f6fa0209b3aa",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-app-library-desktop-viewport-implementation.png",
+        "sha256": "81fc57c66a1f5169906be5e05ac7f58bcbae0f6d71030619be8ee56c1a252ccd",
+        "width": 1586,
+        "height": 992
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/index-blog-phone.png",
-      "sha256": "b93fb28703946ca9f0ccbf067fd515944d0ba4659dc3d1869c35977ec563f485",
+      "path": "docs/qa/visual-comparisons/combined/index-app-library-phone-full-page.png",
+      "sha256": "cc31aaf8da60ef19dd988b8e862c33368a699c66b0bd013c1137a20aca645bc8",
       "width": 808,
-      "height": 844
+      "height": 1490,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-app-library-phone-full-page-reference.png",
+        "sha256": "2beb2be5fce64f7d238c27901474e1333f5a510ab786901b6727eff335d8b9cf",
+        "width": 390,
+        "height": 1490
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-app-library-phone-full-page-implementation.png",
+        "sha256": "20e25266557a15f6f6e5700dd5ddf7d6914ca617edccc1d23a394173f830e598",
+        "width": 390,
+        "height": 1445
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/index-blog-tablet.png",
-      "sha256": "ac04f853d05b9dc5382cc2e01bea3b24f3db1e3cd5364131801f58b7f2f2f04c",
+      "path": "docs/qa/visual-comparisons/combined/index-app-library-phone-viewport.png",
+      "sha256": "06c220940191db35b55f115577c604d75f73fd7e2461259100194431f170939e",
+      "width": 808,
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-app-library-phone-viewport-reference.png",
+        "sha256": "35311b69afcb398c8f5a1eb1b4c7ad52cc501c65d4ddc06639acfc6dc5b5356e",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-app-library-phone-viewport-implementation.png",
+        "sha256": "eef1e49974af7304f6435cab174cbeb94d96e78ab73f102bcf7630b869c03fed",
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-blog-desktop-full-page.png",
+      "sha256": "04cba020cc739c8db8d7b35937a36e954668480089542355ec654c7705c8af9b",
+      "width": 3200,
+      "height": 3389,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-desktop-full-page-reference.png",
+        "sha256": "bca8298be812735141134923ec3f7c6584a660ee9e585dde9c6f8f0a2b96bbf0",
+        "width": 1586,
+        "height": 2122
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-desktop-full-page-implementation.png",
+        "sha256": "52640c89f8ab42883e632729b3674b603933a6e890383cdd16d1e6c10ad01952",
+        "width": 1586,
+        "height": 3389
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-blog-desktop-viewport.png",
+      "sha256": "7199ec4dac0643878a4e64806ec2ee17086b05d7675b3988cf3374935e294c6a",
+      "width": 3200,
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-desktop-viewport-reference.png",
+        "sha256": "885c1f791de1766d165a94d76e32308b603eb636b934197b82f0ee558c1d172e",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-desktop-viewport-implementation.png",
+        "sha256": "17cd00dd1e70be69fbc7eac876f3488e189555e4400f240b2699961e456bd23d",
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-blog-phone-full-page.png",
+      "sha256": "7222c45ddf598645fedbbced7c0cc316b5baa9a700f714d21dbc51bcdd948d94",
+      "width": 808,
+      "height": 3651,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-phone-full-page-reference.png",
+        "sha256": "676ac0b41b0192b9beaa1b028e533d3e28a49da66016525aa4ff8f00cdbd6fff",
+        "width": 390,
+        "height": 2261
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-phone-full-page-implementation.png",
+        "sha256": "b9f5b99cee69f0bd05511745706a3b111eec4138c3df75e23da8a881f50be1c8",
+        "width": 390,
+        "height": 3651
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-blog-phone-viewport.png",
+      "sha256": "6aad6dbe78d4f593e66fe1ea67b59722fb3c1ea724fe77696f34bbf444fc31a6",
+      "width": 808,
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-phone-viewport-reference.png",
+        "sha256": "b8f749b51c8198296915ff1db9ad69cc94c542fdcb3a89be2abac3fc9295e1e9",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-phone-viewport-implementation.png",
+        "sha256": "49b1d814bafc438ee7434c3845d44984e19d8cac7ef0b0a9ea2456ad37186882",
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-blog-tablet-full-page.png",
+      "sha256": "dfd749bc01045905c9e0b1adb504dfd47c632ebc5ccce3fe49d62a25675dc996",
       "width": 2076,
-      "height": 768
+      "height": 3388,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-tablet-full-page-reference.png",
+        "sha256": "fe08648b9a1d266116bd72fc97701fd7a09128bf1c3f908b038b38ffe5b2cb5d",
+        "width": 1024,
+        "height": 2284
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-tablet-full-page-implementation.png",
+        "sha256": "c8b56398745478cc67f4b8f8ee7032ec45708a9f65bd72be2d80d39d596094e9",
+        "width": 1024,
+        "height": 3388
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/index-my-apps-desktop.png",
-      "sha256": "49220e638099ed8ff136e080f495856d406783c38e8befa0997a0536ab8745b3",
+      "path": "docs/qa/visual-comparisons/combined/index-blog-tablet-viewport.png",
+      "sha256": "543f6d77a823983599766d1e8e6e59c819314e47d4d0e9582168c3e813d96edc",
+      "width": 2076,
+      "height": 768,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-tablet-viewport-reference.png",
+        "sha256": "98c569fa2622843d7e86965f184332dda02ffe05b57af24545d8617692921a08",
+        "width": 1024,
+        "height": 768
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-blog-tablet-viewport-implementation.png",
+        "sha256": "dd08310e20bcd7d0bdf90572cc2b0ff16e1db0e244389b201f544a58b168f1dd",
+        "width": 1024,
+        "height": 768
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-my-apps-desktop-full-page.png",
+      "sha256": "c026a4d2e933c68cd21e7b32772ca093926b2140d53bf1b8d947d4eb6580a281",
       "width": 3200,
-      "height": 992
+      "height": 1955,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-apps-desktop-full-page-reference.png",
+        "sha256": "cc66d0c4aed1000c254fdc00b8de38e46c12213233015d699245c843b35966ae",
+        "width": 1586,
+        "height": 1704
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-apps-desktop-full-page-implementation.png",
+        "sha256": "cc95c425a6401a4a80af4db3e9436527051e23e659ca6fdd9ad52955e1ca0fa7",
+        "width": 1586,
+        "height": 1955
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/index-my-apps-phone.png",
-      "sha256": "be80b34f7cae80969d9db7335f1884a1bb3d8d03501c48ba69c41692427dbfe3",
-      "width": 808,
-      "height": 844
-    },
-    {
-      "path": "docs/qa/visual-comparisons/combined/index-my-skills-desktop.png",
-      "sha256": "7d7a2877452b1baeacba2e42ce4b35147d2ed871acdc09a49f533cc27d27d0c6",
+      "path": "docs/qa/visual-comparisons/combined/index-my-apps-desktop-viewport.png",
+      "sha256": "28860abc2fd8193866eaeeb7492ebde20cc38b582a055eb4a32d3e40f882c102",
       "width": 3200,
-      "height": 992
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-apps-desktop-viewport-reference.png",
+        "sha256": "774cab87c36186a032bec37ac4076df5beb1378bc800d371498ff3cfe788db2e",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-apps-desktop-viewport-implementation.png",
+        "sha256": "8e0fdd75b0a6202037f4ac779fb1ae621e5f3f924b73c1b373a23a168ed8a871",
+        "width": 1586,
+        "height": 992
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/index-my-skills-phone.png",
-      "sha256": "197f07c723d50af4e1e7a3109ef422c5d4827901d9e48b42d28f08d57fc44976",
+      "path": "docs/qa/visual-comparisons/combined/index-my-apps-phone-full-page.png",
+      "sha256": "9f254a535ce715752ebffeb49af68139f91d3b3293b99f652f51c27fca2b753e",
       "width": 808,
-      "height": 844
+      "height": 2568,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-apps-phone-full-page-reference.png",
+        "sha256": "b9755798d5623f310dc84487367851789d9cb2f9bc666190f5a6ef3afcf2314e",
+        "width": 390,
+        "height": 2312
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-apps-phone-full-page-implementation.png",
+        "sha256": "bb0cd993e330fb827633494628c0185604e4149c411bb7e4e528c8096fa3522f",
+        "width": 390,
+        "height": 2568
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/index-skill-library-desktop.png",
-      "sha256": "fa7ebf6987c358c1f680936048f8ad5b40b132a8c46d30930b13f371a2a9f8b2",
+      "path": "docs/qa/visual-comparisons/combined/index-my-apps-phone-viewport.png",
+      "sha256": "fdc2a9166d283d0b7ee000e0ff7411e883f75b52bf3e09ac3a173b6311d3171b",
+      "width": 808,
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-apps-phone-viewport-reference.png",
+        "sha256": "4359915cc6861c9e3138b27534e3872d7db1e483f4c034ed55ed83deec00b967",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-apps-phone-viewport-implementation.png",
+        "sha256": "ad6610c5600cb8110b3e99d2057b087d85d0d9d7a76095f15dbd2460b18b50d6",
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-my-skills-desktop-full-page.png",
+      "sha256": "a380d20f5d851828f2f3251fd0e76c9bce9487921b23d31422c3e5096637939a",
       "width": 3200,
-      "height": 992
+      "height": 1540,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-skills-desktop-full-page-reference.png",
+        "sha256": "2ee3a8f8416a238d3159470a45865b49910ca20e21ac22ef9e533542aa74fa13",
+        "width": 1586,
+        "height": 1540
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-skills-desktop-full-page-implementation.png",
+        "sha256": "8e2751578b8e2e2764545ea0c457790b40b48f674cc7d2520abcc6b7b72e64be",
+        "width": 1586,
+        "height": 1456
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/index-skill-library-phone.png",
-      "sha256": "5cac9fa2cc007f5c44011193093420a901753601dc1854229b889469f9e0cec8",
-      "width": 808,
-      "height": 844
-    },
-    {
-      "path": "docs/qa/visual-comparisons/combined/interaction-expanded-toc-phone.png",
-      "sha256": "1f27dbc4b647fc1f043af3b93262ecd6af838037378cbefb86d465d9d0139147",
-      "width": 808,
-      "height": 844
-    },
-    {
-      "path": "docs/qa/visual-comparisons/combined/interaction-keyboard-focus-desktop.png",
-      "sha256": "264a33cebf9b2a4154f48f2f102c57fcf0c22227d726c8e9591cc1c94356690c",
+      "path": "docs/qa/visual-comparisons/combined/index-my-skills-desktop-viewport.png",
+      "sha256": "7fdf24ec986c6d3f923fb98ab4a1f14cdd1a88d25c125c237bdbe9aa906159a0",
       "width": 3200,
-      "height": 992
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-skills-desktop-viewport-reference.png",
+        "sha256": "9981abdee929c577c2b7d319b7cd473cb6c42c63e337291a5a3c2ef35d872140",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-skills-desktop-viewport-implementation.png",
+        "sha256": "e163d0d25d32f4d21911cf05060e6c5fd384049855d3f98a82c3e20db908d07f",
+        "width": 1586,
+        "height": 992
+      }
     },
     {
-      "path": "docs/qa/visual-comparisons/combined/interaction-mobile-browse-open-phone.png",
-      "sha256": "2753914008c5b74414cf2c6609358b4d197c7b5a23c0a0d1c4d002e51ed4eee3",
+      "path": "docs/qa/visual-comparisons/combined/index-my-skills-phone-full-page.png",
+      "sha256": "9259b9041e203b25de4c4fb005254b6770e96ae89dff7c9a08398d3cc90cb63a",
       "width": 808,
-      "height": 844
+      "height": 2337,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-skills-phone-full-page-reference.png",
+        "sha256": "2921454d8ff32e055cd5303cb11e493da34c6bb485a61d24d1ff3e7b111feeee",
+        "width": 390,
+        "height": 2139
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-skills-phone-full-page-implementation.png",
+        "sha256": "b30fc380a82449c2a015f6a351097c71959548b69f44b64a5aa099100fdeb141",
+        "width": 390,
+        "height": 2337
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-my-skills-phone-viewport.png",
+      "sha256": "1dd7363d642b8c1fa9ca89394cc61fa4a19a36bfebe66107a88390de79112a1d",
+      "width": 808,
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-skills-phone-viewport-reference.png",
+        "sha256": "d9c18266d5ea1e04ef7b2e962baa4956384c5cc6908e319cc93e6448a5183fe7",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-my-skills-phone-viewport-implementation.png",
+        "sha256": "32d08107e66c1f7495d3cbf8c347203b4f9630b189b4ac91c6c01c409f714fb2",
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-skill-library-desktop-full-page.png",
+      "sha256": "a0ec514093e5c810244a0f188c09c0175fd395fcf41bb171386e02d4d6787b55",
+      "width": 3200,
+      "height": 1301,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-skill-library-desktop-full-page-reference.png",
+        "sha256": "fcb0a5d846aa61ac0ec5f51212610a4efbcbd1d7227c16779381705cef22ae72",
+        "width": 1586,
+        "height": 1275
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-skill-library-desktop-full-page-implementation.png",
+        "sha256": "893dd6d3e88e9d2217a8637b57a1cff13fed81013896747dd519cd34511dae03",
+        "width": 1586,
+        "height": 1301
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-skill-library-desktop-viewport.png",
+      "sha256": "7644bcaf90f1e458c9764ced9df845e083218149c5823744929fb2c035b3ec78",
+      "width": 3200,
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-skill-library-desktop-viewport-reference.png",
+        "sha256": "e318cd42f113290f50b1cec5bebf6b9e346546f208711f14e49d95c93d61dce3",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-skill-library-desktop-viewport-implementation.png",
+        "sha256": "905094efb5e33d6b4bb179890492e9f492bce7f61fc5e79b41578c9cba7659d9",
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-skill-library-phone-full-page.png",
+      "sha256": "2732f3b22e4c6bf40a9ac1df9d8e7a759b36996d019eb7beb3ecfddda17efdb2",
+      "width": 808,
+      "height": 2296,
+      "mode": "full-page",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-skill-library-phone-full-page-reference.png",
+        "sha256": "75c934fdefde06cd2c06e4ef722296acf55ad56fb61b47e0729ae494ba261507",
+        "width": 390,
+        "height": 1594
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-skill-library-phone-full-page-implementation.png",
+        "sha256": "2054c6d98c4f0f24ccf0db90c39b433c736a6f8b7156c8872e8e7c9fcad58609",
+        "width": 390,
+        "height": 2296
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-skill-library-phone-viewport.png",
+      "sha256": "1b6af94d0a47e36f68fcfa17ce9bc85acfc12f3e9832c61ad32770ba528a4f3e",
+      "width": 808,
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/index-skill-library-phone-viewport-reference.png",
+        "sha256": "3b958c665aff26839207220ced399548240a372968da74cb4169525a69dc5e40",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/index-skill-library-phone-viewport-implementation.png",
+        "sha256": "8f702d815ab093c2dcd131f3cc989f44cf4d382c1aaa326a5622d5db31a35e11",
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/interaction-expanded-toc-phone-viewport.png",
+      "sha256": "ca3fdf366bc5f59551a0adc76a57f0adcc647de1a0d70bef4f830d7f8f94d854",
+      "width": 808,
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "closed",
+      "rightRole": "open",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/interaction-expanded-toc-phone-viewport-closed.png",
+        "sha256": "0a06127fd68fda33f0eb368721f2ccd8cf5e3bb318029dac7a461eb15e885f63",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/interaction-expanded-toc-phone-viewport-open.png",
+        "sha256": "94ece4fe125c47b95518a091640509d14c6f8e3cb4b088747be2d017d6ae9259",
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/interaction-keyboard-focus-desktop-viewport.png",
+      "sha256": "2cf13928f9ac0c03d24113059ed72e6fa7216cef817506f76e47847112bc6a7d",
+      "width": 3200,
+      "height": 992,
+      "mode": "viewport",
+      "leftRole": "reference",
+      "rightRole": "implementation",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/interaction-keyboard-focus-desktop-viewport-reference.png",
+        "sha256": "5c1950ac245aa8a1bb56bb2206c5ed182dc02ce5537f26bae31848b3335fcb8d",
+        "width": 1586,
+        "height": 992
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/interaction-keyboard-focus-desktop-viewport-implementation.png",
+        "sha256": "10f0fff5af56b81a3f19789b0c601e4a8a8d30142ba1e5bbf18bd54921fb7058",
+        "width": 1586,
+        "height": 992
+      }
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/interaction-mobile-browse-open-phone-viewport.png",
+      "sha256": "94f45443c9daa12987a648456a965a0b9c998907cb0cd9a448283c2e6e1cab01",
+      "width": 808,
+      "height": 844,
+      "mode": "viewport",
+      "leftRole": "closed",
+      "rightRole": "open",
+      "left": {
+        "path": "docs/qa/visual-comparisons/raw/interaction-mobile-browse-open-phone-viewport-closed.png",
+        "sha256": "f57d90ca7e33e8e5d299bb7b10df91ae2ba99157cc686d2538fbcc5303910f56",
+        "width": 390,
+        "height": 844
+      },
+      "right": {
+        "path": "docs/qa/visual-comparisons/raw/interaction-mobile-browse-open-phone-viewport-open.png",
+        "sha256": "bab6d652b2c5cfc881d489231599847d92a65b4760c52e16f08c5a83a56ef0f1",
+        "width": 390,
+        "height": 844
+      }
     }
   ]
 }

@@ -172,13 +172,7 @@ test('touch-width controls expose labels without hover', async ({ page }) => {
     const names = await page
       .locator('a:visible, button:visible, summary:visible')
       .evaluateAll((nodes) =>
-        nodes.map((node) =>
-          (
-            node.getAttribute('aria-label') ||
-            (node as HTMLElement).innerText ||
-            ''
-          ).trim(),
-        ),
+        nodes.map((node) => (node as HTMLElement).innerText.trim()),
       );
     expect(names.length, path).toBeGreaterThan(0);
     expect(names.every(Boolean), `${path}: ${JSON.stringify(names)}`).toBe(

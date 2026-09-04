@@ -1,4 +1,10 @@
-import { baseline, capturePair, comparisonMode, test } from './helpers';
+import {
+  baseline,
+  capturePair,
+  comparisonMode,
+  prepareApprovedMockup,
+  test,
+} from './helpers';
 
 const variants = [
   ['my-app', '/listwithme/'],
@@ -20,10 +26,14 @@ for (const [variant, path] of variants) {
       `detail-${variant}-${testInfo.project.name}`,
       'http://127.0.0.1:4174/detail-family-approved.html',
       path,
-      variant === 'my-app'
-        ? undefined
-        : async (reference) =>
-            reference.locator(`[data-detail="${variant}"]`).click(),
+      async (reference) =>
+        prepareApprovedMockup(reference, {
+          family: 'detail',
+          project: testInfo.project.name as 'desktop' | 'tablet' | 'phone',
+          variant,
+        }),
+      undefined,
+      { includeFullPage: true },
     );
   });
 }

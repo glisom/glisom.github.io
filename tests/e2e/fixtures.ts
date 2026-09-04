@@ -1,4 +1,5 @@
 import { test as base, expect } from '@playwright/test';
+import { e2eNetworkPolicy } from '../helpers/e2e-network-contract';
 
 export const test = base.extend<{ diagnostics: string[] }>({
   diagnostics: [
@@ -21,6 +22,27 @@ export const test = base.extend<{ diagnostics: string[] }>({
         } catch {
           // Navigation may not yet have established an origin.
         }
+      });
+      await page.context().route(/^https?:\/\//, async (route) => {
+        const url = route.request().url();
+        const policy = e2eNetworkPolicy(url);
+        if (policy === 'continue') {
+          await route.continue();
+          return;
+        }
+        if (policy === 'fulfill') {
+          await route.fulfill({
+            status: 200,
+            contentType:
+              new URL(url).hostname === 'open.spotify.com'
+                ? 'text/html; charset=utf-8'
+                : 'text/javascript; charset=utf-8',
+            body: '',
+          });
+          return;
+        }
+        diagnostics.push(`blocked unexpected cross-origin request: ${url}`);
+        await route.abort('blockedbyclient');
       });
       await use(diagnostics);
       expect(diagnostics, diagnostics.join('\n')).toEqual([]);

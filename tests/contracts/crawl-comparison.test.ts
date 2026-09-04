@@ -23,6 +23,7 @@ const legalFixtures = await readJson('listwithme-legal.json');
 const context = (policies: readonly CrawlPolicy[]) => ({
   policies,
   legalFixtures,
+  migrationAllowances,
 });
 
 const article = {
@@ -92,6 +93,34 @@ describe('crawl policy coverage', () => {
         migrationAllowances,
       }),
     ).toThrow(/unknown.*\/not-an-oracle-route\//i);
+  });
+
+  it('rejects a migration allowance with the right id but a wrong field, operation, count, or replacement', () => {
+    const mutations = [
+      (allowances: typeof migrationAllowances) => {
+        allowances[0].field = 'links';
+      },
+      (allowances: typeof migrationAllowances) => {
+        allowances[2].operation = 'replace-exact';
+      },
+      (allowances: typeof migrationAllowances) => {
+        allowances[4].expectedOccurrences = 3;
+      },
+      (allowances: typeof migrationAllowances) => {
+        allowances[1].after = 'https://example.com/unreviewed';
+      },
+    ];
+
+    for (const mutate of mutations) {
+      const changed = structuredClone(migrationAllowances);
+      mutate(changed);
+      expect(() =>
+        buildCrawlPolicies(routes, assets, {
+          groups,
+          migrationAllowances: changed,
+        }),
+      ).toThrow(/migration allowance.*contract/i);
+    }
   });
 });
 

@@ -1,4 +1,10 @@
-import { baseline, capturePair, comparisonMode, test } from './helpers';
+import {
+  baseline,
+  capturePair,
+  comparisonMode,
+  prepareApprovedMockup,
+  test,
+} from './helpers';
 
 const variants = [
   ['blog', '/blog/'],
@@ -21,14 +27,14 @@ for (const [variant, path] of variants) {
       `index-${variant}-${testInfo.project.name}`,
       'http://127.0.0.1:4174/index-family-approved.html',
       path,
-      variant === 'blog'
-        ? undefined
-        : async (reference) =>
-            reference
-              .locator(
-                `${testInfo.project.name === 'phone' ? '.mobile-collection-switcher' : '.side-nav'} [data-view="${variant}"]`,
-              )
-              .click(),
+      async (reference) =>
+        prepareApprovedMockup(reference, {
+          family: 'index',
+          project: testInfo.project.name as 'desktop' | 'tablet' | 'phone',
+          variant,
+        }),
+      undefined,
+      { includeFullPage: true },
     );
   });
 }

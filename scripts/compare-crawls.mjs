@@ -31,6 +31,7 @@ export async function loadComparisonContext() {
       migrationAllowances,
     }),
     legalFixtures,
+    migrationAllowances,
   };
 }
 

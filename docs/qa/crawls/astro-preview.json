@@ -96,7 +96,7 @@
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "31e770d1a7246080d9e52d280cdd540e263253906efd474bb2981c19ea9a1326"
+    "bodySha256": "d42a6e3ae4dcfc742c9c199814ba5a483261c07e53e35c0fcb9921ed9cd6ff7c"
   },
   {
     "requestedPath": "/2018/04/02/reading-list.html",
@@ -1938,13 +1938,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "67315d7ae4533a67c004fb48af159667b1a663b94f33967dfbd5adaff75c837e"
+    "bodySha256": "5694459e81da84de32fb3a7ba6b466952586d225cff8402145acfa6232534f1b"
   },
   {
     "requestedPath": "/app-library/hermes-agent/",
@@ -1969,13 +1969,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "45c77a78f10a83717f9ddaac60300915d2b91c3528e7e42e8b8251796d799c4c"
+    "bodySha256": "8773f311503879f4186810bb03ce8a186973596659eaee74e446aa6933d9e73b"
   },
   {
     "requestedPath": "/app-library/obsidian/",
@@ -1999,13 +1999,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "7c1d2bd1c8e2033fbc5dcbf3f74c2340b277ac553246be29b82e777866168f5b"
+    "bodySha256": "a7499ece210eb191f5f1d15747d268690f153de130cea9977983a6b240ab0bd2"
   },
   {
     "requestedPath": "/app-library/superhuman/",
@@ -2028,13 +2028,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "081de46f1c48a43da06dcc83b589e859bacb1df06226a45d6a920aa71aa1b572"
+    "bodySha256": "7a6e9497c098a9b2f47491c3f2fa05a30b8cf4e5c867efb86e1471c5b4dfd346"
   },
   {
     "requestedPath": "/assets/js/darkmode.js",
@@ -2491,13 +2491,13 @@
       "/_astro/04-activity.CvuFjygK_ZLGiAa.webp",
       "/_astro/04-activity.CvuFjygK_ZLucT8.avif",
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "18717fce6f4ee643514a2765dab6a6deecfce0daa6d03e9984e3c1e2780d2079"
+    "bodySha256": "7789f800317db31e1f96d6376ef06641aaa0d66d57fc8b19fee39a1e1caaceca"
   },
   {
     "requestedPath": "/listwithme/privacy/",
@@ -2983,13 +2983,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "154e0a27465ca7839cf654eaca0370e30efc852c244f12e7c744d8d3a0bc46d7"
+    "bodySha256": "f506800ce954ffcd7f3e456080e83ad42bc0da420a93400be9973cc0eac907ab"
   },
   {
     "requestedPath": "/projects/healthql/",
@@ -3015,13 +3015,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "9eadf464d94c47ba29a7f04000c016ceded25ae013e9d401107b9f7098793f6f"
+    "bodySha256": "fd3e4ce3f8a6753b922fddc7f4e0b9586ba7e7b2048b734fb81beee4e1e93070"
   },
   {
     "requestedPath": "/projects/hermes-ios/",
@@ -3046,13 +3046,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "1ffa247e2294df55119ff4949edd5508361ba0034a03ae8034aec8ac7c29fbfd"
+    "bodySha256": "41f6c28c1c6aeceb27cf617468e3b3de8c3d411af04054bed08ba8b72ba3945a"
   },
   {
     "requestedPath": "/robots.txt",
@@ -3151,13 +3151,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "ad98305ee1230e3201a45a7a9abdb20dbbf4dbcaa7b67b1d750d6f8872d9681f"
+    "bodySha256": "e800c5827fe75ff7522819daaf8973d286a3712fcbfab0d1852c2010da5a2778"
   },
   {
     "requestedPath": "/skill-library/deep-research/",
@@ -3181,13 +3181,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "2ef466c0227dfb9b9976e8f11c1ad5c0db5d98fb518e3a26189cf0351600eff9"
+    "bodySha256": "7dcab779190f155073733d5ac63d431cc2c265dcb16f62ba5edc981e7c03ee01"
   },
   {
     "requestedPath": "/skill-library/documents/",
@@ -3211,13 +3211,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "bd949fed4cfe074cc073c76fb946e4828cf4c127cf08566e431e3261f7843824"
+    "bodySha256": "eb3096208bc98eef704f116b7cf2bff1b0dd6c04e666fee3a97db66aecbdbc8a"
   },
   {
     "requestedPath": "/skill-library/frontend-design/",
@@ -3241,13 +3241,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "78ace7c3bfd2a2351abe42e50b2202128f9c1ffbd807f7e0b6bf3a79972dfe12"
+    "bodySha256": "f913ab35fb1e8c4d615e728356896401f032b0b29bc83570806f8895f4db8763"
   },
   {
     "requestedPath": "/skill-library/pdf/",
@@ -3270,13 +3270,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "624eeb3a36a3dcd68642385e37f8395de59fa2453fa1c9549933e38b111e4773"
+    "bodySha256": "e419a6952ac12237c3a5e1043f568cf80ad472513776099f232ba905194d9ff9"
   },
   {
     "requestedPath": "/skills/",
@@ -3338,13 +3338,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "254191e6c523be120cb42cc212ab43967e83941629f22cd5dac08dcf98666223"
+    "bodySha256": "836c508aa4abf21c7707420f51d6f50323b4969218a05f2faad56cbe4936dcbc"
   },
   {
     "requestedPath": "/skills/hatch-pet/",
@@ -3367,13 +3367,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "782e30189faa4393f7be6a028bfa22abc865085e057db2c9dd7755c2f95f3013"
+    "bodySha256": "f8dde90221cf6c6c9a026d564a96e9875d59d97f6d6dcd44361592d9cf56c95c"
   },
   {
     "requestedPath": "/skills/write-like-grant/",
@@ -3397,13 +3397,13 @@
     ],
     "assets": [
       "/_astro/BaseLayout.BGwS88Aa.css",
-      "/_astro/detail.DmW612wX.css",
+      "/_astro/detail.b6bwcYdF.css",
       "/favicon.ico"
     ],
     "articleSemantic": null,
     "embedContracts": [],
     "legalSemantic": null,
-    "bodySha256": "b238b44acb41a1f18dcb29c8f039fb06f01c13c01b7057f2b2d6e47ec861fe37"
+    "bodySha256": "6b9f8402c5c9b5a2f5bf882f9a30037cc196b4cb510ef602a36f4c3ebd2a6b94"
   },
   {
     "requestedPath": "/uploads/2023/5fd90bfbf1.png",

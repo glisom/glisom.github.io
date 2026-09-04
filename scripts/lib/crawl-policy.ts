@@ -37,12 +37,17 @@ interface AssetInput {
   aliasOf?: string;
 }
 
-interface MigrationAllowance {
+export interface MigrationAllowance {
   id: string;
   path: string;
   field: string;
   operation: string;
   expectedOccurrences: number;
+  replacements?: Record<string, string>;
+  before?: string;
+  after?: string;
+  requiredAfter?: string[];
+  semanticNormalization?: string;
 }
 
 interface PolicyGroups {
@@ -70,22 +75,91 @@ interface CrawlRecord {
 interface CompareContext {
   policies: readonly CrawlPolicy[];
   legalFixtures: Record<string, unknown>;
+  migrationAllowances: readonly MigrationAllowance[];
 }
 
-const KNOWN_ALLOWANCES = new Set([
-  'correct-four-notion-image-paths',
-  'replace-listwithme-placeholder-app-store-link',
-  'normalize-playlists-body-h1',
-  'normalize-wwdc-day-1-body-h1',
-  'upgrade-spotify-embeds',
-]);
-const NOTION_REPLACEMENTS: Record<string, string> = {
-  '/uploads/2023/f159196842.png': '/images/f159196842.png',
-  '/uploads/2023/fa6c5dfe53.png': '/images/fa6c5dfe53.png',
-  '/uploads/2023/5fd90bfbf1.png': '/images/5fd90bfbf1.png',
-  '/uploads/2023/6647450a28.png': '/images/6647450a28.png',
-};
-const APP_STORE_URL = 'https://apps.apple.com/us/app/listwithme/id1224284271';
+const APPROVED_ALLOWANCE_CONTRACTS = [
+  {
+    id: 'correct-four-notion-image-paths',
+    path: '/2023/01/14/notion-for-software.html',
+    field: 'images',
+    operation: 'replace-exact',
+    replacements: {
+      '/uploads/2023/f159196842.png': '/images/f159196842.png',
+      '/uploads/2023/fa6c5dfe53.png': '/images/fa6c5dfe53.png',
+      '/uploads/2023/5fd90bfbf1.png': '/images/5fd90bfbf1.png',
+      '/uploads/2023/6647450a28.png': '/images/6647450a28.png',
+    },
+    expectedOccurrences: 4,
+  },
+  {
+    id: 'replace-listwithme-placeholder-app-store-link',
+    path: '/2026/02/24/listwithme-returns.html',
+    field: 'links',
+    operation: 'replace-exact',
+    before: '#',
+    after: 'https://apps.apple.com/us/app/listwithme/id1224284271',
+    expectedOccurrences: 1,
+  },
+  {
+    id: 'normalize-playlists-body-h1',
+    path: '/2018/11/27/playlists.html',
+    field: 'headings',
+    operation: 'h1-to-h2',
+    expectedOccurrences: 5,
+  },
+  {
+    id: 'normalize-wwdc-day-1-body-h1',
+    path: '/2019/06/04/wwdc-day-1.html',
+    field: 'headings',
+    operation: 'h1-to-h2',
+    expectedOccurrences: 5,
+  },
+  {
+    id: 'upgrade-spotify-embeds',
+    path: '/2020/02/10/2019-playlists.html',
+    field: 'iframeSources',
+    operation: 'embed-with-fallback',
+    requiredAfter: [
+      'title',
+      'loading=lazy',
+      'fallbackHrefEqualsSource',
+      'fallbackText=Open {title}',
+      'fallbackMarker=data-embed-fallback',
+    ],
+    semanticNormalization: 'exclude-only-marked-fallback-from-text-and-links',
+    expectedOccurrences: 4,
+  },
+] as const;
+
+const KNOWN_ALLOWANCES = new Set<string>(
+  APPROVED_ALLOWANCE_CONTRACTS.map(({ id }) => id),
+);
+
+function ordered(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(ordered);
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(
+    Object.entries(value as Record<string, unknown>)
+      .toSorted(([left], [right]) => left.localeCompare(right))
+      .map(([key, child]) => [key, ordered(child)]),
+  );
+}
+
+export function validateMigrationAllowances(
+  value: readonly MigrationAllowance[],
+): readonly MigrationAllowance[] {
+  if (
+    !Array.isArray(value) ||
+    JSON.stringify(ordered(value)) !==
+      JSON.stringify(ordered(APPROVED_ALLOWANCE_CONTRACTS))
+  ) {
+    throw new Error(
+      'Migration allowance contract must exactly match the five reviewed structured allowances',
+    );
+  }
+  return value;
+}
 
 export function buildCrawlPolicies(
   routes: readonly RouteInput[],
@@ -95,6 +169,7 @@ export function buildCrawlPolicies(
     migrationAllowances: readonly MigrationAllowance[];
   },
 ): readonly CrawlPolicy[] {
+  validateMigrationAllowances(config.migrationAllowances);
   const routePaths = new Set(routes.map(({ canonicalPath }) => canonicalPath));
   const postPaths = new Set(
     routes
@@ -210,9 +285,10 @@ function normalizedImage(value: string): string {
   return url.origin === 'https://grantisom.com' ? url.pathname : url.href;
 }
 
-function transformedBaselineArticle(
+export function transformArticleSemantics(
   semantic: Record<string, unknown>,
   allowanceIds: readonly string[],
+  migrationAllowances: readonly MigrationAllowance[],
   add: (
     field: string,
     baseline: unknown,
@@ -221,46 +297,60 @@ function transformedBaselineArticle(
   ) => void,
 ): Record<string, unknown> {
   const transformed = clone(semantic);
+  const allowanceById = new Map(
+    migrationAllowances.map((allowance) => [allowance.id, allowance]),
+  );
   for (const allowanceId of allowanceIds) {
-    if (allowanceId === 'correct-four-notion-image-paths') {
-      const images = (transformed.images as string[]).map(normalizedImage);
+    const allowance = allowanceById.get(allowanceId);
+    if (!allowance) {
+      add('allowances', allowanceId, null, 'Unknown allowance id');
+      continue;
+    }
+    if (allowance.operation === 'replace-exact') {
+      const values = (transformed[allowance.field] as string[]).map((value) =>
+        allowance.field === 'images' ? normalizedImage(value) : value,
+      );
+      const replacements = allowance.replacements
+        ? Object.entries(allowance.replacements)
+        : [[allowance.before as string, allowance.after as string]];
       let count = 0;
-      transformed.images = images.map((image) => {
-        const replacement = NOTION_REPLACEMENTS[image];
+      transformed[allowance.field] = values.map((value) => {
+        const replacement = replacements.find(([before]) => before === value);
         if (replacement) count += 1;
-        return replacement ?? image;
+        return replacement?.[1] ?? value;
       });
-      if (count !== 4)
-        add('allowances', 4, count, 'Notion allowance occurrence drift');
-    } else if (
-      allowanceId === 'replace-listwithme-placeholder-app-store-link'
-    ) {
+      if (count !== allowance.expectedOccurrences)
+        add(
+          'allowances',
+          allowance.expectedOccurrences,
+          count,
+          `${allowance.id} occurrence drift`,
+        );
+    } else if (allowance.operation === 'h1-to-h2') {
       let count = 0;
-      transformed.links = (transformed.links as string[]).map((link) => {
-        if (link === '#') {
-          count += 1;
-          return APP_STORE_URL;
-        }
-        return link;
-      });
-      if (count !== 1)
-        add('allowances', 1, count, 'ListWithMe allowance occurrence drift');
-    } else if (
-      allowanceId === 'normalize-playlists-body-h1' ||
-      allowanceId === 'normalize-wwdc-day-1-body-h1'
-    ) {
-      let count = 0;
-      transformed.headings = (
-        transformed.headings as Array<Record<string, unknown>>
+      transformed[allowance.field] = (
+        transformed[allowance.field] as Array<Record<string, unknown>>
       ).map((heading) => {
         if (heading.level !== 1) return heading;
         count += 1;
         return { ...heading, level: 2 };
       });
-      if (count !== 5)
-        add('allowances', 5, count, 'Heading allowance occurrence drift');
-    } else if (allowanceId !== 'upgrade-spotify-embeds') {
-      add('allowances', allowanceId, null, 'Unknown allowance id');
+      if (count !== allowance.expectedOccurrences)
+        add(
+          'allowances',
+          allowance.expectedOccurrences,
+          count,
+          `${allowance.id} occurrence drift`,
+        );
+    } else if (allowance.operation === 'embed-with-fallback') {
+      const count = (transformed[allowance.field] as unknown[]).length;
+      if (count !== allowance.expectedOccurrences)
+        add(
+          'allowances',
+          allowance.expectedOccurrences,
+          count,
+          `${allowance.id} occurrence drift`,
+        );
     }
   }
   transformed.images = (transformed.images as string[]).map(normalizedImage);
@@ -272,6 +362,9 @@ export function compareCrawls(
   candidate: readonly CrawlRecord[],
   context: CompareContext,
 ): readonly CrawlDifference[] {
+  const migrationAllowances = validateMigrationAllowances(
+    context.migrationAllowances,
+  );
   const differences: CrawlDifference[] = [];
   const baselineByPath = new Map<string, CrawlRecord>();
   const candidateByPath = new Map<string, CrawlRecord>();
@@ -401,9 +494,10 @@ export function compareCrawls(
         add('articleSemantic', true, false, 'Missing article semantics');
         continue;
       }
-      const transformed = transformedBaselineArticle(
+      const transformed = transformArticleSemantics(
         before.articleSemantic,
         policy.allowanceIds,
+        migrationAllowances,
         add,
       );
       const normalizedCandidate = clone(after.articleSemantic);
@@ -427,14 +521,17 @@ export function compareCrawls(
           );
         }
       }
-      const spotify = policy.allowanceIds.includes('upgrade-spotify-embeds');
+      const spotify = migrationAllowances.find(
+        ({ id }) =>
+          id === 'upgrade-spotify-embeds' && policy.allowanceIds.includes(id),
+      );
       if (spotify) {
-        if (after.embedContracts.length !== 4) {
+        if (after.embedContracts.length !== spotify.expectedOccurrences) {
           add(
             'embedContracts.length',
-            4,
+            spotify.expectedOccurrences,
             after.embedContracts.length,
-            'Expected exactly four marked Spotify fallbacks',
+            `Expected exactly ${spotify.expectedOccurrences} marked Spotify fallbacks`,
           );
         }
         for (const embed of after.embedContracts) {

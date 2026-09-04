@@ -2,7 +2,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { readFile } from 'node:fs/promises';
 import { once } from 'node:events';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { crawlSite } from './crawl-site.mjs';
 import { loadComparisonContext } from './compare-crawls.mjs';
 import { compareCrawls } from './lib/crawl-policy.ts';
@@ -39,10 +39,13 @@ function run(command, args) {
   });
 }
 
-async function waitForPreview(origin, child) {
+async function waitForPreview(origin, child, previewError) {
   for (let attempt = 0; attempt < 100; attempt += 1) {
-    if (child.exitCode !== null) {
-      throw new Error(`Astro preview exited early with ${child.exitCode}`);
+    if (previewError()) throw previewError();
+    if (!childIsRunning(child)) {
+      throw new Error(
+        `Astro preview exited early with ${child.exitCode ?? child.signalCode}`,
+      );
     }
     try {
       const response = await fetch(origin, {
@@ -55,17 +58,44 @@ async function waitForPreview(origin, child) {
   throw new Error(`Astro preview did not become ready at ${origin}`);
 }
 
-async function stop(child) {
-  if (child.exitCode !== null) return;
-  process.kill(-child.pid, 'SIGTERM');
-  await Promise.race([
-    once(child, 'exit'),
-    new Promise((resolve) => setTimeout(resolve, 3_000)),
-  ]);
-  if (child.exitCode === null) {
-    process.kill(-child.pid, 'SIGKILL');
-    await once(child, 'exit');
+export function childIsRunning(child) {
+  return child.exitCode === null && child.signalCode === null;
+}
+
+export function signalProcessGroup(pid, signal, kill = process.kill) {
+  if (!pid) return false;
+  try {
+    kill(-pid, signal);
+    return true;
+  } catch (error) {
+    if (error && typeof error === 'object' && error.code === 'ESRCH')
+      return false;
+    throw error;
   }
+}
+
+export function waitForChildEnd(child, timeout) {
+  return new Promise((resolve) => {
+    let timer;
+    const finish = () => {
+      clearTimeout(timer);
+      child.off('exit', finish);
+      child.off('error', finish);
+      resolve(undefined);
+    };
+    child.once('exit', finish);
+    child.once('error', finish);
+    timer = setTimeout(finish, timeout);
+  });
+}
+
+export async function stopManagedPreview(child, kill = process.kill) {
+  if (!childIsRunning(child)) return;
+  if (!signalProcessGroup(child.pid, 'SIGTERM', kill)) return;
+  await waitForChildEnd(child, 3_000);
+  if (!childIsRunning(child)) return;
+  if (!signalProcessGroup(child.pid, 'SIGKILL', kill)) return;
+  await waitForChildEnd(child, 3_000);
 }
 
 async function fixturePaths() {
@@ -99,8 +129,28 @@ async function main() {
       detached: true,
     },
   );
+  let spawnError;
+  preview.once('error', (error) => {
+    spawnError = error;
+  });
+  let stopping;
+  const stop = () => {
+    stopping ??= stopManagedPreview(preview);
+    return stopping;
+  };
+  const signalHandlers = new Map(
+    ['SIGINT', 'SIGTERM'].map((signal) => [
+      signal,
+      () => {
+        void stop().finally(() =>
+          process.exit(signal === 'SIGINT' ? 130 : 143),
+        );
+      },
+    ]),
+  );
+  for (const [signal, handler] of signalHandlers) process.once(signal, handler);
   try {
-    await waitForPreview(origin, preview);
+    await waitForPreview(origin, preview, () => spawnError);
     const paths = await fixturePaths();
     const [baseline, candidate, context] = await Promise.all([
       crawlSite(new URL('https://grantisom.com'), paths),
@@ -129,8 +179,11 @@ async function main() {
       'Fresh production and built-preview crawls satisfy all 76 policies.',
     );
   } finally {
-    await stop(preview);
+    for (const [signal, handler] of signalHandlers)
+      process.off(signal, handler);
+    await stop();
   }
 }
 
-await main();
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href)
+  await main();

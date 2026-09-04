@@ -3,8 +3,16 @@ import { access, readFile } from 'node:fs/promises';
 import { dirname, join, relative, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import * as cheerio from 'cheerio';
+import fg from 'fast-glob';
+import matter from 'gray-matter';
+import {
+  transformArticleSemantics,
+  validateMigrationAllowances,
+} from './lib/crawl-policy.ts';
 
 const SITE_ORIGIN = 'https://grantisom.com';
+const RELEASE_DATE = '2026-09-02';
+const repositoryRoot = fileURLToPath(new URL('../', import.meta.url));
 const HTML_METADATA_FIELDS = [
   'og:type',
   'og:site_name',
@@ -17,15 +25,8 @@ const BLOCKED_LEGACY_RESOURCES = new Set([
   '/css/main.css',
   '/assets/js/darkmode.js',
 ]);
-const SPOTIFY_PATH = '/2020/02/10/2019-playlists.html';
-const SPOTIFY_COUNT = 4;
-const APP_STORE_URL = 'https://apps.apple.com/us/app/listwithme/id1224284271';
-const NOTION_IMAGE_REPLACEMENTS = new Map([
-  ['/uploads/2023/f159196842.png', '/images/f159196842.png'],
-  ['/uploads/2023/fa6c5dfe53.png', '/images/fa6c5dfe53.png'],
-  ['/uploads/2023/5fd90bfbf1.png', '/images/5fd90bfbf1.png'],
-  ['/uploads/2023/6647450a28.png', '/images/6647450a28.png'],
-]);
+const ARTICLE_IMAGE_SIZES =
+  '(max-width: 820px) calc(100vw - 32px), (max-width: 1219px) min(720px, calc(100vw - 258px)), min(920px, calc(100vw - 314px))';
 
 function normalizeText(value) {
   return value
@@ -158,8 +159,7 @@ export async function inspectHtml(file) {
 
 function normalizeSemanticImage(value) {
   const url = new URL(value, SITE_ORIGIN);
-  const replaced = NOTION_IMAGE_REPLACEMENTS.get(url.pathname);
-  return replaced ?? (url.origin === SITE_ORIGIN ? url.pathname : url.href);
+  return url.origin === SITE_ORIGIN ? url.pathname : url.href;
 }
 
 function removeLinkSeparators($, root) {
@@ -289,27 +289,24 @@ function extractArticleSemantic(html, path) {
   };
 }
 
-function expectedArticleSemantic(fixture, path) {
-  return {
-    headings: fixture.headings.map((heading) => ({
-      ...heading,
-      level:
-        (path === '/2018/11/27/playlists.html' ||
-          path === '/2019/06/04/wwdc-day-1.html') &&
-        heading.level === 1
-          ? 2
-          : heading.level,
-    })),
+function expectedArticleSemantic(fixture, allowances, errors, path) {
+  const semantic = {
+    headings: fixture.headings,
     text: fixture.text,
-    links: fixture.links.map((href) =>
-      path === '/2026/02/24/listwithme-returns.html' && href === '#'
-        ? APP_STORE_URL
-        : href,
-    ),
+    links: fixture.links,
     images: fixture.images.map(normalizeSemanticImage),
     codeBlocks: fixture.codeBlocks,
     iframeSources: fixture.iframeSources,
   };
+  return transformArticleSemantics(
+    semantic,
+    allowances.map(({ id }) => id),
+    allowances,
+    (_field, expected, actual, message) =>
+      errors.push(
+        `${path}: ${message}; expected ${expected}, received ${actual}`,
+      ),
+  );
 }
 
 function deepEqual(left, right) {
@@ -317,25 +314,43 @@ function deepEqual(left, right) {
 }
 
 async function validateArticleSemantics(distRoot, errors) {
-  const fixtures = JSON.parse(
-    await readFile(
+  const [fixtures, allowanceValue] = await Promise.all([
+    readFile(
       new URL('../tests/fixtures/legacy-pages.json', import.meta.url),
       'utf8',
-    ),
-  );
+    ).then(JSON.parse),
+    readFile(
+      new URL('../tests/fixtures/migration-allowances.json', import.meta.url),
+      'utf8',
+    ).then(JSON.parse),
+  ]);
+  const allowances = validateMigrationAllowances(allowanceValue);
   for (const fixture of fixtures) {
     const path = new URL(fixture.url).pathname;
     const html = await readFile(join(distRoot, outputPathFor(path)), 'utf8');
     const actual = extractArticleSemantic(html, path);
-    const expected = expectedArticleSemantic(fixture, path);
+    const pathAllowances = allowances.filter(
+      (allowance) => allowance.path === path,
+    );
+    const expected = expectedArticleSemantic(
+      fixture,
+      pathAllowances,
+      errors,
+      path,
+    );
     for (const field of Object.keys(expected)) {
       if (!deepEqual(actual[field], expected[field])) {
         errors.push(`${path}: migrated ${field} differs outside allowances`);
       }
     }
-    if (path === SPOTIFY_PATH) {
-      if (actual.embeds.length !== SPOTIFY_COUNT) {
-        errors.push(`${path}: expected exactly four marked Spotify embeds`);
+    const spotify = pathAllowances.find(
+      ({ operation }) => operation === 'embed-with-fallback',
+    );
+    if (spotify) {
+      if (actual.embeds.length !== spotify.expectedOccurrences) {
+        errors.push(
+          `${path}: expected exactly ${spotify.expectedOccurrences} marked Spotify embeds`,
+        );
       }
       for (const embed of actual.embeds) {
         if (
@@ -383,21 +398,42 @@ async function validatePictures($, pagePath, distRoot, errors) {
     for (const mediaType of ['image/avif', 'image/webp']) {
       const source = root.find(`source[type="${mediaType}"]`).first();
       const sizes = source.attr('sizes') ?? '';
-      const candidates = (source.attr('srcset') ?? '')
+      const entries = (source.attr('srcset') ?? '')
         .split(',')
-        .map((entry) => entry.trim().split(/\s+/)[0])
+        .map((entry) => entry.trim())
         .filter(Boolean);
-      if (!candidates.length || !sizes || sizes.trim() === '100vw') {
-        errors.push(`${pagePath}: incomplete ${mediaType} responsive source`);
+      if (!entries.length || sizes !== ARTICLE_IMAGE_SIZES) {
+        errors.push(`${pagePath}: invalid responsive sizes for ${mediaType}`);
+      }
+      const candidates = entries.map((entry) => {
+        const match = /^(\S+)\s+([1-9]\d*)w$/.exec(entry);
+        return {
+          url: entry.split(/\s+/)[0],
+          width: match ? Number(match[2]) : null,
+        };
+      });
+      const widths = candidates.map(({ width }) => width);
+      if (
+        widths.some((candidateWidth) => candidateWidth === null) ||
+        widths.some(
+          (candidateWidth, index) =>
+            candidateWidth !== null &&
+            (candidateWidth > width ||
+              (index > 0 && candidateWidth <= (widths[index - 1] ?? 0))),
+        )
+      ) {
+        errors.push(
+          `${pagePath}: invalid responsive descriptor for ${mediaType}`,
+        );
       }
       for (const candidate of candidates) {
-        const url = normalizedLocalUrl(candidate, pagePath);
+        const url = normalizedLocalUrl(candidate.url, pagePath);
         if (
           !url?.pathname.startsWith('/_astro/') ||
           !(await pathExists(join(distRoot, outputPathFor(url.pathname))))
         ) {
           errors.push(
-            `${pagePath}: unresolved ${mediaType} derivative ${candidate}`,
+            `${pagePath}: unresolved ${mediaType} derivative ${candidate.url}`,
           );
         }
       }
@@ -405,17 +441,62 @@ async function validatePictures($, pagePath, distRoot, errors) {
   }
 }
 
+async function loadDiscoveryRecords() {
+  const paths = await fg('src/content/**/*.{md,mdx}', {
+    cwd: repositoryRoot,
+    absolute: true,
+  });
+  return Promise.all(
+    paths.map(async (path) => ({
+      ...matter(await readFile(path, 'utf8')).data,
+      collection: path.includes('/src/content/blog/') ? 'blog' : 'other',
+    })),
+  );
+}
+
 async function validateDiscovery(distRoot, routes, errors) {
+  const records = await loadDiscoveryRecords();
   const feed = await readFile(join(distRoot, 'feed.xml'), 'utf8');
   const feedDocument = cheerio.load(feed, { xmlMode: true });
   const items = feedDocument('channel > item');
   if (items.length !== 10) errors.push('feed.xml: expected exactly 10 items');
-  items.each((_, node) => {
+  const expectedFeed = records
+    .filter(({ collection, draft }) => collection === 'blog' && !draft)
+    .toSorted(
+      (left, right) =>
+        new Date(right.originalTimestamp ?? right.publishedAt).getTime() -
+        new Date(left.originalTimestamp ?? left.publishedAt).getTime(),
+    )
+    .slice(0, 10);
+  items.each((index, node) => {
     const item = feedDocument(node);
+    const title = item.children('title').text();
     const link = item.children('link').text();
     const guid = item.children('guid').text();
+    const pubDate = item.children('pubDate').text();
     const description = item.children('description').text();
     const content = item.children('content\\:encoded').text();
+    const expected = expectedFeed[index];
+    const expectedLink = expected
+      ? new URL(expected.canonicalPath, SITE_ORIGIN).href
+      : '';
+    const expectedDate = expected
+      ? new Date(
+          expected.originalTimestamp ?? `${expected.publishedAt}T12:00:00Z`,
+        ).toUTCString()
+      : '';
+    if (
+      !expected ||
+      title !== expected.title ||
+      link !== expectedLink ||
+      guid !== expectedLink ||
+      pubDate !== expectedDate ||
+      description !== expected.summary
+    ) {
+      errors.push(
+        `feed.xml: post identity/title/order/date/description drift at item ${index + 1}`,
+      );
+    }
     if (
       !link.startsWith(`${SITE_ORIGIN}/`) ||
       guid !== link ||
@@ -444,9 +525,23 @@ async function validateDiscovery(distRoot, routes, errors) {
     .sort();
   if (!deepEqual(actual, expected))
     errors.push('sitemap.xml: route contract drift');
+  const lastModifiedByPath = new Map(
+    records.map((record) => [
+      record.canonicalPath,
+      record.updatedAt ??
+        record.reviewedAt ??
+        record.publishedAt ??
+        RELEASE_DATE,
+    ]),
+  );
   for (const node of sitemapDocument('urlset > url').toArray()) {
-    if (!sitemapDocument(node).children('lastmod').text())
-      errors.push('sitemap.xml: missing lastmod');
+    const item = sitemapDocument(node);
+    const pagePath = new URL(item.children('loc').text()).pathname;
+    const lastModified = item.children('lastmod').text();
+    const expectedLastModified =
+      lastModifiedByPath.get(pagePath) ?? RELEASE_DATE;
+    if (lastModified !== expectedLastModified)
+      errors.push(`sitemap.xml: lastmod drift for ${pagePath}`);
   }
 
   const robots = await readFile(join(distRoot, 'robots.txt'), 'utf8');

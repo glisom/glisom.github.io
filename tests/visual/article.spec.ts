@@ -1,7 +1,19 @@
-import { baseline, capturePair, comparisonMode, test } from './helpers';
+import {
+  baseline,
+  captureBeforeAfter,
+  capturePair,
+  comparisonMode,
+  prepareApprovedMockup,
+  test,
+} from './helpers';
 
 const article = '/2026/02/24/listwithme-returns.html';
 baseline('article-listwithme', article);
+
+const expandArticleToc = async (target: Parameters<typeof capturePair>[0]) =>
+  target.locator('details[data-toc-state="disclosure"] > summary').click();
+
+baseline('interaction-expanded-toc-phone', article, expandArticleToc);
 
 test('capture approved article comparison', async ({ page }, testInfo) => {
   test.skip(!comparisonMode);
@@ -10,33 +22,23 @@ test('capture approved article comparison', async ({ page }, testInfo) => {
     `article-listwithme-${testInfo.project.name}`,
     'http://127.0.0.1:4174/article-family-approved.html',
     article,
-  );
-});
-
-test('capture keyboard-focus comparison', async ({ page }, testInfo) => {
-  test.skip(!comparisonMode || testInfo.project.name !== 'desktop');
-  const focus = async (target: typeof page) => target.keyboard.press('Tab');
-  await capturePair(
-    page,
-    'interaction-keyboard-focus-desktop',
-    'http://127.0.0.1:4174/article-family-approved.html',
-    article,
-    focus,
-    focus,
+    async (reference) =>
+      prepareApprovedMockup(reference, {
+        family: 'article',
+        project: testInfo.project.name as 'desktop' | 'tablet' | 'phone',
+      }),
+    undefined,
+    { includeFullPage: true },
   );
 });
 
 test('capture expanded article TOC comparison', async ({ page }, testInfo) => {
   test.skip(!comparisonMode || testInfo.project.name !== 'phone');
-  await capturePair(
+  await captureBeforeAfter(
     page,
     'interaction-expanded-toc-phone',
-    'http://127.0.0.1:4174/article-family-approved.html',
     article,
-    undefined,
-    async (candidate) =>
-      candidate
-        .locator('details[data-toc-state="disclosure"] > summary')
-        .click(),
+    expandArticleToc,
+    'details[data-toc-state="disclosure"] > summary',
   );
 });

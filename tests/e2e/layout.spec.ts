@@ -76,15 +76,21 @@ for (const [family, path] of [
         .locator('.identity-rail')
         .evaluate((node) => node.getBoundingClientRect().width),
     ).toBe(210);
+    const mastheadSelector = {
+      Article: '.article-masthead',
+      Index: '.collection-masthead',
+      Detail: '.dossier-head',
+    }[family];
+    const mastheadGrid = await page
+      .locator(mastheadSelector)
+      .evaluate((node) => ({
+        display: getComputedStyle(node).display,
+        columns: getComputedStyle(node).gridTemplateColumns,
+      }));
+    expect(mastheadGrid.display).toBe('grid');
+    expect(mastheadGrid.columns).not.toBe('none');
+    expect(mastheadGrid.columns.split(' ')).toHaveLength(1);
     if (family === 'Article') {
-      expect(
-        await page
-          .locator('.article-masthead')
-          .evaluate(
-            (node) =>
-              getComputedStyle(node).gridTemplateColumns.split(' ').length,
-          ),
-      ).toBe(1);
       expect(
         await page
           .locator('.article-facts')
