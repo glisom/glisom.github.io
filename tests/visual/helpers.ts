@@ -2,7 +2,10 @@ import { mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { expect, test, type Page } from '@playwright/test';
 import { makeComparison } from '../../scripts/make-comparison.mjs';
-import { assertCurrentCanonicalVisualHost } from '../../scripts/lib/canonical-visual.mjs';
+import {
+  assertCanonicalSnapshotUpdateMode,
+  assertCanonicalVisualRuntime,
+} from '../../scripts/lib/canonical-visual.mjs';
 import { assertServedReferenceFingerprint } from '../../scripts/lib/visual-capture.mjs';
 import {
   canonicalCaptureSpecs,
@@ -17,6 +20,7 @@ import {
 } from '../helpers/visual-contract';
 
 export const comparisonMode = process.env.CAPTURE_COMPARISONS === '1';
+let canonicalRuntimeVerification: Promise<void> | undefined;
 const root = join(process.cwd(), 'docs/qa/visual-comparisons');
 const localFontFaces = requiredVisualFontFaces().map(
   ([family, weight, style], index) => {
@@ -439,7 +443,9 @@ export function baseline(
       ),
       'This viewport is not part of the approved comparison matrix.',
     );
-    await assertCurrentCanonicalVisualHost();
+    assertCanonicalSnapshotUpdateMode(testInfo.config.updateSnapshots);
+    canonicalRuntimeVerification ??= assertCanonicalVisualRuntime();
+    await canonicalRuntimeVerification;
     await installVisualNetworkBoundary(page);
     await page.goto(path);
     if (prepare) await prepare(page);
