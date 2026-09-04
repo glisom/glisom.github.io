@@ -996,9 +996,11 @@
   }
 
   .prose a {
-    display: inline;
-    min-inline-size: 0;
-    min-block-size: 0;
+    display: inline-flex;
+    min-inline-size: 44px;
+    min-block-size: 44px;
+    align-items: center;
+    vertical-align: middle;
   }
 
   .article-back-link,

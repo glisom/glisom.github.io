@@ -7,6 +7,10 @@ interface Props {
 }
 
 const { links, actionState } = Astro.props;
+const externalAttributes = (href: string) =>
+  /^https?:\/\//.test(href)
+    ? { target: '_blank', rel: 'noopener noreferrer' }
+    : {};
 const primary = links.filter(
   (link) => link.kind === 'primary' || link.kind === 'install',
 );
@@ -48,6 +52,7 @@ if (primary.length === 0 && !actionState?.trim()) {
         data-action={link.kind}
         data-action-role="primary"
         data-surface="blue"
+        {...externalAttributes(link.href)}
       >
         {link.label}
       </a>
@@ -60,6 +65,7 @@ if (primary.length === 0 && !actionState?.trim()) {
         href={link.href}
         data-action={link.kind}
         data-action-role="quiet"
+        {...externalAttributes(link.href)}
       >
         {link.label}
       </a>
