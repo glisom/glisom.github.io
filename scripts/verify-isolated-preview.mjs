@@ -12,6 +12,8 @@ import { compareCrawls } from './lib/crawl-policy.ts';
 const execFileAsync = promisify(execFile);
 const FULL_COMMIT_SHA = /^[0-9a-f]{40}$/;
 const ALLOWED_UNTRACKED_MANIFEST = 'docs/qa/dist-manifest.json';
+const REDIRECT_STATUSES = new Set([301, 302, 303, 307, 308]);
+const MAX_REDIRECTS = 20;
 const repositoryRoot = fileURLToPath(new URL('../', import.meta.url));
 
 function privateIpv4(hostname) {
@@ -154,6 +156,52 @@ function artifactUrl(origin, relativePath) {
   return new URL(`/${encoded}`, `${origin}/`);
 }
 
+function originEnforcingFetch(origin, fetchImplementation) {
+  return async (input, init) => {
+    let requestUrl = new URL(
+      typeof input === 'string'
+        ? input
+        : input instanceof URL
+          ? input.href
+          : input.url,
+    );
+    let redirects = 0;
+
+    while (true) {
+      if (requestUrl.origin !== origin) {
+        throw new Error(
+          `Request escaped the isolated preview origin: ${requestUrl.href}`,
+        );
+      }
+      const response = await fetchImplementation(requestUrl, {
+        ...init,
+        redirect: 'manual',
+      });
+      const responseUrl = response.url ? new URL(response.url) : requestUrl;
+      if (responseUrl.origin !== origin) {
+        throw new Error(
+          `Response escaped the isolated preview origin: ${responseUrl.href}`,
+        );
+      }
+      if (!REDIRECT_STATUSES.has(response.status)) return response;
+
+      const location = response.headers.get('location');
+      if (!location) return response;
+      if (redirects >= MAX_REDIRECTS) {
+        throw new Error(`Too many isolated preview redirects: ${requestUrl}`);
+      }
+      const nextUrl = new URL(location, responseUrl);
+      if (nextUrl.origin !== origin) {
+        throw new Error(
+          `Redirect escaped the isolated preview origin: ${nextUrl.href}`,
+        );
+      }
+      requestUrl = nextUrl;
+      redirects += 1;
+    }
+  };
+}
+
 async function verifyRemoteFiles(
   origin,
   distRoot,
@@ -212,14 +260,13 @@ export async function verifyIsolatedPreview({
   if (typeof fetchImplementation !== 'function') {
     throw new Error('An injected fetch implementation is required');
   }
-
-  const manifest = await checkDistManifest(distRoot, distManifestPath);
-  await verifyRemoteFiles(
+  const isolatedFetch = originEnforcingFetch(
     validatedOrigin,
-    distRoot,
-    manifest,
     fetchImplementation,
   );
+
+  const manifest = await checkDistManifest(distRoot, distManifestPath);
+  await verifyRemoteFiles(validatedOrigin, distRoot, manifest, isolatedFetch);
 
   const [paths, baseline, context] = await Promise.all([
     loadCrawlPaths(),
@@ -235,7 +282,7 @@ export async function verifyIsolatedPreview({
     new URL(validatedOrigin),
     paths,
     6,
-    fetchImplementation,
+    isolatedFetch,
   );
   const differences = compareCrawls(baseline, candidate, context);
   if (differences.length) {

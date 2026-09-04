@@ -180,9 +180,11 @@ async function createHarness() {
   function fetchFixture({
     remoteDifference = false,
     missingRoute,
+    crossOriginRoute,
   }: {
     remoteDifference?: boolean;
     missingRoute?: string;
+    crossOriginRoute?: string;
   } = {}): typeof fetch {
     return async (input) => {
       const url = new URL(
@@ -226,7 +228,13 @@ async function createHarness() {
         status,
         headers: { 'content-type': contentType },
       });
-      Object.defineProperty(response, 'url', { value: url.href });
+      Object.defineProperty(response, 'url', {
+        value:
+          url.pathname === crossOriginRoute
+            ? new URL(`${url.pathname}${url.search}`, 'https://grantisom.com')
+                .href
+            : url.href,
+      });
       return response;
     };
   }
@@ -477,6 +485,21 @@ describe('isolated preview policy', () => {
         }),
       }),
     ).rejects.toThrow(/crawl|difference|blog/i);
+    await expect(readFile(harness.previewManifestPath)).rejects.toThrow();
+  });
+
+  it('rejects a policy response whose final URL escapes the preview origin', async () => {
+    const { verifyIsolatedPreview } = await loadVerifier();
+    const harness = await createHarness();
+
+    await expect(
+      verifyIsolatedPreview({
+        ...harness.options,
+        fetchImplementation: harness.fetchFixture({
+          crossOriginRoute: '/blog/',
+        }),
+      }),
+    ).rejects.toThrow(/origin|isolated|redirect/i);
     await expect(readFile(harness.previewManifestPath)).rejects.toThrow();
   });
 
