@@ -1,8 +1,12 @@
 export function e2eNetworkPolicy(
   value: string,
+  allowedOrigins: readonly string[],
 ): 'continue' | 'fulfill' | 'abort' {
   const url = new URL(value);
-  if (['localhost', '127.0.0.1'].includes(url.hostname)) return 'continue';
+  const exactOrigins = new Set(
+    allowedOrigins.map((origin) => new URL(origin).origin),
+  );
+  if (exactOrigins.has(url.origin)) return 'continue';
   if (['utteranc.es', 'open.spotify.com'].includes(url.hostname))
     return 'fulfill';
   return 'abort';

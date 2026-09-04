@@ -75,25 +75,10 @@ function normalizeAuthoredUrl(value, baseUrl, pageUrl) {
   }
 }
 
-function removeCandidateFallbacks($, root) {
+function removeCandidateFallbacks(root) {
   root
     .find('figure[data-migrated-embed][data-embed-kind] [data-embed-fallback]')
     .remove();
-  root
-    .find('p')
-    .contents()
-    .each((_, node) => {
-      if (
-        node.type === 'text' &&
-        /^\s*\|\s*$/.test(node.data) &&
-        node.prev?.type === 'tag' &&
-        node.prev.name === 'a' &&
-        node.next?.type === 'tag' &&
-        node.next.name === 'a'
-      ) {
-        $(node).remove();
-      }
-    });
 }
 
 function semanticText(root) {
@@ -110,6 +95,17 @@ function semanticText(root) {
       node.prev.name === 'a'
     ) {
       output += ' ';
+    }
+    if (node.name === 'td' || node.name === 'th') {
+      let previous = node.prev;
+      while (previous?.type === 'text' && !previous.data.trim())
+        previous = previous.prev;
+      if (
+        previous?.type === 'tag' &&
+        (previous.name === 'td' || previous.name === 'th')
+      ) {
+        output += ' | ';
+      }
     }
     const block = SEMANTIC_BLOCKS.has(node.name);
     if (block) output += ' ';
@@ -129,7 +125,7 @@ function articleSemantics($, requestedPath, baseUrl, pageUrl) {
       : $('.prose').first();
   if (!selected.length) return null;
   const root = selected.clone();
-  removeCandidateFallbacks($, root);
+  removeCandidateFallbacks(root);
   return {
     headings: root
       .find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]')

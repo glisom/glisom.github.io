@@ -2,6 +2,7 @@ import { mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { expect, test, type Page } from '@playwright/test';
 import { makeComparison } from '../../scripts/make-comparison.mjs';
+import { assertServedReferenceFingerprint } from '../../scripts/lib/visual-capture.mjs';
 import {
   canonicalCaptureSpecs,
   canonicalProjects,
@@ -318,6 +319,7 @@ async function assertSourceMarker(page: Page, sourceUrl: string) {
   key.hash = '';
   const marker = sourceMarkers.get(key.href);
   if (!marker) throw new Error(`No approved source marker for ${key.href}`);
+  await assertServedReferenceFingerprint(sourceUrl);
   await expect(page.locator(marker.selector).first()).toContainText(
     marker.text,
   );

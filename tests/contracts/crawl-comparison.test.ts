@@ -200,6 +200,49 @@ describe('deterministic site crawl', () => {
       await once(server, 'close');
     }
   });
+
+  it('preserves authored separators and rejects an undeclared separator deletion', async () => {
+    const path = '/2026/02/07/healthql-react-native.html';
+    let articleMarkup =
+      '<table><tbody><tr><td><a href="https://github.com/glisom/HealthQL">GitHub</a></td><td><a href="https://glisom.github.io/HealthQL">Documentation</a></td></tr></tbody></table>';
+    const server = createServer((_request, response) => {
+      response.statusCode = 200;
+      response.setHeader('content-type', 'text/html; charset=utf-8');
+      response.end(
+        `<!doctype html><html><head><title>HealthQL</title><meta name="description" content="Fixture"><link rel="canonical" href="https://grantisom.com${path}"></head><body><h1>HealthQL</h1><article data-article-prose>${articleMarkup}</article></body></html>`,
+      );
+    });
+    server.listen(0, '127.0.0.1');
+    await once(server, 'listening');
+    const address = server.address();
+    if (!address || typeof address === 'string') throw new Error('No port');
+    const origin = new URL(`http://127.0.0.1:${address.port}`);
+    try {
+      const baseline = (await crawlSite(origin, [path]))[0];
+      expect(baseline.articleSemantic?.text).toBe('GitHub | Documentation');
+      const policy: CrawlPolicy = {
+        path,
+        mode: 'legacy-post',
+        allowanceIds: [],
+      };
+      articleMarkup =
+        '<p><a href="https://github.com/glisom/HealthQL">GitHub</a> | <a href="https://glisom.github.io/HealthQL">Documentation</a></p>';
+      const preserved = (await crawlSite(origin, [path]))[0];
+      expect(compareCrawls([baseline], [preserved], context([policy]))).toEqual(
+        [],
+      );
+      articleMarkup =
+        '<p><a href="https://github.com/glisom/HealthQL">GitHub</a> <a href="https://glisom.github.io/HealthQL">Documentation</a></p>';
+      const deleted = (await crawlSite(origin, [path]))[0];
+      expect(deleted.articleSemantic?.text).toBe('GitHub Documentation');
+      expect(compareCrawls([baseline], [deleted], context([policy]))).toEqual([
+        expect.objectContaining({ path, field: 'articleSemantic.text' }),
+      ]);
+    } finally {
+      server.close();
+      await once(server, 'close');
+    }
+  });
 });
 
 describe('structured crawl comparison', () => {

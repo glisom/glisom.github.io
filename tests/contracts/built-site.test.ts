@@ -127,4 +127,81 @@ describe('built-site release contract', () => {
       await rm(temporary, { recursive: true, force: true });
     }
   });
+
+  it('rejects a missing or corrupt deploy CNAME', async () => {
+    const temporary = await mkdtemp(join(tmpdir(), 'built-cname-'));
+    const candidate = join(temporary, 'dist');
+    try {
+      await cp(new URL('dist/', repositoryRoot), candidate, {
+        recursive: true,
+      });
+      const cnamePath = join(candidate, 'CNAME');
+      await writeFile(cnamePath, 'wrong.example');
+      await expect(
+        assertDistContract(pathToFileURL(`${candidate}/`), routeManifest),
+      ).rejects.toThrow(/CNAME.*grantisom\.com/i);
+
+      await rm(cnamePath);
+      await expect(
+        assertDistContract(pathToFileURL(`${candidate}/`), routeManifest),
+      ).rejects.toThrow(/CNAME.*grantisom\.com/i);
+    } finally {
+      await rm(temporary, { recursive: true, force: true });
+    }
+  });
+
+  it('rejects an undeclared deletion of an authored link separator', async () => {
+    const temporary = await mkdtemp(join(tmpdir(), 'built-separator-'));
+    const candidate = join(temporary, 'dist');
+    try {
+      await cp(new URL('dist/', repositoryRoot), candidate, {
+        recursive: true,
+      });
+      const pagePath = join(candidate, '2026/02/07/healthql-react-native.html');
+      const original = await readFile(pagePath, 'utf8');
+      const mutated = original.replace('</a> | <a', '</a> <a');
+      expect(mutated).not.toBe(original);
+      await writeFile(pagePath, mutated);
+      await expect(
+        assertDistContract(pathToFileURL(`${candidate}/`), routeManifest),
+      ).rejects.toThrow(/migrated text differs outside allowances/i);
+    } finally {
+      await rm(temporary, { recursive: true, force: true });
+    }
+  });
+
+  it('validates every article picture and rejects article images without picture sources', async () => {
+    const temporary = await mkdtemp(join(tmpdir(), 'built-picture-scope-'));
+    const candidate = join(temporary, 'dist');
+    try {
+      await cp(new URL('dist/', repositoryRoot), candidate, {
+        recursive: true,
+      });
+      const pagePath = join(candidate, '2020/09/28/next-chapter.html');
+      const original = await readFile(pagePath, 'utf8');
+      const wrapperlessMissingAvif = original
+        .replace(
+          'class="article-figure article-figure--full"',
+          'class="renamed-article-figure"',
+        )
+        .replace(/<source type="image\/avif"[^>]*>/, '');
+      expect(wrapperlessMissingAvif).not.toBe(original);
+      await writeFile(pagePath, wrapperlessMissingAvif);
+      await expect(
+        assertDistContract(pathToFileURL(`${candidate}/`), routeManifest),
+      ).rejects.toThrow(/image\/avif/i);
+
+      const nakedImage = original.replace(
+        /<picture><source[^>]+><source[^>]+>(<img[^>]+>)<\/picture>/,
+        '$1',
+      );
+      expect(nakedImage).not.toBe(original);
+      await writeFile(pagePath, nakedImage);
+      await expect(
+        assertDistContract(pathToFileURL(`${candidate}/`), routeManifest),
+      ).rejects.toThrow(/article image.*picture/i);
+    } finally {
+      await rm(temporary, { recursive: true, force: true });
+    }
+  });
 });

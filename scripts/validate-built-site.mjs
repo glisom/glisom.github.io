@@ -162,18 +162,6 @@ function normalizeSemanticImage(value) {
   return url.origin === SITE_ORIGIN ? url.pathname : url.href;
 }
 
-function removeLinkSeparators($, root) {
-  root
-    .find('p')
-    .contents()
-    .each((_, node) => {
-      if (node.type !== 'text' || !/^\s*\|\s*$/.test(node.data)) return;
-      if (node.prev?.type === 'tag' && node.next?.type === 'tag') {
-        $(node).remove();
-      }
-    });
-}
-
 const SEMANTIC_BLOCKS = new Set([
   'address',
   'article',
@@ -258,7 +246,6 @@ function extractArticleSemantic(html, path) {
     })
     .get();
   fallbackNodes.remove();
-  removeLinkSeparators($, root);
   return {
     headings: root
       .find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]')
@@ -289,10 +276,40 @@ function extractArticleSemantic(html, path) {
   };
 }
 
-function expectedArticleSemantic(fixture, allowances, errors, path) {
+function restoreAuthoredLinkSeparators(value, markdown, errors, path) {
+  const adjacentLink =
+    /\[([^\]]+)\]\([^)]+\)\s*\|\s*(?=\[([^\]]+)\]\([^)]+\))/g;
+  let restored = value;
+  for (const match of markdown.matchAll(adjacentLink)) {
+    const withoutSeparator = `${match[1]} ${match[2]}`;
+    const withSeparator = `${match[1]} | ${match[2]}`;
+    const occurrence = restored.indexOf(withoutSeparator);
+    if (occurrence === -1) {
+      errors.push(
+        `${path}: authored link separator oracle cannot place ${withSeparator}`,
+      );
+      continue;
+    }
+    restored = `${restored.slice(0, occurrence)}${withSeparator}${restored.slice(occurrence + withoutSeparator.length)}`;
+  }
+  return restored;
+}
+
+function expectedArticleSemantic(
+  fixture,
+  allowances,
+  authoredMarkdown,
+  errors,
+  path,
+) {
   const semantic = {
     headings: fixture.headings,
-    text: fixture.text,
+    text: restoreAuthoredLinkSeparators(
+      fixture.text,
+      authoredMarkdown,
+      errors,
+      path,
+    ),
     links: fixture.links,
     images: fixture.images.map(normalizeSemanticImage),
     codeBlocks: fixture.codeBlocks,
@@ -327,7 +344,20 @@ async function validateArticleSemantics(distRoot, errors) {
   const allowances = validateMigrationAllowances(allowanceValue);
   for (const fixture of fixtures) {
     const path = new URL(fixture.url).pathname;
-    const html = await readFile(join(distRoot, outputPathFor(path)), 'utf8');
+    const [, year, month, day, slug] =
+      /^\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\.html$/.exec(path) ?? [];
+    if (!year || !month || !day || !slug) {
+      errors.push(`${path}: cannot locate authored post source`);
+      continue;
+    }
+    const [html, authoredSource] = await Promise.all([
+      readFile(join(distRoot, outputPathFor(path)), 'utf8'),
+      readFile(
+        join(repositoryRoot, '_posts', `${year}-${month}-${day}-${slug}.md`),
+        'utf8',
+      ),
+    ]);
+    const authoredMarkdown = matter(authoredSource).content;
     const actual = extractArticleSemantic(html, path);
     const pathAllowances = allowances.filter(
       (allowance) => allowance.path === path,
@@ -335,6 +365,7 @@ async function validateArticleSemantics(distRoot, errors) {
     const expected = expectedArticleSemantic(
       fixture,
       pathAllowances,
+      authoredMarkdown,
       errors,
       path,
     );
@@ -385,10 +416,22 @@ function validateMetadata($, contract, errors) {
 }
 
 async function validatePictures($, pagePath, distRoot, errors) {
-  const pictures = $('[data-article-prose] figure.article-figure picture');
+  const pictures = $('[data-article-prose] picture');
+  for (const image of $('[data-article-prose] img').toArray()) {
+    if ($(image).closest('picture').length !== 1)
+      errors.push(
+        `${pagePath}: article image must be represented by a picture`,
+      );
+  }
   for (const picture of pictures.toArray()) {
     const root = $(picture);
     const image = root.find('img').first();
+    if (root.find('img').length !== 1) {
+      errors.push(
+        `${pagePath}: article picture must contain exactly one image`,
+      );
+      continue;
+    }
     const width = Number(image.attr('width'));
     const height = Number(image.attr('height'));
     if (!(width > 0 && height > 0))
@@ -562,6 +605,12 @@ export async function assertDistContract(distDir, routes) {
       'utf8',
     ),
   ).assets;
+  const cname = await readFile(join(distRoot, 'CNAME'), 'utf8').catch(
+    () => null,
+  );
+  if (cname !== 'grantisom.com') {
+    errors.push('CNAME: expected exact deploy content grantisom.com');
+  }
 
   for (const route of routes) {
     if (!(await pathExists(join(distRoot, route.outputPath)))) {

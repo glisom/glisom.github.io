@@ -3,18 +3,20 @@ import { defineConfig, devices } from '@playwright/test';
 process.env.ASTRO_PREVIEW_BACKGROUND ??= '0';
 
 const baseURL = process.env.PREVIEW_ORIGIN ?? 'http://127.0.0.1:4321';
+const reuseExistingServer =
+  !process.env.CI && process.env.CAPTURE_COMPARISONS !== '1';
 const referenceServers = [
   {
     command:
       'npm --prefix design-reference/vite-homepage run dev -- --host 127.0.0.1 --port 4173',
     url: 'http://127.0.0.1:4173/',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer,
   },
   {
     command:
       'node scripts/serve-design-mockups.mjs --host 127.0.0.1 --port 4174',
     url: 'http://127.0.0.1:4174/article-family-approved.html',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer,
   },
 ];
 
@@ -33,7 +35,7 @@ export default defineConfig({
           {
             command: 'npm run preview -- --host 127.0.0.1 --port 4321',
             url: 'http://127.0.0.1:4321/',
-            reuseExistingServer: !process.env.CI,
+            reuseExistingServer,
           },
         ]
       : []),

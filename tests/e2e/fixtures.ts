@@ -3,8 +3,11 @@ import { e2eNetworkPolicy } from '../helpers/e2e-network-contract';
 
 export const test = base.extend<{ diagnostics: string[] }>({
   diagnostics: [
-    async ({ page }, use) => {
+    async ({ page, baseURL }, use) => {
       const diagnostics: string[] = [];
+      const allowedOrigins = [
+        new URL(baseURL ?? 'http://127.0.0.1:4321').origin,
+      ];
       page.on('console', (message) => {
         if (message.type() === 'error')
           diagnostics.push(`console.error: ${message.text()}`);
@@ -25,7 +28,7 @@ export const test = base.extend<{ diagnostics: string[] }>({
       });
       await page.context().route(/^https?:\/\//, async (route) => {
         const url = route.request().url();
-        const policy = e2eNetworkPolicy(url);
+        const policy = e2eNetworkPolicy(url, allowedOrigins);
         if (policy === 'continue') {
           await route.continue();
           return;
