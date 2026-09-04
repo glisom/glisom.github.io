@@ -1,0 +1,179 @@
+{
+  "count": 29,
+  "entries": [
+    {
+      "path": "docs/qa/visual-comparisons/combined/article-listwithme-desktop.png",
+      "sha256": "2cc36fcd50652ed5c6a91b7f8c7f5a0cbe098219548b82289c6fb9aaacf44215",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/article-listwithme-phone.png",
+      "sha256": "7369b119e6c90ceb778e77b15e107d258105ae3816242bfbd89fd9b23b15f231",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/article-listwithme-tablet.png",
+      "sha256": "c274b4d89b2d44f2b6b84179d80b36781729f2176447503555572305a841032a",
+      "width": 2076,
+      "height": 768
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-my-app-desktop.png",
+      "sha256": "e40771d9b335eb66183b3181f7eaa67d676ff2b235f3993f1005e3288c5649ec",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-my-app-phone.png",
+      "sha256": "e15a098397d9b6c5db3de1e47046affbd4a31e1c1da9e625564d794c0ba482de",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-my-app-tablet.png",
+      "sha256": "1b624d42b4d0dab560802be92b7d431ef54f2a25c2afb056d33d5b45d298b559",
+      "width": 2076,
+      "height": 768
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-my-skill-desktop.png",
+      "sha256": "95db51faaaffc686c2f1c0dcf0f060710bc35f6372d44ce533309f7b6a86d83f",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-my-skill-phone.png",
+      "sha256": "7ef8877596be246f73fddbe870b2903c5af43f86612eb8a50df501adfe30665d",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-used-app-desktop.png",
+      "sha256": "cf69db142b1c457b3aca3382e798b3845ce426c73c8da5809983e9dfaafaedfe",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-used-app-phone.png",
+      "sha256": "b5e1f45a169bd0c4ba3c0baaa00c636ce289e5c21800b092a05584c88701bc9a",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-used-skill-desktop.png",
+      "sha256": "c664d8d25c1b8f1e91edddd2a26efe02dd19963b8001c32bb0b5da2aa2913bbf",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/detail-used-skill-phone.png",
+      "sha256": "592c7d49a7ed94512e64d8f97027959c672db1bf84af1cf01ebd345f391c8548",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/homepage-desktop.png",
+      "sha256": "fe0ce26eb6306fc47089bb856681c83cab337bc11bd1cdd3e3d0da77afab2ba7",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/homepage-phone.png",
+      "sha256": "98039e5fcbdaa980bf8af9efcf8a15001a8cb1fa72b43f6b9966ab003c9ff235",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/homepage-tablet.png",
+      "sha256": "659a8f4a3faf990cf223564bbfb8513e7694359ea692f3459ad16add86112a59",
+      "width": 2076,
+      "height": 768
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-app-library-desktop.png",
+      "sha256": "32aef509644bd129f3b2e9f1656cf5e3dd07adcbc9cc8851f6fcb4721ff965be",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-app-library-phone.png",
+      "sha256": "b758f10aa8d5cd670399c07266400c5802676f0fc4098b11173fae8f387a3c92",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-blog-desktop.png",
+      "sha256": "ae9e2e5752f232d10312e617526315b1a63cab6f6bd2c75d04bb09093c26facc",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-blog-phone.png",
+      "sha256": "b93fb28703946ca9f0ccbf067fd515944d0ba4659dc3d1869c35977ec563f485",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-blog-tablet.png",
+      "sha256": "ac04f853d05b9dc5382cc2e01bea3b24f3db1e3cd5364131801f58b7f2f2f04c",
+      "width": 2076,
+      "height": 768
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-my-apps-desktop.png",
+      "sha256": "49220e638099ed8ff136e080f495856d406783c38e8befa0997a0536ab8745b3",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-my-apps-phone.png",
+      "sha256": "be80b34f7cae80969d9db7335f1884a1bb3d8d03501c48ba69c41692427dbfe3",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-my-skills-desktop.png",
+      "sha256": "7d7a2877452b1baeacba2e42ce4b35147d2ed871acdc09a49f533cc27d27d0c6",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-my-skills-phone.png",
+      "sha256": "197f07c723d50af4e1e7a3109ef422c5d4827901d9e48b42d28f08d57fc44976",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-skill-library-desktop.png",
+      "sha256": "fa7ebf6987c358c1f680936048f8ad5b40b132a8c46d30930b13f371a2a9f8b2",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/index-skill-library-phone.png",
+      "sha256": "5cac9fa2cc007f5c44011193093420a901753601dc1854229b889469f9e0cec8",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/interaction-expanded-toc-phone.png",
+      "sha256": "1f27dbc4b647fc1f043af3b93262ecd6af838037378cbefb86d465d9d0139147",
+      "width": 808,
+      "height": 844
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/interaction-keyboard-focus-desktop.png",
+      "sha256": "264a33cebf9b2a4154f48f2f102c57fcf0c22227d726c8e9591cc1c94356690c",
+      "width": 3200,
+      "height": 992
+    },
+    {
+      "path": "docs/qa/visual-comparisons/combined/interaction-mobile-browse-open-phone.png",
+      "sha256": "2753914008c5b74414cf2c6609358b4d197c7b5a23c0a0d1c4d002e51ed4eee3",
+      "width": 808,
+      "height": 844
+    }
+  ]
+}

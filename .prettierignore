@@ -8,6 +8,9 @@ design-reference/vite-homepage/
 docs/design/mockups/
 docs/superpowers/
 docs/qa/crawls/
+_config.yml
+README.md
+tests/contracts/legacy-assets.test.ts
 public/
 tests/fixtures/
 _includes/
