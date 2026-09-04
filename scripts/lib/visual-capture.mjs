@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { createServer } from 'node:http';
+import { fileURLToPath } from 'node:url';
 import { runInNewContext } from 'node:vm';
 
 const captureEndpoints = [
@@ -8,23 +9,34 @@ const captureEndpoints = [
   { host: '127.0.0.1', port: 4174 },
 ];
 
+function viteRawSourceUrl(name) {
+  const sourcePath = fileURLToPath(
+    new URL(
+      `../../design-reference/vite-homepage/src/${name}`,
+      import.meta.url,
+    ),
+  );
+  return `http://127.0.0.1:4173/@fs${sourcePath}?raw`;
+}
+
 const referenceProofs = new Map([
   [
     'http://127.0.0.1:4173/',
     [
       {
-        url: 'http://127.0.0.1:4173/src/App.jsx?raw',
+        url: viteRawSourceUrl('App.jsx'),
         sha256:
           'b4f5db54c201bed782110fca82f999d905250e8c8ae1be92e0df917ba5c79c3f',
         viteRawModule: true,
       },
       {
-        url: 'http://127.0.0.1:4173/src/main.jsx?raw',
+        url: viteRawSourceUrl('main.jsx'),
         sha256:
           '832f752c6b6a454a26dbc4f2654f5bd633f2b103516c8c0abac648308c133a7e',
+        viteRawModule: true,
       },
       {
-        url: 'http://127.0.0.1:4173/src/styles.css?raw',
+        url: viteRawSourceUrl('styles.css'),
         sha256:
           'b7befee81f1df7c5bcd1dce2250ba48c7f5a7f534e139e2cb48006e09cff6ce3',
         viteRawModule: true,

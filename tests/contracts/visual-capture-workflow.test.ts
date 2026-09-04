@@ -84,12 +84,23 @@ test('homepage proof accepts exact frozen source bytes and rejects stale served 
       response.end('stale Vite source');
       return;
     }
-    const sources = new Map([
-      ['/src/App.jsx?raw', `export default ${JSON.stringify(app)}`],
-      ['/src/main.jsx?raw', main],
-      ['/src/styles.css?raw', `export default ${JSON.stringify(styles)}`],
-    ]);
-    response.end(sources.get(request.url ?? '') ?? 'not found');
+    const url = request.url ?? '';
+    if (url === '/src/main.jsx?raw') {
+      response.end(main);
+      return;
+    }
+    const sources = [
+      ['App.jsx', app],
+      ['main.jsx', main],
+      ['styles.css', styles],
+    ] as const;
+    const source = sources.find(([name]) => url.endsWith(`/src/${name}?raw`));
+    if (!source) {
+      response.statusCode = 404;
+      response.end('not found');
+      return;
+    }
+    response.end(`export default ${JSON.stringify(source[1])}`);
   });
   server.listen(4173, '127.0.0.1');
   await once(server, 'listening');

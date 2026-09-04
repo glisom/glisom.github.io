@@ -170,6 +170,31 @@ describe('built-site release contract', () => {
     }
   });
 
+  it('keeps an unmarked fallback node in article semantic parity', async () => {
+    const temporary = await mkdtemp(join(tmpdir(), 'built-unmarked-fallback-'));
+    const candidate = join(temporary, 'dist');
+    try {
+      await cp(new URL('dist/', repositoryRoot), candidate, {
+        recursive: true,
+      });
+      const pagePath = join(candidate, '2026/02/07/healthql-react-native.html');
+      const original = await readFile(pagePath, 'utf8');
+      const paragraph =
+        '<p>HealthQL v1.1.0 adds full React Native and Expo support.';
+      const mutated = original.replace(
+        paragraph,
+        `<p data-embed-fallback>Undeclared fallback content.</p>${paragraph}`,
+      );
+      expect(mutated).not.toBe(original);
+      await writeFile(pagePath, mutated);
+      await expect(
+        assertDistContract(pathToFileURL(`${candidate}/`), routeManifest),
+      ).rejects.toThrow(/migrated text differs outside allowances/i);
+    } finally {
+      await rm(temporary, { recursive: true, force: true });
+    }
+  });
+
   it('validates every article picture and rejects article images without picture sources', async () => {
     const temporary = await mkdtemp(join(tmpdir(), 'built-picture-scope-'));
     const candidate = join(temporary, 'dist');

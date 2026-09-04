@@ -229,7 +229,9 @@ function extractArticleSemantic(html, path) {
   const $ = cheerio.load(html);
   const root = $('[data-article-prose]').first().clone();
   if (!root.length) throw new Error(`${path}: missing data-article-prose`);
-  const fallbackNodes = root.find('[data-embed-fallback]');
+  const fallbackNodes = root.find(
+    'figure[data-migrated-embed][data-embed-kind="spotify"] > figcaption[data-embed-fallback]',
+  );
   const embeds = root
     .find('figure[data-migrated-embed][data-embed-kind="spotify"]')
     .map((_, node) => {
