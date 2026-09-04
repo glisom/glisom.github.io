@@ -17,7 +17,7 @@
   padding: 52px clamp(38px, 5vw, 76px);
 }
 
-.registry-line {
+.dossier-head .registry-line {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -562,7 +562,7 @@
     padding: 44px 18px 38px;
   }
 
-  .registry-line {
+  .dossier-head .registry-line {
     margin-bottom: 48px;
   }
 
