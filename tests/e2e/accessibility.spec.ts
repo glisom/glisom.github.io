@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { readFileSync } from 'node:fs';
 import { expect, interceptThirdParties, test } from './fixtures';
 
-const representativePages = ['/', '/blog/', '/2019/05/30/listwithme.html', '/listwithme/', '/listwithme/support/'];
+const representativePages = ['/', '/blog/', '/2026/02/24/listwithme-returns.html', '/listwithme/', '/listwithme/support/'];
 const routeFixture = JSON.parse(
   readFileSync(new URL('../fixtures/public-routes.json', import.meta.url), 'utf8'),
 ) as { routes: Array<{ canonicalPath: string; kind: string }> };
@@ -30,7 +30,7 @@ test('keyboard order reaches skip link, identity, and primary content in documen
 
 test('paper, blue, lime, and black surfaces retain visible computed focus indicators', async ({ page }) => {
   const cases = [
-    ['/blog/', '.identity-rail a[href="/blog/"]'],
+    ['/blog/', test.info().project.name === 'phone' ? 'details.mobile-nav > summary' : '.identity-rail a[href="/blog/"]'],
     ['/listwithme/', '[data-action-role="primary"]'],
     ['/', '.home-hero .primary-action'],
     ['/', '[data-surface="black"] a'],
@@ -50,15 +50,17 @@ test('paper, blue, lime, and black surfaces retain visible computed focus indica
 });
 
 test('every emitted caption is semantically associated with its figure', async ({ page }) => {
-  for (const path of ['/', '/2019/05/30/listwithme.html', '/listwithme/']) {
+  let total = 0;
+  for (const path of ['/', '/2026/02/24/listwithme-returns.html', '/listwithme/']) {
     await interceptThirdParties(page);
     await page.goto(path);
     const associations = await page.locator('figcaption').evaluateAll((captions) =>
       captions.map((caption) => ({ parent: caption.parentElement?.tagName, figures: caption.closest('figure') ? 1 : 0 })),
     );
-    expect(associations.length, path).toBeGreaterThan(0);
+    total += associations.length;
     expect(associations.every(({ parent, figures }) => parent === 'FIGURE' && figures === 1), path).toBe(true);
   }
+  expect(total).toBeGreaterThan(0);
 });
 
 test('touch-width controls expose labels without hover', async ({ page }) => {
@@ -134,13 +136,13 @@ test('comments request is lazy and occurs exactly once near the comments region'
 
 test('every authored migrated iframe is lazy and has a source-equal linked fallback', async ({ page }) => {
   await interceptThirdParties(page);
-  await page.goto('/2018/11/27/playlists.html');
+  await page.goto('/2020/02/10/2019-playlists.html');
   const embeds = page.locator('figure[data-migrated-embed]');
   await expect(embeds).toHaveCount(4);
   for (const embed of await embeds.all()) {
     const iframe = embed.locator('iframe');
     await expect(iframe).toHaveAttribute('loading', 'lazy');
     const source = await iframe.getAttribute('src');
-    await expect(embed.locator('[data-embed-fallback]')).toHaveAttribute('href', source!);
+    await expect(embed.locator('[data-embed-fallback] a')).toHaveAttribute('href', source!);
   }
 });

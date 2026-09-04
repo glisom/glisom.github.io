@@ -21,7 +21,7 @@ const ordered = screenshots.toSorted((left, right) => left.order - right.order);
         <h2 id="screenshot-gallery-title">Inside the app</h2>
         <p>{ordered.length} current iPhone screens</p>
       </div>
-      <div class="screenshot-grid">
+      <div class="screenshot-grid" tabindex="0" aria-label="App screenshots">
         {ordered.map((screenshot) => (
           <figure
             class="screenshot-card"

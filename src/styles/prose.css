@@ -713,11 +713,11 @@
 }
 
 .post-navigation-card--next > span {
-  color: var(--lime);
+  color: #d8f000;
 }
 
 .post-navigation-card--next > small {
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .article-comments {
