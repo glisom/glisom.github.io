@@ -2,6 +2,7 @@ import { mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { expect, test, type Page } from '@playwright/test';
 import { makeComparison } from '../../scripts/make-comparison.mjs';
+import { assertCurrentCanonicalVisualHost } from '../../scripts/lib/canonical-visual.mjs';
 import { assertServedReferenceFingerprint } from '../../scripts/lib/visual-capture.mjs';
 import {
   canonicalCaptureSpecs,
@@ -438,10 +439,7 @@ export function baseline(
       ),
       'This viewport is not part of the approved comparison matrix.',
     );
-    expect(
-      `${process.platform}-${process.arch}`,
-      'Pixel baselines are canonical only on macOS arm64.',
-    ).toBe('darwin-arm64');
+    await assertCurrentCanonicalVisualHost();
     await installVisualNetworkBoundary(page);
     await page.goto(path);
     if (prepare) await prepare(page);
