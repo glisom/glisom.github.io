@@ -445,7 +445,7 @@ describe('article reading modes', () => {
     ).toHaveLength(0);
   });
 
-  it('keeps sentence links inline while preserving mobile action targets', () => {
+  it('keeps prose links in sentence flow while making every mobile target 44px', () => {
     const vampire = article('/2026/09/01/vampire.html').$;
     const listWithMe = article('/2026/02/24/listwithme-returns.html').$;
 
@@ -459,9 +459,11 @@ describe('article reading modes', () => {
     ).toHaveLength(1);
 
     expect(mediaDeclarations('(max-width: 820px)', '.prose a')).toMatchObject({
-      display: 'inline',
-      'min-inline-size': '0',
-      'min-block-size': '0',
+      display: 'inline-flex',
+      'min-inline-size': '44px',
+      'min-block-size': '44px',
+      'align-items': 'center',
+      'vertical-align': 'middle',
     });
 
     const mobileActionSelectors = [
