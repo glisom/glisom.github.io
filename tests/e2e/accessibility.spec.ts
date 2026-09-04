@@ -40,6 +40,28 @@ test('keyboard order reaches skip link, identity, and primary content in documen
   await expect(
     page.getByRole('link', { name: 'Skip to content' }),
   ).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#main-content')).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(
+    page
+      .locator(
+        '#main-content a[href], #main-content button, #main-content summary, #main-content input, #main-content select, #main-content textarea, #main-content [tabindex]:not([tabindex="-1"])',
+      )
+      .first(),
+  ).toBeFocused();
+  expect(
+    await page.evaluate(() => {
+      const main = document.querySelector('#main-content');
+      return Boolean(
+        main &&
+        document.activeElement !== main &&
+        main.contains(document.activeElement),
+      );
+    }),
+  ).toBe(true);
+  await page.goto('/');
+  await page.keyboard.press('Tab');
   await page.keyboard.press('Tab');
   const focusedName = await page.locator(':focus').getAttribute('aria-label');
   const focusedText = (await page.locator(':focus').innerText()).trim();
@@ -57,24 +79,59 @@ test('paper, blue, lime, and black surfaces retain visible computed focus indica
         : '.identity-rail a[href="/blog/"]',
     ],
     ['/listwithme/', '[data-action-role="primary"]'],
+    ['/listwithme/', '[data-surface="lime"]'],
     ['/', '.home-hero .primary-action'],
     ['/', '[data-surface="black"] a'],
   ] as const;
   for (const [path, selector] of cases) {
     await page.goto(path);
     const target = page.locator(selector).first();
+    if (selector === '[data-surface="lime"]')
+      await target.evaluate((node) => node.setAttribute('tabindex', '0'));
     await target.focus();
     const indicator = await target.evaluate((node) => {
+      const parseRgb = (value: string) => {
+        const channels = value.match(/[\d.]+/g)?.map(Number) ?? [];
+        return channels.length >= 3 ? channels.slice(0, 3) : null;
+      };
+      const luminance = (channels: number[]) => {
+        const linear = channels.map((channel) => {
+          const value = channel / 255;
+          return value <= 0.04045
+            ? value / 12.92
+            : ((value + 0.055) / 1.055) ** 2.4;
+        });
+        return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+      };
       const style = getComputedStyle(node);
+      let surface: Element | null = node;
+      let background = 'rgba(0, 0, 0, 0)';
+      while (surface) {
+        background = getComputedStyle(surface).backgroundColor;
+        if (!background.endsWith(', 0)')) break;
+        surface = surface.parentElement;
+      }
+      const foregroundRgb = parseRgb(style.outlineColor);
+      const backgroundRgb = parseRgb(background);
+      const foreground = foregroundRgb ? luminance(foregroundRgb) : 0;
+      const backdrop = backgroundRgb ? luminance(backgroundRgb) : 0;
       return {
         width: Number.parseFloat(style.outlineWidth),
         style: style.outlineStyle,
         color: style.outlineColor,
+        background,
+        contrast:
+          (Math.max(foreground, backdrop) + 0.05) /
+          (Math.min(foreground, backdrop) + 0.05),
       };
     });
     expect(indicator.width, `${path} ${selector}`).toBeGreaterThanOrEqual(2);
     expect(indicator.style).not.toBe('none');
     expect(indicator.color).not.toBe('rgba(0, 0, 0, 0)');
+    expect(
+      indicator.contrast,
+      `${path} ${selector}: ${indicator.color} on ${indicator.background}`,
+    ).toBeGreaterThanOrEqual(3);
   }
 });
 
@@ -116,7 +173,11 @@ test('touch-width controls expose labels without hover', async ({ page }) => {
       .locator('a:visible, button:visible, summary:visible')
       .evaluateAll((nodes) =>
         nodes.map((node) =>
-          (node.getAttribute('aria-label') || node.textContent || '').trim(),
+          (
+            node.getAttribute('aria-label') ||
+            (node as HTMLElement).innerText ||
+            ''
+          ).trim(),
         ),
       );
     expect(names.length, path).toBeGreaterThan(0);
@@ -132,12 +193,15 @@ test('every phone control, including prose links, renders a 44px hit rectangle',
   test.skip(test.info().project.name !== 'phone');
   const paths = routeFixture.routes
     .filter(
-      ({ kind, canonicalPath }) =>
-        ['page', 'post'].includes(kind) && canonicalPath !== '/404.html',
+      ({ canonicalPath }) =>
+        !['/feed.xml', '/sitemap.xml', '/robots.txt', '/404.html'].includes(
+          canonicalPath,
+        ),
     )
     .map(({ canonicalPath }) => canonicalPath);
+  expect(paths).toHaveLength(48);
   const failures: string[] = [];
-  for (const path of paths) {
+  for (const path of [...paths, '/404.html']) {
     await interceptThirdParties(page);
     await page.goto(path);
     const undersized = await page
