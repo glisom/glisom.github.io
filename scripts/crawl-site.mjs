@@ -264,9 +264,9 @@ function localInventory($, selector, attribute, baseUrl, pageUrl) {
   ].toSorted();
 }
 
-async function crawlOne(baseUrl, requestedPath) {
+async function crawlOne(baseUrl, requestedPath, fetchImplementation) {
   const requestUrl = new URL(requestedPath, baseUrl);
-  const response = await fetch(requestUrl, {
+  const response = await fetchImplementation(requestUrl, {
     redirect: 'follow',
     signal: AbortSignal.timeout(30_000),
     headers: { 'user-agent': 'grantisom-release-verifier/1.0' },
@@ -330,7 +330,12 @@ async function crawlOne(baseUrl, requestedPath) {
   };
 }
 
-export async function crawlSite(baseUrl, paths, concurrency = 6) {
+export async function crawlSite(
+  baseUrl,
+  paths,
+  concurrency = 6,
+  fetchImplementation = globalThis.fetch,
+) {
   if (!Number.isInteger(concurrency) || concurrency < 1) {
     throw new Error(`Concurrency must be a positive integer: ${concurrency}`);
   }
@@ -341,7 +346,11 @@ export async function crawlSite(baseUrl, paths, concurrency = 6) {
     while (nextIndex < requestedPaths.length) {
       const index = nextIndex;
       nextIndex += 1;
-      results[index] = await crawlOne(baseUrl, requestedPaths[index]);
+      results[index] = await crawlOne(
+        baseUrl,
+        requestedPaths[index],
+        fetchImplementation,
+      );
     }
   };
   await Promise.all(

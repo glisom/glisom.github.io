@@ -1,28 +1,46 @@
-# Personal Blog
-> For running locally or cloning, check below.
+# grantisom.com
 
-## Usage
+The site is a static Astro build. Use Node 24.20.0 and npm 11.19.0; both
+versions are enforced by the repository.
+
+## Local operation
+
+From the repository root:
+
+```sh
+npm ci
+npm run dev
+npm run build
+npm run test:all
 ```
-git clone https://github.com/glisom/glisom.github.io.git
-bundle install
-bundle exec rake preview
-```
 
-### Rakefile for automation
-    - `rake check`    - Check links/html files of the generated site
-    - `rake clean`    - Clean up generated site
-    - `rake post`     - Begin a new post in `./_posts`
-    - `rake preview`  - Preview with livereload on local machine
+`npm run dev` serves the Astro implementation from the repository root on port
+4321. The frozen Vite homepage reference lives at
+`design-reference/vite-homepage` and is served on port 4173 by the visual test
+tooling. Treat that reference as read-only.
 
-### Customization
-To customize various details - title/description of the website, your SNS accout names, etc - edit the `_config.yml` file.
+## Content and routes
 
-### Adding posts
-```
-rake post title="A Title" [date="2012-02-09"] [tags=[tag1,tag2]] [category="category"]
-```
-This will create a markdown file in the default folder where all posts are stored in Jekyll; `_post`.
+Astro content collections live in:
 
-If you wish to **change the directory where posts are saved**, go to the `Rakefile` and edit the `CONFIG = { 'posts': CUSTOM_PATH_HERE }`. This will allow `rake post` to know where to save the new posts to.
+- `src/content/blog/`
+- `src/content/app-library/`
+- `src/content/projects/`
+- `src/content/skill-library/`
+- `src/content/skills/`
 
-The **drafts** you are working on can be saved in the `_drafts` directory. When you push your code to the server, files in this directory will NOT be included to the list of posts.
+Every blog record declares its exact dated canonical route as
+`/YYYY/MM/DD/slug.html`. Preserve that `.html` route exactly; the build uses
+the authored `canonicalPath`, not a directory-style replacement.
+
+## Deployment and rollback
+
+After the approved cutover, a push to `master` builds the reviewed lockfile and
+deploys `dist/` through the GitHub Pages workflow. The pre-cutover Jekyll state
+is preserved on the `legacy-jekyll` rollback branch; Jekyll remains historical
+rollback context, not the active post-cutover implementation.
+
+Launch is light-only. Legacy CSS, images, scripts, and compatibility aliases
+remain dormant, byte-stable output for old URLs and rollback safety. Do not
+activate, rewrite, or remove those assets until post-production cleanup is
+separately approved.

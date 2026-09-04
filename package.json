@@ -27,6 +27,8 @@
     "crawl:production": "node scripts/crawl-site.mjs https://grantisom.com docs/qa/crawls/production-before.json",
     "crawl:preview": "node scripts/crawl-site.mjs http://127.0.0.1:4321 docs/qa/crawls/astro-preview.json",
     "compare:crawls": "node scripts/compare-crawls.mjs docs/qa/crawls/production-before.json docs/qa/crawls/astro-preview.json",
+    "hash:dist": "node scripts/hash-dist.mjs",
+    "verify:isolated-preview": "node scripts/verify-isolated-preview.mjs",
     "verify:local-preview": "node scripts/verify-local-preview.mjs",
     "prepare:browser-tests": "npm run build && node scripts/verify-design-reference.mjs && npm --prefix design-reference/vite-homepage ci",
     "test:e2e": "npm run prepare:browser-tests && playwright test tests/e2e",
