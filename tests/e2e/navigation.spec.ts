@@ -12,14 +12,16 @@ test('primary authored navigation paths work', async ({ page }) => {
   const desktopRail = page.locator(
     '.identity-rail[aria-label="Site navigation"]',
   );
-  if (await desktopRail.isVisible()) {
-    await desktopRail.getByRole('link', { name: 'Blog' }).click();
+  const mobileNav = page.locator('details.mobile-nav');
+  if (test.info().project.name === 'phone') {
+    await expect(desktopRail).toBeHidden();
+    await expect(mobileNav).toBeVisible();
+    await mobileNav.locator('summary').click();
+    await mobileNav.getByRole('link', { name: 'Blog' }).click();
   } else {
-    await page.locator('details.mobile-nav > summary').click();
-    await page
-      .locator('details.mobile-nav')
-      .getByRole('link', { name: 'Blog' })
-      .click();
+    await expect(mobileNav).toBeHidden();
+    await expect(desktopRail).toBeVisible();
+    await desktopRail.getByRole('link', { name: 'Blog' }).click();
   }
   await expect(page).toHaveURL(/\/blog\/$/);
 });

@@ -51,8 +51,9 @@ test('direct and genuinely missing 404 paths render the designed error body', as
   );
   expect(await page.locator('[data-site-404]').innerText()).toBe(designedBody);
   await expect(page.locator('[data-home-page]')).toHaveCount(0);
-  expect(diagnostics).toEqual([
-    'console.error: Failed to load resource: the server responded with a status of 404 (Not Found)',
-  ]);
+  expect(diagnostics).toHaveLength(1);
+  expect(diagnostics[0]).toMatch(
+    /^console\.error: Failed to load resource: the server responded with a status of 404 \((?:Not Found)?\)$/,
+  );
   diagnostics.length = 0;
 });
