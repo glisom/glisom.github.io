@@ -1,0 +1,33 @@
+---
+import CollectionMasthead from '../components/index/CollectionMasthead.astro';
+import { COLLECTIONS } from '../data/collections';
+import { formatPublicDate } from '../lib/content/date';
+import type { PrimaryCollection } from '../types/content';
+import '../styles/indexes.css';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  collection: PrimaryCollection;
+  count: number;
+  updatedAt?: string;
+  title: string;
+  description: string;
+}
+
+const { collection, count, updatedAt, title, description } = Astro.props;
+const label = COLLECTIONS[collection].label;
+const formattedUpdatedAt = updatedAt ? formatPublicDate(updatedAt) : undefined;
+---
+
+<BaseLayout
+  title={`${label} — Grant Isom`}
+  description={description}
+  canonicalPath={collection === 'projects' ? '/projects/' : `/${collection}/`}
+  activeCollection={collection}
+  railContext={{ kind: 'index', count, updatedAt: formattedUpdatedAt }}
+>
+  <div class="collection-index" data-collection-index={collection}>
+    <CollectionMasthead {collection} {label} {count} {title} {description} />
+    <div class="collection-body"><slot /></div>
+  </div>
+</BaseLayout>

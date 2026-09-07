@@ -1,0 +1,26 @@
+---
+import LegalBlocks from '../../../components/utility/LegalBlocks.astro';
+import { LISTWITHME_SUPPORT } from '../../../data/listwithme';
+import UtilityLayout from '../../../layouts/UtilityLayout.astro';
+
+const sectionAnchors = LISTWITHME_SUPPORT.blocks.flatMap((block) =>
+  block.kind === 'heading' && block.level === 2
+    ? [{ id: block.id, label: block.text }]
+    : [],
+);
+---
+
+<UtilityLayout
+  title={`${LISTWITHME_SUPPORT.title} — Grant Isom`}
+  railTitle={LISTWITHME_SUPPORT.title}
+  description="How to open and use ListWithMe, answers to common questions, and a direct support contact."
+  canonicalPath="/listwithme/support/"
+  parent="ListWithMe"
+  sectionAnchors={sectionAnchors}
+  contactPath={LISTWITHME_SUPPORT.contactPath}
+  backPath={LISTWITHME_SUPPORT.backPath}
+  backLabel="Back to ListWithMe"
+  variant="legal"
+>
+  <LegalBlocks page={LISTWITHME_SUPPORT} />
+</UtilityLayout>

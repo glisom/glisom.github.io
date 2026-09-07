@@ -1,0 +1,36 @@
+---
+import type { BlogRecord } from '../../types/content';
+import HalftoneImage from '../media/HalftoneImage.astro';
+import Icon from '../media/Icon.astro';
+
+interface Props {
+  record: BlogRecord;
+}
+
+const { record } = Astro.props;
+---
+
+<article
+  class="card production-card"
+  data-home-slot="featured-writing"
+  data-surface="black"
+  aria-labelledby="featured-writing-title"
+>
+  <div class="card-label-row">
+    <span class="card-kicker" data-utility-label>Featured writing</span>
+    <span class="card-number" data-utility-label>01</span>
+  </div>
+  <h2 id="featured-writing-title">{record.data.title}</h2>
+  <p>{record.data.summary}</p>
+  <HalftoneImage
+    class="production-art"
+    src="evidence/production-hands.png"
+    alt="Two halftone hands reaching toward one another"
+    widths={[400, 640, 800, 1000]}
+    sizes="(max-width: 820px) calc(100vw - 32px), (max-width: 1120px) 50vw, (max-width: 1219px) calc(50vw - 134px), (max-width: 1320px) calc(50vw - 160px), 26vw"
+  />
+  <a class="arrow-link" href={record.data.canonicalPath}>
+    <span>Read the story</span>
+    <Icon name="arrow-right" decorative={true} />
+  </a>
+</article>

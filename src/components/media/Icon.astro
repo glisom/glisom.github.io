@@ -1,0 +1,41 @@
+---
+export const ICON_NAMES = [
+  'arrow-down',
+  'arrow-right',
+  'asterisk',
+  'books',
+  'code',
+  'device-mobile',
+  'envelope-simple',
+  'github-logo',
+  'linkedin-logo',
+  'pen-nib',
+  'robot',
+  'rss',
+  'stack-simple',
+] as const;
+
+export type IconName = (typeof ICON_NAMES)[number];
+
+interface Props {
+  name: IconName;
+  label?: string;
+  decorative?: boolean;
+  class?: string;
+}
+
+const { name, label, decorative = false, class: className } = Astro.props;
+const accessibleLabel = label?.trim();
+
+if (!decorative && !accessibleLabel) {
+  throw new Error(
+    `Icon "${name}" requires a nonblank accessible label or decorative={true}.`,
+  );
+}
+---
+
+<i
+  class:list={['ph', `ph-${name}`, 'icon', className]}
+  role={decorative ? undefined : 'img'}
+  aria-label={decorative ? undefined : accessibleLabel}
+  aria-hidden={decorative ? 'true' : undefined}></i>

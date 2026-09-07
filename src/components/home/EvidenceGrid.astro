@@ -1,0 +1,43 @@
+---
+import type { HomepageContent } from '../../types/content';
+import AuthoredSkillsCard from './AuthoredSkillsCard.astro';
+import FeaturedWritingCard from './FeaturedWritingCard.astro';
+import LatestPostsCard from './LatestPostsCard.astro';
+import ProjectCard from './ProjectCard.astro';
+import SkillLibraryCard from './SkillLibraryCard.astro';
+import ToolListCard from './ToolListCard.astro';
+
+interface Props {
+  content: HomepageContent;
+}
+
+const { content } = Astro.props;
+---
+
+<section class="evidence-grid" aria-label="Grant’s personal index">
+  <FeaturedWritingCard record={content.featuredWriting} />
+  <ProjectCard
+    record={content.featuredProjectPrimary}
+    slot="featured-project-primary"
+    number="02"
+    variant="primary"
+    art={{
+      src: 'evidence/healthql-hands.png',
+      alt: 'A sequence of fine-line hand gestures',
+    }}
+  />
+  <ProjectCard
+    record={content.featuredProjectSecondary}
+    slot="featured-project-secondary"
+    number="03"
+    variant="secondary"
+    art={{
+      src: 'evidence/listwithme-hand.png',
+      alt: 'A stippled hand holding a pen',
+    }}
+  />
+  <ToolListCard records={content.appLibrary} />
+  <LatestPostsCard records={content.latestPosts} />
+  <AuthoredSkillsCard records={content.authoredSkills} />
+  <SkillLibraryCard records={content.skillLibrary} />
+</section>

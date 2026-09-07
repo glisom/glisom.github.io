@@ -1,0 +1,36 @@
+---
+interface Props {
+  notes: readonly {
+    key: string;
+    heading: string;
+    body: readonly string[];
+  }[];
+}
+
+const { notes } = Astro.props;
+---
+
+<div class="field-notes" data-field-notes>
+  {
+    notes.map((note, index) => {
+      const headingId = `field-note-${note.key}`;
+      return (
+        <section
+          class="note-section"
+          data-field-note-key={note.key}
+          aria-labelledby={headingId}
+        >
+          <span class="section-number" aria-hidden="true">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <div class="note-copy">
+            <h2 id={headingId}>{note.heading}</h2>
+            {note.body.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </div>
+        </section>
+      );
+    })
+  }
+</div>

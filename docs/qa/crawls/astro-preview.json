@@ -1,0 +1,3468 @@
+[
+  {
+    "requestedPath": "/",
+    "status": 200,
+    "finalUrl": "/",
+    "canonical": "https://grantisom.com/",
+    "contentType": "text/html",
+    "title": "Grant Isom — Writer, maker, tinkerer",
+    "description": "Writing, small software, useful systems, and the tools and skills shaping how I work.",
+    "links": [
+      "/",
+      "/#main-content",
+      "/2026/02/07/healthql-react-native.html",
+      "/2026/02/24/listwithme-returns.html",
+      "/2026/09/01/skill-thief.html",
+      "/2026/09/01/vampire.html",
+      "/about/",
+      "/app-library/",
+      "/app-library/codex/",
+      "/app-library/hermes-agent/",
+      "/app-library/obsidian/",
+      "/app-library/superhuman/",
+      "/blog/",
+      "/feed.xml",
+      "/listwithme/",
+      "/projects/",
+      "/projects/hermes-ios/",
+      "/skill-library/",
+      "/skill-library/browser-control/",
+      "/skill-library/deep-research/",
+      "/skill-library/documents/",
+      "/skill-library/frontend-design/",
+      "/skill-library/pdf/",
+      "/skills/",
+      "/skills/goodreads-export/",
+      "/skills/hatch-pet/",
+      "/skills/write-like-grant/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/belief-rings.CRinkKyz_12qj1a.avif",
+      "/_astro/belief-rings.CRinkKyz_1kQ5wX.webp",
+      "/_astro/belief-rings.CRinkKyz_RYUVE.png",
+      "/_astro/belief-rings.CRinkKyz_Z11McOX.avif",
+      "/_astro/belief-rings.CRinkKyz_Z1K04z9.avif",
+      "/_astro/belief-rings.CRinkKyz_Z1rzi3l.webp",
+      "/_astro/belief-rings.CRinkKyz_ZImqja.webp",
+      "/_astro/evidence-map.BJ04HY1h_1C1cpv.webp",
+      "/_astro/evidence-map.BJ04HY1h_1aoN45.avif",
+      "/_astro/evidence-map.BJ04HY1h_2av0uF.webp",
+      "/_astro/evidence-map.BJ04HY1h_2qjkSt.avif",
+      "/_astro/evidence-map.BJ04HY1h_Z1Dt5sk.png",
+      "/_astro/evidence-map.BJ04HY1h_Z26nYPi.avif",
+      "/_astro/evidence-map.BJ04HY1h_Z8TlNm.webp",
+      "/_astro/evidence-map.BJ04HY1h_ZvFLb3.avif",
+      "/_astro/evidence-map.BJ04HY1h_m6EA7.webp",
+      "/_astro/groundwork-surveyor.CmRmkpWC_1tnggu.webp",
+      "/_astro/groundwork-surveyor.CmRmkpWC_HWWCD.avif",
+      "/_astro/groundwork-surveyor.CmRmkpWC_IpkG3.png",
+      "/_astro/groundwork-surveyor.CmRmkpWC_YjvOJ.webp",
+      "/_astro/groundwork-surveyor.CmRmkpWC_Z2sg24f.avif",
+      "/_astro/groundwork-surveyor.CmRmkpWC_Z2vTUjP.webp",
+      "/_astro/groundwork-surveyor.CmRmkpWC_ZBVLcM.webp",
+      "/_astro/groundwork-surveyor.CmRmkpWC_ZPYJ1I.avif",
+      "/_astro/groundwork-surveyor.CmRmkpWC_ZlUYzX.avif",
+      "/_astro/healthql-hands.BAws1-Ax_1bmXjf.avif",
+      "/_astro/healthql-hands.BAws1-Ax_1cbyof.avif",
+      "/_astro/healthql-hands.BAws1-Ax_1y9nFV.webp",
+      "/_astro/healthql-hands.BAws1-Ax_1yWXKV.webp",
+      "/_astro/healthql-hands.BAws1-Ax_2ooRI0.avif",
+      "/_astro/healthql-hands.BAws1-Ax_4of6X.png",
+      "/_astro/healthql-hands.BAws1-Ax_Z17Dhy0.avif",
+      "/_astro/healthql-hands.BAws1-Ax_Z2j0PIf.webp",
+      "/_astro/healthql-hands.BAws1-Ax_ZJQRbj.webp",
+      "/_astro/index.l_48l_xZ.css",
+      "/_astro/listwithme-hand.CsPcKQCd_14cXwy.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_1MEeSi.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_1Rnctn.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_2qurPc.png",
+      "/_astro/listwithme-hand.CsPcKQCd_2sTzq2.webp",
+      "/_astro/listwithme-hand.CsPcKQCd_Z1N7kr5.webp",
+      "/_astro/listwithme-hand.CsPcKQCd_Z1RPi2a.webp",
+      "/_astro/listwithme-hand.CsPcKQCd_Z1p5g6F.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_ZnEdc.webp",
+      "/_astro/production-hands.i6zn42eP_RCTGg.webp",
+      "/_astro/production-hands.i6zn42eP_Z1CMYzY.avif",
+      "/_astro/production-hands.i6zn42eP_Z1VwkVr.png",
+      "/_astro/production-hands.i6zn42eP_Z1Yyasn.avif",
+      "/_astro/production-hands.i6zn42eP_Z2mOcoL.avif",
+      "/_astro/production-hands.i6zn42eP_Z2nqMCn.webp",
+      "/_astro/production-hands.i6zn42eP_ZF8gUa.webp",
+      "/_astro/production-hands.i6zn42eP_bjqTj.avif",
+      "/_astro/production-hands.i6zn42eP_vRINR.webp",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "d42a6e3ae4dcfc742c9c199814ba5a483261c07e53e35c0fcb9921ed9cd6ff7c"
+  },
+  {
+    "requestedPath": "/2018/04/02/reading-list.html",
+    "status": 200,
+    "finalUrl": "/2018/04/02/reading-list.html",
+    "canonical": "https://grantisom.com/2018/04/02/reading-list.html",
+    "contentType": "text/html",
+    "title": "Reading List for 2018 — Grant Isom",
+    "description": "Reading List for 2018 — Starting with last year, I have been trying to keep track of the books I read throughout the year. Here is my list so far for this year!",
+    "links": [
+      "/",
+      "/2018/04/02/reading-list.html#main-content",
+      "/2018/11/27/playlists.html",
+      "/2023/01/02/mustread-books-for.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/",
+      "/skills/goodreads-export/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [],
+      "text": "Starting with last year, I have been trying to keep track of the books I read throughout the year. Here is my list so far for this year! Perelandria by C.S. Lewis The Consolation of Philosophy by Boethius The Inferno by Dante Alighieri Confessions by St. Augustine Selected Writings by St. Thomas Aquinas Winning Ugly by Brad Gilbert Armada by Ernest Cline Off to Be the Wizard by Scott Meyer Ender’s Game by Orson Scott Card Manual for Men by Thomas J. Olmstead, Bishop of Phoenix An Unwelcome Quest by Scott Meyer Spell or High Water by Scott Meyer Foundation by Issac Asimov Foundation and Empire by Issac Asimov",
+      "links": [],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "7189c982a2db0972756154d7744d372225663820f7629574c9dd77bb0add0534"
+  },
+  {
+    "requestedPath": "/2018/11/27/playlists.html",
+    "status": 200,
+    "finalUrl": "/2018/11/27/playlists.html",
+    "canonical": "https://grantisom.com/2018/11/27/playlists.html",
+    "contentType": "text/html",
+    "title": "Playlists for the Seasons — Grant Isom",
+    "description": "Playlists for the Seasons — Over the past 4-ish years I have made a playlist for each season as a way to keep track of my favorite songs. Below are links to all of the playlists so far:",
+    "links": [
+      "/",
+      "/2018/04/02/reading-list.html",
+      "/2018/11/27/playlists.html#2014",
+      "/2018/11/27/playlists.html#2015",
+      "/2018/11/27/playlists.html#2016",
+      "/2018/11/27/playlists.html#2017",
+      "/2018/11/27/playlists.html#2018",
+      "/2018/11/27/playlists.html#main-content",
+      "/2019/05/30/listwithme.html",
+      "/2020/02/10/2019-playlists.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "2018",
+          "id": "2018"
+        },
+        {
+          "level": 2,
+          "text": "2017",
+          "id": "2017"
+        },
+        {
+          "level": 2,
+          "text": "2016",
+          "id": "2016"
+        },
+        {
+          "level": 2,
+          "text": "2015",
+          "id": "2015"
+        },
+        {
+          "level": 2,
+          "text": "2014",
+          "id": "2014"
+        }
+      ],
+      "text": "Over the past 4-ish years I have made a playlist for each season as a way to keep track of my favorite songs. Below are links to all of the playlists so far: 2018 Winter ‘18 Fall ‘18 Summer ‘18 Spring ‘18 2017 Winter ‘17 Fall ‘17 Summer ‘17 Spring ‘17 2016 Winter ‘16 Fall ‘16 Summer ‘16 Spring ‘16 2015 Winter ‘15 Fall ‘15 Summer ‘15 Spring ‘15 2014 Winter ‘14",
+      "links": [
+        "https://open.spotify.com/user/1210690156/playlist/4YyYoEbFoYKjsqNoWkXYOw?si=gs5miVTYR8-nE8h9lJO6Ew",
+        "https://open.spotify.com/user/1210690156/playlist/0XapD6DUnM7fqHLbJoSHGE?si=2DJVaUjnS7GlG0dBww2Qww",
+        "https://open.spotify.com/user/1210690156/playlist/6LJXIilQLzWBpkajUAlRjG?si=30WW_CE1QQKjMTvsyM0Nvg",
+        "https://open.spotify.com/user/1210690156/playlist/1AEDo5xuvW2dLiAgKBwSAC?si=F9dVT40dQFaWeuAvdJ23Fg",
+        "https://open.spotify.com/user/1210690156/playlist/4BzzYLgID0it0weqz97Qoo?si=yYznl9U6QDS72cSkbEXK4Q",
+        "https://open.spotify.com/user/1210690156/playlist/0eUZSkJWncBeeKXPqENXpK?si=ubyUPU1KTuqXfVwvYxYZTA",
+        "https://open.spotify.com/user/1210690156/playlist/3pFQTJJeP2VzVxU6CirviP?si=QEiGwWMwTCmi-INjzLw1Ig",
+        "https://open.spotify.com/user/1210690156/playlist/1oKO2sXb9XSQlezCu8khCt?si=xjjkIy71TauR_2gGWDxDLQ",
+        "https://open.spotify.com/user/1210690156/playlist/0LmRLlbFy7cJqGsJTGCphH?si=ITBuRWJbTyWDuHmTnc8lJA",
+        "https://open.spotify.com/user/1210690156/playlist/2ew23taCqjDZ1VGvCFJArS?si=UdknNhkBTr-QyZvpBT74xw",
+        "https://open.spotify.com/user/1210690156/playlist/6VkOfz9KPF2m0QtekyLvPI?si=RLHVnW7BRcqYz_IMi2G5oA",
+        "https://open.spotify.com/user/1210690156/playlist/0rsrU0o0CoFF7TMGDt3wOk?si=4MWeJi8TS02M5Kk_DtWyug",
+        "https://open.spotify.com/user/1210690156/playlist/5CZ16osqN6TL4w60JYjo7i?si=0-yIrcZRRwODZtlHCK28dA",
+        "https://open.spotify.com/user/1210690156/playlist/1ddqMRhJjTZ8ub4vRaVmR4?si=vX1hqHwnRmqr-BScpCPhZQ",
+        "https://open.spotify.com/user/1210690156/playlist/0cGF4hlIaTvppfw2uae6lA?si=r4-zVYT-RVqkUyF-Ak-NHA",
+        "https://open.spotify.com/user/1210690156/playlist/6LayIzU4FQxkjsUWTSYhxT?si=iB_EohPQQcOPoOKS2gKbrQ",
+        "https://open.spotify.com/user/1210690156/playlist/4iXFgRztHPTrTf9aUilMnC?si=sjWBvmIPSCa-BneX-xTVEQ"
+      ],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "0e014edf2699ed17736fdd0f496083ab0bb6b378f7019a50fd8b09601c359e13"
+  },
+  {
+    "requestedPath": "/2019/05/30/listwithme.html",
+    "status": 200,
+    "finalUrl": "/2019/05/30/listwithme.html",
+    "canonical": "https://grantisom.com/2019/05/30/listwithme.html",
+    "contentType": "text/html",
+    "title": "ListWithMe, Creating an iMessage-only Application — Grant Isom",
+    "description": "ListWithMe, Creating an iMessage-only Application — Here is a list of what I listened to throughout the past year.",
+    "links": [
+      "/",
+      "/2018/11/27/playlists.html",
+      "/2019/05/30/listwithme.html#main-content",
+      "/2019/06/04/wwdc-day-1.html",
+      "/2026/02/24/listwithme-returns.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/listwithme/",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [],
+      "text": "Over the past month, I built a small iMessage app that allows users to create editable lists in their conversations. The app itself is nothing too flashy, but it was something I hadn’t found a solid solution to and was a great excuse to get some experience with standalone iMessage apps. My wife and I use it whenever we have errands to run after work or a handful of things to get done during the week. Please check it out and let me know what you think! Product Hunt App Store It was pretty easy getting up and going with the Messages Framework . The Delegate methods are very straight forward and there are not too many additional situations to handle outside of what you would normally do for a UIViewController. The main and most important thing to take care of is making sure you update the views appropriately when the user expands or minimizes the app view. Feel free to check out my implementation on Github . Standalone iMessage apps can be really useful, the largest downfall I have found is how difficult it is to manage them and find them. A handful of users were frustrated with that and felt that it was a “sketchy” experience after downloading the app because it had no presence on the home screen. If Apple improved the way iMessage apps existed in Messages I think there could be a serious uptick in developers creating these little utilities.",
+      "links": [
+        "https://www.producthunt.com/posts/listwithme",
+        "https://apps.apple.com/ca/app/listwithme/id1224284271",
+        "https://developer.apple.com/documentation/messages",
+        "https://github.com/glisom/ListWithMe"
+      ],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "3f55e3dfea0cd03aaf192f301b29b4c765a129ec42279bdcdf82f7ae386f628a"
+  },
+  {
+    "requestedPath": "/2019/06/04/wwdc-day-1.html",
+    "status": 200,
+    "finalUrl": "/2019/06/04/wwdc-day-1.html",
+    "canonical": "https://grantisom.com/2019/06/04/wwdc-day-1.html",
+    "contentType": "text/html",
+    "title": "WWDC Day 1 — Grant Isom",
+    "description": "WWDC Day 1 — I got into San Jose late Sunday night and pretty much when straight to bed. The Fairmont has been amazing so far and is",
+    "links": [
+      "/",
+      "/2019/05/30/listwithme.html",
+      "/2019/06/04/wwdc-day-1.html#after-hours",
+      "/2019/06/04/wwdc-day-1.html#arriving-in-san-jose",
+      "/2019/06/04/wwdc-day-1.html#keynote-time",
+      "/2019/06/04/wwdc-day-1.html#main-content",
+      "/2019/06/04/wwdc-day-1.html#registration-and-pre-keynote",
+      "/2019/06/04/wwdc-day-1.html#state-of-the-union",
+      "/2019/06/06/wwdc-day-2.html",
+      "/2019/06/09/wwdc-review.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "Arriving in San Jose",
+          "id": "arriving-in-san-jose"
+        },
+        {
+          "level": 2,
+          "text": "Registration and Pre Keynote",
+          "id": "registration-and-pre-keynote"
+        },
+        {
+          "level": 2,
+          "text": "Keynote Time",
+          "id": "keynote-time"
+        },
+        {
+          "level": 2,
+          "text": "State of the Union",
+          "id": "state-of-the-union"
+        },
+        {
+          "level": 2,
+          "text": "After Hours",
+          "id": "after-hours"
+        }
+      ],
+      "text": "Arriving in San Jose I got into San Jose late Sunday night and pretty much when straight to bed. The Fairmont has been amazing so far and is close to the conference which is nice. Registration and Pre Keynote Arriving at the convention center was something to behold, being my first major tech conference I was seriously overwhelmed by the whole experience. The outside wall for “Dub Dub” (the official nickname) was incredibly cool and if you watched it, it would light up in spectacular fashion. Getting registered was fun waiting with all the other developers. It is such a global crowd here that making friends in line was always interesting hearing where they were from and what they were working on. The Apple Store employees helping everyone were so high energy and hilarious throughout the day, l literally do not understand how they stayed so excited for the entire day. Once I got registered and received my badge, we left the building and re-entered a line for the keynote. I had gotten there a little bit before 6:30 so I ended up getting a pretty good seat. The wait to enter the Hall for the Keynote took about a total of 3 hours, but they feed us breakfast and was fun meeting more developers. Keynote Time The keynote itself was amazing, I think I can say for a lot of us there they revealed a lot more than anyone expected. From SwiftUI to the literally most insane desktop Mac ever, the Mac Pro, it was an amazing keynote. Seeing it in person for the first time was really dope. I have watched it every year since high school and it was amazing getting to actually be there this year. I have been playing with SwiftUI a little and already am getting very excited for this change. I think this is something that is going to drastically improve the quality of apps and the ease of development. The baked in accessibility is huge, for us at Cerner it is such an important item and having a lot of it out of the box is amazing. Following that, the watchOS changes were my second favorite. Standalone watch apps are amazing and I can’t wait to play with that this week. There are tons of great articles out there for a deep dive into all the announcements and if you want to hear more I would highly recommend checking those out on macrumors.com or 9to5mac.com. State of the Union After lunch and the awesome keynote, it was time for the state of the union. This is an address directed at developers over some of the more technical changes and additions Apple has been working on. Once again, there are some great videos and articles that dive into the specifics of the talks. After Hours After an awesome day, I was absolutely wiped but decided to go to a couple happy hours/parties before I called it quits. The SetApp/Paddle happy hour was pretty cool but was a pretty European crowd and didn’t talk to too many people. After that I rolled over to The Loop Bash which was dope. Made a couple friends and met up with some devs I follow on Twitter: Ben Sandofsky of Halide Camera and Conrad Kramer of Apple Shortcuts. I didn’t stay long, but was well worth the time. Can’t wait for Day 2!",
+      "links": [],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "b35c738ab187d232407faf0bed834ce03b2e645f99f7a54139e5f9fe39e6dadc"
+  },
+  {
+    "requestedPath": "/2019/06/06/wwdc-day-2.html",
+    "status": 200,
+    "finalUrl": "/2019/06/06/wwdc-day-2.html",
+    "canonical": "https://grantisom.com/2019/06/06/wwdc-day-2.html",
+    "contentType": "text/html",
+    "title": "WWDC Day 2 — Grant Isom",
+    "description": "WWDC Day 2 — The second day started with a morning HIIT workout with a audio workout app, Aaptiv.",
+    "links": [
+      "/",
+      "/2019/06/04/wwdc-day-1.html",
+      "/2019/06/06/wwdc-day-2.html#main-content",
+      "/2019/06/06/wwdc-day-2.html#music-on-the-plaza",
+      "/2019/06/06/wwdc-day-2.html#palo-alto",
+      "/2019/06/06/wwdc-day-2.html#starting-the-day-with-aaptiv",
+      "/2019/06/06/wwdc-day-2.html#the-beginning-of-labs-and-sessions",
+      "/2019/06/06/wwdc-day-2.html#weird-joint-activbodyvapor-happy-hour",
+      "/2019/06/07/wwdc-day-3.html",
+      "/2019/06/09/wwdc-review.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "Starting the Day with Aaptiv",
+          "id": "starting-the-day-with-aaptiv"
+        },
+        {
+          "level": 2,
+          "text": "The beginning of Labs and Sessions",
+          "id": "the-beginning-of-labs-and-sessions"
+        },
+        {
+          "level": 2,
+          "text": "Music on the Plaza",
+          "id": "music-on-the-plaza"
+        },
+        {
+          "level": 2,
+          "text": "Weird Joint Activbody/Vapor Happy Hour",
+          "id": "weird-joint-activbodyvapor-happy-hour"
+        },
+        {
+          "level": 2,
+          "text": "Palo Alto",
+          "id": "palo-alto"
+        }
+      ],
+      "text": "Starting the Day with Aaptiv The second day started with a morning HIIT workout with a audio workout app, Aaptiv. The workout was fun in a super cool venue and was another great way to meet people and get the day off to a roar. Afterwards there was a sweet coffee bar and breakfast snacks and drinks. I drank some detox drink, no clue what it was but it was pretty good. The beginning of Labs and Sessions So for the rest of the day I spent most my time attending session and going to labs. Learning what’s new in Xcode and how Core Data can work with CloudKit out of the box to keep data stores in sync was fascinating and added to just how many updates are coming with these next releases. The sessions on SF Symbols and creating independent watch apps was super cool. The idea of a watch being able to be used with a phone at all and got me very excited for the upcoming hardware releases in September. Throughout the day I attended the WatchOS and SiriKit Labs, where I had 1 on 1 time with Apple engineers diving into current problems I have with my apps and how we could be leveraging some of these new or recently released features. With how much Apple is pushing Siri and Shortcuts it is going to be exciting to see what developers and hopefully what we do at Cerner and myHomework with these changes. Music on the Plaza After everything came to an end, Apple had live music and drinks on the plaza in the front of the convention center where they gave out cool pins and had a good beer selection. Following that it was off to some happy hours. Weird Joint Activbody/Vapor Happy Hour Before going to dinner in Palo Alto that night, I headed over to The Blue Chip for a happy hour held by Activbody that was also a Vapor Meetup sort of kind of. The Activbody team was showing off some hardware which was pretty cool and seems useful for physical therapy, but to be honest, it was a pretty weird device. The vapor guys were super nice and was fun to put a face to the super cool project that is Vapor. Palo Alto After all that, I Ubered to Palo Alto to meet up with one of my great friends, Cole Jurden. He’s killing it in San Francisco and it was great catching up and exploring the city where so much history has taken place. Also there were these Swedish guys killing it at a Karaoke bar. Then back to San Jose for the next day!",
+      "links": [],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "b79cad19b2a16db18ed0c513933607bb6881335d53e46aadfdc3f830b9ecf3e0"
+  },
+  {
+    "requestedPath": "/2019/06/07/wwdc-day-3.html",
+    "status": 200,
+    "finalUrl": "/2019/06/07/wwdc-day-3.html",
+    "canonical": "https://grantisom.com/2019/06/07/wwdc-day-3.html",
+    "contentType": "text/html",
+    "title": "WWDC Day 3 — Grant Isom",
+    "description": "WWDC Day 3 — The majority of the second day was spent in more labs, sessions, and not being able to control my impulses buying swag.",
+    "links": [
+      "/",
+      "/2019/06/06/wwdc-day-2.html",
+      "/2019/06/07/wwdc-day-3.html#main-content",
+      "/2019/06/08/wwdc-day-4.html",
+      "/2019/06/09/wwdc-review.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "Another Day of Sessions, Labs, and Buying Swag",
+          "id": "another-day-of-sessions-labs-and-buying-swag"
+        }
+      ],
+      "text": "Another Day of Sessions, Labs, and Buying Swag The majority of the second day was spent in more labs, sessions, and not being able to control my impulses buying swag. I had some awesome conversations in the HealthKit Labs with one of the doctors that worked on the Health Records Feature in Apple Health with Cerner which was very cool and then went to some cool lunch and evening panels with the Health teams talking about their new features, how they deal with regulations, and the future of features like the ECG on the watch. It was also super interesting hearing developers voice concern and challenge some of the their blanket statement responses on a couple questions. After that, I grabbed some WWDC swag and headed out for the day over to a WeWork happy hour. That was pretty short, so went home got ready for the night and headed over to Live Near WWDC, a concert put on by James Dempsey and the Breakpoints. It was an awesome event, met so many great people, from some guys from the Target iOS Team, freelances from Australia, Dave Verwer, and then some super cool Apple engineers. All in all, this was by far the most packed and fun day yet.",
+      "links": [],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "2a71ae4bd68b76a10ff7375962f67ba7fd3344081edef6de647ce5cbcef8c040"
+  },
+  {
+    "requestedPath": "/2019/06/08/wwdc-day-4.html",
+    "status": 200,
+    "finalUrl": "/2019/06/08/wwdc-day-4.html",
+    "canonical": "https://grantisom.com/2019/06/08/wwdc-day-4.html",
+    "contentType": "text/html",
+    "title": "WWDC Day 4 — Grant Isom",
+    "description": "WWDC Day 4 — Another day full of sessions, great lunch discussions with Apple Education, and Accessibility labs reviewing our HealtheLife App.",
+    "links": [
+      "/",
+      "/2019/06/07/wwdc-day-3.html",
+      "/2019/06/08/wwdc-day-4.html#exploring-san-jose",
+      "/2019/06/08/wwdc-day-4.html#main-content",
+      "/2019/06/08/wwdc-day-4.html#the-bash",
+      "/2019/06/08/wwdc-day-4.html#tired-morning-more-sessions-and-meetups",
+      "/2019/06/09/wwdc-review.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "Tired Morning, More Sessions and Meetups",
+          "id": "tired-morning-more-sessions-and-meetups"
+        },
+        {
+          "level": 2,
+          "text": "Exploring San Jose",
+          "id": "exploring-san-jose"
+        },
+        {
+          "level": 2,
+          "text": "The Bash",
+          "id": "the-bash"
+        }
+      ],
+      "text": "Tired Morning, More Sessions and Meetups Another day full of sessions, great lunch discussions with Apple Education, and Accessibility labs reviewing our HealtheLife App. I am just overwhelmed with how great the Apple engineers have been and how great the sessions were. At the end of the conference I am going to do a write up of my favorite things and big points and takeaways from the sessions. Overall I hope I get to come to this every year. What an incredible event and what incredible people who put this on. I am already feeling so inspired and revved up to go develop new things, take this knowledge back to my teams, and just make new stuff! Exploring San Jose Took some time to walk around San Jose and check out the downtown before getting ready for the bash. Met the 1Password team, really nice guys from all over the US and Canada. The Bash Last night, was an incredible outdoor venue with a sweet performance by Weezer. Met some more great developers and hung out with my fellow Cerner dev, Young. Got some pictures with Craig from Apple and then that was about it. Now time to get back to the real world!",
+      "links": [],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "b09b3bc8ab5a54df98aad775bc3b21a5850147bb89e4c0c6284c562085634b54"
+  },
+  {
+    "requestedPath": "/2019/06/09/wwdc-review.html",
+    "status": 200,
+    "finalUrl": "/2019/06/09/wwdc-review.html",
+    "canonical": "https://grantisom.com/2019/06/09/wwdc-review.html",
+    "contentType": "text/html",
+    "title": "WWDC 2019, In Review — Grant Isom",
+    "description": "WWDC 2019, In Review — I still cannot get over this week, from the awesome announcements, great sessions, labs, and all the amazing friends I made.",
+    "links": [
+      "/",
+      "/2019/06/04/wwdc-day-1.html",
+      "/2019/06/08/wwdc-day-4.html",
+      "/2019/06/09/wwdc-review.html#main-content",
+      "/2020/02/10/2019-playlists.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [],
+      "text": "I still cannot get over this week, from the awesome announcements, great sessions, labs, and all the amazing friends I made. I feel totally reenergized to bring back all this knowledge to my team and continue working on my own projects again. I am going to really try and make this a yearly trip. I feel so blessed to have gotten to spend this past week learning, exploring, and partying all over San Jose with a few thousand of fellow developers. I am going to do a follow up post that will be more of the technical aspects of the conference I like and maybe a deep dive into a couple things I am really interested in (Combine, SwiftUI, Independent Watch Apps, idk new to this). I was so inspired by all the indie developers just crushing it out there solo. But regardless this is not a week I will forget for a long time. Also Weezer was dope.",
+      "links": [],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "15981d8d35f6bc9ec97938773e4081f343549e9373964b4433facfae3e8d3065"
+  },
+  {
+    "requestedPath": "/2020/02/10/2019-playlists.html",
+    "status": 200,
+    "finalUrl": "/2020/02/10/2019-playlists.html",
+    "canonical": "https://grantisom.com/2020/02/10/2019-playlists.html",
+    "contentType": "text/html",
+    "title": "2019 Playlists — Grant Isom",
+    "description": "2019 Playlists — Here is a list of what I listened to throughout the past year.",
+    "links": [
+      "/",
+      "/2018/04/02/reading-list.html",
+      "/2018/11/27/playlists.html",
+      "/2019/06/09/wwdc-review.html",
+      "/2020/02/10/2019-playlists.html#main-content",
+      "/2020/05/23/mac_apps.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [],
+      "text": "Here is a list of what I listened to throughout the past year.",
+      "links": [],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": [
+        "https://open.spotify.com/embed/playlist/0k2Z99vVEEqEkbGjX68QV3",
+        "https://open.spotify.com/embed/playlist/3yi2q7L4l7mSXqNamoXds1",
+        "https://open.spotify.com/embed/playlist/2RWLMYcKhJjkvnIstRvtKU",
+        "https://open.spotify.com/embed/playlist/6SWxGu5rjYSBfVFHsBu6DH"
+      ]
+    },
+    "embedContracts": [
+      {
+        "src": "https://open.spotify.com/embed/playlist/0k2Z99vVEEqEkbGjX68QV3",
+        "title": "Spotify playlist: 2019 Playlists",
+        "loading": "lazy",
+        "fallbackHref": "https://open.spotify.com/embed/playlist/0k2Z99vVEEqEkbGjX68QV3",
+        "fallbackText": "Open Spotify playlist: 2019 Playlists",
+        "fallbackCount": 1,
+        "fallbackLinkCount": 1,
+        "marked": true
+      },
+      {
+        "src": "https://open.spotify.com/embed/playlist/3yi2q7L4l7mSXqNamoXds1",
+        "title": "Spotify playlist: 2019 Playlists",
+        "loading": "lazy",
+        "fallbackHref": "https://open.spotify.com/embed/playlist/3yi2q7L4l7mSXqNamoXds1",
+        "fallbackText": "Open Spotify playlist: 2019 Playlists",
+        "fallbackCount": 1,
+        "fallbackLinkCount": 1,
+        "marked": true
+      },
+      {
+        "src": "https://open.spotify.com/embed/playlist/2RWLMYcKhJjkvnIstRvtKU",
+        "title": "Spotify playlist: 2019 Playlists",
+        "loading": "lazy",
+        "fallbackHref": "https://open.spotify.com/embed/playlist/2RWLMYcKhJjkvnIstRvtKU",
+        "fallbackText": "Open Spotify playlist: 2019 Playlists",
+        "fallbackCount": 1,
+        "fallbackLinkCount": 1,
+        "marked": true
+      },
+      {
+        "src": "https://open.spotify.com/embed/playlist/6SWxGu5rjYSBfVFHsBu6DH",
+        "title": "Spotify playlist: 2019 Playlists",
+        "loading": "lazy",
+        "fallbackHref": "https://open.spotify.com/embed/playlist/6SWxGu5rjYSBfVFHsBu6DH",
+        "fallbackText": "Open Spotify playlist: 2019 Playlists",
+        "fallbackCount": 1,
+        "fallbackLinkCount": 1,
+        "marked": true
+      }
+    ],
+    "legalSemantic": null,
+    "bodySha256": "49d7ea2bd6328d0498d81989513774e3d566937ba78d960dc2ab6096e5aeb411"
+  },
+  {
+    "requestedPath": "/2020/05/23/mac_apps.html",
+    "status": 200,
+    "finalUrl": "/2020/05/23/mac_apps.html",
+    "canonical": "https://grantisom.com/2020/05/23/mac_apps.html",
+    "contentType": "text/html",
+    "title": "My Top 17 Apps for Mobile Developers in 2020 — Grant Isom",
+    "description": "My Top 17 Apps for Mobile Developers in 2020 — As a mobile developer, having the right tools and setup on your machine can become a massive time saver and boost your productivity especially...",
+    "links": [
+      "/",
+      "/2020/02/10/2019-playlists.html",
+      "/2020/05/23/mac_apps.html#android-studio",
+      "/2020/05/23/mac_apps.html#atom",
+      "/2020/05/23/mac_apps.html#bear-notes",
+      "/2020/05/23/mac_apps.html#devcleaner",
+      "/2020/05/23/mac_apps.html#filemerge",
+      "/2020/05/23/mac_apps.html#injectioniii",
+      "/2020/05/23/mac_apps.html#iterm",
+      "/2020/05/23/mac_apps.html#jsonpeep",
+      "/2020/05/23/mac_apps.html#main-content",
+      "/2020/05/23/mac_apps.html#marked-2",
+      "/2020/05/23/mac_apps.html#pocket",
+      "/2020/05/23/mac_apps.html#rested",
+      "/2020/05/23/mac_apps.html#screen-sharing",
+      "/2020/05/23/mac_apps.html#sf-symbols",
+      "/2020/05/23/mac_apps.html#sip",
+      "/2020/05/23/mac_apps.html#sketch",
+      "/2020/05/23/mac_apps.html#snippetslab",
+      "/2020/05/23/mac_apps.html#swift-playgrounds",
+      "/2020/05/23/mac_apps.html#tower",
+      "/2020/05/23/mac_apps.html#xcode",
+      "/2020/05/29/safari-inspecting-simulators.html",
+      "/2023/01/14/notion-for-software.html",
+      "/about/",
+      "/app-library/",
+      "/app-library/obsidian/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "Xcode",
+          "id": "xcode"
+        },
+        {
+          "level": 3,
+          "text": "Screen Sharing",
+          "id": "screen-sharing"
+        },
+        {
+          "level": 3,
+          "text": "FileMerge",
+          "id": "filemerge"
+        },
+        {
+          "level": 2,
+          "text": "Android Studio",
+          "id": "android-studio"
+        },
+        {
+          "level": 2,
+          "text": "Atom",
+          "id": "atom"
+        },
+        {
+          "level": 2,
+          "text": "Bear Notes",
+          "id": "bear-notes"
+        },
+        {
+          "level": 2,
+          "text": "Marked 2",
+          "id": "marked-2"
+        },
+        {
+          "level": 2,
+          "text": "SnippetsLab",
+          "id": "snippetslab"
+        },
+        {
+          "level": 2,
+          "text": "Tower",
+          "id": "tower"
+        },
+        {
+          "level": 2,
+          "text": "SF Symbols",
+          "id": "sf-symbols"
+        },
+        {
+          "level": 2,
+          "text": "Swift Playgrounds",
+          "id": "swift-playgrounds"
+        },
+        {
+          "level": 2,
+          "text": "iTerm",
+          "id": "iterm"
+        },
+        {
+          "level": 2,
+          "text": "Sketch",
+          "id": "sketch"
+        },
+        {
+          "level": 2,
+          "text": "Pocket",
+          "id": "pocket"
+        },
+        {
+          "level": 2,
+          "text": "RESTed",
+          "id": "rested"
+        },
+        {
+          "level": 2,
+          "text": "InjectionIII",
+          "id": "injectioniii"
+        },
+        {
+          "level": 2,
+          "text": "DevCleaner",
+          "id": "devcleaner"
+        },
+        {
+          "level": 2,
+          "text": "JSONPeep",
+          "id": "jsonpeep"
+        },
+        {
+          "level": 2,
+          "text": "Sip",
+          "id": "sip"
+        }
+      ],
+      "text": "As a mobile developer, having the right tools and setup on your machine can become a massive time saver and boost your productivity especially over time. While a lot of your development environment comes down to personal preference, these are the apps and plugins that are my “must haves” on any machine. I am thinking after this I want to do a tutorial on my dotfiles and setup scripts that install a lot of these from the Mac App Store and elsewhere. Also these are in no particular order as some aren’t comparable to others when it comes down to usefulness or necessity. Xcode Okay, so this is obvious, you cannot get too far building mobile apps without this app. Even if you use a hybrid framework, you will still need Xcode to create and publish any iOS, iPadOS, tvOS, or MacOS app. Download Xcode on the Mac App Store Screen Sharing This is an app that comes with your Mac that I use all the time at work. If we ever need to hop on a build machine this is honestly one of the easiest ways to do it. I have never had any issues or reasons to go download a better client, it does what its supposed to and saves your recent connections. FileMerge This comes with the Xcode Developer Tools, I would not say this is my favorite file merge tool, even using Atom is way better but the GUI is nice when you have two files in Finder or on your desktop you want to compare quickly. If I am trying to find the differences between two text files or something simple, I use this. Android Studio Along with Xcode, this is basically a requirement. You can use other IDE’s a little easier than Xcode, but I still think the official JetBrains version from Google is the easiest to use. There is a ton of configuration that goes along with Android Studio, but in my opinion is the easiest to use IDE for the job. Download Android Studio Atom Atom has been my go-to editor for everything since college. While it seems VSCode has taken the new throne these days, I still fall back on Atom. The maturity of the plugins and the ability to install things quickly have always been huge selling points to me. Not a huge fan of chromium apps, but I still love using Atom. There are great plugins for things like previewing markdown either in the editor or in Marked 2, the git integration is not bad, and I love how quickly I can install support for a language or a plugin in the case I don’t already have something. Downsides are a lot of the plugins lose support over time and being a Chromium app, things tend to slowdown if you have too much going on. Download Atom Bear Notes I have tried so many notes apps for things like blogging to taking notes in meetings and finally settled on Bear. Previously I was using Apple Notes and Agenda, but the markdown support in Bear is awesome. I do miss the tables in Apple notes, but I love the hashtag system for creating groups and folders. It is super easy to link to other notes and you do things like lock notes or groups just like Apple Notes. If you subscribe to Pro, you get a bunch of great themes, export options, and syncing. It also works great with Marked 2 for previewing how things will look. Also sounds like tables and a couple other missing features are coming to Bear. Agenda was honestly really great, but felt it lacked too many basic features and I didn’t really use all the time based stuff it is built around. Download Bear Notes on the Mac App Store Marked 2 I started using Marked 2 when we started using Github for more and more things at work. It is a previewer for markdown files that allows you to style your text, check spelling, and a whole lot more. It is nice when writing up a tech design to be able to preview it with Marked and see what it will look like once you push it. You can also create custom styles which I will be doing a post on later too. This is useful for previewing things like blog posts in the style or layout of your website. One cool thing you can do too is export as HTML, which could be helpful for blogging or create web articles. Download Marked 2 on the Mac App Store SnippetsLab SnippetsLab is great library for saving useful snippets across IDE’s and editors. It also has support for syncing with Github Gist’s or iCloud so you can backup all these and sync across devices. I have it on my work and personal laptops which is great for using helpful bits of code in personal and work projects. It has tons of organization options and support for markdown as well if you wanted to use it for that. Download ‎SnippetsLab on the Mac App Store Tower So I hesitated putting this on here, but if you absolutely have to use a GUI, then I guess this is the best of the GUI’s for Git. I highly recommend learning and using git in the command line, but if you really don’t want to, Tower is definitely the best one I have used over Github’s Mac app and other editors built-in Git support. You limit what and how you do things with a WYSIWYG tool, but Tower is the better of the evils. Download Tower SF Symbols SF Symbols is a sweet app from Apple that lets you browse the new system icons available in iOS 13. While using the init?(systemName name: String) is only available in iOS 13, you can use this app to export these icons as SVG’s for use in your apps that support iOS 12 and below. Download SF Symbols Swift Playgrounds While this one is not really going to boost your productivity or be a new tool in your development toolbox, it is a great way to play around with Swift or learn. It also has support for some things like Lego Mindstorms, which is pretty cool. It supports Xcode Playgrounds also, so if you are doing anything in Xcode Playgrounds, it can be a more visually appealing way to interact or code in them. Download Swift Playgrounds on the Mac App Store iTerm iTerm is a terminal replacement that brings a lot to the table out of the box. You have search, easy window splitting, a really cool new status bar, autocomplete, and a whole lot more. And that is before any customization of your shell. I don’t think it makes too big of a difference using iTerm versus Terminal.app considering most of the magic comes from setting up your shell to your needs. Download iTerm2 Sketch Sketch is a prototyping tool that lets you create mockups and designs for software products. I have been using it for quite some time and even though I don’t do too much graphic design or UX stuff, I do love using it for my personal projects or wireframes. Compared to things like Omnigraffle or other similar tools, it is my favorite by far. Download Sketch Pocket Pocket is my favorite app for saving and sharing links. I have it on my iPhone, iPad, and both Macs and it does a great job of syncing saved links between them all. The desktop client has a quick command for saving links that are in your clipboard if you don’t use the browser or share extensions as well. ‎Download Pocket on the Mac App Store RESTed RESTed is a lightweight REST API client, it is essentially a boiled down version of Postman. I enjoy using this a lot more than Postman for things like personal projects and the ability to save requests as files is nice for simple things. I use it mainly on personal projects and stick to Postman for things like work or more complex calls. Download ‎RESTed on the Mac App Store InjectionIII Injection is a really cool app that lets you add some “hot reloading” to your Xcode projects. It supports iOS, tvOS, or MacOS. It is not perfect but can be really helpful when making lots of small UI tweaks or changes. I usually add it and occasionally enable it when needed. It is easy to setup with just a single line. Bundle(path: “/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle”)?.load() Download ‎InjectionIII on the Mac App Store DevCleaner DevCleaner is a great app for clearing out old device support files, derived data, or or old archives. It has an easy interface to see and sort through what you want to delete or keep. Hovering over the top level sections will tell you what each is if you are not familiar with the Xcode build system. It has a cool counter of how many GB’s you have “saved” along with a way to leave a tip to the developer. Download ‎DevCleaner for Xcode on the Mac App Store JSONPeep For my work’s slew of apps, they tend to have a good chunk of web content, which means using Safari’s developer tools to inspect the web view’s etc. So this plugin is a huge help if, like me, you end up using Safari a majority of the time. It allows you to view JSON in a readable format adding a little button to whenever you view a JSON file in your browser. Download ‎JSON Peep for Safari on the Mac App Store Sip Sip is the best color picker for Mac that I have found. You always have access to it from the Menu Bar and it allows you to save, copy, and organize your recently picked colors. It also lets you copy them in a ton of formats like NSColor, UIColor, or just hexadecimal. Download Sip So while this list definitely is always changing, these are my current go to applications for mobile development in one way or another. I hope this helps and maybe some of these are new to you! Anyways, enjoy and please let me know what some of your favorites are not on this list.",
+      "links": [
+        "https://apps.apple.com/us/app/xcode/id497799835?mt=12",
+        "https://developer.android.com/studio",
+        "https://code.visualstudio.com/",
+        "https://atom.io/",
+        "https://apps.apple.com/us/app/bear/id1091189122?mt=12",
+        "https://apps.apple.com/us/app/marked-2-markdown-preview/id890031187?mt=12",
+        "https://apps.apple.com/us/app/snippetslab/id1006087419?mt=12",
+        "https://www.git-tower.com/mac",
+        "https://developer.apple.com/documentation/uikit/uiimage/3294233-init",
+        "https://developer.apple.com/design/human-interface-guidelines/sf-symbols/overview/",
+        "https://apps.apple.com/us/app/swift-playgrounds/id1496833156?mt=12",
+        "https://www.iterm2.com/index.html",
+        "https://www.sketch.com/",
+        "https://apps.apple.com/us/app/pocket/id568494494?mt=12",
+        "https://apps.apple.com/us/app/rested-simple-http-requests/id421879749?mt=12",
+        "https://apps.apple.com/us/app/injectioniii/id1380446739?mt=12",
+        "https://apps.apple.com/us/app/devcleaner-for-xcode/id1388020431",
+        "https://apps.apple.com/us/app/json-peep-for-safari/id1458969831?mt=12",
+        "https://sipapp.io/"
+      ],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "2fc7b95afb713becf36dfcdb0c22535f818449668245ac8d65e749710191de45"
+  },
+  {
+    "requestedPath": "/2020/05/29/safari-inspecting-simulators.html",
+    "status": 200,
+    "finalUrl": "/2020/05/29/safari-inspecting-simulators.html",
+    "canonical": "https://grantisom.com/2020/05/29/safari-inspecting-simulators.html",
+    "contentType": "text/html",
+    "title": "Using Safari to Inspect Web Views in iOS Simulators & Devices — Grant Isom",
+    "description": "Using Safari to Inspect Web Views in iOS Simulators & Devices — This week I wanted to talk about how to use Safari’s Developer Tools with Simulators or iOS devices in Safari or in your application’s web views. This is something that can be extremely helpful when...",
+    "links": [
+      "/",
+      "/2020/05/23/mac_apps.html",
+      "/2020/05/29/safari-inspecting-simulators.html#main-content",
+      "/2020/09/28/next-chapter.html",
+      "/2023/07/19/accessibility-testing-in.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/_astro/develop_menu.BbZn6GMO_14cxuf.webp",
+      "/_astro/develop_menu.BbZn6GMO_1CveM9.webp",
+      "/_astro/develop_menu.BbZn6GMO_1DOLmd.avif",
+      "/_astro/develop_menu.BbZn6GMO_1LnuWI.webp",
+      "/_astro/develop_menu.BbZn6GMO_1fIOps.avif",
+      "/_astro/develop_menu.BbZn6GMO_KLKXr.avif",
+      "/_astro/develop_menu.BbZn6GMO_PwCSf.webp",
+      "/_astro/develop_menu.BbZn6GMO_Z2uvunf.avif",
+      "/_astro/safari_settings.CTgkKygu_1ijwHL.avif",
+      "/_astro/safari_settings.CTgkKygu_1pEb9m.avif",
+      "/_astro/safari_settings.CTgkKygu_1qPK8K.avif",
+      "/_astro/safari_settings.CTgkKygu_28gYhN.webp",
+      "/_astro/safari_settings.CTgkKygu_Z17TtnV.webp",
+      "/_astro/safari_settings.CTgkKygu_Z1963nk.webp",
+      "/_astro/safari_settings.CTgkKygu_Z1VyleH.webp",
+      "/_astro/safari_settings.CTgkKygu_Zn9TYr.avif",
+      "/favicon.ico",
+      "/images/develop_menu.png",
+      "/images/safari_settings.png"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "Enabling Safari Debugging",
+          "id": "enabling-safari-debugging"
+        },
+        {
+          "level": 2,
+          "text": "Enabling the Develop Menu Item",
+          "id": "enabling-the-develop-menu-item"
+        }
+      ],
+      "text": "This week I wanted to talk about how to use Safari’s Developer Tools with Simulators or iOS devices in Safari or in your application’s web views. This is something that can be extremely helpful when working in web applications or in apps that have a mixture of web and native content as do ours at Cerner. Enabling Safari Debugging If you are on a real device you will need to enable the Web Inspector first. Open Settings, then open Safari, scroll to the bottom and open Advanced. You should see an option for Web Inspector, enable this and you will see your phone as an option in the Develop menu item. If you are using a simulator, there is no setup after enabling the Develop mode in Safari. Enabling the Develop Menu Item In Safari you will need to enable the Develop menu item before you can see any other available devices for inspection. Open Preferences ⌘ + , and open the Advanced section. At the bottom, check the box next to “Show Develop menu in menu bar”. Now you should see the Develop menu item and can chose web views or browser tabs to inspect on real devices or simulators! You are now all set! You can interact with the web inspector just like you can in Desktop Safari. The only caveat is that this will not work for apps that are from TestFlight or the App Store, so debug mode only. Hope this helps and happy coding!",
+      "links": [],
+      "images": [
+        "/images/safari_settings.png",
+        "/images/develop_menu.png"
+      ],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "2ab33ddc7ccab628584dc5d146eb40dfa2ad76216fc1c246eccd64f42f7e82ce"
+  },
+  {
+    "requestedPath": "/2020/09/28/next-chapter.html",
+    "status": 200,
+    "finalUrl": "/2020/09/28/next-chapter.html",
+    "canonical": "https://grantisom.com/2020/09/28/next-chapter.html",
+    "contentType": "text/html",
+    "title": "Next Chapter — Grant Isom",
+    "description": "Next Chapter — Starting back in July, I made the next move in my personal career. After meeting with one of my good friends...",
+    "links": [
+      "/",
+      "/2020/05/29/safari-inspecting-simulators.html",
+      "/2020/09/28/next-chapter.html#main-content",
+      "/2022/11/07/2-years-at-illuminate.html",
+      "/2026/02/01/healthql-sql-for-healthkit.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/_astro/logo.BAKhtqIN_1WcKhK.avif",
+      "/_astro/logo.BAKhtqIN_JNl8x.avif",
+      "/_astro/logo.BAKhtqIN_VTxGv.webp",
+      "/_astro/logo.BAKhtqIN_ZftQrH.webp",
+      "/favicon.ico",
+      "/images/logo.png"
+    ],
+    "articleSemantic": {
+      "headings": [],
+      "text": "Starting back in July, I made the next move in my personal career. After meeting with one of my good friends, Alek, I decided to follow him to another Kansas City company, Illuminate. The one thing I had to really think about was stepping away from the app development world for a while. It has been a great space to start my career and is what got me into software from the beginning. But I would be doing myself a disservice staying so narrowly focused in one development ecosystem or frame. At Illuminate I have been working mainly on a “MLOps” application for creating datasets for training models over. It allows our clinical experts to label radiology notes and documents efficiently, while also being a broad enough solution for any other similar data grouping. I have really enjoyed going to a smaller startup so far, our team moves fast, everyone gets along, and we have tons of really exciting opportunities in front of us as a company! I also think the change of technology stacks will lead to some interesting topics to talk about on here. Stay tuned!",
+      "links": [
+        "https://goilluminate.com/",
+        "https://en.wikipedia.org/wiki/MLOps"
+      ],
+      "images": [
+        "/images/logo.png"
+      ],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "29b61e3f204494183cac4cdd4b05691e748a8af09833926ad8f19023a2e22b1b"
+  },
+  {
+    "requestedPath": "/2022/11/07/2-years-at-illuminate.html",
+    "status": 200,
+    "finalUrl": "/2022/11/07/2-years-at-illuminate.html",
+    "canonical": "https://grantisom.com/2022/11/07/2-years-at-illuminate.html",
+    "contentType": "text/html",
+    "title": "2 Years at Illuminate, A Retrospective — Grant Isom",
+    "description": "2 Years at Illuminate, A Retrospective — As I move on to the next chapter in my career, I wanted to reflect...",
+    "links": [
+      "/",
+      "/2020/09/28/next-chapter.html",
+      "/2022/11/07/2-years-at-illuminate.html#culture",
+      "/2022/11/07/2-years-at-illuminate.html#healthcare-software",
+      "/2022/11/07/2-years-at-illuminate.html#impact",
+      "/2022/11/07/2-years-at-illuminate.html#in-conclusion",
+      "/2022/11/07/2-years-at-illuminate.html#main-content",
+      "/2022/11/07/2-years-at-illuminate.html#managing-a-team",
+      "/2022/11/07/2-years-at-illuminate.html#organizational-architecture",
+      "/2022/11/07/2-years-at-illuminate.html#things-move-fast",
+      "/2022/11/07/2-years-at-illuminate.html#tldr",
+      "/2023/01/02/mustread-books-for.html",
+      "/2026/02/01/healthql-sql-for-healthkit.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 3,
+          "text": "TL;DR",
+          "id": "tldr"
+        },
+        {
+          "level": 3,
+          "text": "Things move fast.",
+          "id": "things-move-fast"
+        },
+        {
+          "level": 3,
+          "text": "Impact",
+          "id": "impact"
+        },
+        {
+          "level": 3,
+          "text": "Organizational Architecture",
+          "id": "organizational-architecture"
+        },
+        {
+          "level": 3,
+          "text": "Managing a Team",
+          "id": "managing-a-team"
+        },
+        {
+          "level": 3,
+          "text": "Culture",
+          "id": "culture"
+        },
+        {
+          "level": 3,
+          "text": "Healthcare Software",
+          "id": "healthcare-software"
+        },
+        {
+          "level": 3,
+          "text": "In Conclusion",
+          "id": "in-conclusion"
+        }
+      ],
+      "text": "As I move on to the next chapter in my career, I wanted to reflect on the past two years at Illuminate. Here are the lessons learned from moving to a 20 person startup from a 26k person company. TL;DR Things move fast. You can make an immediate impact on the organization. Your architecture will reflect your organization. Managing is more than 1 on 1’s. Culture matters even more than at a larger organization. Healthcare software is challenging, the data is not uniform, but is some of the most rewarding work. Things move fast. Coming from a larger company, I was used to quarterly planning, long release cycles, and processes for just about everything. One of my favorite things about going to a startup was how quickly we moved. The only processes that existed were for compliance and to ensure high quality with our changes. If you have an idea, or want try something you are empowered to do it! Impact Being at a startup, you can have a tremendous amount of impact and responsibility. It can be a great opportunity to take a chance or risk but can also create silo’s of critical information. During my second year, we decided to try a new approach and have engineers focus on a general area of architecture instead of a product and also participate in a support rotation. With the level of tech debt we were facing, this was an extremely painful switch. Three months in we noticed our team had quickly destroyed most of these silo’s and documented some of our unknowns. One of my coworkers during this time, started writing down everything he came across during his support rotation and how to reproduce or fix the issues. He not only fixed a lot of the issues but he created a shared space that included all the details. As time went on, the rest of the team followed suite and this became one of the greatest changes our team made. He didn’t tell anyone else to do it, just showed everyone and the team immediately bought it. The time spent on support decreased by almost half due to this. I just think that is a great example of how even little things can make a big difference, and when the team is only 8 people, you really feel it. Organizational Architecture One of the things I was excited to be involved in was helping relayout our company’s org chart to be closer to how we did business. From an engineering perspective, there were three things I thought really made an impact: We made engineering flatter and less specific, aka SWE’s and SRE’s shared responsibilities and worked closer together. Support was incorporated into the entire engineering team versus being something dealt with by client services. We created processes that captured data and work being done so we could make objective decisions versus relying on people’s experiences purely. This ended up showing us some of our biggest pain points and we were able to rapidly adjust. The next thing we spent a lot of time trying to figure out was how to have client services interact with the engineering team. This led to building out tools and processes that let each organization be more independent from each other. We integrated our work tracking tools like Monday and Jira, and we identified things engineering could pass off to client services to speed up client onboarding. When I first started, client services was at the whim of engineering which meant these tasks like onboarding or transforming data was always held up by engineering. While I am sure this is still ongoing today, we made massive improvements that really helped our teams work together instead of bottleneck each other. Managing a Team Illuminate was my first chance to really manage an entire team. At my previous company, I managed a team of 5 engineers in an organization of 200. This was a wildly different experience. Three hard learning lessons: Strong individual contributors do not always make strong managers. While I believe it can be dangerous to move too slow promoting or recognizing a strong team member, it can be worse to put them in a position they cannot continue to succeed in. Annual review cycles work and prevent a lot of political issues within an organization. There are also times where it makes sense to move someone into a new role outside of cycles, but those should be something done as infrequently as possible. Your direct reports should always have a good understanding of how they are performing, aka they should not be caught off guard with good or bad news. Communication and regular 1 on 1’s are not for you to talk about work, they are there to let your direct report talk with you about anything on their mind and for you to communicate anything about their personal growth within the organization. If you have to let someone go or put them on a performance plan, they should be aware that it was coming. Being caught off guard is not a fun situation for your direct report and will probably lead to a poor professional relationship with them. Watch out for legends of the old guard or team members talking about things that “just work” or “don’t want to mess with”. I really got kicked in the butt when I realized all the stories about previous engineering teams doing miracle work or having to do something extraordinary was just a cover up for tech debt. Nothing is worse than getting a call from a client about a piece of your tech stack that you do not have strong visibility over. The biggest takeaway I have is that, as a manager, you are there to help your direct reports succeed and provide a buffer from things that prevent them from being able to do great work. You can’t be everyone’s friend but you also need to recognize that you are there to help them first and foremost. Culture If there was only one thing I could take away from this last experience, it would be how important a good work culture is. Especially in a fast paced environment, I realized the health of the team is dependent on making sure work is somewhere where everyone feels supported and can be themselves. When things start getting challenging or an emergency happens, it seemed like these are the things that make the biggest difference. Going forward, will be one of the main things I look for in a company. It cannot be an after thought, it needs to be a priority. I don’t mean free food and ping pong tables or extra days off, but a place that supports their staff in the work they do and understands employees have lives outside of work. Healthcare Software Healthcare software and data is a mess. Nothing is uniform due to the emergence and integration of electronic medical records over the last 40 years. There are some exciting companies and projects tackling those problems around data uniformity and cross organization data sharing, but while I was at Illuminate, it was both fun and challenging working on the data ingestion pipelines across our client base. While everything is generally similar, no two hospitals are the same which led us down some interesting paths around solving this problem at scale. The other interesting thing about AI or machine learning in healthcare is the amount of insights or data points generated versus how many are actually acted on. One of the biggest things I learned was that follow-up, or helping the hospitals track patients related to some insight is one of the biggest holes in the digital space right now. I am excited to see where the team goes the next couple of years working on these problems. In Conclusion I had a great two years at Illuminate and will miss working with the engineering team. It was my first time getting to lead a team of that size and learned a lot in the process. Looking forward, I feel like the experience prepared me for what is to come in my next couple chapters.",
+      "links": [],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "e6529b5e1b4bd86ed16dd933ce40fb20c139d694ef3217e03482554dd84207d4"
+  },
+  {
+    "requestedPath": "/2023/01/02/mustread-books-for.html",
+    "status": 200,
+    "finalUrl": "/2023/01/02/mustread-books-for.html",
+    "canonical": "https://grantisom.com/2023/01/02/mustread-books-for.html",
+    "contentType": "text/html",
+    "title": "9 Must-Read Books for Software Engineers in 2023 — Grant Isom",
+    "description": "9 Must-Read Books for Software Engineers in 2023 — As a software engineer, staying up-to-date with the latest developments and best practices...",
+    "links": [
+      "/",
+      "/2018/04/02/reading-list.html",
+      "/2022/11/07/2-years-at-illuminate.html",
+      "/2023/01/02/mustread-books-for.html#main-content",
+      "/2023/01/14/notion-for-software.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/",
+      "/skills/goodreads-export/"
+    ],
+    "assets": [
+      "/_astro/45d7f5784d.By1-7yBE_Z1SOV5m.avif",
+      "/_astro/45d7f5784d.By1-7yBE_ZzqVts.webp",
+      "/_astro/475c3984d0.B28EyfrM_1SdJ2.avif",
+      "/_astro/475c3984d0.B28EyfrM_1lhdkV.webp",
+      "/_astro/5f538d59de.DFsCjwXi_1LtBt0.avif",
+      "/_astro/5f538d59de.DFsCjwXi_Z1YjwJ2.webp",
+      "/_astro/7337cde14c.BL4fKt8n_1edLMj.webp",
+      "/_astro/7337cde14c.BL4fKt8n_Z5acNA.avif",
+      "/_astro/96ce2ec5a6.Cgv_VCs5_1MH8GW.avif",
+      "/_astro/96ce2ec5a6.Cgv_VCs5_Z1X60v5.webp",
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/_astro/a37debf5ab.Btl7NvuJ_CYjvx.webp",
+      "/_astro/a37debf5ab.Btl7NvuJ_ZFoF5m.avif",
+      "/_astro/a97bedecb3.EW04siAp_Z1jB7yh.avif",
+      "/_astro/a97bedecb3.EW04siAp_Zd7Wn.webp",
+      "/_astro/e1d2ad7014.Da9PYDhe_1P8VfM.avif",
+      "/_astro/e1d2ad7014.Da9PYDhe_Z1UEcWf.webp",
+      "/_astro/ec18f32904.Bb6rK8ck_Z2iFP29.avif",
+      "/_astro/ec18f32904.Bb6rK8ck_ZYhPqf.webp",
+      "/favicon.ico",
+      "/images/45d7f5784d.jpg",
+      "/images/475c3984d0.jpg",
+      "/images/5f538d59de.jpg",
+      "/images/7337cde14c.jpg",
+      "/images/96ce2ec5a6.jpg",
+      "/images/a37debf5ab.jpg",
+      "/images/a97bedecb3.jpg",
+      "/images/e1d2ad7014.jpg",
+      "/images/ec18f32904.jpg"
+    ],
+    "articleSemantic": {
+      "headings": [],
+      "text": "As a software engineer, staying up-to-date with the latest developments and best practices is essential for growth. One of my favorite (and what I feel is overlooked) methods for growth is reading books. We spend a large part of our day reading Stack Overflow and blog posts, but books have really helped me see things in a different light or understand something I do not come across on a daily basis. In 2022, I read a number of books that were extremely valuable to my career as a software engineer. Here are nine that I highly recommend for software engineers at all stages of their careers to consider adding to their reading lists for 2023: “Build: An Unorthodox Guide to Making Things Worth Making” by Tony Fadell is a must-read for anyone looking to create things that matter. Fadell shares his unique perspective on how to focus on small, achievable goals and pivot when necessary. “The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win” by Gene Kim, Kevin Behr, and George Spafford is a captivating story about an IT manager who must turn around a failing project. Along the way, he learns about the principles of DevOps and how to apply them to his work. “The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers” by Ben Horowitz offers candid and practical advice on the challenges of entrepreneurship. Horowitz covers topics such as hiring, firing, and managing through tough times, and provides valuable insights on how to navigate the ups and downs of building a business. “Structure and Interpretation of Computer Programs,” also known as the “Wizard Book,” is a classic text that covers the fundamental concepts of computer science and programming using the Lisp language. This book is a must-read for any serious software engineer. “A Philosophy of Software Design” by John Ousterhout argues that good software design is all about simplicity and clarity. He offers practical advice on how to achieve these qualities in your own code. This is a good one to read even on a yearly basis. “The Pragmatic Programmer: From Journeyman to Master” by Andrew Hunt and David Thomas is a comprehensive guide to becoming a better software engineer. It covers a wide range of topics, including debugging, testing, and refactoring, and is filled with useful tips and techniques. Make sure to pick up the 20th anniversary edition. “An Elegant Puzzle: Systems of Engineering Management” by Will Larson discusses the challenges and opportunities of managing software development teams. Larson covers topics such as building effective processes, setting goals, and creating a positive culture. “Software Engineering at Google: Lessons Learned from Programming Over Time” by Titus Winters, Tom Manshreck, and Hyrum Wright offers a behind-the-scenes look at how Google approaches software development. It covers topics such as code review, testing, and technical debt, and provides valuable insights into how to build reliable and scalable systems. “INSPIRED: How to Create Tech Products Customers Love” by Marty Cagan is a must-read for anyone looking to create successful tech products. Cagan covers topics such as defining the product vision, building a strong team, and gathering customer feedback, and provides practical advice on how to apply these principles to your own work. Commonly recommended for product managers, I think its a great read for engineers as well as it will help when working cross-functionally with your product team. These books provided invaluable insights and kept me motivated and inspired throughout the year. “An Elegant Puzzle” was particularly helpful in figuring out how to more effectively handle support issues within my team, while “Software Engineering at Google” offered valuable guidance as we were setting up a new project and repository. I hope this list of recommendations will provide some useful reading options for you in 2023 as you continue to grow and develop in your software engineering career.",
+      "links": [
+        "https://www.goodreads.com/book/show/59783101-build",
+        "https://www.goodreads.com/book/show/38191426-the-phoenix-project",
+        "https://www.goodreads.com/book/show/20657434-the-hard-thing-about-hard-things",
+        "https://www.goodreads.com/book/show/43713.Structure_and_Interpretation_of_Computer_Programs",
+        "https://www.goodreads.com/book/show/43701534-a-philosophy-of-software-design",
+        "https://www.goodreads.com/book/show/50701156-the-pragmatic-programmer",
+        "https://www.goodreads.com/book/show/45303387-an-elegant-puzzle",
+        "https://www.goodreads.com/book/show/48816586-software-engineering-at-google",
+        "https://www.goodreads.com/book/show/36645100-inspired"
+      ],
+      "images": [
+        "/images/ec18f32904.jpg",
+        "/images/475c3984d0.jpg",
+        "/images/7337cde14c.jpg",
+        "/images/a97bedecb3.jpg",
+        "/images/5f538d59de.jpg",
+        "/images/45d7f5784d.jpg",
+        "/images/e1d2ad7014.jpg",
+        "/images/a37debf5ab.jpg",
+        "/images/96ce2ec5a6.jpg"
+      ],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "5f1c41ca9efe4dd55664485973ccd3dfa6d191c6edff078f508385582dc3bf32"
+  },
+  {
+    "requestedPath": "/2023/01/14/notion-for-software.html",
+    "status": 200,
+    "finalUrl": "/2023/01/14/notion-for-software.html",
+    "canonical": "https://grantisom.com/2023/01/14/notion-for-software.html",
+    "contentType": "text/html",
+    "title": "Notion 101 for Software Engineers — Grant Isom",
+    "description": "Notion 101 for Software Engineers — As a software engineer, staying organized and on top of your projects can be a challenge. Not only...",
+    "links": [
+      "/",
+      "/2020/05/23/mac_apps.html",
+      "/2023/01/02/mustread-books-for.html",
+      "/2023/01/14/notion-for-software.html#main-content",
+      "/2023/01/14/notion-for-software.html#teamspaces-and-notion-ai",
+      "/2023/01/14/notion-for-software.html#templates",
+      "/2023/01/14/notion-for-software.html#the-work-log",
+      "/2023/01/14/notion-for-software.html#web-clipper",
+      "/2023/02/01/expo-app-config.html",
+      "/about/",
+      "/app-library/",
+      "/app-library/obsidian/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/5fd90bfbf1.C5k02g5U_1MSN3F.avif",
+      "/_astro/5fd90bfbf1.C5k02g5U_Mqa10.webp",
+      "/_astro/5fd90bfbf1.C5k02g5U_XiHrX.webp",
+      "/_astro/5fd90bfbf1.C5k02g5U_Z1WTl9m.webp",
+      "/_astro/5fd90bfbf1.C5k02g5U_Zl5h8V.avif",
+      "/_astro/5fd90bfbf1.C5k02g5U_ZvWOzT.avif",
+      "/_astro/6647450a28.Djc0li92_1KruLo.avif",
+      "/_astro/6647450a28.Djc0li92_1V38XR.webp",
+      "/_astro/6647450a28.Djc0li92_Z1Kf5Ro.webp",
+      "/_astro/6647450a28.Djc0li92_Z1UPJ4R.avif",
+      "/_astro/6647450a28.Djc0li92_Z1iBqF3.webp",
+      "/_astro/6647450a28.Djc0li92_Z1td4Rw.avif",
+      "/_astro/6647450a28.Djc0li92_Z24X1E5.webp",
+      "/_astro/6647450a28.Djc0li92_Z2nnNaS.avif",
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/_astro/f159196842.CwjBLhrA_1VcUD.webp",
+      "/_astro/f159196842.CwjBLhrA_5xVEX.webp",
+      "/_astro/f159196842.CwjBLhrA_Cr1G0.webp",
+      "/_astro/f159196842.CwjBLhrA_Z1IFNxY.avif",
+      "/_astro/f159196842.CwjBLhrA_Z1y5alv.webp",
+      "/_astro/f159196842.CwjBLhrA_Z52Gwv.avif",
+      "/_astro/f159196842.CwjBLhrA_ZgtyAa.avif",
+      "/_astro/f159196842.CwjBLhrA_rPntw.avif",
+      "/_astro/fa6c5dfe53.CWZBCYit_1CgLI6.webp",
+      "/_astro/fa6c5dfe53.CWZBCYit_1jQ0ci.avif",
+      "/_astro/fa6c5dfe53.CWZBCYit_Z10OIUr.webp",
+      "/_astro/fa6c5dfe53.CWZBCYit_Z12iNud.avif",
+      "/_astro/fa6c5dfe53.CWZBCYit_Z1V8Dev.avif",
+      "/_astro/fa6c5dfe53.CWZBCYit_Z1jfvrf.avif",
+      "/_astro/fa6c5dfe53.CWZBCYit_Z1ymdQO.webp",
+      "/_astro/fa6c5dfe53.CWZBCYit_ZIS1Xp.webp",
+      "/favicon.ico",
+      "/images/5fd90bfbf1.png",
+      "/images/6647450a28.png",
+      "/images/f159196842.png",
+      "/images/fa6c5dfe53.png"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "The Work Log",
+          "id": "the-work-log"
+        },
+        {
+          "level": 2,
+          "text": "Templates",
+          "id": "templates"
+        },
+        {
+          "level": 2,
+          "text": "Web Clipper",
+          "id": "web-clipper"
+        },
+        {
+          "level": 2,
+          "text": "Teamspaces and Notion AI",
+          "id": "teamspaces-and-notion-ai"
+        }
+      ],
+      "text": "As a software engineer, staying organized and on top of your projects can be a challenge. Not only are there many projects going on at times, but how your work is managed can be split between tools. We use Jira, Confluence, and Github at work, I use Todoist to deal with personal tasks and projects, and then Notion sits in between all of those helping to bring the information needed to the front. In this blog post, I will walk through how I use Notion as a software engineer to keep my work running smoothly and streamline how I capture interesting or important information. The Work Log Keeping a Daily/Weekly Work Log is a great way to document what you worked on during the day and any questions you want to bring up at Standup the next morning. This can be done in any note-taking tool, but I find that Notion is particularly useful for this purpose. I have a daily template set up that I use to log my work and any questions I may have. This template includes sections for: Tasks completed Problems encountered Questions for the team Things to follow up on This has been incredibly helpful in keeping my update concise and to the point while not forgetting something I need help with. The work log has also served as a great utility when trying to track down something I worked on that is not easily found in Jira or Github. I highly recommend every engineer at least try keeping a log for a couple months and see if they get a benefit from it. Templates One of the most powerful features of Notion is its ability to create custom templates. These templates can be used for everything from meeting notes to planning sprints, and they can be easily shared with other members of your team. These allow you to spend less time setting things up and more time capturing the important information needed during meetings. For example, I have a template set up for meeting notes that includes sections for: Agenda Attendees Discussions Action items Follow-up This has been extremely helpful in keeping track of what was discussed during meetings and what the next steps are. I also have a template for capturing my achievements and work during the year. This way when it comes time for reviews I have a breakdown of all of the things I was proud of throughout the year. This can be very helpful at companies of all sizes and makes your manager’s life easier when understanding your impact. There are endless ways templates can be used, but I think this is a major reason to use Notion or a similar tool over something like Apple Notes. Web Clipper The Notion Web Clipper has fully replaced Instapaper or Chrome/Safari Reading Lists for me. It allows me to capture helpful articles, links, even things like README’s from Github. It works on pretty much any browser and mobile and is an easy way to quickly capture web pages that you want to reference later. It also tries to pull the text into a page so you can search over the content of all of your saved links. The Web Clipper is an extremely helpful tool when you are starting a new project as well since you can gather a massive amount of information and references very quickly without having to keep a million tabs open. Teamspaces and Notion AI Notion’s recent release of team spaces and Notion AI has made it an even more versatile tool for software engineers. Team spaces allows for easy collaboration and sharing of templates, databases and pages within a team, making it a great tool for managing projects and tasks together. Notion AI, on the other hand, offers a range of features to help you with your workflow such as automated reminders, scheduling, and natural language processing to quickly find information. These features have the potential to greatly improve productivity and collaboration within teams. Additionally, with a growing community and tons of resources online to maximize Notion’s potential, it is an extremely versatile tool that can help software engineers stay organized and get work done faster.",
+      "links": [
+        "https://www.notion.so/web-clipper"
+      ],
+      "images": [
+        "/images/f159196842.png",
+        "/images/fa6c5dfe53.png",
+        "/images/5fd90bfbf1.png",
+        "/images/6647450a28.png"
+      ],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "228f122023c855cc541f234eb8d8a87392b5708636b9690f51250fada06e89ce"
+  },
+  {
+    "requestedPath": "/2023/02/01/expo-app-config.html",
+    "status": 200,
+    "finalUrl": "/2023/02/01/expo-app-config.html",
+    "canonical": "https://grantisom.com/2023/02/01/expo-app-config.html",
+    "contentType": "text/html",
+    "title": "Expo App Config Setup for Multiple Environments — Grant Isom",
+    "description": "Expo App Config Setup for Multiple Environments — Expo is a free and open-source platform for creating and building mobile apps using...",
+    "links": [
+      "/",
+      "/2023/01/14/notion-for-software.html",
+      "/2023/02/01/expo-app-config.html#main-content",
+      "/2023/05/15/using-act-to.html",
+      "/2023/07/19/accessibility-testing-in.html",
+      "/2026/02/07/healthql-react-native.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "Converting to app.json to app.config.js for multiple environments.",
+          "id": "converting-to-appjson-to-appconfigjs-for-multiple-environments"
+        },
+        {
+          "level": 4,
+          "text": "app.config.js",
+          "id": "appconfigjs"
+        },
+        {
+          "level": 4,
+          "text": "eas.json",
+          "id": "easjson"
+        },
+        {
+          "level": 2,
+          "text": "Passing Environment Variables to EAS Update",
+          "id": "passing-environment-variables-to-eas-update"
+        }
+      ],
+      "text": "Expo is a free and open-source platform for creating and building mobile apps using JavaScript and React Native. It is a popular choice among developers for its ease of use and its ability to quickly set up and run a mobile app without the need for extensive configuration. Expo provides a set of tools and services that allow developers to build, test, and publish their apps to the App Store and Google Play with minimal setup and without the need for Xcode or Android Studio. One of the most powerful features of Expo is the ability to use a single codebase to create apps for both iOS and Android platforms, which can save a lot of time and effort. Expo also provides a rich set of pre-built components and APIs for common functionality such as push notifications, camera access, and location tracking, which can help developers get their apps up and running quickly. One of the things you may come across is figuring out how to setup different environments or app variants within an Expo app. If you want to just target one binary on iOS and Android, there is very little to do other than setup some environment variables. If you want to have multiple apps for development, QA/test, production, etc then you’ll need to do a few things to be able to take advantage of all Expo has to offer without having to manage these things yourself. Converting to app.json to app.config.js for multiple environments. The first step is to convert the app.json file into an app.config.js file. This allows for dynamic changes for things such as your app’s bundle identifier/package name. Below is an example of a basic conversion. Somethings to note is that you are not able to auto bump build numbers when using the app.config.js but there are other ways to accomplish this. app.config.js function getBundleId() { switch (process.env.APP_VARIANT) { case 'development': { return 'com.isom.grant.dev'; } case 'qa': { return 'com.isom.grant.qa'; } case 'production': { return 'com.isom.grant.prod'; } default: { return 'com.isom.grant.dev'; } } } export default { name: getName(), ... ios: { bundleIdentifier: getBundleId(), ... }, android: { package: getBundleId(), ... }, extra: { APP_VARIANT: process.env.APP_VARIANT || 'development', }, }; eas.json { \"build\": { \"development\": { \"distribution\": \"internal\", \"developmentClient\": true, \"autoIncrement\": false, \"env\": { \"APP_VARIANT\": \"development\" }, \"android\": { \"buildType\": \"apk\" } }, ... }, ... } Now simply providing the --profile when running an eas build command will set the bundle identifier and package name of your app. You can do this for environment variables as well. Constants.expoConfig?.extra?.APP_VARIANT The above snippet will return the value set during build at runtime. Passing Environment Variables to EAS Update Environment variables are fairly straightforward for updates. You will need to configure use interactive mode to attach branches to variants. But after that, you will just include the environment variable(s) before the command like any other CLI. APP_VARIANT='production' eas update -p all --branch prod To wrap things up, if you’re using Expo to build your mobile app, setting up multiple environments or variants can be a big help. By converting your app.json file to a app.config.js file, you’ll have more control over your app’s settings and can utilize environment variables for native pieces. And if you need to pass on environment variables to the EAS update, it’s pretty simple. Just include the variables before you run the update command and you’re good to go. All in all, Expo makes it easy for you to build, test, and publish your app to both the App Store and Google Play with a smooth and stress-free experience.",
+      "links": [
+        "https://docs.expo.dev/guides/environment-variables/"
+      ],
+      "images": [],
+      "codeBlocks": [
+        "function getBundleId() {\n    switch (process.env.APP_VARIANT) {\n        case 'development': {\n            return 'com.isom.grant.dev';\n        }\n        case 'qa': {\n            return 'com.isom.grant.qa';\n        }\n        case 'production': {\n            return 'com.isom.grant.prod';\n        }\n        default: {\n            return 'com.isom.grant.dev';\n        }\n    }\n}\n\nexport default {\n    name: getName(),\n    ...\n    ios: {\n        bundleIdentifier: getBundleId(),\n        ...\n    },\n    android: {\n        package: getBundleId(),\n        ...\n    },\n    extra: {\n        APP_VARIANT: process.env.APP_VARIANT || 'development',\n    },\n};\n",
+        "{\n    \"build\": {\n        \"development\": {\n            \"distribution\": \"internal\",\n            \"developmentClient\": true,\n            \"autoIncrement\": false,\n            \"env\": {\n                \"APP_VARIANT\": \"development\"\n            },\n            \"android\": {\n                \"buildType\": \"apk\"\n            }\n        },\n        ...\n    },\n    ...\n}\n",
+        "Constants.expoConfig?.extra?.APP_VARIANT\n",
+        "APP_VARIANT='production' eas update -p all --branch prod\n"
+      ],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "e3970ebcd1c3b7476f53d004a1cf6f574da8fa266ae87939500c5a07cbbc67b5"
+  },
+  {
+    "requestedPath": "/2023/05/15/using-act-to.html",
+    "status": 200,
+    "finalUrl": "/2023/05/15/using-act-to.html",
+    "canonical": "https://grantisom.com/2023/05/15/using-act-to.html",
+    "contentType": "text/html",
+    "title": "Using Act to Run Github Actions Locally — Grant Isom",
+    "description": "Using Act to Run Github Actions Locally — The Act package offers a convenient way to execute your GitHub Action workflows locally...",
+    "links": [
+      "/",
+      "/2023/02/01/expo-app-config.html",
+      "/2023/05/15/using-act-to.html#executing-workflows",
+      "/2023/05/15/using-act-to.html#installation",
+      "/2023/05/15/using-act-to.html#main-content",
+      "/2023/05/15/using-act-to.html#setup",
+      "/2023/07/19/accessibility-testing-in.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 3,
+          "text": "Installation",
+          "id": "installation"
+        },
+        {
+          "level": 3,
+          "text": "Setup",
+          "id": "setup"
+        },
+        {
+          "level": 3,
+          "text": "Executing Workflows",
+          "id": "executing-workflows"
+        }
+      ],
+      "text": "https://github.com/nektos/act The Act package offers a convenient way to execute your GitHub Action workflows locally. It’s a valuable tool when debugging or working on issues that either have a long runtime or are complex, saving you those precious minutes. Installation The installation process is quite straightforward. First, ensure Docker Desktop is installed on your computer. Then, for Mac/Linux users, the easiest installation method is via Homebrew. brew install act That’s all there is to it! Upon executing your workflows for the first time, the required Docker containers should automatically download. Setup An essential point to remember is to pass in your personal access token from GitHub when running any workflow dependent on SECRETS or environment variables. Executing Workflows With everything set up, running workflows becomes a breeze: ➜ act pull_request --container-architecture linux/amd64 Checkout the README for additional examples and a comprehensive breakdown of all the capabilities this package offers. I believe Act is an indispensable tool for anyone working with GitHub Actions who wants to test or debug their changes swiftly.",
+      "links": [
+        "https://github.com/nektos/act",
+        "https://brew.sh/",
+        "https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token"
+      ],
+      "images": [],
+      "codeBlocks": [
+        "brew install act\n",
+        "➜ act pull_request --container-architecture linux/amd64\n"
+      ],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "c8b642d7138af9076b4cefe478f78fc90c5c86ceee9aa5dd8d0fe80c436ca32c"
+  },
+  {
+    "requestedPath": "/2023/07/19/accessibility-testing-in.html",
+    "status": 200,
+    "finalUrl": "/2023/07/19/accessibility-testing-in.html",
+    "canonical": "https://grantisom.com/2023/07/19/accessibility-testing-in.html",
+    "contentType": "text/html",
+    "title": "Accessibility Testing in Maestro — Grant Isom",
+    "description": "Accessibility Testing in Maestro — Recently, our mobile team came across a problem with text sizing in our app when customers..",
+    "links": [
+      "/",
+      "/2020/05/29/safari-inspecting-simulators.html",
+      "/2023/02/01/expo-app-config.html",
+      "/2023/05/15/using-act-to.html",
+      "/2023/07/19/accessibility-testing-in.html#main-content",
+      "/2026/02/01/healthql-sql-for-healthkit.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [],
+      "text": "Recently, our mobile team came across a problem with text sizing in our app when customers had the “Larger Accessibility Sizes” Display Text option on. After updating our app to more fully support dynamic text, we came across a cool solution to automate testing this for future releases. Using Maestro UI Testing, we could enable these settings for certain tests. We created actions within our flows to enable certain settings prior to running the actual UI tests steps. This pattern can be applied on both Android or iOS as Maestro gives you full access to the simulator even running in their cloud environment. If you have not checked out Maestro for UI testing on either React Native or Native applications, I would highly recommend it, as it solves so many historical issues with similar tools. Below is an example enabling the “Larger Accessibility Sizes” and then launching the target application in an iOS Simulator. Example Maestro Flow appId: <your_bundle_id> --- - tapOn: id: \"Settings\" - tapOn: id: \"ACCESSIBILITY\" - tapOn: id: \"DISPLAY_AND_TEXT\" - tapOn: id: \"LARGER_TEXT\" - tapOn: text: \"Larger Accessibility Sizes\" index: 0 - tapOn: point: \"50%,90%\" - pressKey: \"Home\" - launchApp: appId: \"<your_bundle_id>\" This pattern or strategy can be applied to any of the accessibility settings available on simulators/emulators. This can be a huge help to ensure new UI updates and features are accessible while continuing to release fast.",
+      "links": [
+        "https://maestro.mobile.dev/"
+      ],
+      "images": [],
+      "codeBlocks": [
+        "appId: <your_bundle_id>\n---\n- tapOn:\n\tid: \"Settings\"\n- tapOn:\n\tid: \"ACCESSIBILITY\"\n- tapOn:\n\tid: \"DISPLAY_AND_TEXT\"\n- tapOn:\n\tid: \"LARGER_TEXT\"\n- tapOn: text: \"Larger Accessibility Sizes\"\n\tindex: 0\n- tapOn:\n\tpoint: \"50%,90%\"\n- pressKey: \"Home\"\n- launchApp:\n\tappId: \"<your_bundle_id>\"\n"
+      ],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "2d16e54b79c623db6fd974b85d89c752522948cb248515251bee12b20f5a8a04"
+  },
+  {
+    "requestedPath": "/2026/02/01/healthql-sql-for-healthkit.html",
+    "status": 200,
+    "finalUrl": "/2026/02/01/healthql-sql-for-healthkit.html",
+    "canonical": "https://grantisom.com/2026/02/01/healthql-sql-for-healthkit.html",
+    "contentType": "text/html",
+    "title": "HealthQL: SQL for Apple HealthKit — Grant Isom",
+    "description": "HealthQL: SQL for Apple HealthKit — I built a Swift library that lets you query HealthKit data using SQL syntax...",
+    "links": [
+      "/",
+      "/2023/07/19/accessibility-testing-in.html",
+      "/2026/02/01/healthql-sql-for-healthkit.html#installation",
+      "/2026/02/01/healthql-sql-for-healthkit.html#main-content",
+      "/2026/02/01/healthql-sql-for-healthkit.html#quick-example",
+      "/2026/02/01/healthql-sql-for-healthkit.html#supported-data",
+      "/2026/02/01/healthql-sql-for-healthkit.html#swift-dsl",
+      "/2026/02/07/healthql-react-native.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/projects/healthql/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 3,
+          "text": "Quick Example",
+          "id": "quick-example"
+        },
+        {
+          "level": 3,
+          "text": "Swift DSL",
+          "id": "swift-dsl"
+        },
+        {
+          "level": 3,
+          "text": "Supported Data",
+          "id": "supported-data"
+        },
+        {
+          "level": 3,
+          "text": "Installation",
+          "id": "installation"
+        }
+      ],
+      "text": "I built a Swift library that lets you query HealthKit data using SQL syntax. Working with HealthKit directly involves a lot of boilerplate—callback-based APIs, type-specific query objects, manual result transformation. HealthQL simplifies this into something more familiar. GitHub | Documentation Quick Example SELECT avg(value), min(value), max(value) FROM heart_rate WHERE date > today() - 7d GROUP BY day This returns daily heart rate stats for the past week. The library handles all the HealthKit query setup, permissions, and result formatting. Swift DSL If you prefer type-safety, there’s also a Swift DSL: let result = try await Health .select(.heartRate, aggregates: [.avg, .min, .max]) .where(.date, .greaterThan, .date(.daysAgo(7))) .groupBy(.day) .execute() Both approaches compile down to the same intermediate representation before hitting HealthKit. Supported Data The library covers most common health types—steps, heart rate, calories, workouts, sleep sessions, and more. It supports aggregations, grouping by time periods, and the standard comparison operators you’d expect. Installation Add it via Swift Package Manager: https://github.com/glisom/HealthQL.git The documentation site has the full syntax reference and more examples. Feel free to open an issue if you run into any problems or have suggestions.",
+      "links": [
+        "https://github.com/glisom/HealthQL",
+        "https://glisom.github.io/HealthQL",
+        "https://glisom.github.io/HealthQL"
+      ],
+      "images": [],
+      "codeBlocks": [
+        "SELECT avg(value), min(value), max(value)\nFROM heart_rate\nWHERE date > today() - 7d\nGROUP BY day\n",
+        "let result = try await Health\n    .select(.heartRate, aggregates: [.avg, .min, .max])\n    .where(.date, .greaterThan, .date(.daysAgo(7)))\n    .groupBy(.day)\n    .execute()\n",
+        "https://github.com/glisom/HealthQL.git\n"
+      ],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "862ac53abadffea21ef0fac5a335bc7b69a878e50e26fdcedcecf2479185c9b4"
+  },
+  {
+    "requestedPath": "/2026/02/07/healthql-react-native.html",
+    "status": 200,
+    "finalUrl": "/2026/02/07/healthql-react-native.html",
+    "canonical": "https://grantisom.com/2026/02/07/healthql-react-native.html",
+    "contentType": "text/html",
+    "title": "HealthQL Now Supports React Native — Grant Isom",
+    "description": "HealthQL Now Supports React Native — HealthQL v1.1.0 brings full React Native and Expo support—query Apple HealthKit using SQL from your JavaScript apps...",
+    "links": [
+      "/",
+      "/2023/02/01/expo-app-config.html",
+      "/2026/02/01/healthql-sql-for-healthkit.html",
+      "/2026/02/07/healthql-react-native.html#also-new-cocoapods-support",
+      "/2026/02/07/healthql-react-native.html#installation",
+      "/2026/02/07/healthql-react-native.html#main-content",
+      "/2026/02/07/healthql-react-native.html#platform-support",
+      "/2026/02/07/healthql-react-native.html#quick-example",
+      "/2026/02/07/healthql-react-native.html#whats-included",
+      "/2026/02/24/listwithme-returns.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/projects/healthql/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 3,
+          "text": "Quick Example",
+          "id": "quick-example"
+        },
+        {
+          "level": 3,
+          "text": "Installation",
+          "id": "installation"
+        },
+        {
+          "level": 3,
+          "text": "What’s Included",
+          "id": "whats-included"
+        },
+        {
+          "level": 3,
+          "text": "Also New: CocoaPods Support",
+          "id": "also-new-cocoapods-support"
+        },
+        {
+          "level": 3,
+          "text": "Platform Support",
+          "id": "platform-support"
+        }
+      ],
+      "text": "HealthQL v1.1.0 adds full React Native and Expo support. You can now query Apple HealthKit using the same SQL syntax from JavaScript/TypeScript apps. GitHub | Documentation | npm Quick Example import { HealthQL } from 'react-native-healthql'; // Request authorization await HealthQL.requestAuthorization({ read: ['heart_rate', 'steps', 'sleep_analysis'], }); // Query with SQL const results = await HealthQL.query(` SELECT avg(value) FROM heart_rate WHERE date > today() - 7d GROUP BY day `); Same SQL syntax as the Swift version—the React Native package wraps the native Swift implementation, so you get real HealthKit queries, not mock data. Installation npm install react-native-healthql Add the Expo config plugin to your app.json: { \"expo\": { \"plugins\": [ [\"react-native-healthql\", { \"healthShareUsageDescription\": \"Read health data to display insights\" }] ] } } Then rebuild: npx expo prebuild --clean npx expo run:ios What’s Included Full TypeScript types All 18 quantity types (heart rate, steps, calories, etc.) Category types (sleep analysis, headache, fatigue) Workouts and sleep sessions Schema introspection for building dynamic UIs Structured error handling with suggestions Also New: CocoaPods Support The Swift library is now available via CocoaPods in addition to SPM: pod 'HealthQL', '~> 1.1.0' Platform Support iOS only for now. Android throws a clear PLATFORM_NOT_SUPPORTED error—Health Connect support is on the roadmap. Check the React Native docs for the full API reference.",
+      "links": [
+        "https://github.com/glisom/HealthQL",
+        "https://glisom.github.io/HealthQL",
+        "https://www.npmjs.com/package/react-native-healthql",
+        "https://glisom.github.io/HealthQL/#/react-native"
+      ],
+      "images": [],
+      "codeBlocks": [
+        "import { HealthQL } from 'react-native-healthql';\n\n// Request authorization\nawait HealthQL.requestAuthorization({\n  read: ['heart_rate', 'steps', 'sleep_analysis'],\n});\n\n// Query with SQL\nconst results = await HealthQL.query(`\n  SELECT avg(value) FROM heart_rate\n  WHERE date > today() - 7d\n  GROUP BY day\n`);\n",
+        "npm install react-native-healthql\n",
+        "{\n  \"expo\": {\n    \"plugins\": [\n      [\"react-native-healthql\", {\n        \"healthShareUsageDescription\": \"Read health data to display insights\"\n      }]\n    ]\n  }\n}\n",
+        "npx expo prebuild --clean\nnpx expo run:ios\n",
+        "pod 'HealthQL', '~> 1.1.0'\n"
+      ],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "64e32d2ef7307521d5b057065ab7b2475b57a1935988e90d748dde68fbbf157d"
+  },
+  {
+    "requestedPath": "/2026/02/24/listwithme-returns.html",
+    "status": 200,
+    "finalUrl": "/2026/02/24/listwithme-returns.html",
+    "canonical": "https://grantisom.com/2026/02/24/listwithme-returns.html",
+    "contentType": "text/html",
+    "title": "Bringing ListWithMe Back to Life — Grant Isom",
+    "description": "Bringing ListWithMe Back to Life — After years off the App Store, I've completely rebuilt ListWithMe from the ground up with SwiftUI and modern iOS features.",
+    "links": [
+      "/",
+      "/2019/05/30/listwithme.html",
+      "/2026/02/07/healthql-react-native.html",
+      "/2026/02/24/listwithme-returns.html#a-complete-rebuild",
+      "/2026/02/24/listwithme-returns.html#main-content",
+      "/2026/02/24/listwithme-returns.html#the-technical-side",
+      "/2026/02/24/listwithme-returns.html#whats-next",
+      "/2026/02/24/listwithme-returns.html#why-imessage-apps-still-matter",
+      "/2026/09/01/skill-thief.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/listwithme/",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/_astro/listwithme-hand.CsPcKQCd_14cXwy.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_1MEeSi.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_1Rnctn.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_2qurPc.png",
+      "/_astro/listwithme-hand.CsPcKQCd_2sTzq2.webp",
+      "/_astro/listwithme-hand.CsPcKQCd_Z1N7kr5.webp",
+      "/_astro/listwithme-hand.CsPcKQCd_Z1RPi2a.webp",
+      "/_astro/listwithme-hand.CsPcKQCd_Z1p5g6F.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_ZnEdc.webp",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "A Complete Rebuild",
+          "id": "a-complete-rebuild"
+        },
+        {
+          "level": 2,
+          "text": "The Technical Side",
+          "id": "the-technical-side"
+        },
+        {
+          "level": 2,
+          "text": "Why iMessage Apps Still Matter",
+          "id": "why-imessage-apps-still-matter"
+        },
+        {
+          "level": 2,
+          "text": "What’s Next",
+          "id": "whats-next"
+        }
+      ],
+      "text": "Back in 2019, I built ListWithMe—a simple iMessage app for creating shared shopping lists. My wife and I used it constantly for grocery runs and weekend errands. It was nothing fancy, but it solved a real problem: quickly creating a list that both of us could see and edit in real-time, right inside our conversation. Then life happened. The app sat untouched as iOS evolved, and eventually Apple removed it from the App Store. I always meant to update it, but between work and other projects, it kept getting pushed to “someday.” Well, someday finally arrived. A Complete Rebuild Rather than patch the old UIKit codebase, I decided to rebuild ListWithMe from scratch using SwiftUI. The original app was functional but minimal—just lists and items. The new version keeps that simplicity while adding features I’ve wanted for years: Smart Input — Type “3 apples” or “milk x2” and the app automatically parses the quantity. It sounds small, but it makes adding items so much faster. Priorities & Due Dates — Not everything on a shopping list is equal. Now you can mark items as high priority or set a due date for time-sensitive errands. Categories — Group items by aisle or type. When you’re navigating a store, having items organized by Produce, Dairy, and Frozen makes the trip faster. Activity Feed — See who added or completed items. When you’re shopping together but apart, it’s helpful to know what your partner just grabbed. Batch Actions — Select multiple items to complete or delete at once. Clear all completed items with a single tap. Search & Sort — Find items quickly in long lists. Sort by name, category, priority, due date, or drag to reorder manually. The Technical Side The rebuild gave me a chance to work with some iOS technologies I hadn’t used in personal projects: SwiftUI with the new @Observable macro (iOS 17+) Core Data with CloudKit sync for seamless multi-device support Modern Swift patterns and concurrency The codebase is open source on GitHub if you want to poke around. It’s a good example of a relatively simple but complete SwiftUI app with persistence. Why iMessage Apps Still Matter When I first released ListWithMe, the biggest complaint was discoverability. Users would download it, then struggle to find where it went—because iMessage apps don’t appear on your home screen. That’s still true today, and it’s still the biggest friction point. But I think there’s something valuable about apps that live inside your conversations. You don’t need to context-switch. You don’t need to share links or coordinate which app to use. If you’re already texting someone, the list is right there. For my wife and me, it’s become invisible infrastructure. We don’t think about it—we just have a shared list that updates as we shop. What’s Next ListWithMe 2.0 is available now on the App Store. I’m planning to keep iterating based on feedback. A few things I’m considering: Recurring lists (weekly grocery templates) Siri integration Widgets for quick access If you try it out, I’d love to hear what you think. You can find me on GitHub. Here’s to shared lists and fewer forgotten items.",
+      "links": [
+        "/listwithme/",
+        "https://github.com/glisom/ListWithMe",
+        "https://apps.apple.com/us/app/listwithme/id1224284271",
+        "https://github.com/glisom"
+      ],
+      "images": [],
+      "codeBlocks": [],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "22c452ad1d7ac5adebbf86970d43e8d9168db4cf940539401ef5abf6836a7c06"
+  },
+  {
+    "requestedPath": "/2026/09/01/skill-thief.html",
+    "status": 200,
+    "finalUrl": "/2026/09/01/skill-thief.html",
+    "canonical": "https://grantisom.com/2026/09/01/skill-thief.html",
+    "contentType": "text/html",
+    "title": "skill-thief: Steal the Ideas, Not the Install — Grant Isom",
+    "description": "skill-thief: Steal the Ideas, Not the Install — A Claude Code plugin that reads someone else's agent tooling, pulls out the mechanisms worth having, and decides where each one actually belongs in your setup.",
+    "links": [
+      "/",
+      "/2026/02/24/listwithme-returns.html",
+      "/2026/09/01/skill-thief.html#every-idea-gets-exactly-one-verdict",
+      "/2026/09/01/skill-thief.html#how-a-run-goes",
+      "/2026/09/01/skill-thief.html#its-not-an-installer",
+      "/2026/09/01/skill-thief.html#main-content",
+      "/2026/09/01/skill-thief.html#mechanisms-not-features",
+      "/2026/09/01/skill-thief.html#the-two-ways-i-kept-failing",
+      "/2026/09/01/skill-thief.html#try-it",
+      "/2026/09/01/vampire.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/",
+      "/skills/goodreads-export/",
+      "/skills/write-like-grant/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "The two ways I kept failing",
+          "id": "the-two-ways-i-kept-failing"
+        },
+        {
+          "level": 2,
+          "text": "Every idea gets exactly one verdict",
+          "id": "every-idea-gets-exactly-one-verdict"
+        },
+        {
+          "level": 2,
+          "text": "Mechanisms, not features",
+          "id": "mechanisms-not-features"
+        },
+        {
+          "level": 2,
+          "text": "How a run goes",
+          "id": "how-a-run-goes"
+        },
+        {
+          "level": 2,
+          "text": "It’s not an installer",
+          "id": "its-not-an-installer"
+        },
+        {
+          "level": 2,
+          "text": "Try it",
+          "id": "try-it"
+        }
+      ],
+      "text": "I read a lot of other people’s agent setups. Skills repos, plugins, conference talks, that one blog post everybody links. There are almost always good ideas in there. What I kept getting wrong was what to do next. So I built skill-thief, a Claude Code plugin that runs the in-between step. The two ways I kept failing The first one is installing the whole thing. It feels like the fast path! Add the marketplace, enable the plugin, move on. Except now every skill in it loads into every session from then on, and all those descriptions compete for routing with everything I already had. I paid that cost forever, and the actual insight was three paragraphs. The second one is doing it by hand. I skim the source, grab the two ideas I like, apply them, and lose the reasoning behind everything else. Six months later I read the same repo from scratch and re-derive the same conclusions. Worse, I re-propose the ideas I already looked at and deliberately passed on, because nothing wrote down that I passed on them or why. skill-thief is the repeatable thing in the middle. Every idea gets exactly one verdict The whole plugin is built around a four-item ladder. Each mechanism it pulls out of a source lands in exactly one box: Verdict | Applies when | Lands in Absorb as a rule (default) | No independent trigger. Nobody would ever invoke this by name. | An existing skill body, your agent instruction file, or a conventions doc Mint a new skill | It has its own trigger. Someone would ask for this at a moment when nothing else would fire. | A new skill directory Harden a gate | It’s a check, not prose. The value is that it fails a build. | A validation script or test tier Reject | There’s a durable, concept-level reason not to adopt it. | The rejection record The important part is that “absorb as a rule” is the default, not the neutral middle. Minting a skill is the expensive verdict. It spends description budget in every future session and competes for routing with everything already installed. Two overlapping triggers don’t average out into good coverage, they just make the router’s job harder for both. So a mechanism has to earn “new skill” by showing its own trigger, not by being useful. Reject has two guardrails I care about a lot. A deferral is not a rejection (“we’re busy this quarter” changes with the calendar, so it doesn’t go in the permanent record). And you never file an already-implemented idea as rejected, because a future reader will conclude you tried it and it failed, and miss that it’s live and working. Mechanisms, not features The other rule that does real work: pull out the mechanism, not the feature. Say a source ships something called AutoReviewGPT that scores a PR against a five-item checklist and blocks the merge under a threshold. The feature name is AutoReviewGPT. The mechanism is “a weighted rubric gate that blocks on a numeric pass threshold before merge.” You write down the second one. The litmus test is simple: strip the source’s name and product out entirely. Does what you wrote still tell you what to build? If not, you copied a feature. A mechanism carried over under someone else’s marketing name shows up with their assumptions attached, and those get a lot harder to spot once the name sticks. How a run goes Six phases, and only one place where anything gets written. It starts by inventorying your repo and building a map of where each of the four verdicts would even land here. That map gets shown before it reads the source, so a bad guess is cheap to fix. Then it pins the exact version it’s reading (a commit SHA, a publish date, a URL), scouts the source for mechanisms, and greps your repo for prior art. That prior-art phase is my favorite bit, honestly. Evidence of absence has to be actual evidence: the literal command and its actual output, including the empty result. “I didn’t see it” and “I searched these six paths with these three patterns and got nothing” are different claims, and only the second one holds up a verdict. Then everything lands in one ranked table, at one approval gate, once. Not a finding-by-finding approval loop, because that defeats the point of ranking them. Nothing is written before that gate and everything is written after it. Re-run it later against the same source and it goes into diff mode. It reads the findings doc from last time, resolves the current version, and reports only what changed. It’s not an installer Worth being loud about: skill-thief never adds a marketplace, enables someone else’s plugin, or vendors their code. The only output is changes to your own config. It also doesn’t write feature code, and it isn’t an auditor for what you already have installed (different question, different cadence). One real limitation. A thin host repo weakens the prior-art check. If there’s not much of your own tooling to find, every mechanism looks like a gap and it will over-recommend. Verdict quality tracks how much of your conventions actually live in files instead of in people’s heads. I ran it against obra/superpowers as a dry run and it’s checked into the repo under docs/examples/. Eight mechanisms scouted, three made the gate table (one of each verdict, as it happens). Three of the other five got filed as “you already do this better,” and two as “doesn’t apply at your size yet.” That last bucket is there because of the dry run. In the first pass those two got labeled Reject, and an independent review caught that both reasons were really about how small the repo is, not about the mechanisms. That’s a deferral wearing a rejection’s clothes, which the guardrail was supposed to catch and didn’t. So the ladder got a new category out of it. Pretty good outcome for a dry run! Try it /plugin marketplace add glisom/skill-thief /plugin install skill-thief Then point it somewhere: Use skill-thief on https://github.com/example/agent-skills and tell me what's worth taking. Not on Claude Code? The skill body is written harness-neutral on purpose, so copying skills/skill-thief/ into your agent’s skills directory works the same way. There’s no second copy to keep in sync. Zero dependencies, MIT, Node 20+. Code’s on GitHub. If you run it against something interesting, I’d love to hear what it told you to steal.",
+      "links": [
+        "https://github.com/glisom/skill-thief",
+        "https://github.com/obra/superpowers",
+        "https://github.com/glisom/skill-thief"
+      ],
+      "images": [],
+      "codeBlocks": [
+        "/plugin marketplace add glisom/skill-thief\n/plugin install skill-thief\n",
+        "Use skill-thief on https://github.com/example/agent-skills and tell me\nwhat's worth taking.\n"
+      ],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "46cac35af1b07de4c8825d2f7ba4d2c3a1f93fe8d2b6243c290d403ee58555a7"
+  },
+  {
+    "requestedPath": "/2026/09/01/vampire.html",
+    "status": 200,
+    "finalUrl": "/2026/09/01/vampire.html",
+    "canonical": "https://grantisom.com/2026/09/01/vampire.html",
+    "contentType": "text/html",
+    "title": "Vampire: The Hard Part Isn't Keeping the Mac Awake — Grant Isom",
+    "description": "Vampire: The Hard Part Isn't Keeping the Mac Awake — A macOS menu bar app for one pmset flag, where almost all the engineering went into making sure the flag gets turned back off.",
+    "links": [
+      "/",
+      "/2020/05/23/mac_apps.html",
+      "/2026/02/01/healthql-sql-for-healthkit.html",
+      "/2026/02/24/listwithme-returns.html",
+      "/2026/09/01/skill-thief.html",
+      "/2026/09/01/vampire.html#main-content",
+      "/2026/09/01/vampire.html#never-show-a-checkmark-you-cant-defend",
+      "/2026/09/01/vampire.html#small-things-i-liked",
+      "/2026/09/01/vampire.html#the-feature-is-the-toggle-the-product-is-the-undo",
+      "/2026/09/01/vampire.html#the-privileged-part-stays-boring",
+      "/2026/09/01/vampire.html#the-two-ways-i-kept-failing",
+      "/2026/09/01/vampire.html#try-it",
+      "/2026/09/01/vampire.html#what-it-isnt",
+      "/2026/09/01/vampire.html#write-the-intent-before-you-change-the-world",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/_slug_.DHlQoQD5.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": {
+      "headings": [
+        {
+          "level": 2,
+          "text": "The two ways I kept failing",
+          "id": "the-two-ways-i-kept-failing"
+        },
+        {
+          "level": 2,
+          "text": "The feature is the toggle, the product is the undo",
+          "id": "the-feature-is-the-toggle-the-product-is-the-undo"
+        },
+        {
+          "level": 2,
+          "text": "Write the intent before you change the world",
+          "id": "write-the-intent-before-you-change-the-world"
+        },
+        {
+          "level": 2,
+          "text": "Never show a checkmark you can’t defend",
+          "id": "never-show-a-checkmark-you-cant-defend"
+        },
+        {
+          "level": 2,
+          "text": "The privileged part stays boring",
+          "id": "the-privileged-part-stays-boring"
+        },
+        {
+          "level": 2,
+          "text": "Small things I liked",
+          "id": "small-things-i-liked"
+        },
+        {
+          "level": 2,
+          "text": "What it isn’t",
+          "id": "what-it-isnt"
+        },
+        {
+          "level": 2,
+          "text": "Try it",
+          "id": "try-it"
+        }
+      ],
+      "text": "I close my MacBook a lot while it’s still doing something. Long build, big download, whatever. Lid down, walk away. macOS sleeps on lid close, and the fix is one command: sudo pmset -a disablesleep 1 That’s the whole feature. I’ve been typing it for years. So I built Vampire, a menu bar app that runs it, and then spent basically all of the effort on the other command. The two ways I kept failing The first is just typing it. Works instantly, and nothing tracks it. Then I forget, because the machine looks completely normal, and three days later I close the lid, drop the laptop in a bag, and now it’s a space heater with a zipper. The setting is global, sticky, and survives reboots. Nothing on screen tells you it’s on. The second is wrapping it. An alias, a Shortcut, an AppleScript with a privilege prompt. Now I get an admin password dialog every single time I want to flip a boolean, which is enough friction that I go right back to the terminal. Worth saying since I checked first: Caffeine, Amphetamine, and Lungo don’t do this. They take I/O Kit power assertions, which stop idle sleep and display sleep. Lid close is a separate mechanism, and caffeinate doesn’t touch it either. Lungo is great at what it actually does, and Vampire isn’t trying to replace it. The feature is the toggle, the product is the undo Once you decide an app is going to hold this setting for you, the real question is what happens when the app isn’t there anymore. Every one of those paths has to land back at disablesleep 0. What happened | Who restores Off | How Normal quit | The app | Requests Off, waits for the helper to acknowledge, exits only then Crash or Force Quit | The helper | XPC invalidation fires, and if the marker exists it restores Off Helper crash | The helper | Every helper launch normalizes to Off before the listener accepts a connection Mac restart | The helper | Same startup path, run by launchd Restore fails | Nobody, yet | The marker stays, state stays Error, and recovery retries on every future start That last row is the one I care about most. The tempting move when a restore fails is to drop the marker anyway and show Off, because error states are ugly. But then the app is asserting something about your hardware that isn’t true. Vampire never claims Off while recovery is unresolved. It would rather show you a warning triangle it can actually back up. Write the intent before you change the world The recovery marker is a root-owned plist at /Library/Application Support/Insomnia/active.plist, and the ordering around it is the load-bearing part: On: create the marker, then run pmset. Off: run pmset, then remove the marker. Both directions record the risky state first. If you flip the setting and crash before writing anything down, nothing knows there’s something to undo, and the next boot leaves you with a laptop that quietly can’t sleep. Erring toward a stale marker is cheap, since a stale marker just means the next startup runs a disablesleep 0 that was already 0. Erring the other way means a silently broken machine. Never show a checkmark you can’t defend pmset exiting 0 doesn’t mean the setting took. So the helper writes, then reads back pmset -g custom and requires every reported power profile to equal what it asked for. Disagreement between profiles is a failure, not a tiebreaker. disablesleep is undocumented, though, and macOS sometimes just omits the key. In that case the successful write is accepted only on hardware that should support it, and the release checklist covers the rest with a physical lid close. The menu item sits downstream of all of that. Clicking it doesn’t check the box. The box gets checked when the helper says the change happened and verification passed. The privileged part stays boring The helper runs as root, so the interesting work is in how little it’s allowed to do. It executes exactly three commands, all with fixed arguments, none of which come from the caller: /usr/bin/pmset -a disablesleep 1 /usr/bin/pmset -a disablesleep 0 /usr/bin/pmset -g custom There’s no shell anywhere in that path (Process straight to the executable URL, never /bin/sh), and the XPC interface has no generic execute method to abuse. It exposes three operations: status, on, off. Before the listener activates, the helper reads its own Team ID out of the Security framework and builds a code signing requirement from that verified runtime identity, then hands it to setConnectionCodeSigningRequirement. A caller has to be bundle ID co.groundwork-ai.insomnia, signed by the same team. macOS rejects everything else before my delegate ever runs, which is my favorite kind of security code, the kind you don’t write. And because “the helper must never invoke a shell” is a sentence in a doc, and sentences don’t fail builds, CI greps for it: rg -n '/bin/(sh|bash|zsh)|system\\(|popen\\(' InsomniaHelper/Sources A hit fails the build. The same script fails on URLSession, Sparkle, Telemetry, or Analytics in runtime source, which is how “no network, no updater, no telemetry” stays true instead of staying aspirational. Small things I liked Hardware support without a whitelist. Model whitelists rot. Vampire supports anything whose model identifier starts with MacBook, plus anything starting with Mac where I/O Kit reports an internal battery. Covers old and new naming, excludes desktops, and doesn’t get fooled by a UPS. The repo says vampire, the code says Insomnia. Bundle ID, helper label, Mach service, and recovery path all kept their original names on purpose. Renaming the bundle ID would invalidate the helper approval the user already granted, and the signed XPC contract with it. A rename there is a user-visible change, not a cosmetic one. A target whose job is to fail. InsomniaWrongIdentifierClient is a binary whose entire source is exit(EXIT_SUCCESS). It exists so an integration test can point the real signing requirement at a wrong-team binary and assert it gets rejected. 76 tests, and about as many lines of test as source (1,547 to 1,549, which I promise wasn’t on purpose). They all use a fake command runner and a temporary marker store, so scripts/ci.sh never touches the real power settings of the machine running it. Anything involving real pmset, real registration, or a real lid close is a checklist item with an explicit ask, and it always restores afterward. What it isn’t Vampire changes lid-close sleep only. It doesn’t prevent idle sleep, display sleep, or screen lock. No timers, schedules, shortcuts, or automatic activation. No network, analytics, updater, Dock icon, or window. MacBooks with a built-in lid, macOS 13 Ventura or newer. The honest limitation: verification leans on an undocumented pmset key. When macOS reports it, Vampire is strict about it. When macOS doesn’t, the best it can do is trust exit status on hardware that should support the setting. That gap is a big part of why it never enables itself at login, and why quitting always restores. Try it Grab Vampire.dmg from Releases and check it: shasum -a 256 -c Vampire.dmg.sha256 Drag it to Applications, launch it, approve the helper once. After that, On and Off never ask for a password again. Building from source needs Xcode 26 and XcodeGen: xcodegen generate scripts/ci.sh Signed, notarized, MIT, and no runtime dependencies outside Apple’s own frameworks. Code’s on GitHub. If it saves your laptop from cooking in a backpack even once, that’s the whole return on investment!",
+      "links": [
+        "https://github.com/glisom/vampire",
+        "https://github.com/glisom/vampire/releases/latest",
+        "https://github.com/glisom/vampire"
+      ],
+      "images": [],
+      "codeBlocks": [
+        "sudo pmset -a disablesleep 1\n",
+        "/usr/bin/pmset -a disablesleep 1\n/usr/bin/pmset -a disablesleep 0\n/usr/bin/pmset -g custom\n",
+        "rg -n '/bin/(sh|bash|zsh)|system\\(|popen\\(' InsomniaHelper/Sources\n",
+        "shasum -a 256 -c Vampire.dmg.sha256\n",
+        "xcodegen generate\nscripts/ci.sh\n"
+      ],
+      "iframeSources": []
+    },
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "0cc77ab371630e107858e4a89a585076b77282e626e3e446085503bc52138602"
+  },
+  {
+    "requestedPath": "/404.html",
+    "status": 200,
+    "finalUrl": "/404.html",
+    "canonical": "https://grantisom.com/404.html",
+    "contentType": "text/html",
+    "title": "Page not found — Grant Isom",
+    "description": "That page is not here, but the useful parts of Grant Isom’s site are still close by.",
+    "links": [
+      "/",
+      "/404.html#main-content",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/UtilityLayout.JaGJ-622.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "ec5067d453b08d9c3ae8ade250a63e29b04a32ee77515b99f434ffb149c2c2c1"
+  },
+  {
+    "requestedPath": "/about/",
+    "status": 200,
+    "finalUrl": "/about/",
+    "canonical": "https://grantisom.com/about/",
+    "contentType": "text/html",
+    "title": "About Grant Isom",
+    "description": "A little about Grant Isom, what has his attention, and where to find him.",
+    "links": [
+      "/",
+      "/about/",
+      "/about/#main-content",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/UtilityLayout.JaGJ-622.css",
+      "/_astro/belief-rings.CRinkKyz_12qj1a.avif",
+      "/_astro/belief-rings.CRinkKyz_1kQ5wX.webp",
+      "/_astro/belief-rings.CRinkKyz_23sv7S.avif",
+      "/_astro/belief-rings.CRinkKyz_2lShDG.webp",
+      "/_astro/belief-rings.CRinkKyz_RYUVE.png",
+      "/_astro/belief-rings.CRinkKyz_Z16SSFL.webp",
+      "/_astro/belief-rings.CRinkKyz_Z1K04z9.avif",
+      "/_astro/belief-rings.CRinkKyz_Z1pjFcz.avif",
+      "/_astro/belief-rings.CRinkKyz_Z1rzi3l.webp",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "b7d0ac95d817a8fc59366a10b0914bad508dc95fa18a45ce983b3f0c67ae9698"
+  },
+  {
+    "requestedPath": "/app-library/",
+    "status": 200,
+    "finalUrl": "/app-library/",
+    "canonical": "https://grantisom.com/app-library/",
+    "contentType": "text/html",
+    "title": "App Library — Grant Isom",
+    "description": "The apps and tools that hold up my day, with notes on the job each one actually does.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/app-library/#main-content",
+      "/app-library/codex/",
+      "/app-library/hermes-agent/",
+      "/app-library/obsidian/",
+      "/app-library/superhuman/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/CollectionIndexLayout.uaVIvlvs.css",
+      "/_astro/groundwork-surveyor.CmRmkpWC_18F0Ff.webp",
+      "/_astro/groundwork-surveyor.CmRmkpWC_1vnvut.webp",
+      "/_astro/groundwork-surveyor.CmRmkpWC_2szBTb.avif",
+      "/_astro/groundwork-surveyor.CmRmkpWC_IpkG3.png",
+      "/_astro/groundwork-surveyor.CmRmkpWC_Z28xT5u.avif",
+      "/_astro/groundwork-surveyor.CmRmkpWC_Z2sg24f.avif",
+      "/_astro/groundwork-surveyor.CmRmkpWC_ZBVLcM.webp",
+      "/_astro/groundwork-surveyor.CmRmkpWC_ZGDfbd.avif",
+      "/_astro/groundwork-surveyor.CmRmkpWC_ZLig3i.webp",
+      "/_astro/groundwork-surveyor.CmRmkpWC_ZieDe2.webp",
+      "/_astro/groundwork-surveyor.CmRmkpWC_ZjUJlY.avif",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "32a9e2e85a26d3ec74b745537de7c72cd08772de348852a172914cd463e27f63"
+  },
+  {
+    "requestedPath": "/app-library/codex/",
+    "status": 200,
+    "finalUrl": "/app-library/codex/",
+    "canonical": "https://grantisom.com/app-library/codex/",
+    "contentType": "text/html",
+    "title": "Codex — Grant Isom",
+    "description": "The model-driven part of my daily and weekly briefings, where connected sources become something I can review.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/app-library/codex/#main-content",
+      "/app-library/hermes-agent/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "5694459e81da84de32fb3a7ba6b466952586d225cff8402145acfa6232534f1b"
+  },
+  {
+    "requestedPath": "/app-library/hermes-agent/",
+    "status": 200,
+    "finalUrl": "/app-library/hermes-agent/",
+    "canonical": "https://grantisom.com/app-library/hermes-agent/",
+    "contentType": "text/html",
+    "title": "Hermes Agent — Grant Isom",
+    "description": "A local agent I can shape with tools, skills, sessions, and scheduled jobs.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/app-library/hermes-agent/#main-content",
+      "/app-library/superhuman/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/projects/hermes-ios/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "8773f311503879f4186810bb03ce8a186973596659eaee74e446aa6933d9e73b"
+  },
+  {
+    "requestedPath": "/app-library/obsidian/",
+    "status": 200,
+    "finalUrl": "/app-library/obsidian/",
+    "canonical": "https://grantisom.com/app-library/obsidian/",
+    "contentType": "text/html",
+    "title": "Obsidian — Grant Isom",
+    "description": "The place I keep notes, projects, and the connections between them.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/app-library/codex/",
+      "/app-library/obsidian/#main-content",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "a7499ece210eb191f5f1d15747d268690f153de130cea9977983a6b240ab0bd2"
+  },
+  {
+    "requestedPath": "/app-library/superhuman/",
+    "status": 200,
+    "finalUrl": "/app-library/superhuman/",
+    "canonical": "https://grantisom.com/app-library/superhuman/",
+    "contentType": "text/html",
+    "title": "Superhuman — Grant Isom",
+    "description": "The email attention surface I use to spot drafts, commitments, replies, and waiting loops.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/app-library/superhuman/#main-content",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "7a6e9497c098a9b2f47491c3f2fa05a30b8cf4e5c867efb86e1471c5b4dfd346"
+  },
+  {
+    "requestedPath": "/assets/js/darkmode.js",
+    "status": 200,
+    "finalUrl": "/assets/js/darkmode.js",
+    "canonical": null,
+    "contentType": "text/javascript",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "bbec534f986ed7e8e972a87fc14e0a111612c0105f84939a80841bb1e999fa22"
+  },
+  {
+    "requestedPath": "/blog/",
+    "status": 200,
+    "finalUrl": "/blog/",
+    "canonical": "https://grantisom.com/blog/",
+    "contentType": "text/html",
+    "title": "Blog — Grant Isom",
+    "description": "Posts, build logs, playlists, and whatever else seemed worth writing down.",
+    "links": [
+      "/",
+      "/2018/04/02/reading-list.html",
+      "/2018/11/27/playlists.html",
+      "/2019/05/30/listwithme.html",
+      "/2019/06/04/wwdc-day-1.html",
+      "/2019/06/06/wwdc-day-2.html",
+      "/2019/06/07/wwdc-day-3.html",
+      "/2019/06/08/wwdc-day-4.html",
+      "/2019/06/09/wwdc-review.html",
+      "/2020/02/10/2019-playlists.html",
+      "/2020/05/23/mac_apps.html",
+      "/2020/05/29/safari-inspecting-simulators.html",
+      "/2020/09/28/next-chapter.html",
+      "/2022/11/07/2-years-at-illuminate.html",
+      "/2023/01/02/mustread-books-for.html",
+      "/2023/01/14/notion-for-software.html",
+      "/2023/02/01/expo-app-config.html",
+      "/2023/05/15/using-act-to.html",
+      "/2023/07/19/accessibility-testing-in.html",
+      "/2026/02/01/healthql-sql-for-healthkit.html",
+      "/2026/02/07/healthql-react-native.html",
+      "/2026/02/24/listwithme-returns.html",
+      "/2026/09/01/skill-thief.html",
+      "/2026/09/01/vampire.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/blog/#main-content",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/CollectionIndexLayout.uaVIvlvs.css",
+      "/_astro/evidence-map.BJ04HY1h_1dOB72.avif",
+      "/_astro/evidence-map.BJ04HY1h_1djqKJ.webp",
+      "/_astro/evidence-map.BJ04HY1h_21BzeH.avif",
+      "/_astro/evidence-map.BJ04HY1h_2av0uF.webp",
+      "/_astro/evidence-map.BJ04HY1h_Z1Dt5sk.png",
+      "/_astro/evidence-map.BJ04HY1h_Z1f4OP6.webp",
+      "/_astro/evidence-map.BJ04HY1h_Z26nYPi.avif",
+      "/_astro/evidence-map.BJ04HY1h_Z8TlNm.webp",
+      "/_astro/evidence-map.BJ04HY1h_ZqLGm8.avif",
+      "/_astro/evidence-map.BJ04HY1h_ZvFLb3.avif",
+      "/_astro/evidence-map.BJ04HY1h_pwsD4.webp",
+      "/_astro/listwithme-hand.CsPcKQCd_1MEeSi.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_2qurPc.png",
+      "/_astro/listwithme-hand.CsPcKQCd_AOs83.webp",
+      "/_astro/listwithme-hand.CsPcKQCd_Z1RPi2a.webp",
+      "/_astro/listwithme-hand.CsPcKQCd_Z1p5g6F.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_ZMR8Kq.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_ZnEdc.webp",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "2e71f11f06e5b80741a4b1164670fa1732fb32984092360ba55dee13e90fe05e"
+  },
+  {
+    "requestedPath": "/css/main.css",
+    "status": 200,
+    "finalUrl": "/css/main.css",
+    "canonical": null,
+    "contentType": "text/css",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "3a3d8ed6d67a96cf7cc1af5b5fceaffa54ffbb3dfcb4061cf3642c63fd4444b3"
+  },
+  {
+    "requestedPath": "/favicon.ico",
+    "status": 200,
+    "finalUrl": "/favicon.ico",
+    "canonical": null,
+    "contentType": "image/x-icon",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "b68e9135d484219448d9d996167b1ce6c64d578ed6cc11e243d91a2a8828d3a4"
+  },
+  {
+    "requestedPath": "/feed.xml",
+    "status": 200,
+    "finalUrl": "/feed.xml",
+    "canonical": null,
+    "contentType": "application/xml",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "38f743f8b081063120121002d8c53d428b4a3a4fe313ea079145b0c85ea1615c"
+  },
+  {
+    "requestedPath": "/images/45d7f5784d.jpg",
+    "status": 200,
+    "finalUrl": "/images/45d7f5784d.jpg",
+    "canonical": null,
+    "contentType": "image/jpeg",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "4ea9072777a2d5e9131564cee1eb22ead77b29238771ebef6d1151b3b137583f"
+  },
+  {
+    "requestedPath": "/images/475c3984d0.jpg",
+    "status": 200,
+    "finalUrl": "/images/475c3984d0.jpg",
+    "canonical": null,
+    "contentType": "image/jpeg",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "b5c643f653258a05be469586eae7b6b606e8a860dbe58c3c7b50ded9f138b636"
+  },
+  {
+    "requestedPath": "/images/5f538d59de.jpg",
+    "status": 200,
+    "finalUrl": "/images/5f538d59de.jpg",
+    "canonical": null,
+    "contentType": "image/jpeg",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "8a3655168c470931e51043bcfc73f3de1f894760ad350851cdfd4785dfeba261"
+  },
+  {
+    "requestedPath": "/images/5fd90bfbf1.png",
+    "status": 200,
+    "finalUrl": "/images/5fd90bfbf1.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "b731a69b88413dc84cc2b2e28559bcf3ce401adb1f6a95114cd395fe95a32b63"
+  },
+  {
+    "requestedPath": "/images/6647450a28.png",
+    "status": 200,
+    "finalUrl": "/images/6647450a28.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "193a028e159a4749715cfafc5b1212763f6920ab944c9c774e2ccfbfa701a175"
+  },
+  {
+    "requestedPath": "/images/7337cde14c.jpg",
+    "status": 200,
+    "finalUrl": "/images/7337cde14c.jpg",
+    "canonical": null,
+    "contentType": "image/jpeg",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "42f1fac8fa71c271e38b976769cfd915c417b8478a1cc962eb87183a329bac00"
+  },
+  {
+    "requestedPath": "/images/96ce2ec5a6.jpg",
+    "status": 200,
+    "finalUrl": "/images/96ce2ec5a6.jpg",
+    "canonical": null,
+    "contentType": "image/jpeg",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "82eb23c7f7683d3b0cb4669da9ae58a3b5c450207b04be8ec6e5c8de3914213b"
+  },
+  {
+    "requestedPath": "/images/a37debf5ab.jpg",
+    "status": 200,
+    "finalUrl": "/images/a37debf5ab.jpg",
+    "canonical": null,
+    "contentType": "image/jpeg",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "fcc7619307d54691e3de65892d02d234b090a798f943112011b4a19a041be159"
+  },
+  {
+    "requestedPath": "/images/a97bedecb3.jpg",
+    "status": 200,
+    "finalUrl": "/images/a97bedecb3.jpg",
+    "canonical": null,
+    "contentType": "image/jpeg",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "35974cdf246e33edf59434ee5dbff4d92f0df2c5eb9637949511d79dd1800c96"
+  },
+  {
+    "requestedPath": "/images/cloud.png",
+    "status": 200,
+    "finalUrl": "/images/cloud.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "fcc66d10a5a7a368d61cebd40f5615977103e465f823c8735f410afd99b54e12"
+  },
+  {
+    "requestedPath": "/images/develop_menu.png",
+    "status": 200,
+    "finalUrl": "/images/develop_menu.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "33a7886cdff27b31f27e869294734896b69aa655c730017954d28804f9fbd2f3"
+  },
+  {
+    "requestedPath": "/images/e1d2ad7014.jpg",
+    "status": 200,
+    "finalUrl": "/images/e1d2ad7014.jpg",
+    "canonical": null,
+    "contentType": "image/jpeg",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "ace05b7d34dc288a3ab042e5bbdc70009e8802e41f71662cf4cdfa7c1fd645ce"
+  },
+  {
+    "requestedPath": "/images/ec18f32904.jpg",
+    "status": 200,
+    "finalUrl": "/images/ec18f32904.jpg",
+    "canonical": null,
+    "contentType": "image/jpeg",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "317b335b824adfe815858019c52909d0c002e4882bd80644cefcea3e36d27269"
+  },
+  {
+    "requestedPath": "/images/f159196842.png",
+    "status": 200,
+    "finalUrl": "/images/f159196842.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "a4827889f821c91bfaf9e9017339f6aa959c8d6fb9abfba7c33c0096c57d3869"
+  },
+  {
+    "requestedPath": "/images/fa6c5dfe53.png",
+    "status": 200,
+    "finalUrl": "/images/fa6c5dfe53.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "14e2f3bce1d35f5ddfed2179daf25fdf63dd7369729286e550cf859e97c21dce"
+  },
+  {
+    "requestedPath": "/images/logo.png",
+    "status": 200,
+    "finalUrl": "/images/logo.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "ea327b359ae8566e5187c0372863c2063e6c12b2fe3254f94c6f62465c569120"
+  },
+  {
+    "requestedPath": "/images/safari_settings.png",
+    "status": 200,
+    "finalUrl": "/images/safari_settings.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "424f00a38060b2d8a944de73925c51fa9474a26608f81d7af7d352c944cddcb0"
+  },
+  {
+    "requestedPath": "/listwithme/",
+    "status": 200,
+    "finalUrl": "/listwithme/",
+    "canonical": "https://grantisom.com/listwithme/",
+    "contentType": "text/html",
+    "title": "ListWithMe — Grant Isom",
+    "description": "Shared lists inside iMessage, rebuilt because my wife and I wanted ours back.",
+    "links": [
+      "/",
+      "/2019/05/30/listwithme.html",
+      "/2026/02/24/listwithme-returns.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/listwithme/#main-content",
+      "/listwithme/privacy/",
+      "/listwithme/support/",
+      "/projects/",
+      "/projects/healthql/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/01-new-list.BOeMPXsl_122Mqv.avif",
+      "/_astro/01-new-list.BOeMPXsl_1Mpa5G.webp",
+      "/_astro/01-new-list.BOeMPXsl_1oOcNc.webp",
+      "/_astro/01-new-list.BOeMPXsl_1pCJI0.avif",
+      "/_astro/01-new-list.BOeMPXsl_E1omI.avif",
+      "/_astro/01-new-list.BOeMPXsl_Z1ExILK.png",
+      "/_astro/01-new-list.BOeMPXsl_Z1Gl52.webp",
+      "/_astro/01-new-list.BOeMPXsl_Z2inVIE.avif",
+      "/_astro/01-new-list.BOeMPXsl_Z9gJ6f.webp",
+      "/_astro/01-new-list.BOeMPXsl_ZSGkPb.webp",
+      "/_astro/01-new-list.BOeMPXsl_ZosKrI.avif",
+      "/_astro/02-your-lists.CXK2AG3E_128IVs.avif",
+      "/_astro/02-your-lists.CXK2AG3E_1a4WbS.png",
+      "/_astro/02-your-lists.CXK2AG3E_1njYvT.avif",
+      "/_astro/02-your-lists.CXK2AG3E_21BcvM.webp",
+      "/_astro/02-your-lists.CXK2AG3E_Z1NXnHx.webp",
+      "/_astro/02-your-lists.CXK2AG3E_Z1aYNJd.webp",
+      "/_astro/02-your-lists.CXK2AG3E_Z1rHBJd.avif",
+      "/_astro/02-your-lists.CXK2AG3E_Z310PJ.webp",
+      "/_astro/02-your-lists.CXK2AG3E_ZONy9L.webp",
+      "/_astro/02-your-lists.CXK2AG3E_ZtOGKs.avif",
+      "/_astro/02-your-lists.CXK2AG3E_oa9X8.avif",
+      "/_astro/03-groceries.DNapEYJj_1CzmKz.avif",
+      "/_astro/03-groceries.DNapEYJj_1NwpbG.webp",
+      "/_astro/03-groceries.DNapEYJj_1ctDPr.avif",
+      "/_astro/03-groceries.DNapEYJj_1idV6d.webp",
+      "/_astro/03-groceries.DNapEYJj_281TdD.avif",
+      "/_astro/03-groceries.DNapEYJj_2uNjAk.webp",
+      "/_astro/03-groceries.DNapEYJj_AHDYE.png",
+      "/_astro/03-groceries.DNapEYJj_Z10DSPe.webp",
+      "/_astro/03-groceries.DNapEYJj_Z22Ua9S.webp",
+      "/_astro/03-groceries.DNapEYJj_Z6sEMg.avif",
+      "/_astro/03-groceries.DNapEYJj_oONid.avif",
+      "/_astro/04-activity.CvuFjygK_26BTFm.avif",
+      "/_astro/04-activity.CvuFjygK_2lNV1P.webp",
+      "/_astro/04-activity.CvuFjygK_2tok33.webp",
+      "/_astro/04-activity.CvuFjygK_CcnYl.webp",
+      "/_astro/04-activity.CvuFjygK_Z19sHWQ.avif",
+      "/_astro/04-activity.CvuFjygK_Z1U54j8.avif",
+      "/_astro/04-activity.CvuFjygK_Z1ahfRE.webp",
+      "/_astro/04-activity.CvuFjygK_Z1x3Ffl.avif",
+      "/_astro/04-activity.CvuFjygK_Z8DYWe.png",
+      "/_astro/04-activity.CvuFjygK_ZLGiAa.webp",
+      "/_astro/04-activity.CvuFjygK_ZLucT8.avif",
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "7789f800317db31e1f96d6376ef06641aaa0d66d57fc8b19fee39a1e1caaceca"
+  },
+  {
+    "requestedPath": "/listwithme/privacy/",
+    "status": 200,
+    "finalUrl": "/listwithme/privacy/",
+    "canonical": "https://grantisom.com/listwithme/privacy/",
+    "contentType": "text/html",
+    "title": "ListWithMe Privacy Policy — Grant Isom",
+    "description": "The ListWithMe privacy policy, including what the app stores and the data it does not collect.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/listwithme/",
+      "/listwithme/privacy/#changes-to-this-policy",
+      "/listwithme/privacy/#childrens-privacy",
+      "/listwithme/privacy/#contact",
+      "/listwithme/privacy/#data-collection",
+      "/listwithme/privacy/#data-storage",
+      "/listwithme/privacy/#imessage",
+      "/listwithme/privacy/#main-content",
+      "/listwithme/privacy/#overview",
+      "/listwithme/privacy/#third-party-services",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/UtilityLayout.JaGJ-622.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": {
+      "title": "ListWithMe Privacy Policy",
+      "blocks": [
+        {
+          "kind": "paragraph",
+          "text": "Last updated: February 24, 2026",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Overview"
+        },
+        {
+          "kind": "paragraph",
+          "text": "ListWithMe is designed with privacy in mind. We believe your shopping lists are personal, and we've built the app to keep them that way.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Data Collection"
+        },
+        {
+          "kind": "paragraph",
+          "text": "We do not collect any personal data.",
+          "links": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "ListWithMe does not:",
+          "links": []
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "items": [
+            {
+              "text": "Collect analytics or usage data",
+              "links": []
+            },
+            {
+              "text": "Track your location",
+              "links": []
+            },
+            {
+              "text": "Access your contacts",
+              "links": []
+            },
+            {
+              "text": "Store data on external servers",
+              "links": []
+            },
+            {
+              "text": "Include any third-party tracking SDKs",
+              "links": []
+            }
+          ]
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Data Storage"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Your lists are stored:",
+          "links": []
+        },
+        {
+          "kind": "list",
+          "ordered": false,
+          "items": [
+            {
+              "text": "Locally on your device using Core Data",
+              "links": []
+            },
+            {
+              "text": "In iCloud if you have iCloud enabled, for syncing across your Apple devices",
+              "links": []
+            }
+          ]
+        },
+        {
+          "kind": "paragraph",
+          "text": "All data stays within Apple's ecosystem. We never see or have access to your lists.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "iMessage"
+        },
+        {
+          "kind": "paragraph",
+          "text": "When you share a list in iMessage, the list reference is sent through Apple's iMessage system. We do not have access to your messages or conversations.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Third-Party Services"
+        },
+        {
+          "kind": "paragraph",
+          "text": "ListWithMe does not use any third-party services, analytics platforms, or advertising networks.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Children's Privacy"
+        },
+        {
+          "kind": "paragraph",
+          "text": "ListWithMe does not knowingly collect any information from children under 13.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Changes to This Policy"
+        },
+        {
+          "kind": "paragraph",
+          "text": "If we make changes to this privacy policy, we will update the \"Last updated\" date above.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Contact"
+        },
+        {
+          "kind": "paragraph",
+          "text": "If you have questions about this privacy policy, contact me at grant.isom@gmail.com.",
+          "links": [
+            {
+              "text": "grant.isom@gmail.com",
+              "href": "mailto:grant.isom@gmail.com"
+            }
+          ]
+        }
+      ]
+    },
+    "bodySha256": "a989bc5e747170c63e970d51478a9715b1a1ee195a09755232bc42d6fdc71b4c"
+  },
+  {
+    "requestedPath": "/listwithme/support/",
+    "status": 200,
+    "finalUrl": "/listwithme/support/",
+    "canonical": "https://grantisom.com/listwithme/support/",
+    "contentType": "text/html",
+    "title": "ListWithMe Support — Grant Isom",
+    "description": "How to open and use ListWithMe, answers to common questions, and a direct support contact.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/listwithme/",
+      "/listwithme/privacy/",
+      "/listwithme/support/#contact",
+      "/listwithme/support/#faq",
+      "/listwithme/support/#features",
+      "/listwithme/support/#getting-started",
+      "/listwithme/support/#main-content",
+      "/listwithme/support/#privacy",
+      "/projects/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/UtilityLayout.JaGJ-622.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": {
+      "title": "ListWithMe Support",
+      "blocks": [
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Getting Started"
+        },
+        {
+          "kind": "paragraph",
+          "text": "ListWithMe is an iMessage app that lets you create and share lists with anyone in your conversations.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "text": "How to Open ListWithMe"
+        },
+        {
+          "kind": "list",
+          "ordered": true,
+          "items": [
+            {
+              "text": "Open the Messages app",
+              "links": []
+            },
+            {
+              "text": "Start or open a conversation",
+              "links": []
+            },
+            {
+              "text": "Tap the + button (or Apps icon) next to the text field",
+              "links": []
+            },
+            {
+              "text": "Find and tap ListWithMe",
+              "links": []
+            }
+          ]
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "text": "Creating Your First List"
+        },
+        {
+          "kind": "list",
+          "ordered": true,
+          "items": [
+            {
+              "text": "Tap New List and give it a name",
+              "links": []
+            },
+            {
+              "text": "Tap on the list to open it",
+              "links": []
+            },
+            {
+              "text": "Type an item name and press return to add it",
+              "links": []
+            },
+            {
+              "text": "Tap Send List to share it in the conversation",
+              "links": []
+            }
+          ]
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Features"
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "text": "Smart Quantity Input"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Type quantities naturally: \"3 apples\", \"milk x2\", or \"eggs x12\" and ListWithMe will automatically set the item quantity.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "text": "Priorities & Due Dates"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Tap the info button (ⓘ) on any item to set priority levels and due dates.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "text": "Categories"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Organize items by category (Produce, Dairy, etc.) for easier shopping.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "text": "Sorting & Searching"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Use the sort menu to organize by name, category, priority, or due date. Use the search bar to find items quickly.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 3,
+          "text": "Batch Selection"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Tap the menu (⋯) and select \"Select Items\" to choose multiple items for batch complete or delete.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "FAQ"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Q: Where is the app on my home screen? A: ListWithMe is an iMessage-only app. It lives inside the Messages app and doesn't appear on your home screen.",
+          "links": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Q: Can I use ListWithMe without sending a message? A: Yes! You can create and manage lists without sending them. They're stored locally until you choose to share.",
+          "links": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Q: Is my data synced across devices? A: Yes, your lists sync via iCloud to all your devices signed into the same Apple ID.",
+          "links": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "Q: Can I share lists with Android users? A: ListWithMe requires iMessage, so both users need Apple devices.",
+          "links": []
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Contact"
+        },
+        {
+          "kind": "paragraph",
+          "text": "Having issues or have suggestions? Email me at grant.isom@gmail.com",
+          "links": [
+            {
+              "text": "grant.isom@gmail.com",
+              "href": "mailto:grant.isom@gmail.com"
+            }
+          ]
+        },
+        {
+          "kind": "heading",
+          "level": 2,
+          "text": "Privacy"
+        },
+        {
+          "kind": "paragraph",
+          "text": "ListWithMe stores your lists locally on your device and syncs via iCloud. We don't collect any personal data or analytics. Your lists are your own.",
+          "links": []
+        },
+        {
+          "kind": "paragraph",
+          "text": "View Privacy Policy",
+          "links": [
+            {
+              "text": "View Privacy Policy",
+              "href": "/listwithme/privacy/"
+            }
+          ]
+        }
+      ]
+    },
+    "bodySha256": "5f51d148d24850043ff787469e6347fea07f7d41ef353511457c5797500a3e52"
+  },
+  {
+    "requestedPath": "/projects/",
+    "status": 200,
+    "finalUrl": "/projects/",
+    "canonical": "https://grantisom.com/projects/",
+    "contentType": "text/html",
+    "title": "My Apps — Grant Isom",
+    "description": "Personal apps, open-source experiments, and the lessons that came from building them.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/listwithme/",
+      "/projects/",
+      "/projects/#main-content",
+      "/projects/drift-dreams/",
+      "/projects/healthql/",
+      "/projects/hermes-ios/",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/CollectionIndexLayout.uaVIvlvs.css",
+      "/_astro/evidence-map.BJ04HY1h_1dOB72.avif",
+      "/_astro/evidence-map.BJ04HY1h_FXiBf.webp",
+      "/_astro/evidence-map.BJ04HY1h_O7Psg.avif",
+      "/_astro/evidence-map.BJ04HY1h_OGYi.webp",
+      "/_astro/evidence-map.BJ04HY1h_Z1Dt5sk.png",
+      "/_astro/evidence-map.BJ04HY1h_Z1f4OP6.webp",
+      "/_astro/evidence-map.BJ04HY1h_Z8TlNm.webp",
+      "/_astro/evidence-map.BJ04HY1h_ZqLGm8.avif",
+      "/_astro/evidence-map.BJ04HY1h_ZvFLb3.avif",
+      "/_astro/evidence-map.BJ04HY1h_jbSey.avif",
+      "/_astro/evidence-map.BJ04HY1h_pwsD4.webp",
+      "/_astro/healthql-hands.BAws1-Ax_1bmXjf.avif",
+      "/_astro/healthql-hands.BAws1-Ax_1cbyof.avif",
+      "/_astro/healthql-hands.BAws1-Ax_1y9nFV.webp",
+      "/_astro/healthql-hands.BAws1-Ax_1yWXKV.webp",
+      "/_astro/healthql-hands.BAws1-Ax_2ooRI0.avif",
+      "/_astro/healthql-hands.BAws1-Ax_4of6X.png",
+      "/_astro/healthql-hands.BAws1-Ax_Z17Dhy0.avif",
+      "/_astro/healthql-hands.BAws1-Ax_Z2j0PIf.webp",
+      "/_astro/healthql-hands.BAws1-Ax_Z3fIw5.webp",
+      "/_astro/healthql-hands.BAws1-Ax_ZJQRbj.webp",
+      "/_astro/healthql-hands.BAws1-Ax_Zq28SL.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_1MEeSi.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_2qurPc.png",
+      "/_astro/listwithme-hand.CsPcKQCd_AOs83.webp",
+      "/_astro/listwithme-hand.CsPcKQCd_Z1RPi2a.webp",
+      "/_astro/listwithme-hand.CsPcKQCd_Z1p5g6F.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_ZMR8Kq.avif",
+      "/_astro/listwithme-hand.CsPcKQCd_ZnEdc.webp",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "180ac93b459dcf710c141c9c2c5f2b2fe1d71c7739b54eb2b36f6e205703bcf6"
+  },
+  {
+    "requestedPath": "/projects/drift-dreams/",
+    "status": 200,
+    "finalUrl": "/projects/drift-dreams/",
+    "canonical": "https://grantisom.com/projects/drift-dreams/",
+    "contentType": "text/html",
+    "title": "Drift Dreams — Grant Isom",
+    "description": "A dream journal for capturing what I remember and finding patterns with AI-powered insights.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/projects/drift-dreams/#main-content",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "f506800ce954ffcd7f3e456080e83ad42bc0da420a93400be9973cc0eac907ab"
+  },
+  {
+    "requestedPath": "/projects/healthql/",
+    "status": 200,
+    "finalUrl": "/projects/healthql/",
+    "canonical": "https://grantisom.com/projects/healthql/",
+    "contentType": "text/html",
+    "title": "HealthQL — Grant Isom",
+    "description": "An open source library for querying Apple HealthKit with familiar SQL syntax.",
+    "links": [
+      "/",
+      "/2026/02/01/healthql-sql-for-healthkit.html",
+      "/2026/02/07/healthql-react-native.html",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/projects/drift-dreams/",
+      "/projects/healthql/#main-content",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "fd3e4ce3f8a6753b922fddc7f4e0b9586ba7e7b2048b734fb81beee4e1e93070"
+  },
+  {
+    "requestedPath": "/projects/hermes-ios/",
+    "status": 200,
+    "finalUrl": "/projects/hermes-ios/",
+    "canonical": "https://grantisom.com/projects/hermes-ios/",
+    "contentType": "text/html",
+    "title": "Hermes iOS — Grant Isom",
+    "description": "My private mobile control plane for the Hermes Agent running on my Mac.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/app-library/hermes-agent/",
+      "/blog/",
+      "/feed.xml",
+      "/listwithme/",
+      "/projects/",
+      "/projects/hermes-ios/#main-content",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "41f6c28c1c6aeceb27cf617468e3b3de8c3d411af04054bed08ba8b72ba3945a"
+  },
+  {
+    "requestedPath": "/robots.txt",
+    "status": 200,
+    "finalUrl": "/robots.txt",
+    "canonical": null,
+    "contentType": "text/plain",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "c06d3480ff47ab8772f9387ed5210911915da93eb4aefa49567416aa513f983e"
+  },
+  {
+    "requestedPath": "/sitemap.xml",
+    "status": 200,
+    "finalUrl": "/sitemap.xml",
+    "canonical": null,
+    "contentType": "application/xml",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "c71f76901292573bec7df45331082dc278d6cc18e6373998b6c1bd7f4c7b2496"
+  },
+  {
+    "requestedPath": "/skill-library/",
+    "status": 200,
+    "finalUrl": "/skill-library/",
+    "canonical": "https://grantisom.com/skill-library/",
+    "contentType": "text/html",
+    "title": "Skill Library — Grant Isom",
+    "description": "The reusable skills behind my everyday workflows, organized by the moment I reach for them.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skill-library/#main-content",
+      "/skill-library/browser-control/",
+      "/skill-library/deep-research/",
+      "/skill-library/documents/",
+      "/skill-library/frontend-design/",
+      "/skill-library/pdf/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/CollectionIndexLayout.uaVIvlvs.css",
+      "/_astro/evidence-map.BJ04HY1h_1dOB72.avif",
+      "/_astro/evidence-map.BJ04HY1h_1djqKJ.webp",
+      "/_astro/evidence-map.BJ04HY1h_21BzeH.avif",
+      "/_astro/evidence-map.BJ04HY1h_2av0uF.webp",
+      "/_astro/evidence-map.BJ04HY1h_Z1Dt5sk.png",
+      "/_astro/evidence-map.BJ04HY1h_Z1f4OP6.webp",
+      "/_astro/evidence-map.BJ04HY1h_Z26nYPi.avif",
+      "/_astro/evidence-map.BJ04HY1h_Z8TlNm.webp",
+      "/_astro/evidence-map.BJ04HY1h_ZqLGm8.avif",
+      "/_astro/evidence-map.BJ04HY1h_ZvFLb3.avif",
+      "/_astro/evidence-map.BJ04HY1h_pwsD4.webp",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "906fcd8bb66b4476c5a03817310ba3282ce27546539371c89aa47eacca7fd412"
+  },
+  {
+    "requestedPath": "/skill-library/browser-control/",
+    "status": 200,
+    "finalUrl": "/skill-library/browser-control/",
+    "canonical": "https://grantisom.com/skill-library/browser-control/",
+    "contentType": "text/html",
+    "title": "Browser Control — Grant Isom",
+    "description": "A browser skill for inspecting pages, navigating interfaces, taking screenshots, and testing local sites.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skill-library/browser-control/#main-content",
+      "/skill-library/frontend-design/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "e800c5827fe75ff7522819daaf8973d286a3712fcbfab0d1852c2010da5a2778"
+  },
+  {
+    "requestedPath": "/skill-library/deep-research/",
+    "status": 200,
+    "finalUrl": "/skill-library/deep-research/",
+    "canonical": "https://grantisom.com/skill-library/deep-research/",
+    "contentType": "text/html",
+    "title": "Deep Research — Grant Isom",
+    "description": "A structured way to answer research questions with authoritative sources and visible evidence.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skill-library/browser-control/",
+      "/skill-library/deep-research/#main-content",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "7dcab779190f155073733d5ac63d431cc2c265dcb16f62ba5edc981e7c03ee01"
+  },
+  {
+    "requestedPath": "/skill-library/documents/",
+    "status": 200,
+    "finalUrl": "/skill-library/documents/",
+    "canonical": "https://grantisom.com/skill-library/documents/",
+    "contentType": "text/html",
+    "title": "Documents — Grant Isom",
+    "description": "A workflow for creating and editing Word documents, then checking the rendered pages before delivery.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skill-library/documents/#main-content",
+      "/skill-library/pdf/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "eb3096208bc98eef704f116b7cf2bff1b0dd6c04e666fee3a97db66aecbdbc8a"
+  },
+  {
+    "requestedPath": "/skill-library/frontend-design/",
+    "status": 200,
+    "finalUrl": "/skill-library/frontend-design/",
+    "canonical": "https://grantisom.com/skill-library/frontend-design/",
+    "contentType": "text/html",
+    "title": "Frontend Design — Grant Isom",
+    "description": "Design guidance for making interfaces feel intentional, specific, and useful instead of templated.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skill-library/documents/",
+      "/skill-library/frontend-design/#main-content",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "f913ab35fb1e8c4d615e728356896401f032b0b29bc83570806f8895f4db8763"
+  },
+  {
+    "requestedPath": "/skill-library/pdf/",
+    "status": 200,
+    "finalUrl": "/skill-library/pdf/",
+    "canonical": "https://grantisom.com/skill-library/pdf/",
+    "contentType": "text/html",
+    "title": "PDF — Grant Isom",
+    "description": "A practical workflow for reading, creating, filling, rendering, and verifying PDF files.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skill-library/pdf/#main-content",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "e419a6952ac12237c3a5e1043f568cf80ad472513776099f232ba905194d9ff9"
+  },
+  {
+    "requestedPath": "/skills/",
+    "status": 200,
+    "finalUrl": "/skills/",
+    "canonical": "https://grantisom.com/skills/",
+    "contentType": "text/html",
+    "title": "My Skills — Grant Isom",
+    "description": "Skills I wrote for myself, shared with the reasoning and examples that make them useful.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/",
+      "/skills/#main-content",
+      "/skills/goodreads-export/",
+      "/skills/hatch-pet/",
+      "/skills/write-like-grant/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/CollectionIndexLayout.uaVIvlvs.css",
+      "/_astro/belief-rings.CRinkKyz_12qj1a.avif",
+      "/_astro/belief-rings.CRinkKyz_1kQ5wX.webp",
+      "/_astro/belief-rings.CRinkKyz_RYUVE.png",
+      "/_astro/belief-rings.CRinkKyz_Z1K04z9.avif",
+      "/_astro/belief-rings.CRinkKyz_Z1rzi3l.webp",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "6b4afd8e48440aff0e0754e3e447faebb29d0bf36cde656987dff63c29cfe313"
+  },
+  {
+    "requestedPath": "/skills/goodreads-export/",
+    "status": 200,
+    "finalUrl": "/skills/goodreads-export/",
+    "canonical": "https://grantisom.com/skills/goodreads-export/",
+    "contentType": "text/html",
+    "title": "goodreads-export — Grant Isom",
+    "description": "A private backup workflow that turns my Goodreads export into durable book records in Obsidian.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/app-library/obsidian/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/",
+      "/skills/goodreads-export/#main-content",
+      "/skills/hatch-pet/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "836c508aa4abf21c7707420f51d6f50323b4969218a05f2faad56cbe4936dcbc"
+  },
+  {
+    "requestedPath": "/skills/hatch-pet/",
+    "status": 200,
+    "finalUrl": "/skills/hatch-pet/",
+    "canonical": "https://grantisom.com/skills/hatch-pet/",
+    "contentType": "text/html",
+    "title": "hatch-pet — Grant Isom",
+    "description": "A private production skill for turning character art or a visual idea into a complete animated Codex pet.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/",
+      "/skills/hatch-pet/#main-content"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "f8dde90221cf6c6c9a026d564a96e9875d59d97f6d6dcd44361592d9cf56c95c"
+  },
+  {
+    "requestedPath": "/skills/write-like-grant/",
+    "status": 200,
+    "finalUrl": "/skills/write-like-grant/",
+    "canonical": "https://grantisom.com/skills/write-like-grant/",
+    "contentType": "text/html",
+    "title": "write-like-grant — Grant Isom",
+    "description": "A private writing skill that keeps my messages warm, concise, personal, and matched to the person receiving them.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/",
+      "/skills/goodreads-export/",
+      "/skills/write-like-grant/#main-content"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/detail.b6bwcYdF.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "6b9f8402c5c9b5a2f5bf882f9a30037cc196b4cb510ef602a36f4c3ebd2a6b94"
+  },
+  {
+    "requestedPath": "/uploads/2023/5fd90bfbf1.png",
+    "status": 200,
+    "finalUrl": "/uploads/2023/5fd90bfbf1.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "b731a69b88413dc84cc2b2e28559bcf3ce401adb1f6a95114cd395fe95a32b63"
+  },
+  {
+    "requestedPath": "/uploads/2023/6647450a28.png",
+    "status": 200,
+    "finalUrl": "/uploads/2023/6647450a28.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "193a028e159a4749715cfafc5b1212763f6920ab944c9c774e2ccfbfa701a175"
+  },
+  {
+    "requestedPath": "/uploads/2023/f159196842.png",
+    "status": 200,
+    "finalUrl": "/uploads/2023/f159196842.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "a4827889f821c91bfaf9e9017339f6aa959c8d6fb9abfba7c33c0096c57d3869"
+  },
+  {
+    "requestedPath": "/uploads/2023/fa6c5dfe53.png",
+    "status": 200,
+    "finalUrl": "/uploads/2023/fa6c5dfe53.png",
+    "canonical": null,
+    "contentType": "image/png",
+    "title": null,
+    "description": null,
+    "links": [],
+    "assets": [],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "14e2f3bce1d35f5ddfed2179daf25fdf63dd7369729286e550cf859e97c21dce"
+  }
+]

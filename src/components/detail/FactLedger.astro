@@ -1,0 +1,24 @@
+---
+import type { Fact } from '../../types/content';
+
+interface Props {
+  facts: readonly Fact[];
+}
+
+const { facts } = Astro.props;
+---
+
+<dl
+  class="fact-ledger"
+  aria-label="Record facts"
+  style={`--fact-count: ${facts.length}`}
+>
+  {
+    facts.map((fact) => (
+      <div class="fact" data-fact>
+        <dt>{fact.label}</dt>
+        <dd>{fact.value}</dd>
+      </div>
+    ))
+  }
+</dl>

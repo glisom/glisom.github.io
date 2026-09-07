@@ -1,0 +1,81 @@
+---
+import defaultSocialImage from '../../assets/social/default-og.png';
+import { SITE } from '../../data/site';
+import { resolveCanonicalUrl } from '../../lib/discovery/canonical';
+import type { BaseLayoutProps } from '../../types/content';
+
+const {
+  title,
+  description,
+  canonicalPath,
+  canonicalOverride,
+  socialImage,
+  pageType = 'website',
+  publishedAt,
+  updatedAt,
+  noindex = false,
+} = Astro.props as BaseLayoutProps;
+
+const canonicalUrl = resolveCanonicalUrl(canonicalPath, canonicalOverride);
+const socialImageUrl = new URL(
+  socialImage ?? defaultSocialImage.src,
+  SITE.origin,
+).href;
+if (pageType === 'article' && !publishedAt) {
+  throw new Error(`Article metadata requires publishedAt: ${canonicalPath}`);
+}
+const articleHeadline = title.endsWith(` — ${SITE.name}`)
+  ? title.slice(0, -` — ${SITE.name}`.length)
+  : title;
+const metadataDescription =
+  pageType === 'article' ? `${articleHeadline} — ${description}` : description;
+const articleJsonLd =
+  pageType === 'article'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: articleHeadline,
+        datePublished: publishedAt,
+        ...(updatedAt ? { dateModified: updatedAt } : {}),
+        author: { '@type': 'Person', name: SITE.name, url: SITE.origin },
+        image: socialImageUrl,
+        mainEntityOfPage: canonicalUrl,
+      }
+    : undefined;
+const serializedArticleJsonLd = articleJsonLd
+  ? JSON.stringify(articleJsonLd).replace(/</g, '\\u003c')
+  : undefined;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={metadataDescription} />
+<link rel="canonical" href={canonicalUrl} />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={`${SITE.name} RSS feed`}
+  href={`${SITE.origin}/feed.xml`}
+/>
+<link rel="icon" href="/favicon.ico" />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<meta property="og:type" content={pageType} />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={metadataDescription} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={socialImageUrl} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={metadataDescription} />
+<meta name="twitter:image" content={socialImageUrl} />
+{
+  serializedArticleJsonLd && (
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={serializedArticleJsonLd}
+    />
+  )
+}

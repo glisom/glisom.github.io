@@ -1,0 +1,50 @@
+---
+import type { ResolvedRelationship } from '../../types/content';
+
+interface Props {
+  records: readonly ResolvedRelationship[];
+}
+
+const { records } = Astro.props;
+if (records.length > 3) {
+  throw new Error(
+    `ConnectedRecords allows at most three connected records; received ${records.length}.`,
+  );
+}
+---
+
+{
+  records.length > 0 && (
+    <section
+      class="connected-records"
+      aria-labelledby="connected-records-title"
+    >
+      <div class="connected-head">
+        <h2 id="connected-records-title">Connected records</h2>
+        <span>Relationships are chosen, not generated</span>
+      </div>
+      <div
+        class="connected-grid"
+        style={`--connected-count: ${records.length}`}
+      >
+        {records.map((record, index) => (
+          <a
+            class:list={[
+              'connected-card',
+              { 'connected-card--lead': index === 0 },
+            ]}
+            href={record.canonicalPath}
+            data-connected-record
+            data-surface={index === 0 ? 'blue' : undefined}
+          >
+            <span class="connected-label" data-relationship-label>
+              {record.label}
+            </span>
+            <h3>{record.title}</h3>
+            <p>{record.summary}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}

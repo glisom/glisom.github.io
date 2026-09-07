@@ -1,0 +1,46 @@
+---
+import '@fontsource/dm-sans/400.css';
+import '@fontsource/dm-sans/500.css';
+import '@fontsource/dm-sans/600.css';
+import '@fontsource/source-serif-4/400.css';
+import '@fontsource/source-serif-4/400-italic.css';
+import '@fontsource/source-serif-4/600.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '@phosphor-icons/web/regular';
+import IdentityRail from '../components/shell/IdentityRail.astro';
+import MobileHeader from '../components/shell/MobileHeader.astro';
+import SeoHead from '../components/shell/SeoHead.astro';
+import SiteFooter from '../components/shell/SiteFooter.astro';
+import SkipLink from '../components/shell/SkipLink.astro';
+import '../styles/tokens.css';
+import '../styles/global.css';
+import '../styles/shell.css';
+import '../styles/utilities.css';
+import type { BaseLayoutProps } from '../types/content';
+
+const props = Astro.props as BaseLayoutProps;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SeoHead {...props} />
+  </head>
+  <body>
+    <SkipLink />
+    <IdentityRail
+      activeCollection={props.activeCollection}
+      activeAbout={props.activeAbout}
+      railContext={props.railContext}
+    />
+    <MobileHeader
+      activeCollection={props.activeCollection}
+      activeAbout={props.activeAbout}
+    />
+    <div class="site-frame">
+      <main id="main-content" tabindex="-1"><slot /></main>
+      <SiteFooter />
+    </div>
+  </body>
+</html>

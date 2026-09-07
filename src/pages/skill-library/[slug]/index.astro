@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import { COLLECTIONS } from '../../../data/collections';
+import DetailLayout from '../../../layouts/DetailLayout.astro';
+import { buildDetailPageProps } from '../../../lib/content/detail';
+import type {
+  DetailPageProps,
+  SkillLibraryRecord,
+} from '../../../types/content';
+
+export async function getStaticPaths() {
+  const visible = (await getCollection('skill-library'))
+    .map(
+      (entry) =>
+        ({
+          collection: 'skill-library',
+          id: entry.id,
+          data: entry.data,
+          body: entry.body,
+        }) satisfies SkillLibraryRecord,
+    )
+    .filter((record) => !record.data.draft && record.data.hasDetailPage)
+    .toSorted(
+      (a, b) =>
+        Number(a.data.displayOrder) - Number(b.data.displayOrder) ||
+        a.id.localeCompare(b.id),
+    );
+
+  return visible.map((record) => ({
+    params: { slug: record.data.slug },
+    props: buildDetailPageProps(
+      visible,
+      COLLECTIONS['skill-library'].label,
+      record,
+    ),
+  }));
+}
+
+const props = Astro.props as DetailPageProps;
+---
+
+<DetailLayout {...props} />

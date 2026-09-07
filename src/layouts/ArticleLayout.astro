@@ -1,0 +1,162 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ArticleMeta from '../components/editorial/ArticleMeta.astro';
+import Comments from '../components/editorial/Comments.astro';
+import PostNavigation from '../components/editorial/PostNavigation.astro';
+import Prose from '../components/editorial/Prose.astro';
+import RelatedRecords from '../components/editorial/RelatedRecords.astro';
+import TableOfContents from '../components/editorial/TableOfContents.astro';
+import { comparePostsNewestFirst, formatPublicDate } from '../lib/content/date';
+import { loadContentGraph } from '../lib/content/load';
+import { calculateReadingMinutes } from '../lib/content/reading-time';
+import { resolveRelationships } from '../lib/content/relationships';
+import '../styles/prose.css';
+import BaseLayout from './BaseLayout.astro';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  headings: readonly Heading[];
+}
+
+const { post, headings } = Astro.props;
+const graph = await loadContentGraph();
+const sourceRecord = graph.blog.find((record) => record.id === post.id);
+if (!sourceRecord) {
+  throw new Error(`Article graph record not found: blog/${post.id}`);
+}
+
+const publishedPosts = graph.blog
+  .filter((record) => !record.data.draft && record.data.hasDetailPage)
+  .toSorted(comparePostsNewestFirst);
+const currentIndex = publishedPosts.findIndex(
+  (record) => record.id === post.id,
+);
+if (currentIndex === -1) {
+  throw new Error(`Published article not found in chronology: blog/${post.id}`);
+}
+
+const olderPost = publishedPosts[currentIndex + 1] ?? null;
+const newerPost = publishedPosts[currentIndex - 1] ?? null;
+const toPostLink = (record: (typeof publishedPosts)[number] | null) =>
+  record
+    ? {
+        title: record.data.title,
+        summary: record.data.summary,
+        canonicalPath: record.data.canonicalPath,
+      }
+    : null;
+
+const relationships = resolveRelationships(sourceRecord, graph);
+const relatedProjectRecord = post.data.relatedProject
+  ? graph.projects.find((record) => record.id === post.data.relatedProject)
+  : undefined;
+if (post.data.relatedProject && !relatedProjectRecord) {
+  throw new Error(
+    `${post.data.canonicalPath} names projects/${post.data.relatedProject}, but it could not be loaded.`,
+  );
+}
+const relatedProject = relatedProjectRecord
+  ? {
+      title: relatedProjectRecord.data.title,
+      canonicalPath: relatedProjectRecord.data.canonicalPath,
+    }
+  : undefined;
+const publishedDate = formatPublicDate(post.data.publishedAt);
+const minutes = calculateReadingMinutes(post.body ?? '');
+const canonicalOverride = post.data.canonicalOverride
+  ? { canonicalOverride: post.data.canonicalOverride }
+  : {};
+const hasArticleContext = post.data.tags.length > 0 || Boolean(relatedProject);
+---
+
+<BaseLayout
+  title={`${post.data.title} — Grant Isom`}
+  description={post.data.summary}
+  canonicalPath={post.data.canonicalPath}
+  activeCollection="blog"
+  railContext={{
+    kind: 'article',
+    title: post.data.title,
+    date: publishedDate,
+    postKind: post.data.kind,
+    minutes,
+  }}
+  socialImage={post.data.socialImage}
+  pageType="article"
+  publishedAt={post.data.publishedAt}
+  updatedAt={post.data.updatedAt}
+  {...canonicalOverride}
+>
+  <div class="article-page" data-article-page>
+    <ArticleMeta
+      title={post.data.title}
+      titleAccent={post.data.titleAccent}
+      summary={post.data.summary}
+      kind={post.data.kind}
+      year={post.data.publishedAt.slice(0, 4)}
+      publishedDate={publishedDate}
+      minutes={minutes}
+      tags={post.data.tags}
+      relatedProject={relatedProject}
+      featuredArt={post.data.featuredArt}
+    />
+
+    <section class="reading-grid" aria-label="Article">
+      <TableOfContents
+        headings={headings}
+        numberHeadings={post.data.numberHeadings}
+      />
+
+      <div class="article-column">
+        <Prose numberHeadings={post.data.numberHeadings}>
+          <slot />
+        </Prose>
+
+        {
+          hasArticleContext && (
+            <section
+              class="article-context-panel"
+              aria-labelledby="article-context-title"
+            >
+              <div class="article-section-heading">
+                <p>Filed with</p>
+                <h2 id="article-context-title">Article context</h2>
+              </div>
+              <div class="article-context-contents">
+                {post.data.tags.length > 0 && (
+                  <ul class="article-tags" aria-label="Article tags">
+                    {post.data.tags.map((tag) => (
+                      <li>{tag}</li>
+                    ))}
+                  </ul>
+                )}
+                {relatedProject && (
+                  <a
+                    class="article-project-link"
+                    href={relatedProject.canonicalPath}
+                  >
+                    <span>Connected project</span>
+                    <strong>{relatedProject.title}</strong>
+                  </a>
+                )}
+              </div>
+            </section>
+          )
+        }
+
+        <RelatedRecords relationships={relationships} />
+        <PostNavigation
+          previous={toPostLink(olderPost)}
+          next={toPostLink(newerPost)}
+        />
+        <Comments enabled={post.data.comments} />
+      </div>
+    </section>
+  </div>
+</BaseLayout>

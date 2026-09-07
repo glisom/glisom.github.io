@@ -1,0 +1,19 @@
+---
+interface Props {
+  collectionLabel: string;
+  recordNumber: number;
+  recordCount: number;
+}
+
+const { collectionLabel, recordNumber, recordCount } = Astro.props;
+const paddedNumber = String(recordNumber).padStart(2, '0');
+const paddedCount = String(recordCount).padStart(2, '0');
+---
+
+<span
+  class="dossier-registry"
+  data-record-number={recordNumber}
+  data-record-count={recordCount}
+>
+  {collectionLabel} / Record {paddedNumber} of {paddedCount}
+</span>

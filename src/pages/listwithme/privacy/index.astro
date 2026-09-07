@@ -1,0 +1,27 @@
+---
+import LegalBlocks from '../../../components/utility/LegalBlocks.astro';
+import { LISTWITHME_PRIVACY } from '../../../data/listwithme';
+import UtilityLayout from '../../../layouts/UtilityLayout.astro';
+
+const sectionAnchors = LISTWITHME_PRIVACY.blocks.flatMap((block) =>
+  block.kind === 'heading' && block.level === 2
+    ? [{ id: block.id, label: block.text }]
+    : [],
+);
+---
+
+<UtilityLayout
+  title={`${LISTWITHME_PRIVACY.title} — Grant Isom`}
+  railTitle={LISTWITHME_PRIVACY.title}
+  description="The ListWithMe privacy policy, including what the app stores and the data it does not collect."
+  canonicalPath="/listwithme/privacy/"
+  parent="ListWithMe"
+  lastUpdated={LISTWITHME_PRIVACY.lastUpdated}
+  sectionAnchors={sectionAnchors}
+  contactPath={LISTWITHME_PRIVACY.contactPath}
+  backPath={LISTWITHME_PRIVACY.backPath}
+  backLabel="Back to ListWithMe"
+  variant="legal"
+>
+  <LegalBlocks page={LISTWITHME_PRIVACY} />
+</UtilityLayout>

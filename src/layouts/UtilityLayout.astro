@@ -1,0 +1,87 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import '../styles/utility.css';
+
+interface SectionAnchor {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  railTitle?: string;
+  description: string;
+  canonicalPath: string;
+  parent?: string;
+  lastUpdated?: string;
+  sectionAnchors?: readonly SectionAnchor[];
+  contactPath?: string;
+  backPath?: string;
+  backLabel?: string;
+  activeAbout?: boolean;
+  noindex?: boolean;
+  variant?: 'about' | 'legal' | 'not-found';
+}
+
+const {
+  title,
+  railTitle = title,
+  description,
+  canonicalPath,
+  parent,
+  lastUpdated,
+  sectionAnchors = [],
+  contactPath,
+  backPath,
+  backLabel = 'Back',
+  activeAbout = false,
+  noindex = false,
+  variant,
+} = Astro.props;
+const hasActions = Boolean(sectionAnchors.length || contactPath || backPath);
+---
+
+<BaseLayout
+  {title}
+  {description}
+  {canonicalPath}
+  {activeAbout}
+  {noindex}
+  railContext={{ kind: 'utility', title: railTitle, parent }}
+>
+  <article
+    class:list={['utility-page', variant && `utility-page--${variant}`]}
+    data-utility-layout
+    data-utility-last-updated={lastUpdated}
+    data-utility-anchor-count={sectionAnchors.length}
+  >
+    <slot />
+
+    {
+      hasActions && (
+        <nav
+          class="utility-actions"
+          aria-label="Page actions"
+          data-utility-actions
+        >
+          {sectionAnchors.length > 0 && (
+            <div class="utility-toc" data-utility-toc>
+              <p data-utility-label>On this page</p>
+              <ol>
+                {sectionAnchors.map((anchor) => (
+                  <li>
+                    <a href={`#${anchor.id}`}>{anchor.label}</a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+          <div class="utility-action-links">
+            {contactPath && <a href={contactPath}>Email Grant</a>}
+            {backPath && <a href={backPath}>{backLabel}</a>}
+          </div>
+        </nav>
+      )
+    }
+  </article>
+</BaseLayout>

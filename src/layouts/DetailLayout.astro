@@ -1,0 +1,180 @@
+---
+import ActionGroup from '../components/detail/ActionGroup.astro';
+import ConnectedRecords from '../components/detail/ConnectedRecords.astro';
+import EvidencePanel from '../components/detail/EvidencePanel.astro';
+import FactLedger from '../components/detail/FactLedger.astro';
+import FieldNotes from '../components/detail/FieldNotes.astro';
+import OwnershipStamp from '../components/detail/OwnershipStamp.astro';
+import RegistryLine from '../components/detail/RegistryLine.astro';
+import ScreenshotGallery from '../components/detail/ScreenshotGallery.astro';
+import Icon from '../components/media/Icon.astro';
+import { formatPublicDate } from '../lib/content/date';
+import { loadContentGraph } from '../lib/content/load';
+import { resolveRelationships } from '../lib/content/relationships';
+import type { ActionLink, DetailPageProps } from '../types/content';
+import '../styles/details.css';
+import BaseLayout from './BaseLayout.astro';
+
+const { record, collectionLabel, recordNumber, recordCount, nextRecord } =
+  Astro.props as DetailPageProps;
+const graph = await loadContentGraph();
+const relationships = resolveRelationships(record, graph);
+const actionLinks = record.data.links.filter((link) =>
+  ['primary', 'install', 'secondary', 'source'].includes(link.kind),
+) as ActionLink[];
+const utilityLinks = record.data.links.filter(
+  (link) => link.kind === 'support' || link.kind === 'privacy',
+);
+const evidence = record.data.featuredArt ?? record.data.media;
+const screenshots =
+  record.collection === 'projects' ? record.data.screenshots : [];
+const collectionPath =
+  record.collection === 'projects' ? '/projects/' : `/${record.collection}/`;
+const status = record.data.status;
+const reviewedAt = record.data.reviewedAt
+  ? formatPublicDate(record.data.reviewedAt)
+  : undefined;
+const contextRows = [
+  status ? { label: 'Status', value: status } : null,
+  record.collection === 'app-library' && record.data.cadence
+    ? { label: 'Cadence', value: record.data.cadence }
+    : null,
+  record.collection === 'projects'
+    ? { label: 'Platform', value: record.data.platform }
+    : null,
+  record.collection === 'skill-library'
+    ? {
+        label: 'Source credit',
+        value: `${record.data.sourceAuthor} · ${record.data.source}`,
+      }
+    : null,
+  record.collection === 'skills'
+    ? { label: 'Works with', value: record.data.supportedTools.join(' · ') }
+    : null,
+  reviewedAt ? { label: 'Reviewed', value: reviewedAt } : null,
+].filter((row): row is { label: string; value: string } => Boolean(row));
+---
+
+<BaseLayout
+  title={`${record.data.title} — Grant Isom`}
+  description={record.data.summary}
+  canonicalPath={record.data.canonicalPath}
+  activeCollection={record.collection}
+  railContext={{
+    kind: 'detail',
+    title: record.data.title,
+    ownership: record.data.ownership,
+    status,
+    reviewedAt,
+  }}
+>
+  <article
+    class="detail-page"
+    data-detail-page={record.collection}
+    data-record-id={record.id}
+  >
+    <header class:list={['dossier-head', { 'has-evidence': evidence }]}>
+      <div class="head-copy">
+        <div class="registry-line">
+          <RegistryLine {collectionLabel} {recordNumber} {recordCount} />
+          <OwnershipStamp ownership={record.data.ownership} />
+        </div>
+
+        <h1>{record.data.title}</h1>
+        <p class="dossier-summary" data-record-summary>
+          {record.data.summary}
+        </p>
+        <ActionGroup
+          links={actionLinks}
+          actionState={record.data.actionState}
+        />
+
+        {
+          utilityLinks.length > 0 && (
+            <nav
+              class="utility-navigation"
+              aria-label={`${record.data.title} help and policies`}
+              data-utility-navigation
+            >
+              <span>Help and policies</span>
+              {utilityLinks.map((link) => (
+                <a href={link.href}>{link.label}</a>
+              ))}
+            </nav>
+          )
+        }
+      </div>
+
+      <EvidencePanel
+        media={evidence}
+        label={`${collectionLabel} / Evidence`}
+        note={record.data.title}
+      />
+    </header>
+
+    <FactLedger facts={record.data.facts} />
+    <ScreenshotGallery {screenshots} />
+
+    <section class="dossier-body" aria-label="Record notes">
+      <FieldNotes notes={record.data.fieldNotes} />
+
+      <aside
+        class="dossier-aside"
+        aria-label="Record context"
+        data-context-ledger
+      >
+        <section class="aside-block">
+          <p class="aside-label">About this record</p>
+          <p>{record.data.summary}</p>
+        </section>
+        {
+          contextRows.map((row) => (
+            <section class="aside-block">
+              <p class="aside-label">{row.label}</p>
+              <p>{row.value}</p>
+            </section>
+          ))
+        }
+        {
+          record.data.tags.length > 0 && (
+            <section class="aside-block">
+              <p class="aside-label">Filed under</p>
+              <p>{record.data.tags.join(' · ')}</p>
+            </section>
+          )
+        }
+      </aside>
+    </section>
+
+    <ConnectedRecords records={relationships} />
+
+    <nav
+      class="record-navigation"
+      aria-label="More records"
+      style={`--record-navigation-count: ${nextRecord ? 2 : 1}`}
+    >
+      <a
+        class="record-navigation-card"
+        href={collectionPath}
+        data-back-to-collection
+      >
+        <span>Back to collection</span>
+        <strong>{collectionLabel}</strong>
+      </a>
+      {
+        nextRecord && (
+          <a
+            class="record-navigation-card record-navigation-card--next"
+            href={nextRecord.canonicalPath}
+            data-next-record
+            data-surface="blue"
+          >
+            <span>Next record</span>
+            <strong>{nextRecord.title}</strong>
+            <Icon name="arrow-right" decorative={true} />
+          </a>
+        )
+      }
+    </nav>
+  </article>
+</BaseLayout>

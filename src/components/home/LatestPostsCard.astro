@@ -1,0 +1,41 @@
+---
+import type { BlogRecord } from '../../types/content';
+import Icon from '../media/Icon.astro';
+
+interface Props {
+  records: readonly BlogRecord[];
+}
+
+const { records } = Astro.props;
+---
+
+<article
+  class="card writing-card"
+  data-home-slot="latest-posts"
+  aria-labelledby="latest-posts-title"
+>
+  <div class="card-label-row">
+    <span class="card-kicker" data-utility-label>From the blog</span>
+    <span class="card-number" data-utility-label>05</span>
+  </div>
+  <h2 id="latest-posts-title">Latest posts.</h2>
+  <div class="article-list">
+    {
+      records.map((record) => (
+        <div data-post-row>
+          <a href={record.data.canonicalPath}>
+            <span>
+              <small data-utility-label>{record.data.kind}</small>
+              {record.data.title}
+            </span>
+            <Icon name="arrow-right" decorative={true} />
+          </a>
+        </div>
+      ))
+    }
+  </div>
+  <a class="arrow-link" href="/blog/">
+    <span>Browse all writing</span>
+    <Icon name="arrow-right" decorative={true} />
+  </a>
+</article>

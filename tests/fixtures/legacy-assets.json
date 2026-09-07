@@ -1,0 +1,28 @@
+{
+  "assets": [
+    { "path": "/favicon.ico", "outputPath": "favicon.ico", "sha256": "b68e9135d484219448d9d996167b1ce6c64d578ed6cc11e243d91a2a8828d3a4", "mediaType": "image/x-icon" },
+    { "path": "/images/45d7f5784d.jpg", "outputPath": "images/45d7f5784d.jpg", "sha256": "4ea9072777a2d5e9131564cee1eb22ead77b29238771ebef6d1151b3b137583f", "mediaType": "image/jpeg" },
+    { "path": "/images/475c3984d0.jpg", "outputPath": "images/475c3984d0.jpg", "sha256": "b5c643f653258a05be469586eae7b6b606e8a860dbe58c3c7b50ded9f138b636", "mediaType": "image/jpeg" },
+    { "path": "/images/5f538d59de.jpg", "outputPath": "images/5f538d59de.jpg", "sha256": "8a3655168c470931e51043bcfc73f3de1f894760ad350851cdfd4785dfeba261", "mediaType": "image/jpeg" },
+    { "path": "/images/5fd90bfbf1.png", "outputPath": "images/5fd90bfbf1.png", "sha256": "b731a69b88413dc84cc2b2e28559bcf3ce401adb1f6a95114cd395fe95a32b63", "mediaType": "image/png" },
+    { "path": "/images/6647450a28.png", "outputPath": "images/6647450a28.png", "sha256": "193a028e159a4749715cfafc5b1212763f6920ab944c9c774e2ccfbfa701a175", "mediaType": "image/png" },
+    { "path": "/images/7337cde14c.jpg", "outputPath": "images/7337cde14c.jpg", "sha256": "42f1fac8fa71c271e38b976769cfd915c417b8478a1cc962eb87183a329bac00", "mediaType": "image/jpeg" },
+    { "path": "/images/96ce2ec5a6.jpg", "outputPath": "images/96ce2ec5a6.jpg", "sha256": "82eb23c7f7683d3b0cb4669da9ae58a3b5c450207b04be8ec6e5c8de3914213b", "mediaType": "image/jpeg" },
+    { "path": "/images/a37debf5ab.jpg", "outputPath": "images/a37debf5ab.jpg", "sha256": "fcc7619307d54691e3de65892d02d234b090a798f943112011b4a19a041be159", "mediaType": "image/jpeg" },
+    { "path": "/images/a97bedecb3.jpg", "outputPath": "images/a97bedecb3.jpg", "sha256": "35974cdf246e33edf59434ee5dbff4d92f0df2c5eb9637949511d79dd1800c96", "mediaType": "image/jpeg" },
+    { "path": "/images/cloud.png", "outputPath": "images/cloud.png", "sha256": "fcc66d10a5a7a368d61cebd40f5615977103e465f823c8735f410afd99b54e12", "mediaType": "image/png" },
+    { "path": "/images/develop_menu.png", "outputPath": "images/develop_menu.png", "sha256": "33a7886cdff27b31f27e869294734896b69aa655c730017954d28804f9fbd2f3", "mediaType": "image/png" },
+    { "path": "/images/e1d2ad7014.jpg", "outputPath": "images/e1d2ad7014.jpg", "sha256": "ace05b7d34dc288a3ab042e5bbdc70009e8802e41f71662cf4cdfa7c1fd645ce", "mediaType": "image/jpeg" },
+    { "path": "/images/ec18f32904.jpg", "outputPath": "images/ec18f32904.jpg", "sha256": "317b335b824adfe815858019c52909d0c002e4882bd80644cefcea3e36d27269", "mediaType": "image/jpeg" },
+    { "path": "/images/f159196842.png", "outputPath": "images/f159196842.png", "sha256": "a4827889f821c91bfaf9e9017339f6aa959c8d6fb9abfba7c33c0096c57d3869", "mediaType": "image/png" },
+    { "path": "/images/fa6c5dfe53.png", "outputPath": "images/fa6c5dfe53.png", "sha256": "14e2f3bce1d35f5ddfed2179daf25fdf63dd7369729286e550cf859e97c21dce", "mediaType": "image/png" },
+    { "path": "/images/logo.png", "outputPath": "images/logo.png", "sha256": "ea327b359ae8566e5187c0372863c2063e6c12b2fe3254f94c6f62465c569120", "mediaType": "image/png" },
+    { "path": "/images/safari_settings.png", "outputPath": "images/safari_settings.png", "sha256": "424f00a38060b2d8a944de73925c51fa9474a26608f81d7af7d352c944cddcb0", "mediaType": "image/png" },
+    { "path": "/assets/js/darkmode.js", "outputPath": "assets/js/darkmode.js", "sha256": "bbec534f986ed7e8e972a87fc14e0a111612c0105f84939a80841bb1e999fa22", "mediaType": "text/javascript" },
+    { "path": "/css/main.css", "outputPath": "css/main.css", "sha256": "3a3d8ed6d67a96cf7cc1af5b5fceaffa54ffbb3dfcb4061cf3642c63fd4444b3", "mediaType": "text/css" },
+    { "path": "/uploads/2023/f159196842.png", "outputPath": "uploads/2023/f159196842.png", "sha256": "a4827889f821c91bfaf9e9017339f6aa959c8d6fb9abfba7c33c0096c57d3869", "mediaType": "image/png", "aliasOf": "/images/f159196842.png" },
+    { "path": "/uploads/2023/fa6c5dfe53.png", "outputPath": "uploads/2023/fa6c5dfe53.png", "sha256": "14e2f3bce1d35f5ddfed2179daf25fdf63dd7369729286e550cf859e97c21dce", "mediaType": "image/png", "aliasOf": "/images/fa6c5dfe53.png" },
+    { "path": "/uploads/2023/5fd90bfbf1.png", "outputPath": "uploads/2023/5fd90bfbf1.png", "sha256": "b731a69b88413dc84cc2b2e28559bcf3ce401adb1f6a95114cd395fe95a32b63", "mediaType": "image/png", "aliasOf": "/images/5fd90bfbf1.png" },
+    { "path": "/uploads/2023/6647450a28.png", "outputPath": "uploads/2023/6647450a28.png", "sha256": "193a028e159a4749715cfafc5b1212763f6920ab944c9c774e2ccfbfa701a175", "mediaType": "image/png", "aliasOf": "/images/6647450a28.png" }
+  ]
+}

@@ -1,0 +1,76 @@
+---
+import type { SkillLibraryRecord } from '../../types/content';
+import Icon from '../media/Icon.astro';
+
+interface Props {
+  records: readonly SkillLibraryRecord[];
+}
+
+const { records } = Astro.props;
+const groups = new Map<string, SkillLibraryRecord[]>();
+for (const record of records) {
+  const group = groups.get(record.data.category) ?? [];
+  group.push(record);
+  groups.set(record.data.category, group);
+}
+const destinationFor = (record: SkillLibraryRecord) =>
+  record.data.hasDetailPage
+    ? record.data.canonicalPath
+    : record.data.links.find((link) => link.href.startsWith('https://'))?.href;
+---
+
+<div class="section-heading">
+  <h2>The skills I reach for</h2><p>A field manual, not a marketplace</p>
+</div>
+<div class="skill-manual">
+  {
+    [...groups].map(([category, group], index) => (
+      <section class="manual-group" data-manual-group={category}>
+        <div class="manual-heading">
+          <span>
+            {String(index + 1).padStart(2, '0')} / {category}
+          </span>
+          <h2>{category}</h2>
+        </div>
+        <div class="skill-strips">
+          {group.map((record) => {
+            const usageKind = record.data.cadence ? 'cadence' : 'trigger';
+            const usageValue = record.data.cadence ?? record.data.trigger;
+            const destination = destinationFor(record);
+            const content = (
+              <>
+                <div>
+                  <h3>{record.data.title}</h3>
+                  <p class="source-credit" data-source-credit>
+                    {record.data.sourceAuthor} · {record.data.source}
+                  </p>
+                </div>
+                <p data-capability>{record.data.summary}</p>
+                <span
+                  class="record-meta"
+                  data-usage-fact
+                  data-usage-kind={usageKind}
+                >
+                  <span class="record-meta-label">
+                    {usageKind === 'cadence' ? 'Cadence' : 'Trigger'}
+                  </span>
+                  <span data-usage-value>{usageValue}</span>
+                </span>
+                {destination && <Icon name="arrow-right" decorative={true} />}
+              </>
+            );
+            return destination ? (
+              <a class="skill-strip" href={destination} data-skill-record>
+                {content}
+              </a>
+            ) : (
+              <article class="skill-strip" data-skill-record>
+                {content}
+              </article>
+            );
+          })}
+        </div>
+      </section>
+    ))
+  }
+</div>

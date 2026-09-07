@@ -1,0 +1,48 @@
+---
+title: WWDC Day 2
+slug: wwdc-day-2
+canonicalPath: /2019/06/06/wwdc-day-2.html
+summary: The second day started with a morning HIIT workout with a audio workout app, Aaptiv.
+draft: false
+hasDetailPage: true
+featured: false
+tags:
+  - wwdc
+  - ios
+  - conferences
+links: []
+relationships:
+  - label: Previous day
+    collection: blog
+    id: wwdc-day-1
+  - label: Next day
+    collection: blog
+    id: wwdc-day-3
+  - label: Week in review
+    collection: blog
+    id: wwdc-review
+publishedAt: "2019-06-06"
+kind: Post
+comments: true
+preservedHeadingIds:
+  - starting-the-day-with-aaptiv
+  - the-beginning-of-labs-and-sessions
+  - music-on-the-plaza
+  - weird-joint-activbodyvapor-happy-hour
+  - palo-alto
+numberHeadings: false
+---
+## Starting the Day with Aaptiv {#starting-the-day-with-aaptiv}
+
+The second day started with a morning HIIT workout with a audio workout app, Aaptiv. The workout was fun in a super cool venue and was another great way to meet people and get the day off to a roar. Afterwards there was a sweet coffee bar and breakfast snacks and drinks. I drank some detox drink, no clue what it was but it was pretty good.
+
+## The beginning of Labs and Sessions {#the-beginning-of-labs-and-sessions}
+So for the rest of the day I spent most my time attending session and going to labs. Learning what’s new in Xcode and how Core Data can work with CloudKit out of the box to keep data stores in sync was fascinating and added to just how many updates are coming with these next releases. The sessions on SF Symbols and creating independent watch apps was super cool. The idea of a watch being able to be used with a phone at all and got me very excited for the upcoming hardware releases in September. Throughout the day I attended the WatchOS and SiriKit Labs, where I had 1 on 1 time with Apple engineers diving into current problems I have with my apps and how we could be leveraging some of these new or recently released features. With how much Apple is pushing Siri and Shortcuts it is going to be exciting to see what developers and hopefully what we do at Cerner and myHomework with these changes.
+
+## Music on the Plaza {#music-on-the-plaza}
+After everything came to an end, Apple had live music and drinks on the plaza in the front of the convention center where they gave out cool pins and had a good beer selection. Following that it was off to some happy hours.
+## Weird Joint Activbody/Vapor Happy Hour {#weird-joint-activbodyvapor-happy-hour}
+Before going to dinner in Palo Alto that night, I headed over to The Blue Chip for a happy hour held by Activbody that was also a Vapor Meetup sort of kind of. The Activbody team was showing off some hardware which was pretty cool and seems useful for physical therapy, but to be honest, it was a pretty weird device. The vapor guys were super nice and was fun to put a face to the super cool project that is Vapor.
+
+## Palo Alto {#palo-alto}
+After all that, I Ubered to Palo Alto to meet up with one of my great friends, Cole Jurden. He’s killing it in San Francisco and it was great catching up and exploring the city where so much history has taken place. Also there were these Swedish guys killing it at a Karaoke bar. Then back to San Jose for the next day!

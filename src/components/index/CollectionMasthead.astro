@@ -1,0 +1,97 @@
+---
+import type { PrimaryCollection } from '../../types/content';
+import HalftoneImage from '../media/HalftoneImage.astro';
+
+interface Props {
+  collection: PrimaryCollection;
+  label: string;
+  count: number;
+  title: string;
+  description: string;
+}
+
+const { collection, label, count, title, description } = Astro.props;
+const mastheadDetails = {
+  blog: {
+    noun: 'posts',
+    ownership: '',
+    accent: 'written.',
+    image: 'evidence/evidence-map.png',
+    alt: 'Abstract blue halftone terrain marked with system checkpoints',
+    caption: 'Index / Blog',
+    note: 'Newest first',
+  },
+  'app-library': {
+    noun: 'tools',
+    ownership: 'Used by Grant',
+    accent: 'earns its place.',
+    image: 'evidence/groundwork-surveyor.png',
+    alt: 'A technical blue drawing of a surveyor instrument',
+    caption: 'Index / Daily tools',
+    note: 'Grouped by job',
+  },
+  projects: {
+    noun: 'apps',
+    ownership: 'Made by Grant',
+    accent: 'make.',
+    image: 'evidence/healthql-hands.png',
+    alt: 'A sequence of fine-line blue hand gestures',
+    caption: 'Index / Software',
+    note: 'Current work first',
+  },
+  'skill-library': {
+    noun: 'skills',
+    ownership: 'Used by Grant',
+    accent: 'close.',
+    image: 'evidence/evidence-map.png',
+    alt: 'Abstract blue halftone terrain marked with system checkpoints',
+    caption: 'Index / Field manual',
+    note: 'Grouped by category',
+  },
+  skills: {
+    noun: 'skills',
+    ownership: 'Made by Grant',
+    accent: 'work.',
+    image: 'evidence/belief-rings.png',
+    alt: 'Concentric acid-lime halftone rings',
+    caption: 'Index / Authored skills',
+    note: 'Lime marks authorship',
+  },
+} as const;
+const detail = mastheadDetails[collection];
+const accentIndex = title.lastIndexOf(detail.accent);
+const titleBefore = title.slice(0, accentIndex);
+const titleAfter = title.slice(accentIndex + detail.accent.length);
+---
+
+<header class="collection-masthead">
+  <div class="collection-masthead-copy">
+    <p class="eyebrow">
+      <span class="eyebrow-mark" aria-hidden="true"></span>
+      <span data-collection-label>
+        {label} / <span data-record-count={count}>{count}</span>
+        {' '}{detail.noun}
+      </span>
+      {
+        detail.ownership && (
+          <span class="masthead-ownership" data-masthead-ownership>
+            {detail.ownership}
+          </span>
+        )
+      }
+    </p>
+    <h1>{titleBefore}<em>{detail.accent}</em>{titleAfter}</h1>
+    <p class="collection-masthead-intro">{description}</p>
+  </div>
+  <figure class="collection-mark">
+    <HalftoneImage
+      src={detail.image}
+      alt={detail.alt}
+      widths={[320, 480, 640, 800]}
+      sizes="(max-width: 820px) 0px, (max-width: 1023px) calc(100vw - 294px), (max-width: 1219px) 31vw, 27vw"
+    />
+    <figcaption>
+      <strong>{detail.caption}</strong><span>{detail.note}</span>
+    </figcaption>
+  </figure>
+</header>

@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Article family · Grant Isom design companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f7f6f2;
+      --paper-bright: #fbfaf6;
+      --ink: #141516;
+      --muted: #62645f;
+      --quiet: #858680;
+      --line: #d5d4ce;
+      --line-dark: #b8b7b0;
+      --blue: #2348f5;
+      --blue-dark: #1739cf;
+      --lime: #bdd600;
+      --black: #111214;
+      --serif: "Source Serif 4", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    body::selection { color: #fff; background: var(--blue); }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 100;
+      padding: 9px 12px;
+      color: #fff;
+      background: var(--blue);
+      transform: translateY(-160%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 10;
+      display: flex;
+      width: 250px;
+      flex-direction: column;
+      padding: 28px 24px 24px;
+      border-right: 1px solid var(--line);
+      background: rgba(247, 246, 242, .98);
+    }
+    .identity { display: flex; align-items: center; gap: 13px; }
+    .monogram {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid var(--ink);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -.08em;
+    }
+    .identity-copy { display: flex; flex-direction: column; gap: 1px; }
+    .identity-copy strong { font-family: var(--serif); font-size: 19px; font-weight: 600; line-height: 1.05; }
+    .identity-copy small,
+    .rail-label,
+    .utility-label,
+    .eyebrow,
+    .meta-label,
+    .figure-caption,
+    .section-number,
+    .companion-kicker {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .identity-copy small { color: var(--muted); font-size: 9px; }
+    .status-line {
+      display: flex;
+      gap: 8px;
+      margin-top: 30px;
+      padding: 12px 0 15px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      flex: 0 0 auto;
+      margin-top: 4px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 2px rgba(189, 214, 0, .18);
+    }
+    .side-nav { display: flex; flex-direction: column; margin-top: 44px; }
+    .rail-label { margin: 0 0 13px; color: var(--quiet); }
+    .side-nav a {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 39px;
+      border-bottom: 1px solid var(--line);
+      color: #666761;
+      font-family: var(--serif);
+      font-size: 16px;
+    }
+    .side-nav a.active { padding-left: 4px; color: var(--ink); }
+    .side-nav a.active::before {
+      position: absolute;
+      inset: 0 auto 0 -24px;
+      width: 3px;
+      content: "";
+      background: var(--blue);
+    }
+    .article-context {
+      margin-top: 30px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .article-context p { margin: 0; }
+    .article-context .utility-label { color: var(--blue); }
+    .article-context .context-title {
+      margin-top: 8px;
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.3;
+    }
+    .article-context .context-meta { margin-top: 7px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .rail-bottom { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); }
+    .rail-links { display: flex; flex-wrap: wrap; gap: 7px 12px; }
+    .rail-links a { color: var(--muted); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
+    .rail-updated { margin: 12px 0 0; color: var(--quiet); font-family: var(--mono); font-size: 8px; text-transform: uppercase; }
+
+    .mobile-header { display: none; }
+    .page { min-height: 100vh; margin-left: 250px; }
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(310px, 4fr);
+      gap: clamp(32px, 5vw, 76px);
+      min-height: 560px;
+      padding: 48px clamp(38px, 5vw, 76px) 52px;
+      border-bottom: 1px solid var(--line-dark);
+    }
+    .masthead-copy { display: flex; min-width: 0; flex-direction: column; justify-content: center; }
+    .back-link {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: clamp(56px, 8vh, 90px);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .back-link::before { content: "←"; color: var(--blue); font-size: 15px; }
+    .eyebrow { display: flex; align-items: center; gap: 11px; margin: 0 0 20px; color: var(--blue); }
+    .eyebrow-mark { width: 8px; height: 8px; background: var(--lime); transform: rotate(45deg); }
+    h1 {
+      max-width: 920px;
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(58px, 6vw, 92px);
+      font-weight: 400;
+      letter-spacing: -.052em;
+      line-height: .92;
+    }
+    h1 em { color: var(--blue); font-weight: 400; }
+    .dek {
+      max-width: 690px;
+      margin: 28px 0 0;
+      color: #50514d;
+      font-family: var(--serif);
+      font-size: clamp(20px, 1.7vw, 25px);
+      line-height: 1.45;
+    }
+    .masthead-evidence {
+      align-self: center;
+      overflow: hidden;
+      border: 1px solid var(--line-dark);
+      background: var(--paper-bright);
+    }
+    .evidence-image {
+      display: flex;
+      min-height: 360px;
+      align-items: center;
+      overflow: hidden;
+      background: var(--paper-bright);
+    }
+    .evidence-image img { width: 125%; max-width: none; margin-left: -20%; object-fit: cover; }
+    .figure-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0;
+      padding: 12px 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 9px;
+    }
+    .figure-caption strong { color: var(--ink); font-weight: 500; }
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin: 0;
+      padding: 0 clamp(38px, 5vw, 76px);
+      border-bottom: 1px solid var(--line-dark);
+    }
+    .fact { min-width: 0; padding: 20px 18px 22px 0; border-right: 1px solid var(--line); }
+    .fact + .fact { padding-left: 20px; }
+    .fact:last-child { border-right: 0; }
+    .meta-label { display: block; margin-bottom: 6px; color: var(--quiet); font-size: 9px; }
+    .fact strong { font-family: var(--serif); font-size: 15px; font-weight: 600; }
+    .fact.tags strong { color: var(--blue); font-family: var(--mono); font-size: 11px; font-weight: 500; }
+
+    .reading-grid {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 720px) minmax(170px, 220px);
+      justify-content: center;
+      gap: clamp(34px, 5vw, 76px);
+      padding: 76px clamp(38px, 5vw, 76px) 120px;
+    }
+    .margin-note,
+    .toc { position: sticky; top: 34px; align-self: start; }
+    .margin-note { color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .margin-note::before { display: block; width: 36px; height: 3px; margin-bottom: 14px; content: ""; background: var(--lime); }
+    .margin-note p { margin: 0; }
+    .toc { padding-top: 1px; }
+    .toc ol { margin: 15px 0 0; padding: 0; list-style: none; }
+    .toc li { border-top: 1px solid var(--line); }
+    .toc li:last-child { border-bottom: 1px solid var(--line); }
+    .toc a { display: grid; grid-template-columns: 24px 1fr; gap: 5px; padding: 10px 0; color: var(--muted); font-family: var(--serif); font-size: 13px; line-height: 1.25; }
+    .toc a span { color: var(--blue); font-family: var(--mono); font-size: 9px; }
+    .prose { min-width: 0; font-family: var(--serif); font-size: 19px; line-height: 1.72; }
+    .prose > :first-child { margin-top: 0; }
+    .prose p { margin: 0 0 1.55em; }
+    .prose .lead::first-letter {
+      float: left;
+      margin: .08em .12em 0 0;
+      color: var(--blue);
+      font-size: 4em;
+      font-weight: 600;
+      line-height: .74;
+    }
+    .prose h2 {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 13px;
+      margin: 2.3em 0 .72em;
+      font-size: 35px;
+      font-weight: 600;
+      letter-spacing: -.025em;
+      line-height: 1.08;
+    }
+    .section-number { padding-top: 10px; color: var(--blue); font-size: 10px; }
+    .prose strong { font-weight: 600; }
+    .prose a { color: var(--blue-dark); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .prose ul { margin: 0 0 1.7em; padding-left: 1.1em; }
+    .prose li { margin: .5em 0; padding-left: .35em; }
+    .pull-quote {
+      margin: 2.2em -70px;
+      padding: 26px 34px 28px;
+      border-left: 4px solid var(--blue);
+      color: var(--paper-bright);
+      background: var(--black);
+      font-size: 26px;
+      font-style: italic;
+      line-height: 1.35;
+    }
+    .pull-quote span { display: block; margin-top: 13px; color: var(--lime); font-family: var(--mono); font-size: 9px; font-style: normal; letter-spacing: .1em; text-transform: uppercase; }
+    .code-note {
+      margin: 2em 0;
+      padding: 19px 21px;
+      border: 1px solid #22252a;
+      color: #e8e8e4;
+      background: #15171a;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.65;
+      overflow-x: auto;
+    }
+    .code-note .code-blue { color: #7f9aff; }
+    .code-note .code-lime { color: #d7ee24; }
+    .article-end {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      margin-top: 70px;
+      border: 1px solid var(--line-dark);
+      background: var(--line-dark);
+    }
+    .end-card { padding: 23px 25px; background: var(--paper-bright); }
+    .end-card .utility-label { color: var(--blue); }
+    .end-card h3 { margin: 12px 0 0; font-family: var(--serif); font-size: 20px; line-height: 1.2; }
+    .end-card p { margin: 7px 0 0; color: var(--muted); font-family: var(--sans); font-size: 12px; line-height: 1.5; }
+    .end-card.next { color: #fff; background: var(--blue); }
+    .end-card.next .utility-label { color: var(--lime); }
+    .end-card.next p { color: rgba(255,255,255,.75); }
+
+    .companion-bar {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      left: 268px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 12px 13px 12px 17px;
+      border: 1px solid #2a2b2d;
+      box-shadow: 0 14px 44px rgba(17,18,20,.2);
+      color: #fff;
+      background: rgba(17,18,20,.96);
+      backdrop-filter: blur(12px);
+    }
+    .companion-copy { display: flex; min-width: 0; align-items: baseline; gap: 12px; }
+    .companion-kicker { flex: 0 0 auto; color: var(--lime); font-size: 9px; }
+    .companion-copy p { margin: 0; color: #d6d6d2; font-family: var(--serif); font-size: 14px; }
+    .options { display: flex; flex: 0 0 auto; gap: 8px; }
+    .option {
+      min-height: 38px;
+      padding: 9px 13px;
+      border: 1px solid #4a4b4e;
+      color: #fff;
+      background: transparent;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .option:hover,
+    .option.selected { border-color: var(--lime); color: var(--black); background: var(--lime); }
+
+    @media (max-width: 1180px) {
+      .masthead { grid-template-columns: minmax(0, 1fr) 310px; }
+      .reading-grid { grid-template-columns: 130px minmax(0, 680px); }
+      .toc { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { width: 210px; padding-right: 20px; padding-left: 20px; }
+      .side-nav a.active::before { left: -20px; }
+      .page { margin-left: 210px; }
+      .masthead { grid-template-columns: 1fr; gap: 42px; }
+      .back-link { margin-bottom: 52px; }
+      .masthead-evidence { max-width: 640px; }
+      .facts { grid-template-columns: 1fr 1fr; }
+      .fact:nth-child(2) { border-right: 0; }
+      .fact:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .reading-grid { grid-template-columns: minmax(0, 680px); }
+      .margin-note { position: static; max-width: 420px; margin-bottom: -20px; }
+      .pull-quote { margin-right: 0; margin-left: 0; }
+      .companion-bar { left: 228px; }
+    }
+
+    @media (max-width: 720px) {
+      .sidebar { display: none; }
+      .mobile-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        height: 62px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(247,246,242,.96);
+        backdrop-filter: blur(12px);
+      }
+      .mobile-identity { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 17px; font-weight: 600; }
+      .mobile-identity .monogram { width: 32px; height: 32px; font-size: 10px; }
+      .mobile-menu { color: var(--blue); font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+      .page { margin-left: 0; }
+      .masthead { min-height: 0; padding: 34px 18px 34px; }
+      .back-link { margin-bottom: 44px; }
+      h1 { font-size: clamp(47px, 14vw, 68px); line-height: .94; }
+      .dek { margin-top: 22px; font-size: 19px; }
+      .masthead-evidence { width: 100%; }
+      .evidence-image { min-height: 220px; }
+      .facts { grid-template-columns: 1fr 1fr; padding: 0 18px; }
+      .fact { padding-top: 16px; padding-bottom: 17px; }
+      .fact + .fact { padding-left: 14px; }
+      .fact:nth-child(odd) { padding-left: 0; }
+      .reading-grid { display: block; padding: 48px 18px 118px; }
+      .margin-note { margin-bottom: 42px; }
+      .prose { font-size: 18.5px; line-height: 1.68; }
+      .prose h2 { grid-template-columns: 30px 1fr; font-size: 31px; }
+      .pull-quote { margin: 2em -18px; padding: 24px 22px; font-size: 23px; }
+      .article-end { grid-template-columns: 1fr; }
+      .companion-bar { right: 10px; bottom: 10px; left: 10px; display: block; padding: 12px; }
+      .companion-copy { display: block; }
+      .companion-copy p { display: none; }
+      .options { margin-top: 8px; }
+      .option { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#article">Skip to article</a>
+
+  <aside class="sidebar" aria-label="Site navigation">
+    <a class="identity" href="#">
+      <span class="monogram" aria-hidden="true">GI</span>
+      <span class="identity-copy">
+        <strong>Grant Isom</strong>
+        <small>Writer · maker · tinkerer</small>
+      </span>
+    </a>
+
+    <div class="status-line">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>Currently building Hermes iOS</span>
+    </div>
+
+    <nav class="side-nav" aria-label="Browse">
+      <p class="rail-label">Browse</p>
+      <a class="active" href="#" aria-current="page">Blog</a>
+      <a href="#">App Library</a>
+      <a href="#">My Apps</a>
+      <a href="#">Skill Library</a>
+      <a href="#">My Skills</a>
+    </nav>
+
+    <div class="article-context">
+      <p class="utility-label">You are reading</p>
+      <p class="context-title">Bringing ListWithMe Back to Life</p>
+      <p class="context-meta">Build log · 3 min<br>Published Feb 24, 2026</p>
+    </div>
+
+    <div class="rail-bottom">
+      <div class="rail-links"><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">RSS</a><a href="#">Email</a></div>
+      <p class="rail-updated">My corner of the internet</p>
+    </div>
+  </aside>
+
+  <header class="mobile-header">
+    <a class="mobile-identity" href="#"><span class="monogram">GI</span><span>Grant Isom</span></a>
+    <a class="mobile-menu" href="#">Browse</a>
+  </header>
+
+  <main class="page" id="article">
+    <header class="masthead">
+      <div class="masthead-copy">
+        <a class="back-link" href="#">All writing</a>
+        <p class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span>Blog / Build log · 2026</p>
+        <h1>Bringing <em>ListWithMe</em> Back to Life</h1>
+        <p class="dek">After years off the App Store, I rebuilt a small app my wife and I missed using.</p>
+      </div>
+
+      <figure class="masthead-evidence">
+        <div class="evidence-image">
+          <img src="http://localhost:4173/assets/listwithme-hand.png" alt="A fine blue halftone drawing of a hand holding a pen">
+        </div>
+        <figcaption class="figure-caption"><strong>Artifact 01</strong><span>A small app, rewritten</span></figcaption>
+      </figure>
+    </header>
+
+    <section class="facts" aria-label="Article information">
+      <div class="fact"><span class="meta-label">Published</span><strong>February 24, 2026</strong></div>
+      <div class="fact"><span class="meta-label">Reading time</span><strong>3 minutes</strong></div>
+      <div class="fact tags"><span class="meta-label">Filed under</span><strong>iOS · SwiftUI · Building</strong></div>
+      <div class="fact"><span class="meta-label">Connected project</span><strong>ListWithMe ↗</strong></div>
+    </section>
+
+    <section class="reading-grid">
+      <aside class="margin-note" aria-label="Article note">
+        <p class="utility-label">Field note</p>
+        <p>Software can be worth rebuilding simply because you want it back.</p>
+      </aside>
+
+      <article class="prose">
+        <p class="lead">Back in 2019, I built ListWithMe, a simple iMessage app for creating shared shopping lists. My wife and I used it constantly for grocery runs and weekend errands. It was nothing fancy, but it solved a real problem: quickly creating a list that both of us could see and edit right inside our conversation.</p>
+        <p>Then life happened. The app sat untouched as iOS evolved, and eventually Apple removed it from the App Store. I always meant to update it, but between work and other projects, it kept getting pushed to “someday.”</p>
+        <p>Well, someday finally arrived.</p>
+
+        <h2 id="rebuild"><span class="section-number">01</span><span>A Complete Rebuild</span></h2>
+        <p>Rather than patch the old UIKit codebase, I rebuilt ListWithMe from scratch using SwiftUI. The new version keeps the original simplicity while adding the details I had wanted for years.</p>
+        <ul>
+          <li><strong>Smart input</strong> understands “3 apples” or “milk x2” without slowing you down.</li>
+          <li><strong>Categories</strong> keep a grocery run organized by aisle instead of creation order.</li>
+          <li><strong>Activity</strong> makes it clear what changed when you are shopping together but apart.</li>
+        </ul>
+
+        <blockquote class="pull-quote">“For my wife and me, it has become invisible infrastructure.”<span>Personal rule 01 · Make what you want to use</span></blockquote>
+
+        <h2 id="technical"><span class="section-number">02</span><span>The Technical Side</span></h2>
+        <p>The rewrite also gave me a reason to use a few newer iOS tools in a complete personal project: SwiftUI, the Observation framework, and Core Data backed by CloudKit.</p>
+        <pre class="code-note"><span class="code-blue">@Observable</span> final class ListStore {
+  var items: [ListItem] = []
+  <span class="code-lime">// The useful thing stays simple.</span>
+}</pre>
+
+        <h2 id="matter"><span class="section-number">03</span><span>Why iMessage Apps Still Matter</span></h2>
+        <p>There is something valuable about software that lives inside a conversation. You do not need to switch context, share another link, or coordinate which app to use. If you are already texting someone, the list is right there.</p>
+        <p>The code is open source if you want to poke around. More importantly, the app is useful to us again, which is the whole reason I wanted to rebuild it.</p>
+
+        <div class="article-end">
+          <a class="end-card" href="#">
+            <span class="utility-label">Connected project</span>
+            <h3>ListWithMe</h3>
+            <p>Shared lists that live inside your conversations.</p>
+          </a>
+          <a class="end-card next" href="#">
+            <span class="utility-label">Read next</span>
+            <h3>HealthQL, rebuilt in React Native</h3>
+            <p>Another field note from the workbench.</p>
+          </a>
+        </div>
+      </article>
+
+      <nav class="toc" aria-label="On this page">
+        <p class="utility-label">On this page</p>
+        <ol>
+          <li><a href="#rebuild"><span>01</span>A Complete Rebuild</a></li>
+          <li><a href="#technical"><span>02</span>The Technical Side</a></li>
+          <li><a href="#matter"><span>03</span>Why iMessage Apps Still Matter</a></li>
+        </ol>
+      </nav>
+    </section>
+  </main>
+
+  <aside class="companion-bar" aria-label="Design companion controls">
+    <div class="companion-copy">
+      <span class="companion-kicker">Article family · 1 of 3</span>
+      <p>Does this feel like the homepage opened into a notebook?</p>
+    </div>
+    <div class="options">
+      <button class="option" type="button" data-choice="article-approved" onclick="toggleSelect(this)">Feels right</button>
+      <button class="option" type="button" data-choice="article-needs-work" onclick="toggleSelect(this)">Needs changes</button>
+    </div>
+  </aside>
+</body>
+</html>
+

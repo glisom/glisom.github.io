@@ -1,0 +1,51 @@
+---
+import { formatPublicDate } from '../../lib/content/date';
+import { calculateReadingMinutes } from '../../lib/content/reading-time';
+import type { BlogRecord } from '../../types/content';
+
+interface Props {
+  groups: ReadonlyMap<string, readonly BlogRecord[]>;
+}
+
+const { groups } = Astro.props;
+---
+
+<div class="blog-ledger">
+  <div class="section-heading">
+    <h2>All posts</h2>
+    <p>
+      {[...groups.values()].reduce((total, posts) => total + posts.length, 0)} posts
+      · {[...groups.keys()].at(-1)}–{[...groups.keys()][0]}
+    </p>
+  </div>
+  {
+    [...groups].map(([year, posts]) => {
+      const labelId = `posts-${year}`;
+      return (
+        <section
+          class="year-group"
+          data-year-group={year}
+          aria-labelledby={labelId}
+        >
+          <div class="year" id={labelId}>
+            {year} / {String(posts.length).padStart(2, '0')}
+          </div>
+          <div class="post-ledger">
+            {posts.map((post) => (
+              <a class="post-row" href={post.data.canonicalPath}>
+                <time class="post-date" datetime={post.data.publishedAt}>
+                  {formatPublicDate(post.data.publishedAt, 'short')}
+                </time>
+                <h3>{post.data.title}</h3>
+                <span class="post-kind">
+                  {post.data.kind} · {calculateReadingMinutes(post.body ?? '')}{' '}
+                  min
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })
+  }
+</div>

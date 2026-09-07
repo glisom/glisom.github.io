@@ -1,0 +1,81 @@
+---
+import type { ActionLink } from '../../types/content';
+
+interface Props {
+  links: readonly ActionLink[];
+  actionState?: string;
+}
+
+const { links, actionState } = Astro.props;
+const externalAttributes = (href: string) =>
+  /^https?:\/\//.test(href)
+    ? { target: '_blank', rel: 'noopener noreferrer' }
+    : {};
+const primary = links.filter(
+  (link) => link.kind === 'primary' || link.kind === 'install',
+);
+const quiet = links.filter(
+  (link) => link.kind === 'secondary' || link.kind === 'source',
+);
+const unsupported = links.filter(
+  (link) => !['primary', 'install', 'secondary', 'source'].includes(link.kind),
+);
+
+if (unsupported.length > 0) {
+  throw new Error(
+    `ActionGroup receives action links only; received ${unsupported.map(({ kind }) => kind).join(', ')}.`,
+  );
+}
+if (primary.length > 1) {
+  throw new Error(
+    `ActionGroup allows at most one primary-role action; received ${primary.length}.`,
+  );
+}
+if (quiet.length > 2) {
+  throw new Error(
+    `ActionGroup allows at most two quiet actions; received ${quiet.length}.`,
+  );
+}
+if (primary.length === 0 && !actionState?.trim()) {
+  throw new Error(
+    'ActionGroup requires a primary-role action or an honest action state.',
+  );
+}
+---
+
+<div class="dossier-actions" data-action-group>
+  {
+    primary.map((link) => (
+      <a
+        class="dossier-primary-action"
+        href={link.href}
+        data-action={link.kind}
+        data-action-role="primary"
+        data-surface="blue"
+        {...externalAttributes(link.href)}
+      >
+        {link.label}
+      </a>
+    ))
+  }
+  {
+    quiet.map((link) => (
+      <a
+        class="dossier-quiet-action"
+        href={link.href}
+        data-action={link.kind}
+        data-action-role="quiet"
+        {...externalAttributes(link.href)}
+      >
+        {link.label}
+      </a>
+    ))
+  }
+  {
+    primary.length === 0 && actionState && (
+      <p class="dossier-action-state" data-action-state>
+        {actionState}
+      </p>
+    )
+  }
+</div>

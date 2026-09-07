@@ -1,0 +1,48 @@
+---
+import HalftoneImage from '../media/HalftoneImage.astro';
+import Icon from '../media/Icon.astro';
+---
+
+<section class="home-hero" data-home-hero aria-labelledby="home-hero-title">
+  <div class="hero-copy">
+    <p class="eyebrow">
+      <Icon name="asterisk" decorative={true} />
+      Writing · Small software · Useful systems
+    </p>
+    <h1 id="home-hero-title">
+      <span class="hero-line">I build <em>useful things</em>{' '}</span>
+      <span class="hero-line hero-line-two">and write what I learn.</span>
+    </h1>
+    <p class="hero-intro">
+      I’m Grant, an app maker, obsessive software user, and writer in Chicago.
+      This is where I keep the things I’ve built, the tools I actually use, the
+      skills shaping how I work, and the notes I want to remember.
+    </p>
+    <div class="hero-actions">
+      <a class="arrow-link primary-action" href="/blog/" data-surface="blue">
+        <span>Read the blog</span>
+        <Icon name="arrow-right" decorative={true} />
+      </a>
+      <a class="arrow-link" href="/projects/">
+        <span>See what I’m building</span>
+        <Icon name="arrow-right" decorative={true} />
+      </a>
+    </div>
+  </div>
+
+  <figure class="hero-visual">
+    <HalftoneImage
+      class="hero-art"
+      src="evidence/evidence-map.png"
+      alt="Abstract blue halftone terrain marked with system checkpoints"
+      widths={[480, 720, 960, 1200]}
+      sizes="(max-width: 820px) calc(100vw - 32px), (max-width: 1120px) calc(100vw - 266px), (max-width: 1219px) calc(100vw - 284px), (max-width: 1320px) calc(100vw - 337px), 50vw"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <figcaption>
+      <span data-utility-label>Personal rule 01</span>
+      Make what you want to use.
+    </figcaption>
+  </figure>
+</section>

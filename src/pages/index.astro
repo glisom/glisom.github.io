@@ -1,0 +1,19 @@
+---
+import EvidenceGrid from '../components/home/EvidenceGrid.astro';
+import Hero from '../components/home/Hero.astro';
+import NowStrip from '../components/home/NowStrip.astro';
+import PersonalNote from '../components/home/PersonalNote.astro';
+import { NOW_ITEMS } from '../data/now';
+import HomeLayout from '../layouts/HomeLayout.astro';
+import { selectHomepageContent } from '../lib/content/homepage';
+import { loadContentGraph } from '../lib/content/load';
+
+const content = selectHomepageContent(await loadContentGraph());
+---
+
+<HomeLayout>
+  <Hero />
+  <NowStrip items={NOW_ITEMS} />
+  <EvidenceGrid content={content} />
+  <PersonalNote />
+</HomeLayout>

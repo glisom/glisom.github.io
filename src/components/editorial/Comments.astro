@@ -1,0 +1,84 @@
+---
+interface Props {
+  enabled: boolean;
+}
+
+const { enabled } = Astro.props;
+const commentsLoader = String.raw`
+  (() => {
+    const loadComments = (region) => {
+      if (!(region instanceof HTMLElement)) return;
+      if (region.dataset.commentsLoaded === 'true') return;
+      const mount = region.querySelector('[data-utterances-mount]');
+      if (!mount) return;
+
+      const script = document.createElement('script');
+      script.src = 'https://utteranc.es/client.js';
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      script.setAttribute('repo', region.dataset.repo ?? '');
+      script.setAttribute('issue-term', region.dataset.issueTerm ?? 'pathname');
+      script.setAttribute('label', region.dataset.label ?? 'Comment');
+      script.setAttribute('theme', region.dataset.theme ?? 'github-light');
+      mount.append(script);
+      region.dataset.commentsLoaded = 'true';
+    };
+
+    document.querySelectorAll('[data-comments]').forEach((region) => {
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+            observer.disconnect();
+            loadComments(region);
+          },
+          { rootMargin: '600px 0px' },
+        );
+        observer.observe(region);
+        return;
+      }
+
+      const checkPosition = () => {
+        const bounds = region.getBoundingClientRect();
+        if (bounds.top > window.innerHeight + 600) return;
+        window.removeEventListener('scroll', checkPosition);
+        window.removeEventListener('resize', checkPosition);
+        loadComments(region);
+      };
+      window.addEventListener('scroll', checkPosition, { passive: true });
+      window.addEventListener('resize', checkPosition);
+      checkPosition();
+    });
+  })();
+`;
+---
+
+{
+  enabled && (
+    <section
+      class="article-comments"
+      aria-labelledby="comments-title"
+      data-comments
+      data-repo="glisom/grantisom-com-comments"
+      data-issue-term="pathname"
+      data-label="Comment"
+      data-theme="github-light"
+    >
+      <div class="article-section-heading">
+        <p>Conversation</p>
+        <h2 id="comments-title">Comments</h2>
+      </div>
+      <div class="utterances-mount" data-utterances-mount />
+      <noscript>
+        <p>
+          Comments need JavaScript. You can also visit the{' '}
+          <a href="https://github.com/glisom/grantisom-com-comments/issues">
+            comment archive on GitHub
+          </a>
+          .
+        </p>
+      </noscript>
+      <script is:inline data-comments-loader set:html={commentsLoader} />
+    </section>
+  )
+}

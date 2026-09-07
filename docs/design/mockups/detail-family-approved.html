@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detail family · Grant Isom design companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f7f6f2;
+      --paper-bright: #fbfaf6;
+      --ink: #141516;
+      --muted: #62645f;
+      --quiet: #858680;
+      --line: #d5d4ce;
+      --line-dark: #b8b7b0;
+      --blue: #2348f5;
+      --blue-dark: #1739cf;
+      --lime: #bdd600;
+      --black: #111214;
+      --serif: "Source Serif 4", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    body::selection { color: #fff; background: var(--blue); }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .utility-label,
+    .eyebrow,
+    .stamp,
+    .fact dt,
+    .section-number,
+    .aside-label,
+    .connected-label,
+    .companion-kicker,
+    .rail-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 10;
+      display: flex;
+      width: 250px;
+      flex-direction: column;
+      padding: 28px 24px 24px;
+      border-right: 1px solid var(--line);
+      background: rgba(247, 246, 242, .98);
+    }
+    .identity { display: flex; align-items: center; gap: 13px; }
+    .monogram {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid var(--ink);
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -.08em;
+    }
+    .identity-copy { display: flex; flex-direction: column; gap: 1px; }
+    .identity-copy strong { font-family: var(--serif); font-size: 19px; font-weight: 600; line-height: 1.05; }
+    .identity-copy small { color: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+    .status-line {
+      display: flex;
+      gap: 8px;
+      margin-top: 30px;
+      padding: 12px 0 15px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      flex: 0 0 auto;
+      margin-top: 4px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 0 2px rgba(189,214,0,.18);
+    }
+    .side-nav { display: flex; flex-direction: column; margin-top: 44px; }
+    .rail-label { margin: 0 0 13px; color: var(--quiet); }
+    .side-nav a {
+      position: relative;
+      display: flex;
+      min-height: 39px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      color: #666761;
+      font-family: var(--serif);
+      font-size: 16px;
+    }
+    .side-nav a.active { padding-left: 4px; color: var(--ink); }
+    .side-nav a.active::before {
+      position: absolute;
+      inset: 0 auto 0 -24px;
+      width: 3px;
+      content: "";
+      background: var(--blue);
+    }
+    .record-context { margin-top: 30px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .record-context p { margin: 0; }
+    .record-context .utility-label { color: var(--blue); }
+    .record-context strong { display: block; margin-top: 8px; font-family: var(--serif); font-size: 16px; }
+    .record-context small { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; line-height: 1.45; }
+    .rail-bottom { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); }
+    .rail-links { display: flex; flex-wrap: wrap; gap: 7px 12px; }
+    .rail-links a { color: var(--muted); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
+    .rail-updated { margin: 12px 0 0; color: var(--quiet); font-family: var(--mono); font-size: 8px; text-transform: uppercase; }
+
+    .mobile-header { display: none; }
+    .page { min-height: 100vh; margin-left: 250px; padding-bottom: 110px; }
+    .type-switcher {
+      display: flex;
+      gap: 7px;
+      padding: 14px clamp(38px, 5vw, 76px);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper-bright);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .type-switcher::-webkit-scrollbar { display: none; }
+    .type-switcher .switcher-label {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      margin-right: 7px;
+      color: var(--quiet);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .type-switcher button {
+      flex: 0 0 auto;
+      min-height: 34px;
+      padding: 0 11px;
+      border: 1px solid var(--line-dark);
+      background: transparent;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .type-switcher button.active { border-color: var(--blue); color: #fff; background: var(--blue); }
+
+    .dossier-head {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(370px, 5fr);
+      min-height: 610px;
+      border-bottom: 1px solid var(--line-dark);
+    }
+    .head-copy {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      justify-content: center;
+      padding: 52px clamp(38px, 5vw, 76px);
+    }
+    .registry-line { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 70px; }
+    .eyebrow { color: var(--blue); }
+    .stamp { padding: 6px 8px; color: var(--black); background: var(--lime); font-size: 8px; }
+    .stamp.used { color: #fff; background: var(--blue); }
+    h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(70px, 8vw, 126px);
+      font-weight: 400;
+      letter-spacing: -.06em;
+      line-height: .86;
+    }
+    h1 em { color: var(--blue); font-weight: 400; }
+    .summary {
+      max-width: 670px;
+      margin: 30px 0 0;
+      color: #4f504d;
+      font-family: var(--serif);
+      font-size: clamp(20px, 1.6vw, 25px);
+      line-height: 1.45;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; margin-top: 34px; }
+    .primary-action {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 17px;
+      color: #fff;
+      background: var(--blue);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .secondary-action {
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--ink);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .head-evidence { position: relative; min-width: 0; overflow: hidden; border-left: 1px solid var(--line-dark); background: var(--paper-bright); }
+    .head-evidence img { width: 100%; height: 100%; object-fit: cover; }
+    .artifact-label {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      left: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 11px 12px;
+      border: 1px solid rgba(20,21,22,.2);
+      color: var(--muted);
+      background: rgba(251,250,246,.9);
+      backdrop-filter: blur(10px);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+    .artifact-label strong { color: var(--ink); font-weight: 500; }
+
+    .fact-ledger {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin: 0;
+      padding: 0 clamp(38px, 5vw, 76px);
+      border-bottom: 1px solid var(--line-dark);
+    }
+    .fact { min-width: 0; padding: 21px 20px 23px 0; border-right: 1px solid var(--line); }
+    .fact + .fact { padding-left: 20px; }
+    .fact:last-child { border-right: 0; }
+    .fact dt { margin-bottom: 7px; color: var(--quiet); font-size: 9px; }
+    .fact dd { margin: 0; font-family: var(--serif); font-size: 16px; font-weight: 600; }
+
+    .dossier-body {
+      display: grid;
+      grid-template-columns: minmax(0, 720px) minmax(230px, 290px);
+      justify-content: center;
+      gap: clamp(56px, 7vw, 104px);
+      padding: 82px clamp(38px, 5vw, 76px) 95px;
+    }
+    .field-notes { min-width: 0; }
+    .note-section { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 15px; padding: 0 0 56px; }
+    .section-number { padding-top: 10px; color: var(--blue); }
+    .note-copy h2 { margin: 0 0 18px; font-family: var(--serif); font-size: 38px; font-weight: 600; letter-spacing: -.035em; line-height: 1.06; }
+    .note-copy p { margin: 0 0 1.35em; color: #30312f; font-family: var(--serif); font-size: 19px; line-height: 1.7; }
+    .note-copy p:last-child { margin-bottom: 0; }
+    .feature-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 27px; border: 1px solid var(--line-dark); background: var(--line-dark); }
+    .feature { min-height: 125px; padding: 19px 21px; background: var(--paper-bright); }
+    .feature strong { display: block; font-family: var(--serif); font-size: 18px; }
+    .feature span { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .maker-note {
+      margin: 5px 0 58px;
+      padding: 30px 34px;
+      border-left: 4px solid var(--lime);
+      color: #fff;
+      background: var(--black);
+    }
+    .maker-note .utility-label { color: var(--lime); }
+    .maker-note p { margin: 13px 0 0; font-family: var(--serif); font-size: 25px; font-style: italic; line-height: 1.4; }
+
+    .dossier-aside { position: sticky; top: 32px; align-self: start; }
+    .aside-block { padding: 18px 0 22px; border-top: 1px solid var(--line-dark); }
+    .aside-block:last-child { border-bottom: 1px solid var(--line-dark); }
+    .aside-label { margin: 0 0 13px; color: var(--blue); font-size: 9px; }
+    .aside-block p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .aside-links { display: flex; flex-direction: column; }
+    .aside-links a { padding: 9px 0; border-top: 1px solid var(--line); font-family: var(--serif); font-size: 15px; }
+    .aside-links a:last-child { border-bottom: 1px solid var(--line); }
+
+    .connected { padding: 0 clamp(38px, 5vw, 76px) 100px; }
+    .connected-head { display: flex; justify-content: space-between; gap: 24px; align-items: baseline; margin-bottom: 17px; }
+    .connected-head h2 { margin: 0; font-family: var(--serif); font-size: 32px; font-weight: 600; }
+    .connected-head span { color: var(--quiet); font-family: var(--mono); font-size: 9px; letter-spacing: .07em; text-transform: uppercase; }
+    .connected-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line-dark); background: var(--line-dark); }
+    .connected-card { display: flex; min-height: 220px; flex-direction: column; padding: 24px; background: var(--paper-bright); }
+    .connected-card.featured { color: #fff; background: var(--blue); }
+    .connected-label { color: var(--blue); font-size: 8px; }
+    .connected-card.featured .connected-label { color: var(--lime); }
+    .connected-card h3 { margin: 36px 0 0; font-family: var(--serif); font-size: 25px; font-weight: 400; line-height: 1.1; }
+    .connected-card p { margin: 10px 0 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .connected-card.featured p { color: rgba(255,255,255,.75); }
+
+    .site-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 28px clamp(38px, 5vw, 76px);
+      border-top: 1px solid var(--line-dark);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .companion-bar {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      left: 268px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 12px 13px 12px 17px;
+      border: 1px solid #2a2b2d;
+      box-shadow: 0 14px 44px rgba(17,18,20,.2);
+      color: #fff;
+      background: rgba(17,18,20,.96);
+      backdrop-filter: blur(12px);
+    }
+    .companion-copy { display: flex; min-width: 0; align-items: baseline; gap: 12px; }
+    .companion-kicker { flex: 0 0 auto; color: var(--lime); font-size: 9px; }
+    .companion-copy p { margin: 0; color: #d6d6d2; font-family: var(--serif); font-size: 14px; }
+    .options { display: flex; flex: 0 0 auto; gap: 8px; }
+    .option {
+      min-height: 38px;
+      padding: 9px 13px;
+      border: 1px solid #4a4b4e;
+      color: #fff;
+      background: transparent;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .option:hover,
+    .option.selected { border-color: var(--lime); color: var(--black); background: var(--lime); }
+
+    @media (max-width: 1120px) {
+      .dossier-head { grid-template-columns: 1fr; }
+      .head-evidence { min-height: 360px; border-top: 1px solid var(--line-dark); border-left: 0; }
+      .registry-line { margin-bottom: 55px; }
+      .dossier-body { grid-template-columns: minmax(0, 720px); }
+      .dossier-aside { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    }
+
+    @media (max-width: 820px) {
+      .sidebar { display: none; }
+      .mobile-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        height: 62px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(247,246,242,.96);
+        backdrop-filter: blur(12px);
+      }
+      .mobile-identity { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 17px; font-weight: 600; }
+      .mobile-identity .monogram { width: 32px; height: 32px; font-size: 10px; }
+      .mobile-label { color: var(--blue); font-family: var(--mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+      .page { margin-left: 0; }
+      .type-switcher { padding: 11px 16px; }
+      .type-switcher .switcher-label { display: none; }
+      .dossier-head { min-height: 0; }
+      .head-copy { padding: 44px 18px 38px; }
+      .registry-line { margin-bottom: 48px; }
+      h1 { font-size: clamp(64px, 18vw, 96px); }
+      .summary { margin-top: 24px; font-size: 19px; }
+      .actions { align-items: stretch; }
+      .primary-action { width: 100%; }
+      .secondary-action { width: fit-content; margin-top: 7px; }
+      .head-evidence { min-height: 330px; }
+      .fact-ledger { grid-template-columns: 1fr 1fr; padding: 0 18px; }
+      .fact:nth-child(2) { border-right: 0; }
+      .fact:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .fact { padding: 16px 12px 18px 0; }
+      .fact + .fact { padding-left: 12px; }
+      .fact:nth-child(odd) { padding-left: 0; }
+      .dossier-body { display: block; padding: 54px 18px 75px; }
+      .note-section { grid-template-columns: 31px minmax(0, 1fr); gap: 10px; padding-bottom: 47px; }
+      .note-copy h2 { font-size: 31px; }
+      .note-copy p { font-size: 18.5px; line-height: 1.67; }
+      .feature-list { grid-template-columns: 1fr; }
+      .maker-note { margin-right: -18px; margin-left: -18px; padding: 26px 22px; }
+      .maker-note p { font-size: 22px; }
+      .dossier-aside { display: block; margin-top: 15px; }
+      .connected { padding: 0 18px 90px; }
+      .connected-head { display: block; }
+      .connected-head span { display: block; margin-top: 7px; }
+      .connected-grid { grid-template-columns: 1fr; }
+      .connected-card { min-height: 180px; }
+      .site-footer { display: block; padding-right: 18px; padding-left: 18px; }
+      .site-footer span { display: block; margin-top: 8px; }
+      .companion-bar { right: 10px; bottom: 10px; left: 10px; display: block; padding: 12px; }
+      .companion-copy { display: block; }
+      .companion-copy p { display: none; }
+      .options { margin-top: 8px; }
+      .option { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar" aria-label="Site navigation">
+    <a class="identity" href="#">
+      <span class="monogram" aria-hidden="true">GI</span>
+      <span class="identity-copy"><strong>Grant Isom</strong><small>Writer · maker · tinkerer</small></span>
+    </a>
+    <div class="status-line"><span class="status-dot" aria-hidden="true"></span><span>Currently building Hermes iOS</span></div>
+    <nav class="side-nav" aria-label="Browse">
+      <p class="rail-label">Browse</p>
+      <a href="#">Blog</a>
+      <a href="#">App Library</a>
+      <a class="active" id="active-collection" href="#" aria-current="page">My Apps</a>
+      <a href="#">Skill Library</a>
+      <a href="#">My Skills</a>
+    </nav>
+    <div class="record-context">
+      <p class="utility-label">Open record</p>
+      <strong id="rail-title">ListWithMe</strong>
+      <small id="rail-meta">My Apps · Active<br>Updated February 2026</small>
+    </div>
+    <div class="rail-bottom">
+      <div class="rail-links"><a href="#">GitHub</a><a href="#">LinkedIn</a><a href="#">RSS</a><a href="#">Email</a></div>
+      <p class="rail-updated">My corner of the internet</p>
+    </div>
+  </aside>
+
+  <header class="mobile-header">
+    <a class="mobile-identity" href="#"><span class="monogram">GI</span><span>Grant Isom</span></a>
+    <span class="mobile-label">Open record</span>
+  </header>
+
+  <main class="page">
+    <nav class="type-switcher" aria-label="Preview a detail-page type">
+      <span class="switcher-label">Preview record type</span>
+      <button class="active" type="button" data-detail="my-app">My App</button>
+      <button type="button" data-detail="used-app">App I Use</button>
+      <button type="button" data-detail="used-skill">Skill I Use</button>
+      <button type="button" data-detail="my-skill">Skill I Made</button>
+    </nav>
+
+    <header class="dossier-head">
+      <div class="head-copy">
+        <div class="registry-line">
+          <span class="eyebrow" id="registry">My Apps / Record 02</span>
+          <span class="stamp" id="ownership">Made by Grant</span>
+        </div>
+        <h1 id="record-title">List<em>WithMe</em></h1>
+        <p class="summary" id="record-summary">Shared lists, rebuilt because my wife and I wanted ours back.</p>
+        <div class="actions">
+          <a class="primary-action" id="primary-action" href="#">Download on the App Store</a>
+          <a class="secondary-action" id="secondary-action" href="#">View source</a>
+        </div>
+      </div>
+      <figure class="head-evidence">
+        <img id="record-image" src="http://localhost:4173/assets/listwithme-hand.png" alt="A fine blue halftone drawing of a hand holding a pen">
+        <figcaption class="artifact-label"><strong id="artifact-name">Artifact 01 / Product</strong><span id="artifact-note">Rebuilt in SwiftUI</span></figcaption>
+      </figure>
+    </header>
+
+    <dl class="fact-ledger" id="fact-ledger">
+      <div class="fact"><dt>Status</dt><dd>Active</dd></div>
+      <div class="fact"><dt>Platform</dt><dd>iMessage · iOS 17+</dd></div>
+      <div class="fact"><dt>First released</dt><dd>2019 · Rebuilt 2026</dd></div>
+      <div class="fact"><dt>Source</dt><dd>Open on GitHub</dd></div>
+    </dl>
+
+    <section class="dossier-body">
+      <div class="field-notes" id="field-notes">
+        <section class="note-section">
+          <span class="section-number">01</span>
+          <div class="note-copy">
+            <h2>Why I made it</h2>
+            <p>My wife and I wanted a shared grocery list that lived inside the conversation we were already having. ListWithMe began as a small solution to that ordinary problem.</p>
+            <p>When the original disappeared from the App Store, I eventually rebuilt it for the simplest possible reason: we missed using it.</p>
+          </div>
+        </section>
+        <section class="note-section">
+          <span class="section-number">02</span>
+          <div class="note-copy">
+            <h2>What it does</h2>
+            <p>The app keeps shared lists close at hand without asking anyone to install a second destination or move a conversation somewhere else.</p>
+            <div class="feature-list">
+              <div class="feature"><strong>Smart input</strong><span>Understands quantities like “3 apples” while you type.</span></div>
+              <div class="feature"><strong>Shared activity</strong><span>See what changed while you shop together but apart.</span></div>
+              <div class="feature"><strong>Useful grouping</strong><span>Organize by aisle, category, priority, or due date.</span></div>
+              <div class="feature"><strong>Quietly present</strong><span>Lives inside iMessage instead of demanding attention.</span></div>
+            </div>
+          </div>
+        </section>
+        <aside class="maker-note">
+          <span class="utility-label">What I learned</span>
+          <p>The software worth returning to is often the software that quietly became part of your life.</p>
+        </aside>
+        <section class="note-section">
+          <span class="section-number">03</span>
+          <div class="note-copy">
+            <h2>Where it is now</h2>
+            <p>The current version is a complete SwiftUI rewrite with CloudKit sync. I am keeping the feature set focused and letting our own use shape whatever comes next.</p>
+          </div>
+        </section>
+      </div>
+
+      <aside class="dossier-aside">
+        <section class="aside-block">
+          <p class="aside-label" id="aside-label">Project notes</p>
+          <p id="aside-copy">A personal app first. The technical decisions matter here when they explain why the experience became better.</p>
+        </section>
+        <section class="aside-block">
+          <p class="aside-label">Useful links</p>
+          <div class="aside-links" id="useful-links"><a href="#">Support</a><a href="#">Privacy</a><a href="#">Source code</a></div>
+        </section>
+      </aside>
+    </section>
+
+    <section class="connected">
+      <div class="connected-head"><h2>Connected records</h2><span>Relationships are chosen, not generated</span></div>
+      <div class="connected-grid" id="connected-grid">
+        <a class="connected-card featured" href="#"><span class="connected-label">Wrote about</span><h3>Bringing ListWithMe Back to Life</h3><p>The story of rebuilding an app I missed.</p></a>
+        <a class="connected-card" href="#"><span class="connected-label">Earlier chapter</span><h3>Introducing ListWithMe</h3><p>The original 2019 release.</p></a>
+        <a class="connected-card" href="#"><span class="connected-label">Built with</span><h3>SwiftUI</h3><p>The framework behind the complete rewrite.</p></a>
+      </div>
+    </section>
+
+    <footer class="site-footer"><span>Grant Isom · Writer, maker, curious person</span><span>Chicago, Illinois · My corner of the internet</span></footer>
+  </main>
+
+  <aside class="companion-bar" aria-label="Design companion controls">
+    <div class="companion-copy"><span class="companion-kicker">Detail family · 3 of 3</span><p>Switch record types above to see the shared dossier adapt.</p></div>
+    <div class="options">
+      <button class="option" type="button" data-choice="detail-approved" onclick="toggleSelect(this)">Feels right</button>
+      <button class="option" type="button" data-choice="detail-needs-work" onclick="toggleSelect(this)">Needs changes</button>
+    </div>
+  </aside>
+
+  <script>
+    const details = {
+      'my-app': {
+        collection: 'My Apps',
+        registry: 'My Apps / Record 02',
+        ownership: 'Made by Grant',
+        used: false,
+        title: 'List<em>WithMe</em>',
+        plainTitle: 'ListWithMe',
+        summary: 'Shared lists, rebuilt because my wife and I wanted ours back.',
+        primary: 'Download on the App Store',
+        secondary: 'View source',
+        image: 'http://localhost:4173/assets/listwithme-hand.png',
+        alt: 'A fine blue halftone drawing of a hand holding a pen',
+        artifact: 'Artifact 01 / Product',
+        artifactNote: 'Rebuilt in SwiftUI',
+        meta: 'My Apps · Active<br>Updated February 2026',
+        facts: [['Status','Active'],['Platform','iMessage · iOS 17+'],['First released','2019 · Rebuilt 2026'],['Source','Open on GitHub']],
+        notes: [
+          ['Why I made it','My wife and I wanted a shared grocery list that lived inside the conversation we were already having. ListWithMe began as a small solution to that ordinary problem.<br><br>When the original disappeared from the App Store, I eventually rebuilt it for the simplest possible reason: we missed using it.'],
+          ['What it does','The app keeps shared lists close at hand without asking anyone to install a second destination or move a conversation somewhere else.'],
+          ['Where it is now','The current version is a complete SwiftUI rewrite with CloudKit sync. I am keeping the feature set focused and letting our own use shape whatever comes next.']
+        ],
+        maker: 'The software worth returning to is often the software that quietly became part of your life.',
+        asideLabel: 'Project notes',
+        aside: 'A personal app first. The technical decisions matter here when they explain why the experience became better.',
+        links: ['Support','Privacy','Source code'],
+        connected: [
+          ['Wrote about','Bringing ListWithMe Back to Life','The story of rebuilding an app I missed.'],
+          ['Earlier chapter','Introducing ListWithMe','The original 2019 release.'],
+          ['Built with','SwiftUI','The framework behind the complete rewrite.']
+        ]
+      },
+      'used-app': {
+        collection: 'App Library',
+        registry: 'App Library / Record 01',
+        ownership: 'Used by Grant',
+        used: true,
+        title: '<em>Obsidian</em>',
+        plainTitle: 'Obsidian',
+        summary: 'The place where my thinking survives the tab I had open five minutes ago.',
+        primary: 'Visit Obsidian',
+        secondary: 'See my workflow',
+        image: 'http://localhost:4173/assets/evidence-map.png',
+        alt: 'Abstract blue halftone terrain marked with system checkpoints',
+        artifact: 'Artifact 01 / System map',
+        artifactNote: 'My working vault',
+        meta: 'App Library · Daily<br>Reviewed September 2026',
+        facts: [['Job','Notes · Context'],['Cadence','Every day'],['Using since','2020'],['Platform','Mac · iPhone · iPad']],
+        notes: [
+          ['The job it has in my day','Obsidian is where notes stop being scraps and start becoming context I can return to. Drafts, decisions, projects, and research all have a durable home.'],
+          ['How I actually use it','I keep one private vault organized around active projects, ongoing areas, useful resources, and daily notes. Links matter more than perfect folders.'],
+          ['What keeps it here','Plain Markdown means the ideas are mine, local files keep the system understandable, and the app stays flexible enough to change with me.']
+        ],
+        maker: 'The best notes app is the one that makes yesterday’s thinking useful today.',
+        asideLabel: 'Personal verdict',
+        aside: 'Powerful enough to grow with me, ordinary enough to disappear while I write.',
+        links: ['Official website','My vault workflow','Related skills'],
+        connected: [
+          ['Pairs with','Readwise','A bridge from reading into durable notes.'],
+          ['Used to make','write-like-grant','The context behind a personal writing skill.'],
+          ['Wrote about','Notion for Software Engineers','An earlier chapter in my tools thinking.']
+        ]
+      },
+      'used-skill': {
+        collection: 'Skill Library',
+        registry: 'Skill Library / Record 04',
+        ownership: 'Used by Grant',
+        used: true,
+        title: 'Deep <em>Research</em>',
+        plainTitle: 'Deep Research',
+        summary: 'The capability I reach for when a confident answer would be easier than a correct one.',
+        primary: 'View the source',
+        secondary: 'See an example',
+        image: 'http://localhost:4173/assets/groundwork-surveyor.png',
+        alt: 'A technical blue drawing of a surveyor instrument',
+        artifact: 'Artifact 01 / Method',
+        artifactNote: 'Measure before deciding',
+        meta: 'Skill Library · Research<br>Reviewed September 2026',
+        facts: [['Trigger','Unfamiliar territory'],['Input','Question · Sources'],['Output','Sourced synthesis'],['Used','Weekly']],
+        notes: [
+          ['When I reach for it','I use this when the answer depends on current facts, scattered sources, or a point of view I have not earned yet.'],
+          ['What goes in and comes out','It begins with a concrete research question, builds an evidence trail, and ends with a recommendation that clearly separates facts from inference.'],
+          ['The guardrails','Primary sources come first. Claims stay close to citations. If the evidence is incomplete, the conclusion says so instead of filling the gap with confidence.']
+        ],
+        maker: 'Research is not a longer answer. It is a better reason to believe the answer.',
+        asideLabel: 'Source credit',
+        aside: 'This record explains how I use the capability and links back to its original author and documentation.',
+        links: ['Original source','Example output','Related workflow'],
+        connected: [
+          ['Pairs with','Browser Control','Verify the real interface after research.'],
+          ['Used for','Website redesign notes','The research behind this visual direction.'],
+          ['Inspired','write-like-grant','A reminder to preserve evidence and voice.']
+        ]
+      },
+      'my-skill': {
+        collection: 'My Skills',
+        registry: 'My Skills / Record 01',
+        ownership: 'Made by Grant',
+        used: false,
+        title: 'write-like-<em>grant</em>',
+        plainTitle: 'write-like-grant',
+        summary: 'A reusable way to make polished writing sound more like me, not less.',
+        primary: 'Open the skill',
+        secondary: 'Read why I made it',
+        image: 'http://localhost:4173/assets/belief-rings.png',
+        alt: 'Concentric acid-lime halftone rings',
+        artifact: 'Artifact 01 / Authored skill',
+        artifactNote: 'Voice as a system',
+        meta: 'My Skills · Active<br>Updated September 2026',
+        facts: [['Use when','Writing · Revising'],['Works with','Codex · Claude'],['Status','Active'],['Authored','2026']],
+        notes: [
+          ['Why I wrote it','I wanted help clarifying a thought without sanding away the phrasing, rhythm, and small opinions that make the result sound like mine.'],
+          ['How it works','The skill looks for patterns in my existing writing, protects the point I am trying to make, and treats polish as editing rather than personality replacement.'],
+          ['What good output feels like','Clearer than the draft, tighter where I wandered, and still something I would actually say out loud.']
+        ],
+        maker: 'A useful writing tool should make your voice easier to hear, not easier to replace.',
+        asideLabel: 'Publishing note',
+        aside: 'The public record explains the trigger, method, and examples without exposing private instructions or personal source material.',
+        links: ['Documentation','Example output','Version notes'],
+        connected: [
+          ['Made with','Obsidian','The writing context the skill draws from.'],
+          ['Pairs with','Documents','Turn the result into a polished artifact.'],
+          ['Related writing','Things I’ve written','See the voice outside the instructions.']
+        ]
+      }
+    };
+
+    function renderFacts(facts) {
+      return facts.map(([label, value]) => `<div class="fact"><dt>${label}</dt><dd>${value}</dd></div>`).join('');
+    }
+
+    function renderNotes(notes) {
+      const sections = notes.map(([title, copy], index) => `
+        <section class="note-section">
+          <span class="section-number">0${index + 1}</span>
+          <div class="note-copy"><h2>${title}</h2><p>${copy}</p>${index === 1 ? '<div class="feature-list"><div class="feature"><strong>In practice</strong><span>A concrete workflow rather than a feature checklist.</span></div><div class="feature"><strong>Why it stays</strong><span>The personal reason this record belongs in the library.</span></div></div>' : ''}</div>
+        </section>`).join('');
+      return `${sections.slice(0, sections.lastIndexOf('<section'))}<aside class="maker-note"><span class="utility-label">Personal note</span><p id="maker-copy"></p></aside>${sections.slice(sections.lastIndexOf('<section'))}`;
+    }
+
+    function renderConnected(records) {
+      return records.map(([label, title, copy], index) => `<a class="connected-card ${index === 0 ? 'featured' : ''}" href="#"><span class="connected-label">${label}</span><h3>${title}</h3><p>${copy}</p></a>`).join('');
+    }
+
+    function showDetail(name) {
+      const item = details[name];
+      document.querySelectorAll('[data-detail]').forEach(button => button.classList.toggle('active', button.dataset.detail === name));
+      document.getElementById('active-collection').textContent = item.collection;
+      document.getElementById('registry').textContent = item.registry;
+      const ownership = document.getElementById('ownership');
+      ownership.textContent = item.ownership;
+      ownership.classList.toggle('used', item.used);
+      document.getElementById('record-title').innerHTML = item.title;
+      document.getElementById('record-summary').textContent = item.summary;
+      document.getElementById('primary-action').textContent = item.primary;
+      document.getElementById('secondary-action').textContent = item.secondary;
+      const image = document.getElementById('record-image');
+      image.src = item.image;
+      image.alt = item.alt;
+      document.getElementById('artifact-name').textContent = item.artifact;
+      document.getElementById('artifact-note').textContent = item.artifactNote;
+      document.getElementById('rail-title').textContent = item.plainTitle;
+      document.getElementById('rail-meta').innerHTML = item.meta;
+      document.getElementById('fact-ledger').innerHTML = renderFacts(item.facts);
+      document.getElementById('field-notes').innerHTML = renderNotes(item.notes);
+      document.getElementById('maker-copy').textContent = item.maker;
+      document.getElementById('aside-label').textContent = item.asideLabel;
+      document.getElementById('aside-copy').textContent = item.aside;
+      document.getElementById('useful-links').innerHTML = item.links.map(link => `<a href="#">${link}</a>`).join('');
+      document.getElementById('connected-grid').innerHTML = renderConnected(item.connected);
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    document.querySelectorAll('[data-detail]').forEach(button => button.addEventListener('click', () => showDetail(button.dataset.detail)));
+  </script>
+</body>
+</html>
+

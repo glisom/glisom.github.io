@@ -1,0 +1,43 @@
+---
+import type { AppLibraryRecord } from '../../types/content';
+import Icon, { type IconName } from '../media/Icon.astro';
+
+interface Props {
+  records: readonly AppLibraryRecord[];
+}
+
+const { records } = Astro.props;
+const appIcons: Record<string, IconName> = {
+  obsidian: 'books',
+  codex: 'code',
+  'hermes-agent': 'robot',
+  superhuman: 'envelope-simple',
+};
+---
+
+<article
+  class="card method-card"
+  data-home-slot="app-library"
+  aria-labelledby="app-library-title"
+>
+  <div class="card-label-row">
+    <span class="card-kicker" data-utility-label>App Library</span>
+    <span class="card-number" data-utility-label>04</span>
+  </div>
+  <h2 id="app-library-title">Daily drivers.</h2>
+  <p class="method-intro">The software I would reinstall first.</p>
+  <ol class="method-list">
+    {
+      records.map((record, index) => (
+        <li>
+          <a href={record.data.canonicalPath}>
+            <span data-utility-label>{String(index + 1).padStart(2, '0')}</span>
+            <Icon name={appIcons[record.id] ?? 'asterisk'} decorative={true} />
+            <strong data-record-title>{record.data.title}</strong>
+            <Icon name="arrow-right" decorative={true} />
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</article>

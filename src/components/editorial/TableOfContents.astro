@@ -1,0 +1,76 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: readonly Heading[];
+  numberHeadings?: boolean;
+}
+
+const { headings, numberHeadings = false } = Astro.props;
+const articleHeadings = headings.filter(
+  (heading) => heading.depth === 2 || heading.depth === 3,
+);
+let h2Index = 0;
+const items = articleHeadings.map((heading) => {
+  if (heading.depth === 2) h2Index += 1;
+  return {
+    ...heading,
+    number:
+      numberHeadings && heading.depth === 2
+        ? String(h2Index).padStart(2, '0')
+        : undefined,
+  };
+});
+const visible = items.length >= 3;
+---
+
+{
+  visible && (
+    <div class="toc-slot">
+      <nav
+        class="toc-ledger"
+        aria-label="On this page"
+        data-toc
+        data-toc-state="ledger"
+      >
+        <p class="toc-label">On this page</p>
+        <ol>
+          {items.map((heading) => (
+            <li class:list={{ 'toc-subheading': heading.depth === 3 }}>
+              <a href={`#${heading.slug}`}>
+                {heading.number && (
+                  <span class="toc-number" data-toc-number>
+                    {heading.number}
+                  </span>
+                )}
+                <span>{heading.text}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <details class="toc-disclosure" data-toc data-toc-state="disclosure">
+        <summary>On this page</summary>
+        <ol>
+          {items.map((heading) => (
+            <li class:list={{ 'toc-subheading': heading.depth === 3 }}>
+              <a href={`#${heading.slug}`}>
+                {heading.number && (
+                  <span class="toc-number" data-toc-number>
+                    {heading.number}
+                  </span>
+                )}
+                <span>{heading.text}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </details>
+    </div>
+  )
+}

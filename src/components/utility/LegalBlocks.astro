@@ -1,0 +1,87 @@
+---
+import type {
+  ListWithMeLink,
+  ListWithMeUtilityPage,
+} from '../../data/listwithme';
+
+interface Props {
+  page: ListWithMeUtilityPage;
+}
+
+interface TextPart {
+  text: string;
+  href?: string;
+}
+
+const { page } = Astro.props;
+
+function splitLinkedText(
+  text: string,
+  links: readonly ListWithMeLink[],
+): readonly TextPart[] {
+  const parts: TextPart[] = [];
+  let cursor = 0;
+
+  for (const link of links) {
+    const start = text.indexOf(link.text, cursor);
+    if (start < 0) {
+      throw new Error(
+        `Legal link text was not found in its block: ${link.text}`,
+      );
+    }
+    if (start > cursor) parts.push({ text: text.slice(cursor, start) });
+    parts.push({ text: link.text, href: link.href });
+    cursor = start + link.text.length;
+  }
+
+  if (cursor < text.length) parts.push({ text: text.slice(cursor) });
+  return parts;
+}
+---
+
+<h1 data-legal-title>{page.title}</h1>
+<section class="utility-prose legal-content" data-legal-content>
+  {
+    page.blocks.map((block) => {
+      if (block.kind === 'heading') {
+        return block.level === 2 ? (
+          <h2 id={block.id}>{block.text}</h2>
+        ) : (
+          <h3 id={block.id}>{block.text}</h3>
+        );
+      }
+
+      if (block.kind === 'paragraph') {
+        return (
+          <p>
+            {splitLinkedText(block.text, block.links).map((part) =>
+              part.href ? <a href={part.href}>{part.text}</a> : part.text,
+            )}
+          </p>
+        );
+      }
+
+      return block.ordered ? (
+        <ol>
+          {block.items.map((item) => (
+            <li>
+              {splitLinkedText(item.text, item.links).map((part) =>
+                part.href ? <a href={part.href}>{part.text}</a> : part.text,
+              )}
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <ul>
+          {block.items.map((item) => (
+            <li>
+              {splitLinkedText(item.text, item.links).map((part) =>
+                part.href ? <a href={part.href}>{part.text}</a> : part.text,
+              )}
+            </li>
+          ))}
+        </ul>
+      );
+    })
+  }
+</section>

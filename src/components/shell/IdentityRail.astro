@@ -1,0 +1,191 @@
+---
+import { ABOUT_LINK, NAVIGATION } from '../../data/navigation';
+import { NOW_ITEMS } from '../../data/now';
+import { SITE } from '../../data/site';
+import { SOCIAL_LINKS } from '../../data/social';
+import type { PrimaryCollection, RailContext } from '../../types/content';
+import Icon, { type IconName } from '../media/Icon.astro';
+
+interface Props {
+  activeCollection?: PrimaryCollection;
+  activeAbout?: boolean;
+  railContext: RailContext;
+}
+
+const { activeCollection, activeAbout = false, railContext } = Astro.props;
+const socialIcons: Record<(typeof SOCIAL_LINKS)[number]['id'], IconName> = {
+  github: 'github-logo',
+  linkedin: 'linkedin-logo',
+  rss: 'rss',
+  email: 'envelope-simple',
+};
+---
+
+<aside class="identity-rail" aria-label="Site navigation">
+  <a class="rail-identity" href="/" aria-label="Grant Isom, home">
+    <span class="monogram" aria-hidden="true">GI</span>
+    <span class="identity-copy">
+      <strong>{SITE.name}</strong>
+      <small data-utility-label>{SITE.tagline}</small>
+    </span>
+  </a>
+
+  <div class="status-line">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Currently building Hermes iOS</span>
+  </div>
+
+  <nav class="rail-nav" aria-label="Browse">
+    <p class="rail-label" data-utility-label>Browse</p>
+    {
+      NAVIGATION.map((item) => {
+        const isActive = item.id === activeCollection;
+        return (
+          <div class:list={['rail-nav-item', { 'is-active': isActive }]}>
+            <a href={item.href} aria-current={isActive ? 'page' : undefined}>
+              {item.label}
+            </a>
+            {isActive && (
+              <span class="rail-active-state" data-utility-label>
+                Current
+              </span>
+            )}
+          </div>
+        );
+      })
+    }
+  </nav>
+
+  <div class:list={['rail-about-item', { 'is-active': activeAbout }]}>
+    <a
+      class="rail-about"
+      href={ABOUT_LINK.href}
+      aria-current={activeAbout ? 'page' : undefined}
+      data-utility-label
+    >
+      {ABOUT_LINK.label}
+    </a>
+    {
+      activeAbout && (
+        <span class="rail-about-state" data-utility-label>
+          Current
+        </span>
+      )
+    }
+  </div>
+
+  {
+    railContext.kind === 'home' && (
+      <section class="rail-context" aria-label="Right now">
+        <p class="rail-context-label" data-utility-label>
+          Right now
+        </p>
+        <ul class="rail-now-list">
+          {NOW_ITEMS.map((item) => (
+            <li>
+              <strong data-utility-label>{item.eyebrow}</strong>
+              <span>{item.title}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    railContext.kind === 'index' && (
+      <section class="rail-context" aria-label="Collection context">
+        <p class="rail-context-label" data-utility-label>
+          Collection index
+        </p>
+        <p class="rail-context-title">
+          {railContext.count} {railContext.count === 1 ? 'record' : 'records'}
+        </p>
+        {railContext.updatedAt && (
+          <p class="rail-context-meta">Last updated {railContext.updatedAt}</p>
+        )}
+      </section>
+    )
+  }
+
+  {
+    railContext.kind === 'article' && (
+      <section class="rail-context" aria-label="Current article">
+        <p class="rail-context-label" data-utility-label>
+          You are reading
+        </p>
+        <p class="rail-context-title">{railContext.title}</p>
+        <p class="rail-context-meta">
+          {railContext.postKind} · {railContext.minutes} min
+          <br />
+          Published {railContext.date}
+        </p>
+      </section>
+    )
+  }
+
+  {
+    railContext.kind === 'detail' && (
+      <section class="rail-context" aria-label="Record context">
+        <p class="rail-context-label" data-utility-label>
+          Open record
+        </p>
+        <p class="rail-context-title">{railContext.title}</p>
+        <p class="rail-context-meta">
+          {railContext.ownership === 'made' ? 'Made by Grant' : 'Used by Grant'}
+          {railContext.status && (
+            <>
+              <br />
+              {railContext.status}
+            </>
+          )}
+          {railContext.reviewedAt && (
+            <>
+              <br />
+              Reviewed {railContext.reviewedAt}
+            </>
+          )}
+        </p>
+      </section>
+    )
+  }
+
+  {
+    railContext.kind === 'utility' && (
+      <section
+        class="rail-context rail-utility-context"
+        aria-label="Utility page context"
+      >
+        <p class="rail-context-label" data-utility-label>
+          Utility page
+        </p>
+        <p class="rail-context-title">{railContext.title}</p>
+        {railContext.parent && (
+          <p class="rail-context-parent">Part of {railContext.parent}</p>
+        )}
+      </section>
+    )
+  }
+
+  <div class="rail-bottom">
+    <nav class="rail-socials" aria-label="Social links">
+      {
+        SOCIAL_LINKS.map((link) => {
+          const external = link.id === 'github' || link.id === 'linkedin';
+          return (
+            <a
+              href={link.href}
+              target={external ? '_blank' : undefined}
+              rel={external ? 'noreferrer' : undefined}
+              data-utility-label
+            >
+              <Icon name={socialIcons[link.id]} decorative={true} />
+              <span>{link.label}</span>
+            </a>
+          );
+        })
+      }
+    </nav>
+    <p class="rail-footer-line" data-utility-label>My corner of the internet</p>
+  </div>
+</aside>
