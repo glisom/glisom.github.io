@@ -107,21 +107,83 @@ test('reference capture policy removes only mockup companion controls', () => {
   ]);
 });
 
-test('visual network policy fulfills every external dependency from deterministic local bytes', () => {
-  expect(visualNetworkPolicy('http://localhost:4173/asset.png')).toBe(
+test('visual network policy continues only explicitly allowed exact HTTP origins', () => {
+  const previewOrigins = ['https://candidate-preview.vercel.app'];
+  expect(
+    visualNetworkPolicy(
+      'https://candidate-preview.vercel.app/blog/',
+      previewOrigins,
+    ),
+  ).toBe('continue');
+  expect(
+    visualNetworkPolicy(
+      'http://candidate-preview.vercel.app/blog/',
+      previewOrigins,
+    ),
+  ).toBe('reject');
+  expect(
+    visualNetworkPolicy(
+      'https://candidate-preview.vercel.app:444/blog/',
+      previewOrigins,
+    ),
+  ).toBe('reject');
+  expect(
+    visualNetworkPolicy(
+      'https://candidate-preview.vercel.app.example.com/blog/',
+      previewOrigins,
+    ),
+  ).toBe('reject');
+  expect(
+    visualNetworkPolicy(
+      'https://sibling-preview.vercel.app/blog/',
+      previewOrigins,
+    ),
+  ).toBe('reject');
+  expect(
+    visualNetworkPolicy('http://127.0.0.1:4321/blog/', previewOrigins),
+  ).toBe('reject');
+  expect(() =>
+    visualNetworkPolicy('https://candidate-preview.vercel.app/blog/', [
+      'file:///tmp/candidate-preview',
+    ]),
+  ).toThrow(/HTTP\(S\) origin/);
+
+  const localOrigins = [
+    'http://127.0.0.1:4321',
+    'http://127.0.0.1:4173',
+    'http://127.0.0.1:4174',
+  ];
+  expect(visualNetworkPolicy('http://127.0.0.1:4321/blog/', localOrigins)).toBe(
     'continue',
   );
-  expect(visualNetworkPolicy('https://fonts.googleapis.com/css2')).toBe(
-    'fulfill',
-  );
-  expect(visualNetworkPolicy('https://fonts.gstatic.com/font.woff2')).toBe(
-    'fulfill',
-  );
-  expect(visualNetworkPolicy('https://utteranc.es/client.js')).toBe('fulfill');
-  expect(visualNetworkPolicy('https://open.spotify.com/embed/one')).toBe(
-    'fulfill',
-  );
-  expect(visualNetworkPolicy('https://example.com/tracker.js')).toBe('reject');
+  expect(
+    visualNetworkPolicy('http://127.0.0.1:4173/asset.png', localOrigins),
+  ).toBe('continue');
+  expect(
+    visualNetworkPolicy(
+      'http://127.0.0.1:4174/article-family-approved.html',
+      localOrigins,
+    ),
+  ).toBe('continue');
+});
+
+test('visual network policy fulfills every external dependency from deterministic local bytes', () => {
+  const allowedOrigins = ['https://candidate-preview.vercel.app'];
+  expect(
+    visualNetworkPolicy('https://fonts.googleapis.com/css2', allowedOrigins),
+  ).toBe('fulfill');
+  expect(
+    visualNetworkPolicy('https://fonts.gstatic.com/font.woff2', allowedOrigins),
+  ).toBe('fulfill');
+  expect(
+    visualNetworkPolicy('https://utteranc.es/client.js', allowedOrigins),
+  ).toBe('fulfill');
+  expect(
+    visualNetworkPolicy('https://open.spotify.com/embed/one', allowedOrigins),
+  ).toBe('fulfill');
+  expect(
+    visualNetworkPolicy('https://example.com/tracker.js', allowedOrigins),
+  ).toBe('reject');
   expect(requiredVisualFontFaces()).toEqual([
     ['DM Sans', 400, 'normal'],
     ['DM Sans', 500, 'normal'],

@@ -22,6 +22,7 @@ import {
 export const comparisonMode = process.env.CAPTURE_COMPARISONS === '1';
 let canonicalRuntimeVerification: Promise<void> | undefined;
 const root = join(process.cwd(), 'docs/qa/visual-comparisons');
+const localImplementationOrigin = 'http://127.0.0.1:4321';
 const localFontFaces = requiredVisualFontFaces().map(
   ([family, weight, style], index) => {
     const slug = family.toLowerCase().replaceAll(' ', '-');
@@ -224,10 +225,13 @@ async function revealLazyMediaAndRestore(page: Page) {
     .toEqual(saved);
 }
 
-async function installVisualNetworkBoundary(page: Page) {
+async function installVisualNetworkBoundary(
+  page: Page,
+  allowedOrigins: readonly string[],
+) {
   await page.route(/^https?:\/\//, async (route) => {
     const url = new URL(route.request().url());
-    if (visualNetworkPolicy(url.href) === 'continue') {
+    if (visualNetworkPolicy(url.href, allowedOrigins) === 'continue') {
       await route.continue();
       return;
     }
@@ -278,7 +282,7 @@ export async function captureBeforeAfter(
   prepareOpen: (page: Page) => Promise<void>,
   anchorSelector?: string,
 ) {
-  await installVisualNetworkBoundary(page);
+  await installVisualNetworkBoundary(page, [localImplementationOrigin]);
   const raw = join(root, 'raw');
   const combined = join(root, 'combined');
   await Promise.all([
@@ -377,7 +381,10 @@ export async function capturePair(
   prepareImplementation?: (page: Page) => Promise<void>,
   { includeFullPage = false }: { includeFullPage?: boolean } = {},
 ) {
-  await installVisualNetworkBoundary(page);
+  await installVisualNetworkBoundary(page, [
+    localImplementationOrigin,
+    new URL(sourceUrl).origin,
+  ]);
   const raw = join(root, 'raw');
   const combined = join(root, 'combined');
   await Promise.all([
@@ -432,7 +439,7 @@ export function baseline(
   path: string,
   prepare?: (page: Page) => Promise<void>,
 ) {
-  test(`canonical ${name}`, async ({ page }, testInfo) => {
+  test(`canonical ${name}`, async ({ page, baseURL }, testInfo) => {
     test.skip(
       comparisonMode,
       'Comparison capture does not accept canonical baselines.',
@@ -446,7 +453,11 @@ export function baseline(
     assertCanonicalSnapshotUpdateMode(testInfo.config.updateSnapshots);
     canonicalRuntimeVerification ??= assertCanonicalVisualRuntime();
     await canonicalRuntimeVerification;
-    await installVisualNetworkBoundary(page);
+    if (!baseURL) throw new Error('Visual baseline requires a base URL');
+    const candidate = new URL(baseURL);
+    if (!['http:', 'https:'].includes(candidate.protocol))
+      throw new Error('Visual baseline requires an HTTP(S) base URL');
+    await installVisualNetworkBoundary(page, [candidate.origin]);
     await page.goto(path);
     if (prepare) await prepare(page);
     await settle(page);

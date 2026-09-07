@@ -31,13 +31,18 @@ export function requiredVisualFontFaces() {
 
 export function visualNetworkPolicy(
   value: string,
+  allowedOrigins: readonly string[],
 ): 'continue' | 'fulfill' | 'reject' {
   const url = new URL(value);
-  if (
-    (url.hostname === 'localhost' || url.hostname === '127.0.0.1') &&
-    ['4321', '4173', '4174'].includes(url.port)
-  )
-    return 'continue';
+  const exactOrigins = new Set(
+    allowedOrigins.map((origin) => {
+      const allowed = new URL(origin);
+      if (!['http:', 'https:'].includes(allowed.protocol))
+        throw new Error(`Visual allowlist entry must be an HTTP(S) origin`);
+      return allowed.origin;
+    }),
+  );
+  if (exactOrigins.has(url.origin)) return 'continue';
   if (['fonts.googleapis.com', 'fonts.gstatic.com'].includes(url.hostname))
     return 'fulfill';
   if (['utteranc.es', 'open.spotify.com'].includes(url.hostname))
