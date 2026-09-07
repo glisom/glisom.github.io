@@ -1,0 +1,1613 @@
+{
+  "files": [
+    {
+      "relativePath": "2018/04/02/reading-list.html",
+      "sha256": "7189c982a2db0972756154d7744d372225663820f7629574c9dd77bb0add0534"
+    },
+    {
+      "relativePath": "2018/11/27/playlists.html",
+      "sha256": "0e014edf2699ed17736fdd0f496083ab0bb6b378f7019a50fd8b09601c359e13"
+    },
+    {
+      "relativePath": "2019/05/30/listwithme.html",
+      "sha256": "3f55e3dfea0cd03aaf192f301b29b4c765a129ec42279bdcdf82f7ae386f628a"
+    },
+    {
+      "relativePath": "2019/06/04/wwdc-day-1.html",
+      "sha256": "b35c738ab187d232407faf0bed834ce03b2e645f99f7a54139e5f9fe39e6dadc"
+    },
+    {
+      "relativePath": "2019/06/06/wwdc-day-2.html",
+      "sha256": "b79cad19b2a16db18ed0c513933607bb6881335d53e46aadfdc3f830b9ecf3e0"
+    },
+    {
+      "relativePath": "2019/06/07/wwdc-day-3.html",
+      "sha256": "2a71ae4bd68b76a10ff7375962f67ba7fd3344081edef6de647ce5cbcef8c040"
+    },
+    {
+      "relativePath": "2019/06/08/wwdc-day-4.html",
+      "sha256": "b09b3bc8ab5a54df98aad775bc3b21a5850147bb89e4c0c6284c562085634b54"
+    },
+    {
+      "relativePath": "2019/06/09/wwdc-review.html",
+      "sha256": "15981d8d35f6bc9ec97938773e4081f343549e9373964b4433facfae3e8d3065"
+    },
+    {
+      "relativePath": "2020/02/10/2019-playlists.html",
+      "sha256": "49d7ea2bd6328d0498d81989513774e3d566937ba78d960dc2ab6096e5aeb411"
+    },
+    {
+      "relativePath": "2020/05/23/mac_apps.html",
+      "sha256": "2fc7b95afb713becf36dfcdb0c22535f818449668245ac8d65e749710191de45"
+    },
+    {
+      "relativePath": "2020/05/29/safari-inspecting-simulators.html",
+      "sha256": "2ab33ddc7ccab628584dc5d146eb40dfa2ad76216fc1c246eccd64f42f7e82ce"
+    },
+    {
+      "relativePath": "2020/09/28/next-chapter.html",
+      "sha256": "29b61e3f204494183cac4cdd4b05691e748a8af09833926ad8f19023a2e22b1b"
+    },
+    {
+      "relativePath": "2022/11/07/2-years-at-illuminate.html",
+      "sha256": "e6529b5e1b4bd86ed16dd933ce40fb20c139d694ef3217e03482554dd84207d4"
+    },
+    {
+      "relativePath": "2023/01/02/mustread-books-for.html",
+      "sha256": "5f1c41ca9efe4dd55664485973ccd3dfa6d191c6edff078f508385582dc3bf32"
+    },
+    {
+      "relativePath": "2023/01/14/notion-for-software.html",
+      "sha256": "228f122023c855cc541f234eb8d8a87392b5708636b9690f51250fada06e89ce"
+    },
+    {
+      "relativePath": "2023/02/01/expo-app-config.html",
+      "sha256": "e3970ebcd1c3b7476f53d004a1cf6f574da8fa266ae87939500c5a07cbbc67b5"
+    },
+    {
+      "relativePath": "2023/05/15/using-act-to.html",
+      "sha256": "c8b642d7138af9076b4cefe478f78fc90c5c86ceee9aa5dd8d0fe80c436ca32c"
+    },
+    {
+      "relativePath": "2023/07/19/accessibility-testing-in.html",
+      "sha256": "2d16e54b79c623db6fd974b85d89c752522948cb248515251bee12b20f5a8a04"
+    },
+    {
+      "relativePath": "2026/02/01/healthql-sql-for-healthkit.html",
+      "sha256": "862ac53abadffea21ef0fac5a335bc7b69a878e50e26fdcedcecf2479185c9b4"
+    },
+    {
+      "relativePath": "2026/02/07/healthql-react-native.html",
+      "sha256": "64e32d2ef7307521d5b057065ab7b2475b57a1935988e90d748dde68fbbf157d"
+    },
+    {
+      "relativePath": "2026/02/24/listwithme-returns.html",
+      "sha256": "22c452ad1d7ac5adebbf86970d43e8d9168db4cf940539401ef5abf6836a7c06"
+    },
+    {
+      "relativePath": "2026/09/01/skill-thief.html",
+      "sha256": "46cac35af1b07de4c8825d2f7ba4d2c3a1f93fe8d2b6243c290d403ee58555a7"
+    },
+    {
+      "relativePath": "2026/09/01/vampire.html",
+      "sha256": "0cc77ab371630e107858e4a89a585076b77282e626e3e446085503bc52138602"
+    },
+    {
+      "relativePath": "404.html",
+      "sha256": "ec5067d453b08d9c3ae8ade250a63e29b04a32ee77515b99f434ffb149c2c2c1"
+    },
+    {
+      "relativePath": "CNAME",
+      "sha256": "706af3e4121b55b632dd8bb636501362405d2287445d18392ccec4a6b466ff2a"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl.png",
+      "sha256": "4d83839430033cb37537623fca0fe668a805301ce96c7ea16a97157a5e5e3ffc"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_122Mqv.avif",
+      "sha256": "553261d0558f35331e11b3eafa994d2ad496796eb7eab3f30c7fb5ef1958a8a3"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_1Mpa5G.webp",
+      "sha256": "54583a5372ab1d127a6e33995fd75efb38f5804faff0628e5c80174192d9e091"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_1oOcNc.webp",
+      "sha256": "80f50a21264f415f77e8a463c3dfab09fd9196ce1647c5c991d2c1674f92976f"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_1pCJI0.avif",
+      "sha256": "ad95ed646d24e78e1dfc8ee0b1f1fe584a01d300a19f02a4c3ed41d0463eb166"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_E1omI.avif",
+      "sha256": "5846a0266a638cef862497fb3d0459d9d381006892bc8e25e925537485822f68"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_VNNST.png",
+      "sha256": "ec19f78a48063923130dc3278660c2a71fdbf8d0ecbd5aefa4171b6473f73304"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_Z1ExILK.png",
+      "sha256": "e0b8ed3d16eb9fb575dbe7598f4e120b44a024719f4e37f152659c4044ad19d8"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_Z1Gl52.webp",
+      "sha256": "f26caca371555d78501f13a3bcd08bab1fc7e3f7fa9d8e1e47a542dcd3a69652"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_Z1wg4J0.png",
+      "sha256": "c8152a1b37c4f2c43df4d04a36b6a91ef2663ff8b7dca83da7570e1ca7042e91"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_Z2inVIE.avif",
+      "sha256": "a71dc90e80c0f3743875529b31f797a8f4eb7b2770f76256e0460ed65eb4b309"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_Z5JvPL.png",
+      "sha256": "416d1ce17842941c1490547628c2cc5ecedd7a74e4c6101f5bf729d62853562d"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_Z9gJ6f.webp",
+      "sha256": "baef36665caaa41569db21c255c2fe6718611ba0875e422a33fc20674ee7c851"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_ZSGkPb.webp",
+      "sha256": "116a592d8e52f52aa179e29bdb6f3ee90aa29e0b6403e05e82f3e702e58e18c6"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_ZosKrI.avif",
+      "sha256": "c20aec8127a067472024fdd997d3624648f265d680c8f1a17a9eebe7c1adcb11"
+    },
+    {
+      "relativePath": "_astro/01-new-list.BOeMPXsl_hPqqI.png",
+      "sha256": "0c941f0636e0b0a10bbd0a2e6adb3746ba7a66c5b8b010fbb09aad0294bc6896"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E.png",
+      "sha256": "de9f15e712907024dfa92d4e1ca375060cde06437afdc254a01391a317951b57"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_128IVs.avif",
+      "sha256": "7ffcd6fa1ae2091527dc10e60c552c37c84a6a3497d415b2be1fe00805e78284"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_1a4WbS.png",
+      "sha256": "e219f2a926811d99048c2534ff4ca6070d2287568f2891f6f7b380a81445af2e"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_1njYvT.avif",
+      "sha256": "c7f7389a6475963e2164510f659285c9f3df52261069f47755a005284713d6e1"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_21BcvM.webp",
+      "sha256": "cbd488104b0b1f215c1f5282f168a8a02eece46f8ffb1d014edde588800df14f"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_LxYF7.png",
+      "sha256": "ccda99c09071b428f432abc8c5311048fef632cfb248fba9510465191428bcb2"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_Z1NXnHx.webp",
+      "sha256": "fbfeb191b474bcd3a27ac041010aa3241eb22daa388cd754f8e92909a3cada44"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_Z1aYNJd.webp",
+      "sha256": "f050078ab41eb5e0a953288c900f7162f1dd70a2fa14ff86fa6b1d5097a88190"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_Z1rHBJd.avif",
+      "sha256": "6a8414e93eb1d6f216037a2441fc0f8d901ff92cffc4ac97a7ff34116c5a874b"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_Z310PJ.webp",
+      "sha256": "878be806d3838e2aae4f71759d5a1e184e5498424dfb259b6ed186b7de91c11f"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_ZNRoMj.png",
+      "sha256": "f05c17eaf5df373f71d297b593314fde3650747aacc5700eca29fa4fa587c779"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_ZONy9L.webp",
+      "sha256": "9c5ca96676f99f105cedd429a0d5a168ed253d9371e6634d6c6cbf4f1f709669"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_ZcAORE.png",
+      "sha256": "0d354a03487ef9b7468bc1b6d4ae14ba56b0c86338341538ce6dd6ce3e60a5d0"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_ZtOGKs.avif",
+      "sha256": "33079039b3b52f224fa2981e2f621615c0f74cf5221bc1d94b0b0e8cb201ecbb"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_oa9X8.avif",
+      "sha256": "e7e938a789eab5a937c77699fa961796f8f614f745dcb3a0ac6e9ccb968c117a"
+    },
+    {
+      "relativePath": "_astro/02-your-lists.CXK2AG3E_qmJ5F.png",
+      "sha256": "464c57f8258506b719763beb6789029f872de1723ca7fb1c3477a6d910c3eec6"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj.png",
+      "sha256": "090abfeb2535c671f9e90a8b93033d3bbdb172ffa098e1cac8b7b7288959d8f2"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_10ezVm.png",
+      "sha256": "5a199864d4449e066083ef0bbc99d4b7db90acc882bff8d163b62a6d4b35ed19"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_12F1f7.png",
+      "sha256": "73915b7018c019270edfd1a1f1d3c0833074f48031caff38cae4fe0c240fe004"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_1CzmKz.avif",
+      "sha256": "8196f2d7e988cb4b823abc55c59e9533fdac04be1e90872017a74a8ed505d3ce"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_1NwpbG.webp",
+      "sha256": "684c94a85082191580183777062f00cb0bbc6ce9d8cd76b69fd889a45772bb94"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_1ctDPr.avif",
+      "sha256": "72ef7982357add0c8cd94cdbbe91ad165c3bed77be976352ccc9f3fdcb86acce"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_1idV6d.webp",
+      "sha256": "91beeee63f6f261556315290332b32d451f136925a3d0d6f104cf42b157e3147"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_281TdD.avif",
+      "sha256": "aa1587df3c6c0ad5d1b06fcce6c3edab55ed4acd232b59f00bc1e29189c6a934"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_2gpzHt.png",
+      "sha256": "ce3919b98be0683c5e5e4802510d2f3efc5050e667af23579c552e5374f3d501"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_2uNjAk.webp",
+      "sha256": "b7e6dfffeca8b86ac4cce59f05839f0fbd47af309dab56e195e74ab44dbc0525"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_AHDYE.png",
+      "sha256": "39cfc48d6650ad56d199c8ed1a1cfdb54de13eee8a856af8d89d5bc6a1d7e0ac"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_Z10DSPe.webp",
+      "sha256": "337fb81b13fbfd3ccfe90f34b3709c1810314f29bdc475f14fb721895e919b01"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_Z22Ua9S.webp",
+      "sha256": "87b96e95290539ea0a8bb58bef3921519b1f281ce912f652c4b034b2cb30e27d"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_Z6sEMg.avif",
+      "sha256": "fca4379dc1efdc2a67c7f009ec7d30c6865c5711cd3f83a1da0a5dd0c1c93ca6"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_oONid.avif",
+      "sha256": "99212ee361ecb51c6c613ef6cfaf44120f5087b4e115e9d024b4cdea6327fea3"
+    },
+    {
+      "relativePath": "_astro/03-groceries.DNapEYJj_wmx9D.png",
+      "sha256": "b9d2eae3eecf734a039288cebad53d12ea9ffeccb915d6c73613a7dbb19a5eb0"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK.png",
+      "sha256": "f1f7e5173d917fea878e3189bc7e6140c3cb71c506f85d7919c15612fc418047"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_26BTFm.avif",
+      "sha256": "58ca2e8ba6c80c637949be698fdb4aa6d4f5c4cca7d6c7caab4c732c63797eac"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_2lNV1P.webp",
+      "sha256": "b8203f458910e8574ce14945f3d7b8560df1bf8954b5cbc58e59095568ca14d0"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_2pl9hj.png",
+      "sha256": "e7c404670f83227e8c107ff1e2c8e796288a0860800a1c34a933558d74168e26"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_2tok33.webp",
+      "sha256": "1607d1dc8a92c4b533cc9754afd7c669442087d92456191d8737320a85108005"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_CcnYl.webp",
+      "sha256": "4706c86ba52b2a9d79d020399a329949e20bcd9799142bb89d2c9bafbbff2897"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_XOAo5.png",
+      "sha256": "f2e46f3f5267c115ec74a1c70c741059d666bcc7ca41e7a10aa0e2e8d6d1becb"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_Z19sHWQ.avif",
+      "sha256": "07078a849385d7930f0d019ca784f416eedf8932593f7a818d19ee6de26a38d8"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_Z1ChDLW.png",
+      "sha256": "15f04c55c0db5550d454095f57744ffafc1043d92b9c45813d62708bf44094d5"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_Z1U54j8.avif",
+      "sha256": "64d6210252b270db2ae27502de90ffdd7b7dfa33ccda2baefb54a91cc892cece"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_Z1ahfRE.webp",
+      "sha256": "b27425f8aea74206a055eccd2c8d42efcf28705b8ac11fc26e13b2f1b2fe4075"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_Z1x3Ffl.avif",
+      "sha256": "dab0125f318d5dcad703010edf4bbb0c5a59ee847d2ff89026db14821671f476"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_Z2hg2f8.png",
+      "sha256": "efba768d2331bda77f37c63fbee57e2b65fea836e705f1892441596c0c36e566"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_Z8DYWe.png",
+      "sha256": "1c9d5904d8c397e965495f41af684addb609a7a13c4226901b2efbbb52ce498f"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_ZLGiAa.webp",
+      "sha256": "c251945d0c5799ee8e15ec314e667d145dd99492309778f947187c3548056f4b"
+    },
+    {
+      "relativePath": "_astro/04-activity.CvuFjygK_ZLucT8.avif",
+      "sha256": "67c60cbab24afdb203bb7ac95fa04e59674cfb7e3a00c96a9cf3cb170db361e3"
+    },
+    {
+      "relativePath": "_astro/45d7f5784d.By1-7yBE_Z1SOV5m.avif",
+      "sha256": "5c8c4b3ea41f30f55bcde5edaf6c65e59f57d19968a5095ecb1d893160f80595"
+    },
+    {
+      "relativePath": "_astro/45d7f5784d.By1-7yBE_ZzqVts.webp",
+      "sha256": "22efe141cb751139fc117fb396947b996ef9db7fa49dde4a57011e50f3b41909"
+    },
+    {
+      "relativePath": "_astro/475c3984d0.B28EyfrM_1SdJ2.avif",
+      "sha256": "15f55d626ae7dc41a9a25ae6b66d02f88b39a3f4092d540f13a380bde364ac1b"
+    },
+    {
+      "relativePath": "_astro/475c3984d0.B28EyfrM_1lhdkV.webp",
+      "sha256": "d0a31e36fc9dcba5ebc96fbc5e0c23faa31d896f8ce4bed40895fbc32d07c79c"
+    },
+    {
+      "relativePath": "_astro/5f538d59de.DFsCjwXi_1LtBt0.avif",
+      "sha256": "c9d3b5a91830154388f01098fb005493cb80b9565200690947155ad5948c3d8c"
+    },
+    {
+      "relativePath": "_astro/5f538d59de.DFsCjwXi_Z1YjwJ2.webp",
+      "sha256": "3d7c3003eac7db2a86f66ef6dc6f55a20c3b843cd6a2ad0a2be595f62ff64b37"
+    },
+    {
+      "relativePath": "_astro/5fd90bfbf1.C5k02g5U_1MSN3F.avif",
+      "sha256": "05a910de51abbd0dc42c2aec46f384a7869862537f11aa282196eabf44d099ae"
+    },
+    {
+      "relativePath": "_astro/5fd90bfbf1.C5k02g5U_Mqa10.webp",
+      "sha256": "fc740dbff18f4984c72c512c8080512de031312bd58b3e7c1db2f4ee14621ba8"
+    },
+    {
+      "relativePath": "_astro/5fd90bfbf1.C5k02g5U_XiHrX.webp",
+      "sha256": "2391933c5b33fd0092447c9921151e1866507f448b5000bda8544097bbd1e414"
+    },
+    {
+      "relativePath": "_astro/5fd90bfbf1.C5k02g5U_Z1WTl9m.webp",
+      "sha256": "45f3e82c4e05ba1bc808e07c9c3935d937bd8ff6cf998d80afb343b9d73c20ec"
+    },
+    {
+      "relativePath": "_astro/5fd90bfbf1.C5k02g5U_Zl5h8V.avif",
+      "sha256": "4b714fb9c5e5749d4783f8331edc0534300cb22f65a90e37e8822c00653479ed"
+    },
+    {
+      "relativePath": "_astro/5fd90bfbf1.C5k02g5U_ZvWOzT.avif",
+      "sha256": "f626623499f1a11ba3d361ab6ed6fdbbd9e3a8c2d23d8b6d3ee3f777b4a78f78"
+    },
+    {
+      "relativePath": "_astro/6647450a28.Djc0li92_1KruLo.avif",
+      "sha256": "8a4c1eda28c5e0a4adf7436ebd488f8b02ed936fb3b8cf8bff661e43457318f0"
+    },
+    {
+      "relativePath": "_astro/6647450a28.Djc0li92_1V38XR.webp",
+      "sha256": "fe451c580e666d65c84aae297e9c4f28aac118bb9ff0c8636ac510e8b1ecc952"
+    },
+    {
+      "relativePath": "_astro/6647450a28.Djc0li92_Z1Kf5Ro.webp",
+      "sha256": "9d8a0291f1e48a983719cf09d7156559070b7734b0b522c931be72c7e514de3e"
+    },
+    {
+      "relativePath": "_astro/6647450a28.Djc0li92_Z1UPJ4R.avif",
+      "sha256": "b770d2e7a9935106b324ac3d84a44268eb6b4293378adf02a8494ff2b9544708"
+    },
+    {
+      "relativePath": "_astro/6647450a28.Djc0li92_Z1iBqF3.webp",
+      "sha256": "8db786835bc7df7714b3ef11621a37e42ec456e4ac57a4bece61bf5d3d24ed82"
+    },
+    {
+      "relativePath": "_astro/6647450a28.Djc0li92_Z1td4Rw.avif",
+      "sha256": "b9af214d11694ad385b0cc1f103edc083f601276a1a85f87ca4a635ef8147baa"
+    },
+    {
+      "relativePath": "_astro/6647450a28.Djc0li92_Z24X1E5.webp",
+      "sha256": "6924be61ac02837865ea5a6150a95794c8b7f81fd72f5e181c3ac1ff802932b5"
+    },
+    {
+      "relativePath": "_astro/6647450a28.Djc0li92_Z2nnNaS.avif",
+      "sha256": "fc69a89ae7f06bbb5873a72bd6a4ddae4a93f32558c0cca1d8e830f6bb927c78"
+    },
+    {
+      "relativePath": "_astro/7337cde14c.BL4fKt8n_1edLMj.webp",
+      "sha256": "6ffe63bd64d77a803b0ec8ed6f5fbf7d23789eb2daa31cb5f1a29a8dbce8518d"
+    },
+    {
+      "relativePath": "_astro/7337cde14c.BL4fKt8n_Z5acNA.avif",
+      "sha256": "6d754c73494212eb82d852648b84c80fab8bda498d8a37e6735866797733e327"
+    },
+    {
+      "relativePath": "_astro/96ce2ec5a6.Cgv_VCs5_1MH8GW.avif",
+      "sha256": "3144231fbeca22be96c6252eb4539c5e56cf025ec795afebe1901d2e05e953d6"
+    },
+    {
+      "relativePath": "_astro/96ce2ec5a6.Cgv_VCs5_Z1X60v5.webp",
+      "sha256": "a996f6684b06d97ed201a98424f58cccbc78bcd0932a28272006dc22adc88a17"
+    },
+    {
+      "relativePath": "_astro/BaseLayout.BGwS88Aa.css",
+      "sha256": "3aac2a270ddffca4746ef15d113becdea92d0b4dc0dd5c363c9ac76d6534d3db"
+    },
+    {
+      "relativePath": "_astro/CollectionIndexLayout.uaVIvlvs.css",
+      "sha256": "18a7de345110f785c02ef9356771d0f0eda13542951b52931ebf44e277222823"
+    },
+    {
+      "relativePath": "_astro/Phosphor.BXRFlF4V.svg",
+      "sha256": "e874e712d3f1b7774b4cba7dafda1eecdb1f075cd5e2ec1109c0553421ecaed3"
+    },
+    {
+      "relativePath": "_astro/Phosphor.BdqudwT5.woff",
+      "sha256": "396c5eae7f2dfb4d1f5432edd87109eda2f92a451b2167e43a26165b82770f75"
+    },
+    {
+      "relativePath": "_astro/Phosphor.CDxgqcPu.ttf",
+      "sha256": "06b91e022b7ee899a63efced879392a74f0bacbda54e4467e9f663220d173a10"
+    },
+    {
+      "relativePath": "_astro/Phosphor.DtdjzkpE.woff2",
+      "sha256": "c2ea45ea05ff5c7df1936770c104725f2a68f43fd343f35f3da23a30b27de32a"
+    },
+    {
+      "relativePath": "_astro/UtilityLayout.JaGJ-622.css",
+      "sha256": "df69e3545287d18be98de5f77be0c031a181bc06acedf657185cae8bd89ea5b5"
+    },
+    {
+      "relativePath": "_astro/_slug_.DHlQoQD5.css",
+      "sha256": "ac2217535635b862ce85011cf8b700fca4bdf842ddef6a1ce066db1ec4ea9ad0"
+    },
+    {
+      "relativePath": "_astro/a37debf5ab.Btl7NvuJ_CYjvx.webp",
+      "sha256": "4fda10d38df7a353a2b46d60e9fa0f4f912caca59be789e119d17a194859369a"
+    },
+    {
+      "relativePath": "_astro/a37debf5ab.Btl7NvuJ_ZFoF5m.avif",
+      "sha256": "c156b2e740597c9ff99b17b6f44ba30e7775c2884c9df64806c8e332a4241115"
+    },
+    {
+      "relativePath": "_astro/a97bedecb3.EW04siAp_Z1jB7yh.avif",
+      "sha256": "a913d87d97d927b3954cc354bbaefded557796bdb471b4276a4e3d1e780adecf"
+    },
+    {
+      "relativePath": "_astro/a97bedecb3.EW04siAp_Zd7Wn.webp",
+      "sha256": "1d4a4b8060f77ae5b8aa1347a633e46a0e83bc177edc85173e7f78c03756557e"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz.png",
+      "sha256": "d3c35899bd468d03ae4d378bd189e51da380e9d186ad6172ec6516249ebb3a4c"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_12qj1a.avif",
+      "sha256": "ecd5e4284d1a78f95f953ab0274dcf39b9f257f69367236e6c3000a7588e1b94"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_1T283n.png",
+      "sha256": "7ae279157b46a9242fcd66c6e0e43c54b1b4e0dcdc490b323d9c75283e094089"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_1kQ5wX.webp",
+      "sha256": "b4193846793b1450eb5fd372dcfd53eb1ab3f45e1dea6614112366b7d554b030"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_23sv7S.avif",
+      "sha256": "205feae8705659c1e961b732c05cd92a84f312146dbb9bcc7d170204016a3cb7"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_2lShDG.webp",
+      "sha256": "03856193eb967a47198728d2eb3fabfed2960dfc79788358265b8b5462c6cc8c"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_RYUVE.png",
+      "sha256": "769b4676f103e0286942e816e999eb4cdfc3635ffc37ddd73330ac690ef40f1b"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_Z11McOX.avif",
+      "sha256": "718f53f6fbce931106c7e63a12a5133ec67dc263e519475c8b2b81076ce5d5ed"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_Z16SSFL.webp",
+      "sha256": "1e45d557209b8dfc44a30bcb5b4f8d2a646c2af1ee21170a4eff23e737ace531"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_Z1K04z9.avif",
+      "sha256": "96c7394a051cf98065135da7970a37902416020a61c445c17123c2de1a584c61"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_Z1TqrDE.png",
+      "sha256": "c4eb0bd5ed89b6b8520eb957c96c03b33fe89180d04161013b609a970682e924"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_Z1bdzTt.png",
+      "sha256": "75b187c083a73798849c2c94574aa6ae3f41dec512186b1a1ecc54a7895ed59c"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_Z1pjFcz.avif",
+      "sha256": "ec91e4d5da3bfb9c69db6855d201344b96308d39ae0a19402431fd22554cb38e"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_Z1rzi3l.webp",
+      "sha256": "8b5eaf2fc9e75384fd55f20533f2736d2f8f88ebe4c255142a8ff8a713be6815"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_Z1yK3h5.png",
+      "sha256": "5e34e5ab5ac1a9937419d9ecdfdcb415b61cd71d578d1efa4a6cf94f199a42d2"
+    },
+    {
+      "relativePath": "_astro/belief-rings.CRinkKyz_ZImqja.webp",
+      "sha256": "45bc76945ffc7a129eab237b2b9ac25a20be223145622d73949f00813a578b33"
+    },
+    {
+      "relativePath": "_astro/default-og.DBIfdMmh.png",
+      "sha256": "2cd5e7d6e80221edd0a9af03e5dd938a4cb0f0ac76e2f401f93cc21959dbd9e2"
+    },
+    {
+      "relativePath": "_astro/detail.b6bwcYdF.css",
+      "sha256": "f2a4451cfb791e2e612e5e7435becf6a823566958a428c88ab0bf0031afb9156"
+    },
+    {
+      "relativePath": "_astro/develop_menu.BbZn6GMO_14cxuf.webp",
+      "sha256": "3ffe794b2846307583a55aa10aa44bbc382ca484a041ce6fb51d36be8c9fbdbe"
+    },
+    {
+      "relativePath": "_astro/develop_menu.BbZn6GMO_1CveM9.webp",
+      "sha256": "708a096147055446287775b8717aba81b8dfc39fb798f51bcdaf07b01f4a4e59"
+    },
+    {
+      "relativePath": "_astro/develop_menu.BbZn6GMO_1DOLmd.avif",
+      "sha256": "792782ae03d583f533c633139e749adec3884f10649ac5d5df348340dbb456cd"
+    },
+    {
+      "relativePath": "_astro/develop_menu.BbZn6GMO_1LnuWI.webp",
+      "sha256": "981f589b4a70097d1ceb3e7f623c73eace821363598d8beeedb95a49c7415371"
+    },
+    {
+      "relativePath": "_astro/develop_menu.BbZn6GMO_1fIOps.avif",
+      "sha256": "410fe843bd889cc0493d43e76346a4a041147e7d027f69b41fce87859d91fbfd"
+    },
+    {
+      "relativePath": "_astro/develop_menu.BbZn6GMO_KLKXr.avif",
+      "sha256": "0f5eb7151abf736b0b4c7a36efc83bc8fd0c33eeed8143025927c8b6d37a37ba"
+    },
+    {
+      "relativePath": "_astro/develop_menu.BbZn6GMO_PwCSf.webp",
+      "sha256": "028da094c75a0f373f572816452cdd0e6b6fa23f7ac4e63a0d08033fe309f236"
+    },
+    {
+      "relativePath": "_astro/develop_menu.BbZn6GMO_Z2uvunf.avif",
+      "sha256": "9a3d1f6a722aecb553f76510d2632d9652b6c3e2b97f445055e8840e879aff44"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-400-normal.BwCSEQnW.woff",
+      "sha256": "38702875fe179437d200e7ba6f7fab4d497ffe48117ef332029b2081751186ad"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-400-normal.CW0RaeGs.woff2",
+      "sha256": "4ab51eb2cd7305d177187908d6397474d4520663f6c6e572feb0a64f4fa80006"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-500-normal.B9HHJjqV.woff2",
+      "sha256": "19bf1984956517c35c2bd35b6cdedac12a21d6fcd3596c614ecdfb88b648909d"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-500-normal.Dr3UlScf.woff",
+      "sha256": "7deb957e430b780ee3272d801af4f9f2211b1330ec40a312a8f25309eacb4034"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-600-normal.Aqo67rzb.woff2",
+      "sha256": "6bb2b2645ba5eeaecf56322c543fa3a75b87b927977b9c03b1dabc4205089120"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-600-normal.BmdmIIQ2.woff",
+      "sha256": "e7351257e49400eff05aca30a2007289194a900860d30c30770d8b8732897564"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-ext-400-normal.BjWJ59Pq.woff",
+      "sha256": "3d63423c3204f61bb196d1ae3729b7f2871d87abd4403d198f4810923888c016"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-ext-400-normal.BtiwyxMk.woff2",
+      "sha256": "962730c6ff7595f9499b0d963a3bccb2139d793f0fb31fbd87aed1881c020e0a"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-ext-500-normal.BJfUCQsA.woff2",
+      "sha256": "e0a1d21584ba00798a3dbe90ef5f8a162741d454f52ab66630f9dc41da372b3d"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-ext-500-normal.DR84L5F-.woff",
+      "sha256": "e1f67472aa96c6f60969c696ba8a9d36ed8ea26c2ff5c3e27ee29c664911575d"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-ext-600-normal.4vooXBpG.woff2",
+      "sha256": "6406eb05e2eb50779cb95ee8745c98ad23cce7e67d752822782453da7f6b4491"
+    },
+    {
+      "relativePath": "_astro/dm-sans-latin-ext-600-normal.DRtaDpgU.woff",
+      "sha256": "f70e6bb2170e2ab7bfc23a021af0663dce4df0b502173c9c5135015d7fed457a"
+    },
+    {
+      "relativePath": "_astro/e1d2ad7014.Da9PYDhe_1P8VfM.avif",
+      "sha256": "9d78cd95627ab571550a05bccc10885d0fc64448b90a6d991ea4b404624b67cb"
+    },
+    {
+      "relativePath": "_astro/e1d2ad7014.Da9PYDhe_Z1UEcWf.webp",
+      "sha256": "0af7810278f4a0aee2fa9a9a9a0dd252b9c3899e1139224569edd857df83783a"
+    },
+    {
+      "relativePath": "_astro/ec18f32904.Bb6rK8ck_Z2iFP29.avif",
+      "sha256": "79347ef6db4d15ca8a0bcf921d4996b3ddc38ec707e49dd09a95d87e2a8e20ea"
+    },
+    {
+      "relativePath": "_astro/ec18f32904.Bb6rK8ck_ZYhPqf.webp",
+      "sha256": "2a8816225f90464ce0cbe509eaf25c336228afc13bd01794714f29fd1aed62ac"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h.png",
+      "sha256": "4efca1a712c17c2c3e18e230901cc907efdd640eeeab75ae131bdbb3c16e4fca"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_16UfYr.png",
+      "sha256": "0e6b33ed98fedf893d64c2db348d7a419a9a2136e17aa9f2804893d26a344ffd"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_1C1cpv.webp",
+      "sha256": "deed66b0fc349715088b043ad2516ff4b01f4a4ebb730be9a91d4e4faa65d2af"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_1aoN45.avif",
+      "sha256": "77095248d9eec24455d7fb1c7c7456ba5031a754a84f5579b6b772f6a65907b0"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_1dOB72.avif",
+      "sha256": "e6832a6e36551016eb178ad975980821833af0b2f4a3e04e6917ca20888cff37"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_1djqKJ.webp",
+      "sha256": "9a4a1879083b963c679cd4b99a55030bc941a988bfe89fb614039f485d7d5b0c"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_1scdAg.png",
+      "sha256": "ec2b27a8058e96ac1164ac890cdea4b30a5681ba478cb162a3028b9fc4dd316b"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_1vC1Dd.png",
+      "sha256": "b60c73fafd88369679ab91247050d549ccf5638e0d18c017c725a3ea6204135f"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_21BzeH.avif",
+      "sha256": "0285302cf1095408a4d930fa5505cdb5f3b289855a734cf52cf03c527b33bd8c"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_2av0uF.webp",
+      "sha256": "0b392e225a86be2cf40dbb971a9e09f9c837e079612700d80de9c8f7ccccfa57"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_2joYKS.png",
+      "sha256": "479c1fb4dc4dd30fcab0d0288f0e5660bdc4965fd3aa1c60ff768486516aabe6"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_2qjkSt.avif",
+      "sha256": "bb2440a9b1381c71712623c7dd1daed53bb6220666f36588bd323457bf6a0647"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_FXiBf.webp",
+      "sha256": "a94ded58d84f1734e0ec8c04bd13ed4fd1922dc255a1bbcd991681dc4c0d7585"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_O7Psg.avif",
+      "sha256": "c167535606e022a5bf0033af34e77a0bdccfd1653493f5a0424d6ebf8e3eb161"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_OGYi.webp",
+      "sha256": "943b8afcfa4d6dcdcc27b8033f8db835d2be339863070c5464e37569fcd8f2f1"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_Z1Dt5sk.png",
+      "sha256": "85281d4c324e2e93bec5fd03f79faa6fc05b8d569a8860e4b31e96552fd4f145"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_Z1NAzj7.png",
+      "sha256": "4e0d64e5fe21ddd3d60b4621d91636a77e0398003310772526f24ddf71f02029"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_Z1f4OP6.webp",
+      "sha256": "c5f3bf0f50cc4990c7f5c5f8d9ee6faa96030c99fd161d748bc5469bd1bcdbbe"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_Z26nYPi.avif",
+      "sha256": "ec451b444fb9da610c3610d38a7be06ab720a28262820d2fb1b0be5b7bf5253f"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_Z2m5noh.png",
+      "sha256": "89f8445bd9f4a2c3f971bd9a887b9f2fac03c0e926ff098cd9db5a1d5c3ccffa"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_Z8TlNm.webp",
+      "sha256": "052d8f93748546632b97f6d99251385cde31ce5b18106478b994d7ce16f3641a"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_Z8YgOW.png",
+      "sha256": "5f42f28e94a5971b086d151c227f6137ba82e24372e361034a2897447f09981e"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_ZNAq2I.png",
+      "sha256": "9988f1b2ed34b7a953d5da85d403331ae516c55aabc9beff0bdb2fce132ebcfd"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_ZqLGm8.avif",
+      "sha256": "514490cce33d73f238589bf16af178b568403def7d7eb57907a647039c622ca3"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_ZvFLb3.avif",
+      "sha256": "d20005bb266553e43409375b2765e0adda09a7e063be464bf27c4c45cac83c3b"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_jbSey.avif",
+      "sha256": "c60e304a2232c09d6542098f65f041a7a4fd35907c27c5dab7ea351927d63c57"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_m6EA7.webp",
+      "sha256": "0ade3978235f181830fa3e9c4d8ceae591bedde218d5020ca3723445c22bf6ce"
+    },
+    {
+      "relativePath": "_astro/evidence-map.BJ04HY1h_pwsD4.webp",
+      "sha256": "4eaa5ee1473f9b18495c10a086cd4a6366d6bf73ed901ee11916152712a75362"
+    },
+    {
+      "relativePath": "_astro/f159196842.CwjBLhrA_1VcUD.webp",
+      "sha256": "b6091df4d38b9a2e4bf2987bface2d35af61d6d55841b5b6cb543f9f38810afe"
+    },
+    {
+      "relativePath": "_astro/f159196842.CwjBLhrA_5xVEX.webp",
+      "sha256": "b3136ea841bc560c5cdb66f76da2ea26af6ae0c2af5d623d88fac8059766ff57"
+    },
+    {
+      "relativePath": "_astro/f159196842.CwjBLhrA_Cr1G0.webp",
+      "sha256": "d95c1c412058a53bc65a2b038162ab233f9c9f0c1f8004ed1f1bfc5cf7f0a43a"
+    },
+    {
+      "relativePath": "_astro/f159196842.CwjBLhrA_Z1IFNxY.avif",
+      "sha256": "689a8948696b2654957c23db4b6d7bcb6df6efb664c078284c65c3a835238f65"
+    },
+    {
+      "relativePath": "_astro/f159196842.CwjBLhrA_Z1y5alv.webp",
+      "sha256": "430ebaafc3879d9075b76ce4af354164a56cde94ee7a31e42ce5651206f76fae"
+    },
+    {
+      "relativePath": "_astro/f159196842.CwjBLhrA_Z52Gwv.avif",
+      "sha256": "5abc61b4acaf6b189d7de5bea81b69e6a0785b06e84896406c476470ec8710a9"
+    },
+    {
+      "relativePath": "_astro/f159196842.CwjBLhrA_ZgtyAa.avif",
+      "sha256": "6029a3cc351f00dbf14afe95c091e0b7f480e1554b76c06ee647403fe408d566"
+    },
+    {
+      "relativePath": "_astro/f159196842.CwjBLhrA_rPntw.avif",
+      "sha256": "ddac474ac8e148736a1d975f0c362ce84cb790054b65c1bbf46615b195f3c21f"
+    },
+    {
+      "relativePath": "_astro/fa6c5dfe53.CWZBCYit_1CgLI6.webp",
+      "sha256": "270e419c653f0c73f893ca79c211e2b0647f93cf65854300942c9628573613ad"
+    },
+    {
+      "relativePath": "_astro/fa6c5dfe53.CWZBCYit_1jQ0ci.avif",
+      "sha256": "6c70da05acaa66da6657dfd0de0846dfe208d360a79ad23f34b9ec49a08d2a4f"
+    },
+    {
+      "relativePath": "_astro/fa6c5dfe53.CWZBCYit_Z10OIUr.webp",
+      "sha256": "93e792ee56bb64ba1e61b4113951138ddeac1335c8bf79064e84d0bf6cccc86f"
+    },
+    {
+      "relativePath": "_astro/fa6c5dfe53.CWZBCYit_Z12iNud.avif",
+      "sha256": "88d15bc91e92b0668743730f3cf0c8cf79fd781dc7f485fad00ea44ebf9da321"
+    },
+    {
+      "relativePath": "_astro/fa6c5dfe53.CWZBCYit_Z1V8Dev.avif",
+      "sha256": "fd0fce7df1290b1e2179b42368e7b0231e24262eb063f8934ad32e04064f6d7b"
+    },
+    {
+      "relativePath": "_astro/fa6c5dfe53.CWZBCYit_Z1jfvrf.avif",
+      "sha256": "e08bb10ac92dd8ad97b2f371b9cee3ec227949b37b6c16f2afa42c7f3806287d"
+    },
+    {
+      "relativePath": "_astro/fa6c5dfe53.CWZBCYit_Z1ymdQO.webp",
+      "sha256": "1a97f9123e8d8f1e94985c35214cefded21cfcea9efbc797029cee285d656ac1"
+    },
+    {
+      "relativePath": "_astro/fa6c5dfe53.CWZBCYit_ZIS1Xp.webp",
+      "sha256": "1b15d3d8ff6b0d415c0be3151eb0e80a2d9853a834f0f0f49f59d4ecd620370f"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC.png",
+      "sha256": "a7c86040a97c815f75cf993fc4b259b047acad9c2cb09e70c17327ce02d7c3d2"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_137sEN.png",
+      "sha256": "274eb05faf6d26eebebfd7992abe7918e52d48352f65a6eb5e04cf65931200c0"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_18F0Ff.webp",
+      "sha256": "9347cf3538a8f9dbaffa9e2766c293d6d63298b53731cc0b7861809284b93e27"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_1tnggu.webp",
+      "sha256": "1475a442526c85f46453c8e47424b2aeba581378dda551f2f5b48d3a14d34eff"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_1vnvut.webp",
+      "sha256": "55f344948f501a34c3abff4324ff04278927de6a4b4891ea8f598fbbe8e9046d"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_2kFCIz.png",
+      "sha256": "8cf4535a800472ca43d2bcf1164d778313ac894e926bdd6529d270602fee7c9e"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_2szBTb.avif",
+      "sha256": "04428bda83f9751a205960201d9e8f03a07d581fc8208abf3ae031ec0fd1dcc8"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_2u27z5.png",
+      "sha256": "b24783e2e1b4c2f6cedb00e3f1db92a4f0ddcebe5c4542709b34d5183de9eb41"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_HWWCD.avif",
+      "sha256": "92fbb516a6522c1f1dd03bc61357809402e62c27a41ac46474740a56c8b272a7"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_IpkG3.png",
+      "sha256": "86d8d59fd75e43ad542312cc7dedf673ae3f1f65f6e30989143b0ade1f967d63"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_YjvOJ.webp",
+      "sha256": "9344e830c2db15f213c01e282f8fe5abf52e0210925828d501e99eafb5abba61"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_Z1axNq0.png",
+      "sha256": "882a846e84b8ec6cd512882a25704ec331f651b9aff6c6b2ff3269bc634d4338"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_Z28xT5u.avif",
+      "sha256": "6bab617470f9e62f9ab0c3f2c89c1bfd5262bc5bd0624c9e3b8a78e545769d1f"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_Z2drvpC.png",
+      "sha256": "1ea80201d8dbf62fefb980fa773793ba9b77dfbbd52bce68e9ec6c6f30057aab"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_Z2frKDB.png",
+      "sha256": "bb6722e34e4d6827d49238d1453cea2be9b1f0387f3b91a3676e034d01148349"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_Z2sg24f.avif",
+      "sha256": "6efdf30d64ed6e10cf11b702e9ab467681bda437a6beb736ce482416fd4c39a6"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_Z2vTUjP.webp",
+      "sha256": "acfd45970a9568d2b0344b7378c784d31963f26f8b2b7b05cad9ff0a5acf2633"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_ZBVLcM.webp",
+      "sha256": "2125689fd54c5472cb4d03732439f1b601d66fcbccf93449aa0f572e1ad50140"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_ZGDfbd.avif",
+      "sha256": "892abce57a2bfca9205ef426fd82962d5a55fa21920ca1f52b8982be388bf91f"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_ZLig3i.webp",
+      "sha256": "174a416163bd58e1e48964f7d2ae77e6a1859aebcd194cc1b84c4b5197a59a1f"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_ZPYJ1I.avif",
+      "sha256": "a8141e9dac0349685ed45aeef7f9af91b010b18b3c7e0a2659498c8926272fa5"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_ZieDe2.webp",
+      "sha256": "4163c29c6261be9ca449a379abab6a09b1b5ba9b844c759147f5424c17c61a17"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_ZjUJlY.avif",
+      "sha256": "04e5e95a86a72818ee270e0e4ec58cba1d73b800ed9c39f2440fb825e4fd1d78"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_ZlUYzX.avif",
+      "sha256": "ad44f886ed3909ca4cdee6780348439a00fa0b6c67d70a40d63aafcd6a7c94bd"
+    },
+    {
+      "relativePath": "_astro/groundwork-surveyor.CmRmkpWC_z3PPx.png",
+      "sha256": "dcdda526db9858d4561e691218ad4eddff4383556a525431df6a2d15d2437682"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax.png",
+      "sha256": "51a0197ad6cab814220c56a8fa9b95ebbb2fbaa40d8d2b71803aca89c0de92f9"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_1bmXjf.avif",
+      "sha256": "7baf16b5e82c524fed3f261010b822cd2d86b67584725b59d4b629a0be611c31"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_1cbyof.avif",
+      "sha256": "4b6ddc7047d5a398f1d04e949e927d8041cf98f4328a50a2ce0f11fa2b7a793c"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_1gByqI.png",
+      "sha256": "ab6836d2799b84f982ba49d44e1aad26a071312b8152dee3ac811523ad0973a0"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_1y9nFV.webp",
+      "sha256": "6f20b577bead36fa9f1949e22c732ca7a464ff27900b7815b86168c0fb709294"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_1yWXKV.webp",
+      "sha256": "f645668ce771ac5019becba4f490464d3f93074684c0b400710d291aed918803"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_2ooRI0.avif",
+      "sha256": "7a23b24b5b9260893f35e53f678230d6c609962597d4be713d4685f297294869"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_3zE1X.png",
+      "sha256": "e918884a673bc86b208a6f15f82820e3707fbdd5c3083d0c2695d8fac9b8b811"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_4of6X.png",
+      "sha256": "138413e24acc33923c06613346ebfb623ef1b98121d0d373566a18b16f50f3f1"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_Z17Dhy0.avif",
+      "sha256": "98499aa1bc5ab03f601c60964824201a2bf2385471d9f9d58c662b86566b8481"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_Z1xOsb3.png",
+      "sha256": "b54125ee556f5837a6c29b04d4d4020d93a9a24751ca541e8de32840a6d0c61e"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_Z2fqAPh.png",
+      "sha256": "147dbdfc21457bd374c8a426406b9bfc181064344918439540fde4e976ec73ab"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_Z2j0PIf.webp",
+      "sha256": "f697497f3eec4aa051d1538c505a73375eced52b46af0a5b928400d7aa9d951d"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_Z3fIw5.webp",
+      "sha256": "d4593e9da290e51a320ca6026d444b3b06fced2a6af76ce856479c66bff6c880"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_ZJQRbj.webp",
+      "sha256": "d0986f62e77d60775344b0686bd3a1219bdee87614e20febc1042bbd1a7a00f7"
+    },
+    {
+      "relativePath": "_astro/healthql-hands.BAws1-Ax_Zq28SL.avif",
+      "sha256": "0577c16524fe4ee44ffd225a7e89d09317644d83b6ba36f4e5f912fa2a56bba8"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-cyrillic-400-normal.BSMlKf0J.woff2",
+      "sha256": "7635422bd10ddbbcb0e0caa1154b928298f5c8319b8c00b30978d4395f4783ce"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-cyrillic-400-normal.CEL4l2ZJ.woff",
+      "sha256": "42da81a28bbcddda6768a25a4b3105ee291e69d5fa6c74747bc51bbc6718c538"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-cyrillic-500-normal.Ael50iVv.woff",
+      "sha256": "55a3af5e5ba0f565b4e66149cfe077ba88ac42cc3f68650a901d58eadbf9cd9b"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-cyrillic-500-normal.Bq9vWWag.woff2",
+      "sha256": "1d89462e86cb8e87e7e9d6f6635605bd7c3081baca6caaecee84916bf7b60edc"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-cyrillic-ext-400-normal.DMdlQ8Kv.woff",
+      "sha256": "0e4a2393e8ed3185ae300e4a202b6d9149d47d8a0e5bb8f1d1db33e76b86ecd1"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-cyrillic-ext-400-normal.xuaO2J-f.woff2",
+      "sha256": "f8c22ec1804bd6966b70f43ac7c327025645b4c09597117fca2a5a6c750106fe"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-cyrillic-ext-500-normal.BIfNGwUT.woff",
+      "sha256": "eadb2c427859b185761380143d1f42187fd7cbd94704b543e4c76c6368fbab52"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-cyrillic-ext-500-normal.BqneJy0T.woff2",
+      "sha256": "3febe5c7f22e4b07b4552738673c3dbe8bced2dc5f48b866edf7ccd9552d109a"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-latin-400-normal.CvHOgSBP.woff",
+      "sha256": "328d50b6ece9ca25c46eea3e885ba497f6237f2fb84ef7b92f88e14a1a25e381"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-latin-400-normal.DMJ8VG8y.woff2",
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-latin-500-normal.CB9ihrfo.woff",
+      "sha256": "09f018c58556e5801ecc49d5b5275dcff4c73311c2af6b88e31c51d76d076a9d"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-latin-500-normal.DSY6xOcd.woff2",
+      "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-latin-ext-400-normal.BmRBH3aV.woff2",
+      "sha256": "6bc0f226a5b7884a8170e3f62c63d7675609d4631bdc5931b5cdab81821f00eb"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-latin-ext-400-normal.D3D2R8hC.woff",
+      "sha256": "f8ddaa0ab9d3c052c9fe035751c8214b7e0d59e6e7b69b045f8659c2fe4dced2"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-latin-ext-500-normal.CAhNIIs5.woff2",
+      "sha256": "6bb06407c97584b0867a959e05e8874693bfeb8c317de190811c51598f2d99ea"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-latin-ext-500-normal.CZ70TYgx.woff",
+      "sha256": "ff5da89c3ee20d38359943b61a7aae9200d2a0f61cf95ca10a7cccef81da2ff5"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-vietnamese-400-normal.BulugwFq.woff2",
+      "sha256": "62632b6375305e70ddcafdd895218e6ae41a184fcd280a69c739460604ca00a9"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-vietnamese-400-normal.DDuiU_S-.woff",
+      "sha256": "bced561d991e3f81c150c08e71f7fa849fcbff523560f6059245f2edce19b600"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-vietnamese-500-normal.C8zxqsMH.woff",
+      "sha256": "755f62b418df17518aa0ea16b4232e546ce949a4ab7acc577071fa9be9e3dc88"
+    },
+    {
+      "relativePath": "_astro/ibm-plex-mono-vietnamese-500-normal.DZ4AoWbu.woff2",
+      "sha256": "781633d95de88040fb77141d1e65d928c87c0144691fbc74da5a64d137a7e910"
+    },
+    {
+      "relativePath": "_astro/index.l_48l_xZ.css",
+      "sha256": "89cbdc37972105ce1f20a6cf9cc981b8e639e88deebc357c2ee1bf322330eb46"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd.png",
+      "sha256": "7a07122b810641ba0bd6c316f0ffa3597699cb663b190089aa209f4609264545"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_14cXwy.avif",
+      "sha256": "66d8648baf3ee26c3ddf8a942997ab186cbd08f1ec7b2d242c40d5780d002794"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_1H3bts.png",
+      "sha256": "e27115d0885125bb3a2f068f21db3195bc48ccfc4731ad304aac828412ce54c6"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_1MEeSi.avif",
+      "sha256": "077b27966948705777cdd79a50ab17e31c2293d96ead5dc9a7086e7cb0807f2f"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_1Rnctn.avif",
+      "sha256": "1de456130adf400ec7abcadcbe728c6ed044808855ef4d52f740221602b31d02"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_2qurPc.png",
+      "sha256": "01362f21e9ea6dd73ebadb846012bd0a6ea0c58ef11a00a63fe062d3bd782f49"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_2sTzq2.webp",
+      "sha256": "68bed459b5ea54b21c52a3f29e9c5b4016d6c5f6fb4dcc04fd2ae94d9831a81b"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_2vdpqh.png",
+      "sha256": "f8a259111952ea06899eedf78154ba19d383c34cafbacb028d25aeca13233ad8"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_AOs83.webp",
+      "sha256": "892d4cbfdac8b6aa00a54bdd43bb8b8d2b539b5f81247d1722c8e59b07db9d6b"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_Z1N7kr5.webp",
+      "sha256": "331f17504a59bfe681e1842ec25f30482a2ba58dd69e512767117481f89d7e45"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_Z1RPi2a.webp",
+      "sha256": "f7c246ebb0e93303b08d4461a57db35b62f51b888407e4fbb531d45e7fb6a127"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_Z1p5g6F.avif",
+      "sha256": "3dc3e1ae944a7d7f5b6606b567137de75068d6c64c7f2c824c5754485b2ad3c9"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_ZLf39L.png",
+      "sha256": "b3d1edc5a29b152a7d8167a332fbef6c648672c85dc7a8d203a8c3c96f63b229"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_ZMR8Kq.avif",
+      "sha256": "3d3f9e9c2903ab97b904db93ac32910ee4a3af2c1542c4c0916cf1303068957a"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_Za1UNw.png",
+      "sha256": "c53503ddd629656921dc63d5e965b87f61fbb0028d8756aa27959562deb5f2ca"
+    },
+    {
+      "relativePath": "_astro/listwithme-hand.CsPcKQCd_ZnEdc.webp",
+      "sha256": "52ee2af8d3a920f8b4f5e52fe4dc456d68a98500d9e370815b3455da80c147fd"
+    },
+    {
+      "relativePath": "_astro/logo.BAKhtqIN_1WcKhK.avif",
+      "sha256": "9aa2b8b2e7603b110e3b022877e43fec688f8e5bf9e6d1b5ac5cee2696b086b2"
+    },
+    {
+      "relativePath": "_astro/logo.BAKhtqIN_JNl8x.avif",
+      "sha256": "63a914707e3e0ea7268c7408862e60083f9afe4b2ae0b2eb0977c99cbbf1f84d"
+    },
+    {
+      "relativePath": "_astro/logo.BAKhtqIN_VTxGv.webp",
+      "sha256": "cf615a032ad2e62afdf21ae6f8beae5452201787ead4e8db74d0649460c6f5c7"
+    },
+    {
+      "relativePath": "_astro/logo.BAKhtqIN_ZftQrH.webp",
+      "sha256": "5cf7ed1993dbaba08ae7100d3f528fbd8b86b484e5181432dbbc168309083ee8"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP.png",
+      "sha256": "5ef3e3896769f764cc6d81852bb9db06f252825cdba390fbe30e7e9e7e089a9b"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_16Emm.png",
+      "sha256": "8d22bcfce06090cbe308fc896055723d77c88478141b0e6360d7e30efaba64a4"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_1Pe5QE.png",
+      "sha256": "0446ac9d16cd9356634c32c7a11ab442474e37c1131cacc30d3a90e630eae6f4"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_RCTGg.webp",
+      "sha256": "785cc687b1d08dd4286d931cebbc099bca2983116592ec89d25a4880f299c520"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_Z1CMYzY.avif",
+      "sha256": "1fe4c42cb0ca82608e7b9393fe56c8e1821523a27763c24c36faeb045719a2b3"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_Z1VwkVr.png",
+      "sha256": "7a8bd98d9b968d26ecfe7ec364bdd9941023f5cfbd90764db252521c5a6c0993"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_Z1Yyasn.avif",
+      "sha256": "4dab95b91051bc6ad187fd1b67abd2c83627d9240e51de045082e6a299d453c9"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_Z2mOcoL.avif",
+      "sha256": "315dc8545bb8fb1ab39e27924fcb00657c1a26171bc59c434d076671d3694a73"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_Z2nqMCn.webp",
+      "sha256": "1cfd8ab95cf3a2ce6d3b8cc42fb71d0c744f1364f4212fa3595b04c7df12ead5"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_ZF8gUa.webp",
+      "sha256": "52112e48e4a04d5191afd673c953077ad0ef5150ada90c203e78979a87d0ad98"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_ZkDvv2.png",
+      "sha256": "29fb6b8302ed36f7f4a287bee4aada21c5090a3fcfa8188951022ac6de7154c1"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_bjqTj.avif",
+      "sha256": "31076d2ef116da842418e64c42a15c50939920f5d8174ecc85e4abf106e4d7e8"
+    },
+    {
+      "relativePath": "_astro/production-hands.i6zn42eP_vRINR.webp",
+      "sha256": "05cd5abd176b5ae7bf9c653bb1788e1c1f1bf22627362a47ab329a482bcb5170"
+    },
+    {
+      "relativePath": "_astro/safari_settings.CTgkKygu_1ijwHL.avif",
+      "sha256": "ddabe5a627d14029d1f01b8feaf36cd5630b20662c6fe514090b3617127faabb"
+    },
+    {
+      "relativePath": "_astro/safari_settings.CTgkKygu_1pEb9m.avif",
+      "sha256": "064b25d4b60276419e32bec3fe22d15c45288ef9ad2685379a912f309b5bf722"
+    },
+    {
+      "relativePath": "_astro/safari_settings.CTgkKygu_1qPK8K.avif",
+      "sha256": "51fb3da0fc67941f322740b7dddec8069371ba71ebddd6d75a4f0bf71641f7ae"
+    },
+    {
+      "relativePath": "_astro/safari_settings.CTgkKygu_28gYhN.webp",
+      "sha256": "a1f1dee30ba98e9ea569bffa15e052eca9130133e05891bea1aecf0bf9f54cb6"
+    },
+    {
+      "relativePath": "_astro/safari_settings.CTgkKygu_Z17TtnV.webp",
+      "sha256": "e058411872f3f3db89e853f968838143ba3830cc1887a2d513e2279c297a011a"
+    },
+    {
+      "relativePath": "_astro/safari_settings.CTgkKygu_Z1963nk.webp",
+      "sha256": "85243b97b0ebf330c658b84c3e41dcd94b42c7dbf7867428a95930561b26d6ef"
+    },
+    {
+      "relativePath": "_astro/safari_settings.CTgkKygu_Z1VyleH.webp",
+      "sha256": "415a190a79c174d2dbc2ec13e142056d91127b327d4e85db7f15f51d5aee67bd"
+    },
+    {
+      "relativePath": "_astro/safari_settings.CTgkKygu_Zn9TYr.avif",
+      "sha256": "4cafd1cf7df801737ffc579d06a36a36c75d7fbae0ff55c61110c786859d2ec7"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-400-italic.BLN19cOa.woff2",
+      "sha256": "18148c0920aa7272b106614f585dfa46d08d01aca5734e5c990f02e649c33aeb"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-400-italic.Dx8qIUN3.woff",
+      "sha256": "301589de68548949f267764bbaff139831c0c792a34bc8fe0131eb7d079aecb3"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-400-normal.B8Z6Jvzv.woff",
+      "sha256": "985cb2a5e1d663a752ff9ad55ca799b099a41e3507b2d81a3b5ae1c827275aac"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-400-normal.C44pakCn.woff2",
+      "sha256": "4899e71407c11bcafe49dfa3573415740a5b47a87028917eedd39731237369c0"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-600-normal.BDP5YDHD.woff2",
+      "sha256": "881a5cd61ba36255b82c4e99ca68a21dab3fc62fd91d780501c597f82cae477a"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-600-normal.DFnC3vAY.woff",
+      "sha256": "24511459a9f34fbde9ee6a056894728159edec82188b2289e2bf3f8728a138c2"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-ext-400-italic.Dx4A8QUO.woff",
+      "sha256": "547f876f70abc6932cef994bac1e7c97c731ad4b192658e93ef8650772a01ae3"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-ext-400-italic.zoDFlEzN.woff2",
+      "sha256": "bc17398c9c8b2c1e63a7c79335e55897ec322987f153e5c057c11844864e96ef"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-ext-400-normal.CWV284fw.woff2",
+      "sha256": "29b1be650eb1ec292046e55b130997dc74cb3983d811c200644afe7176bd97c2"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-ext-400-normal.DLkyKLvH.woff",
+      "sha256": "936283970e8c2860946cc9b36d562b34275711bf3026bbf9d442c6751a416414"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-ext-600-normal.D_E8FDgP.woff2",
+      "sha256": "424aad3c02eafc047e2ed438ef02ddfec38e72e97291865ba27399fc25ef3002"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-cyrillic-ext-600-normal.DiT2IGQm.woff",
+      "sha256": "43392576c7c843f29479513d18fcb75084d48801b11d8665fcd2dec845476282"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-greek-400-italic.C7D4Dq0H.woff2",
+      "sha256": "a97b9b209417c81ad387aba4265d579bac2e9c6ef5ef38008e46d1ec656aa2a0"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-greek-400-italic.DcuniPAV.woff",
+      "sha256": "4ecee4c063dd3e9cce48356a5307fcac7791c12651f936a877147a9a42caeaf0"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-greek-400-normal.BccYJ-vZ.woff",
+      "sha256": "248c3204461be6537cb876d5c80bde272665ea05c45baafc478c9d2b95f089a7"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-greek-400-normal.Cw5-AHNN.woff2",
+      "sha256": "dafafcc62255d676e0a998bb3c926d3ba60c1f8e99638518dbc41a9f8c1b42e3"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-greek-600-normal.DdRkKr-1.woff2",
+      "sha256": "9682fb04de1d693e4bfc03cec8e847e51e92e77fd8e79c151d0a6f6d7f1fbee6"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-greek-600-normal.DhXQw1Kl.woff",
+      "sha256": "ebd852ff220d76958ecc5600c569aabe09b1f12c5bc6c71417cf829ec623d252"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-400-italic.0j97Jm6B.woff2",
+      "sha256": "882b7c150c29f29d4f8daae6b8dcae8662aac7f28ca34b34615305154136ecfd"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-400-italic.Dv9jnFA_.woff",
+      "sha256": "07c51081ac6b14e5b229a70e25b2c93a64c9bcc53f32abda81c7e84c3b41aaa4"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-400-normal.DJ5YJwmz.woff2",
+      "sha256": "02194deb92d3975dd30e11a3824a1f1db32b48c93654e60560cb81ce8e7b5f95"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-400-normal.Dn3IlU-Z.woff",
+      "sha256": "777f0f04bfdacfb14959c0be7cb6329b257659017ebbfb8c9e36f27be06b7662"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-600-normal.DMD1h6_f.woff",
+      "sha256": "3ac34ff6959df1a23563cdf83fb5f532fb3838ca910b400f2e6b1dda0cf3fd48"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-600-normal.DouSKlru.woff2",
+      "sha256": "f2b7e1cf1d277b7608231868135648f8ad8e2b58d8e97ca088bee15dc357bee7"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-ext-400-italic.G7LDTi7t.woff",
+      "sha256": "8557f8b56d010f7da354070139651964f46b64d03fe22985fb05d1d6ad006902"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-ext-400-italic.JynPwBMj.woff2",
+      "sha256": "d05b8e57c5d272963ec3777e97e215aec2f8eddb06a06530d6717e9981d9d791"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-ext-400-normal.CEpydyUl.woff",
+      "sha256": "8110ace8c02a6865e4924d6e7282cb05977fcd134ce4d4eb58cd9c52950f1345"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-ext-400-normal.Cp7z-ARB.woff2",
+      "sha256": "cd757b37ff5e4ee2d18c45699df87093d233d98bac45ed682a51505a1914d25c"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-ext-600-normal.0sIUyHMO.woff2",
+      "sha256": "351f7c7a0db5732b008c62d26a8e2b1d2d110449026b8168d4240d07985a7e49"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-latin-ext-600-normal.C6NNqpJh.woff",
+      "sha256": "3431d8d75c68a32a4ed6cfe697f2fb4da717674d7abd8eaf2cf70975129fa0a7"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-vietnamese-400-italic.CjUPRDIa.woff2",
+      "sha256": "1f6f86da6101d0646b247ed8d67c860f278d70f51c948c488c64a27cc3f9f843"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-vietnamese-400-italic.DyjhI2GX.woff",
+      "sha256": "f02506a72eab0d6ba3b1cd3c53f2bd4ae596d7faed94ed9ae692be4c38450c35"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-vietnamese-400-normal.BbG3LG1A.woff2",
+      "sha256": "c0ac72ca49bf852eb69c3010bddcd2062481d096ec1f34e49a3b8aefa9ed7c9d"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-vietnamese-400-normal.DR1UuFon.woff",
+      "sha256": "d34bd7c57440583860e6a1157f4c87ac1bf784a90cf1b662cd51099bca66c002"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-vietnamese-600-normal.B0WJbuqT.woff",
+      "sha256": "d1947b4a1b1f623e90fbd32cdadedc951d1c394c9b47a1b38f8f9ea0fa417103"
+    },
+    {
+      "relativePath": "_astro/source-serif-4-vietnamese-600-normal.CznyfUKR.woff2",
+      "sha256": "c42f67589974674a03cd1aece3e18123ad858642ecd8561cedaaeb282dc7a7d1"
+    },
+    {
+      "relativePath": "about/index.html",
+      "sha256": "b7d0ac95d817a8fc59366a10b0914bad508dc95fa18a45ce983b3f0c67ae9698"
+    },
+    {
+      "relativePath": "app-library/codex/index.html",
+      "sha256": "5694459e81da84de32fb3a7ba6b466952586d225cff8402145acfa6232534f1b"
+    },
+    {
+      "relativePath": "app-library/hermes-agent/index.html",
+      "sha256": "8773f311503879f4186810bb03ce8a186973596659eaee74e446aa6933d9e73b"
+    },
+    {
+      "relativePath": "app-library/index.html",
+      "sha256": "32a9e2e85a26d3ec74b745537de7c72cd08772de348852a172914cd463e27f63"
+    },
+    {
+      "relativePath": "app-library/obsidian/index.html",
+      "sha256": "a7499ece210eb191f5f1d15747d268690f153de130cea9977983a6b240ab0bd2"
+    },
+    {
+      "relativePath": "app-library/superhuman/index.html",
+      "sha256": "7a6e9497c098a9b2f47491c3f2fa05a30b8cf4e5c867efb86e1471c5b4dfd346"
+    },
+    {
+      "relativePath": "assets/js/darkmode.js",
+      "sha256": "bbec534f986ed7e8e972a87fc14e0a111612c0105f84939a80841bb1e999fa22"
+    },
+    {
+      "relativePath": "blog/index.html",
+      "sha256": "2e71f11f06e5b80741a4b1164670fa1732fb32984092360ba55dee13e90fe05e"
+    },
+    {
+      "relativePath": "css/main.css",
+      "sha256": "3a3d8ed6d67a96cf7cc1af5b5fceaffa54ffbb3dfcb4061cf3642c63fd4444b3"
+    },
+    {
+      "relativePath": "favicon.ico",
+      "sha256": "b68e9135d484219448d9d996167b1ce6c64d578ed6cc11e243d91a2a8828d3a4"
+    },
+    {
+      "relativePath": "feed.xml",
+      "sha256": "38f743f8b081063120121002d8c53d428b4a3a4fe313ea079145b0c85ea1615c"
+    },
+    {
+      "relativePath": "images/45d7f5784d.jpg",
+      "sha256": "4ea9072777a2d5e9131564cee1eb22ead77b29238771ebef6d1151b3b137583f"
+    },
+    {
+      "relativePath": "images/475c3984d0.jpg",
+      "sha256": "b5c643f653258a05be469586eae7b6b606e8a860dbe58c3c7b50ded9f138b636"
+    },
+    {
+      "relativePath": "images/5f538d59de.jpg",
+      "sha256": "8a3655168c470931e51043bcfc73f3de1f894760ad350851cdfd4785dfeba261"
+    },
+    {
+      "relativePath": "images/5fd90bfbf1.png",
+      "sha256": "b731a69b88413dc84cc2b2e28559bcf3ce401adb1f6a95114cd395fe95a32b63"
+    },
+    {
+      "relativePath": "images/6647450a28.png",
+      "sha256": "193a028e159a4749715cfafc5b1212763f6920ab944c9c774e2ccfbfa701a175"
+    },
+    {
+      "relativePath": "images/7337cde14c.jpg",
+      "sha256": "42f1fac8fa71c271e38b976769cfd915c417b8478a1cc962eb87183a329bac00"
+    },
+    {
+      "relativePath": "images/96ce2ec5a6.jpg",
+      "sha256": "82eb23c7f7683d3b0cb4669da9ae58a3b5c450207b04be8ec6e5c8de3914213b"
+    },
+    {
+      "relativePath": "images/a37debf5ab.jpg",
+      "sha256": "fcc7619307d54691e3de65892d02d234b090a798f943112011b4a19a041be159"
+    },
+    {
+      "relativePath": "images/a97bedecb3.jpg",
+      "sha256": "35974cdf246e33edf59434ee5dbff4d92f0df2c5eb9637949511d79dd1800c96"
+    },
+    {
+      "relativePath": "images/cloud.png",
+      "sha256": "fcc66d10a5a7a368d61cebd40f5615977103e465f823c8735f410afd99b54e12"
+    },
+    {
+      "relativePath": "images/develop_menu.png",
+      "sha256": "33a7886cdff27b31f27e869294734896b69aa655c730017954d28804f9fbd2f3"
+    },
+    {
+      "relativePath": "images/e1d2ad7014.jpg",
+      "sha256": "ace05b7d34dc288a3ab042e5bbdc70009e8802e41f71662cf4cdfa7c1fd645ce"
+    },
+    {
+      "relativePath": "images/ec18f32904.jpg",
+      "sha256": "317b335b824adfe815858019c52909d0c002e4882bd80644cefcea3e36d27269"
+    },
+    {
+      "relativePath": "images/f159196842.png",
+      "sha256": "a4827889f821c91bfaf9e9017339f6aa959c8d6fb9abfba7c33c0096c57d3869"
+    },
+    {
+      "relativePath": "images/fa6c5dfe53.png",
+      "sha256": "14e2f3bce1d35f5ddfed2179daf25fdf63dd7369729286e550cf859e97c21dce"
+    },
+    {
+      "relativePath": "images/logo.png",
+      "sha256": "ea327b359ae8566e5187c0372863c2063e6c12b2fe3254f94c6f62465c569120"
+    },
+    {
+      "relativePath": "images/safari_settings.png",
+      "sha256": "424f00a38060b2d8a944de73925c51fa9474a26608f81d7af7d352c944cddcb0"
+    },
+    {
+      "relativePath": "index.html",
+      "sha256": "d42a6e3ae4dcfc742c9c199814ba5a483261c07e53e35c0fcb9921ed9cd6ff7c"
+    },
+    {
+      "relativePath": "listwithme/index.html",
+      "sha256": "7789f800317db31e1f96d6376ef06641aaa0d66d57fc8b19fee39a1e1caaceca"
+    },
+    {
+      "relativePath": "listwithme/privacy/index.html",
+      "sha256": "a989bc5e747170c63e970d51478a9715b1a1ee195a09755232bc42d6fdc71b4c"
+    },
+    {
+      "relativePath": "listwithme/support/index.html",
+      "sha256": "5f51d148d24850043ff787469e6347fea07f7d41ef353511457c5797500a3e52"
+    },
+    {
+      "relativePath": "projects/drift-dreams/index.html",
+      "sha256": "f506800ce954ffcd7f3e456080e83ad42bc0da420a93400be9973cc0eac907ab"
+    },
+    {
+      "relativePath": "projects/healthql/index.html",
+      "sha256": "fd3e4ce3f8a6753b922fddc7f4e0b9586ba7e7b2048b734fb81beee4e1e93070"
+    },
+    {
+      "relativePath": "projects/hermes-ios/index.html",
+      "sha256": "41f6c28c1c6aeceb27cf617468e3b3de8c3d411af04054bed08ba8b72ba3945a"
+    },
+    {
+      "relativePath": "projects/index.html",
+      "sha256": "180ac93b459dcf710c141c9c2c5f2b2fe1d71c7739b54eb2b36f6e205703bcf6"
+    },
+    {
+      "relativePath": "robots.txt",
+      "sha256": "c06d3480ff47ab8772f9387ed5210911915da93eb4aefa49567416aa513f983e"
+    },
+    {
+      "relativePath": "sitemap.xml",
+      "sha256": "c71f76901292573bec7df45331082dc278d6cc18e6373998b6c1bd7f4c7b2496"
+    },
+    {
+      "relativePath": "skill-library/browser-control/index.html",
+      "sha256": "e800c5827fe75ff7522819daaf8973d286a3712fcbfab0d1852c2010da5a2778"
+    },
+    {
+      "relativePath": "skill-library/deep-research/index.html",
+      "sha256": "7dcab779190f155073733d5ac63d431cc2c265dcb16f62ba5edc981e7c03ee01"
+    },
+    {
+      "relativePath": "skill-library/documents/index.html",
+      "sha256": "eb3096208bc98eef704f116b7cf2bff1b0dd6c04e666fee3a97db66aecbdbc8a"
+    },
+    {
+      "relativePath": "skill-library/frontend-design/index.html",
+      "sha256": "f913ab35fb1e8c4d615e728356896401f032b0b29bc83570806f8895f4db8763"
+    },
+    {
+      "relativePath": "skill-library/index.html",
+      "sha256": "906fcd8bb66b4476c5a03817310ba3282ce27546539371c89aa47eacca7fd412"
+    },
+    {
+      "relativePath": "skill-library/pdf/index.html",
+      "sha256": "e419a6952ac12237c3a5e1043f568cf80ad472513776099f232ba905194d9ff9"
+    },
+    {
+      "relativePath": "skills/goodreads-export/index.html",
+      "sha256": "836c508aa4abf21c7707420f51d6f50323b4969218a05f2faad56cbe4936dcbc"
+    },
+    {
+      "relativePath": "skills/hatch-pet/index.html",
+      "sha256": "f8dde90221cf6c6c9a026d564a96e9875d59d97f6d6dcd44361592d9cf56c95c"
+    },
+    {
+      "relativePath": "skills/index.html",
+      "sha256": "6b4afd8e48440aff0e0754e3e447faebb29d0bf36cde656987dff63c29cfe313"
+    },
+    {
+      "relativePath": "skills/write-like-grant/index.html",
+      "sha256": "6b9f8402c5c9b5a2f5bf882f9a30037cc196b4cb510ef602a36f4c3ebd2a6b94"
+    },
+    {
+      "relativePath": "uploads/2023/5fd90bfbf1.png",
+      "sha256": "b731a69b88413dc84cc2b2e28559bcf3ce401adb1f6a95114cd395fe95a32b63"
+    },
+    {
+      "relativePath": "uploads/2023/6647450a28.png",
+      "sha256": "193a028e159a4749715cfafc5b1212763f6920ab944c9c774e2ccfbfa701a175"
+    },
+    {
+      "relativePath": "uploads/2023/f159196842.png",
+      "sha256": "a4827889f821c91bfaf9e9017339f6aa959c8d6fb9abfba7c33c0096c57d3869"
+    },
+    {
+      "relativePath": "uploads/2023/fa6c5dfe53.png",
+      "sha256": "14e2f3bce1d35f5ddfed2179daf25fdf63dd7369729286e550cf859e97c21dce"
+    }
+  ],
+  "distDigest": "eb9f11611f53597554d5aebed3362cdf578b464fc6d30b6c533dcf6e587620cb"
+}
