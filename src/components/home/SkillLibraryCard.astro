@@ -1,4 +1,5 @@
 ---
+import { recordDestination } from '../../lib/content/destination';
 import type { SkillLibraryRecord } from '../../types/content';
 import HalftoneImage from '../media/HalftoneImage.astro';
 import Icon from '../media/Icon.astro';
@@ -20,15 +21,19 @@ const { records } = Astro.props;
       <span class="card-kicker" data-utility-label>Skill Library</span>
       <span class="card-number" data-utility-label>07</span>
     </div>
-    <h2 id="skill-library-title">The skills I reach for.</h2>
+    <h2 id="skill-library-title">Skills from other people.</h2>
     <p class="skill-library-list">
       {
         records.map((record, index) => (
           <>
             {index > 0 && <span aria-hidden="true">, </span>}
-            <a href={record.data.canonicalPath} data-record-title>
-              {record.data.title}
-            </a>
+            {recordDestination(record) ? (
+              <a href={recordDestination(record)} data-record-title>
+                {record.data.title}
+              </a>
+            ) : (
+              <span data-record-title>{record.data.title}</span>
+            )}
           </>
         ))
       }.

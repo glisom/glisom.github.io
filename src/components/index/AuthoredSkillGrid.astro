@@ -1,4 +1,5 @@
 ---
+import { recordDestination } from '../../lib/content/destination';
 import type { SkillRecord } from '../../types/content';
 import HalftoneImage from '../media/HalftoneImage.astro';
 import Icon from '../media/Icon.astro';
@@ -8,20 +9,15 @@ interface Props {
 }
 
 const { records } = Astro.props;
-const destinationFor = (record: SkillRecord) => {
-  if (record.data.hasDetailPage) return record.data.canonicalPath;
-  if (record.data.visibility !== 'public') return undefined;
-  return record.data.links.find((link) => link.href.startsWith('https://'))
-    ?.href;
-};
+const destinationFor = recordDestination;
 ---
 
 <section class="authored-intro" data-surface="black">
   <div class="authored-intro-copy">
     <span>Made by Grant</span>
     <p>
-      Small, reusable instructions I created because I kept wanting the same
-      work done the same careful way.
+      Instructions that teach an AI tool how to handle a particular task, from
+      drafting a reply to backing up my books.
     </p>
   </div>
   <HalftoneImage
@@ -32,7 +28,10 @@ const destinationFor = (record: SkillRecord) => {
     sizes="(max-width: 820px) calc(100vw - 36px), (max-width: 1023px) 37vw, (max-width: 1219px) 31vw, 27vw"
   />
 </section>
-<div class="authored-skill-grid">
+<div
+  class="authored-skill-grid"
+  style={`--skill-columns: ${records.length % 3 === 0 ? 3 : 2}`}
+>
   {
     records.map((record) => {
       const destination = destinationFor(record);
@@ -56,7 +55,7 @@ const destinationFor = (record: SkillRecord) => {
           )}
           {destination && (
             <a class="arrow-link" href={destination} data-record-action>
-              <span>Open the record</span>
+              <span>View source</span>
               <Icon name="arrow-right" decorative={true} />
             </a>
           )}

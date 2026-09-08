@@ -7,26 +7,25 @@ export const COLLECTIONS = {
   },
   'app-library': {
     label: 'App Library',
-    title: 'Software that earns its place.',
-    description:
-      'The apps and tools that hold up my day, with notes on the job each one actually does.',
+    title: 'Apps in my toolkit.',
+    description: 'Notes on the apps in my setup and what I use them for.',
   },
   projects: {
     label: 'My Apps',
-    title: 'Small software I wanted enough to make.',
+    title: 'Apps and libraries I’ve built.',
     description:
-      'Personal apps, open-source experiments, and the lessons that came from building them.',
+      'Mobile apps, Mac utilities, and open source projects, with descriptions and links to their product pages or source code.',
   },
   'skill-library': {
     label: 'Skill Library',
-    title: 'Capabilities I keep close.',
+    title: 'AI skills from other people.',
     description:
-      'The reusable skills behind my everyday workflows, organized by the moment I reach for them.',
+      'Reusable instructions that help AI tools handle specific tasks, with credit to their creators.',
   },
   skills: {
     label: 'My Skills',
-    title: 'Reusable ways I taught my tools to work.',
+    title: 'AI skills I’ve made.',
     description:
-      'Skills I wrote for myself, shared with the reasoning and examples that make them useful.',
+      'Instructions for tasks I keep coming back to. Some are public; others are personal tools described here.',
   },
 } as const;

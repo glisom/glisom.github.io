@@ -21,35 +21,8 @@ const execFileAsync = promisify(execFile);
 const repositoryRoot = fileURLToPath(new URL('../..', import.meta.url));
 const distRoot = join(repositoryRoot, 'dist');
 
-const EXPECTED_DETAIL_PATHS = [
-  '/app-library/obsidian/',
-  '/app-library/codex/',
-  '/app-library/hermes-agent/',
-  '/app-library/superhuman/',
-  '/projects/hermes-ios/',
-  '/listwithme/',
-  '/projects/healthql/',
-  '/projects/drift-dreams/',
-  '/skill-library/deep-research/',
-  '/skill-library/browser-control/',
-  '/skill-library/frontend-design/',
-  '/skill-library/documents/',
-  '/skill-library/pdf/',
-  '/skills/write-like-grant/',
-  '/skills/goodreads-export/',
-  '/skills/hatch-pet/',
-] as const;
-
+const EXPECTED_DETAIL_PATHS = ['/listwithme/'] as const;
 const DETAIL_VARIANT_FIXTURES = [
-  {
-    path: '/app-library/obsidian/',
-    expectedKeys: [
-      'workflow',
-      'details-i-love',
-      'friction-and-limits',
-      'who-it-suits',
-    ],
-  },
   {
     path: '/listwithme/',
     expectedKeys: [
@@ -58,14 +31,6 @@ const DETAIL_VARIANT_FIXTURES = [
       'how-it-was-built',
       'current-state',
     ],
-  },
-  {
-    path: '/skill-library/deep-research/',
-    expectedKeys: ['trigger', 'inputs-and-outputs', 'guardrails'],
-  },
-  {
-    path: '/skills/write-like-grant/',
-    expectedKeys: ['when-to-use', 'how-it-works', 'design-decisions'],
   },
 ] as const;
 
@@ -241,37 +206,16 @@ beforeAll(async () => {
 }, 60_000);
 
 describe('detail route family', () => {
-  it('emits the exact sixteen launch dossiers and keeps the ListWithMe exception singular', async () => {
+  it('emits the the standalone ListWithMe product page and keeps the ListWithMe exception singular', async () => {
     for (const pathname of EXPECTED_DETAIL_PATHS) {
       expect(await exists(outputPath(pathname)), pathname).toBe(true);
     }
     expect(await exists(outputPath('/projects/listwithme/'))).toBe(false);
-    expect(detailPages).toHaveLength(16);
+    expect(detailPages).toHaveLength(1);
   });
 
   it('computes one-based record numbers and non-wrapping next records within each collection', () => {
-    const expected = [
-      ['/app-library/obsidian/', '1', '/app-library/codex/'],
-      ['/app-library/codex/', '2', '/app-library/hermes-agent/'],
-      ['/app-library/hermes-agent/', '3', '/app-library/superhuman/'],
-      ['/app-library/superhuman/', '4', undefined],
-      ['/projects/hermes-ios/', '1', '/listwithme/'],
-      ['/listwithme/', '2', '/projects/healthql/'],
-      ['/projects/healthql/', '3', '/projects/drift-dreams/'],
-      ['/projects/drift-dreams/', '4', undefined],
-      ['/skill-library/deep-research/', '1', '/skill-library/browser-control/'],
-      [
-        '/skill-library/browser-control/',
-        '2',
-        '/skill-library/frontend-design/',
-      ],
-      ['/skill-library/frontend-design/', '3', '/skill-library/documents/'],
-      ['/skill-library/documents/', '4', '/skill-library/pdf/'],
-      ['/skill-library/pdf/', '5', undefined],
-      ['/skills/write-like-grant/', '1', '/skills/goodreads-export/'],
-      ['/skills/goodreads-export/', '2', '/skills/hatch-pet/'],
-      ['/skills/hatch-pet/', '3', undefined],
-    ] as const;
+    const expected = [['/listwithme/', '1', undefined]] as const;
 
     for (const [pathname, number, nextPath] of expected) {
       const $ = detail(pathname);
@@ -362,18 +306,6 @@ describe('shared dossier anatomy', () => {
     }
   });
 
-  it('renders action-state records honestly and never exposes a private-skill install action', () => {
-    expect(
-      detail('/projects/drift-dreams/')('[data-action-state]').text().trim(),
-    ).toBe('The original public site is currently offline.');
-    expect(
-      detail('/skills/write-like-grant/')('a[data-action="install"]'),
-    ).toHaveLength(0);
-    expect(
-      detail('/skills/write-like-grant/')('[data-action-state]').text(),
-    ).toContain('Kept in my private toolkit.');
-  });
-
   it('resolves each named relationship to the authored destination and source summary', () => {
     for (const pathname of EXPECTED_DETAIL_PATHS) {
       const record = recordForPath(pathname);
@@ -414,12 +346,7 @@ describe('shared dossier anatomy', () => {
   });
 
   it('sizes ending navigation to its real cards without an empty final-record panel', () => {
-    for (const pathname of [
-      '/app-library/superhuman/',
-      '/projects/drift-dreams/',
-      '/skill-library/pdf/',
-      '/skills/hatch-pet/',
-    ] as const) {
+    for (const pathname of ['/listwithme/'] as const) {
       expect(detail(pathname)('.record-navigation').attr('style')).toContain(
         '--record-navigation-count: 1',
       );

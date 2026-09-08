@@ -1,3 +1,4 @@
+import { recordDestination } from './destination';
 import type {
   AnySiteRecord,
   ContentGraph,
@@ -26,7 +27,7 @@ export function resolveRelationships(
         relationshipTargetIssueMessage(source, relationship, 'missing'),
       );
     }
-    if (target.data.draft || !target.data.hasDetailPage) {
+    if (!recordDestination(target)) {
       throw new Error(
         relationshipTargetIssueMessage(source, relationship, 'unpublished'),
       );
@@ -35,7 +36,7 @@ export function resolveRelationships(
       ...relationship,
       title: target.data.title,
       summary: target.data.summary,
-      canonicalPath: target.data.canonicalPath,
+      canonicalPath: recordDestination(target)!,
     };
   });
 }

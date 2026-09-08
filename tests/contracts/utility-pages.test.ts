@@ -22,15 +22,15 @@ const OUTPUTS = new Map([
 ]);
 
 const ABOUT_OPENING =
-  'I’m an app maker, obsessive software user, and writer in Chicago. I’m curious about how software gets made, why some tools stick, and what is worth building for myself. This site is where I keep the things I’ve made and the notes I want to remember.';
+  'I’m a software engineer in Kansas City, Missouri. I build AI agents at Limelight, run Groundwork AI, and make apps and tools of my own. This is where I share what I’m building and what I’m learning along the way.';
 const ABOUT_RIGHT_NOW =
   'Most of my favorite projects start because I want something to exist, so I try making it. Here’s what has my attention right now.';
 const ABOUT_BACKGROUND =
-  'I’m from Kansas City and now live in Chicago. I’ve spent more than a decade making mobile, platform, and AI software, and these days I build AI products at Limelight and occasionally help teams through Groundwork AI. I still get most excited by small, useful things one person can shape.';
+  'I taught myself to code at 16 and started a software consultancy while studying at the University of Kansas. At Cerner, I built patient-facing mobile apps and worked with Apple on early HealthKit integrations. I later became Head of Engineering at Illuminate, where our clinical AI helped care teams find missed findings in radiology reports. At RealWork, I built a mobile platform that reached more than 1,000 customers in its first year, then led the engineering team and development of an AI voice agent for home-service businesses. Today, I’m the Founding AI Engineer at Limelight, building agents that can handle real customer workflows reliably.';
 const ABOUT_OUTSIDE =
-  'I play a lot of tennis, am a dad to a young daughter, and will always have strong opinions about Kansas City barbecue. Chicago is home now, but KC is still part of the wiring.';
+  'Outside of software, I’m a dad and a tennis player with strong opinions about Kansas City barbecue and coffee.';
 const ABOUT_ELSEWHERE =
-  'GitHub is where the code lives. LinkedIn has the work history. RSS is the quiet way to keep up, and email is always open.';
+  'Find my code on GitHub, my work history on LinkedIn, and follow me on X (Twitter). Get new posts through RSS or reach me by email.';
 
 let legalFixture: {
   support: ReturnType<typeof extractLegalHtml>;
@@ -171,9 +171,14 @@ describe('quiet utility page family', () => {
     expect(normalize(about('[data-about-right-now]').text())).toBe(
       ABOUT_RIGHT_NOW,
     );
-    expect(normalize(about('[data-about-background]').text())).toBe(
-      ABOUT_BACKGROUND,
-    );
+    expect(
+      normalize(
+        about('[data-about-background] p')
+          .map((_, node) => about(node).text())
+          .get()
+          .join(' '),
+      ),
+    ).toBe(ABOUT_BACKGROUND);
     expect(normalize(about('[data-about-outside]').text())).toBe(ABOUT_OUTSIDE);
     expect(normalize(about('[data-about-elsewhere]').text())).toBe(
       ABOUT_ELSEWHERE,

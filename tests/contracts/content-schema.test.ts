@@ -296,12 +296,12 @@ describe('content graph validation', () => {
     expect(codes(graphWithMissingRelationship)).toContain(
       'missing-relationship-target',
     );
-    expect(codes(graphWithUnavailableRelationship)).toContain(
+    expect(codes(graphWithUnavailableRelationship)).not.toContain(
       'unpublished-relationship-target',
     );
   });
 
-  it('requires related projects to exist and be generated', () => {
+  it('allows related projects with public external destinations', () => {
     const graphWithMissingRelatedProject = {
       ...validGraph(),
       blog: [blogRecord({ relatedProject: 'missing' })],
@@ -313,7 +313,7 @@ describe('content graph validation', () => {
     expect(codes(graphWithMissingRelatedProject)).toContain(
       'missing-related-project',
     );
-    expect(codes(graphWithUnavailableRelatedProject)).toContain(
+    expect(codes(graphWithUnavailableRelatedProject)).not.toContain(
       'missing-related-project',
     );
   });
@@ -700,7 +700,7 @@ describe('relationship resolution', () => {
         label: 'Related project',
         title: 'ListWithMe',
         summary: 'A complete project fixture.',
-        canonicalPath: '/projects/primary-project/',
+        canonicalPath: 'https://example.com/project',
       },
     ]);
   });
@@ -711,9 +711,16 @@ describe('relationship resolution', () => {
     const missingMessage =
       '/2026/09/01/featured-post.html references projects/missing, but that relationship target does not exist.';
     const unavailableMessage =
-      '/2026/09/01/featured-post.html references projects/primary-project, but that relationship target is not published and generated.';
+      '/2026/09/01/featured-post.html references projects/primary-project, but that relationship target has no public destination.';
     const missingGraph = { ...validGraph(), blog: [missingSource] };
-    const unavailableGraph = { ...validGraph(), blog: [unavailableSource] };
+    const unavailableGraph = {
+      ...validGraph(),
+      blog: [unavailableSource],
+      projects: validGraph().projects.map((record) => ({
+        ...record,
+        data: { ...record.data, draft: true },
+      })),
+    };
 
     expect(
       validateContentGraph(missingGraph).find(

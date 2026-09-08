@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { extractSemanticPage } from '../../scripts/capture-production-baseline.mjs';
 
 describe('independent public contract', () => {
-  it('contains 52 unique artifacts and 48 sitemap pages', async () => {
+  it('contains 37 unique artifacts and 33 sitemap pages', async () => {
     const fixture = JSON.parse(
       await readFile(
         new URL('../fixtures/public-routes.json', import.meta.url),
@@ -11,15 +11,15 @@ describe('independent public contract', () => {
       ),
     );
     const routes = fixture.routes;
-    expect(routes).toHaveLength(52);
+    expect(routes).toHaveLength(37);
     expect(
       new Set(
         routes.map((route: { canonicalPath: string }) => route.canonicalPath),
       ).size,
-    ).toBe(52);
+    ).toBe(37);
     expect(
       routes.filter((route: { inSitemap: boolean }) => route.inSitemap),
-    ).toHaveLength(48);
+    ).toHaveLength(33);
     expect(
       routes.some(
         (route: { outputPath: string }) =>

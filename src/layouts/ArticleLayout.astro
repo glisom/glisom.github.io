@@ -1,4 +1,5 @@
 ---
+import { recordDestination } from '../lib/content/destination';
 import type { CollectionEntry } from 'astro:content';
 import ArticleMeta from '../components/editorial/ArticleMeta.astro';
 import Comments from '../components/editorial/Comments.astro';
@@ -64,7 +65,9 @@ if (post.data.relatedProject && !relatedProjectRecord) {
 const relatedProject = relatedProjectRecord
   ? {
       title: relatedProjectRecord.data.title,
-      canonicalPath: relatedProjectRecord.data.canonicalPath,
+      canonicalPath: relatedProjectRecord.data.hasDetailPage
+        ? relatedProjectRecord.data.canonicalPath
+        : recordDestination(relatedProjectRecord)!,
     }
   : undefined;
 const publishedDate = formatPublicDate(post.data.publishedAt);

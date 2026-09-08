@@ -57,7 +57,7 @@ async function main() {
     process.exitCode = 1;
     return;
   }
-  console.log('Compared 76 crawl policies with zero differences.');
+  console.log('Compared 61 crawl policies with zero differences.');
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) await main();

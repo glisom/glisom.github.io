@@ -55,13 +55,13 @@ function htmlResult(path: string, overrides: Record<string, unknown> = {}) {
 }
 
 describe('crawl policy coverage', () => {
-  it('catches an uncovered, duplicate, or unknown path across the exact 76 policies', () => {
+  it('catches an uncovered, duplicate, or unknown path across the exact 61 policies', () => {
     const policies = buildCrawlPolicies(routes, assets, {
       groups,
       migrationAllowances,
     });
-    expect(policies).toHaveLength(76);
-    expect(new Set(policies.map(({ path }) => path)).size).toBe(76);
+    expect(policies).toHaveLength(61);
+    expect(new Set(policies.map(({ path }) => path)).size).toBe(61);
     expect(policies.filter(({ mode }) => mode === 'legacy-post')).toHaveLength(
       23,
     );

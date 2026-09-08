@@ -8,10 +8,10 @@ import { loadSourceGraph } from './lib/source-graph';
 
 const EXPECTED_COUNTS = {
   blog: 23,
-  'app-library': 4,
-  projects: 4,
-  'skill-library': 5,
-  skills: 3,
+  'app-library': 11,
+  projects: 5,
+  'skill-library': 6,
+  skills: 7,
 } as const;
 
 interface RouteOracle {
@@ -27,7 +27,7 @@ export async function validateSource(): Promise<void> {
     assert.equal(
       actual,
       expected,
-      `${collection} must contain ${expected} launch records; received ${actual}`,
+      `${collection} must contain ${expected} records; received ${actual}`,
     );
   }
 

@@ -1,11 +1,12 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import { SITE } from '../data/site';
 import '../styles/home.css';
 ---
 
 <BaseLayout
-  title="Grant Isom — Writer, maker, tinkerer"
-  description="Writing, small software, useful systems, and the tools and skills shaping how I work."
+  title={SITE.title}
+  description={SITE.description}
   canonicalPath="/"
   railContext={{ kind: 'home' }}
 >

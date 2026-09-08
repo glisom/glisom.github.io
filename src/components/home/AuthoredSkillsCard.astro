@@ -1,4 +1,5 @@
 ---
+import { recordDestination } from '../../lib/content/destination';
 import type { SkillRecord } from '../../types/content';
 import HalftoneImage from '../media/HalftoneImage.astro';
 
@@ -26,15 +27,19 @@ const { records } = Astro.props;
       <span class="card-kicker" data-utility-label>My Skills</span>
       <span class="card-number" data-utility-label>06</span>
     </div>
-    <h2 id="my-skills-title">Three skills I made for myself.</h2>
+    <h2 id="my-skills-title">Skills I’ve built.</h2>
     <p class="personal-skill-list">
       {
         records.map((record, index) => (
           <>
             {index > 0 && <span aria-hidden="true"> · </span>}
-            <a href={record.data.canonicalPath} data-record-title>
-              {record.data.title}
-            </a>
+            {recordDestination(record) ? (
+              <a href={recordDestination(record)} data-record-title>
+                {record.data.title}
+              </a>
+            ) : (
+              <span data-record-title>{record.data.title}</span>
+            )}
           </>
         ))
       }

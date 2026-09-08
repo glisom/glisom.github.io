@@ -4,7 +4,7 @@ slug: healthql
 canonicalPath: /projects/healthql/
 summary: An open source library for querying Apple HealthKit with familiar SQL syntax.
 draft: false
-hasDetailPage: true
+hasDetailPage: false
 featured: false
 displayOrder: 3
 tags: [healthkit, swift, react-native, open-source]

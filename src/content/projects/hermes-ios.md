@@ -2,9 +2,10 @@
 title: Hermes iOS
 slug: hermes-ios
 canonicalPath: /projects/hermes-ios/
-summary: My private mobile control plane for the Hermes Agent running on my Mac.
+summary: An iPhone app for chatting with Hermes Agent and managing its sessions, jobs, and skills.
+updatedAt: '2026-09-07'
 draft: false
-hasDetailPage: true
+hasDetailPage: false
 featured: true
 displayOrder: 1
 homepageSlot: featured-project-primary
@@ -35,7 +36,7 @@ fieldNotes:
   - key: why-it-exists
     heading: Why I made it
     body:
-      - My agent could keep working on my Mac when I stepped away, but I wanted the cockpit to stay with me on my phone.
+      - I wanted to check on Hermes Agent and keep a conversation going from my phone.
   - key: what-it-does
     heading: What it does
     body:
@@ -47,5 +48,5 @@ fieldNotes:
   - key: current-state
     heading: Current state
     body:
-      - The project is public and MIT licensed, with the core chat, session, job, skill, and insight surfaces in place.
+      - The source is public under the MIT license. It connects to an existing Hermes Agent gateway over Tailscale.
 ---

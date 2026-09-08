@@ -1,4 +1,5 @@
 ---
+import { recordDestination } from '../../lib/content/destination';
 import type { AppLibraryRecord } from '../../types/content';
 import Icon, { type IconName } from '../media/Icon.astro';
 
@@ -12,6 +13,10 @@ const appIcons: Record<string, IconName> = {
   codex: 'code',
   'hermes-agent': 'robot',
   superhuman: 'envelope-simple',
+  notion: 'books',
+  claude: 'asterisk',
+  linear: 'stack-simple',
+  slack: 'envelope-simple',
 };
 ---
 
@@ -24,13 +29,13 @@ const appIcons: Record<string, IconName> = {
     <span class="card-kicker" data-utility-label>App Library</span>
     <span class="card-number" data-utility-label>04</span>
   </div>
-  <h2 id="app-library-title">Daily drivers.</h2>
-  <p class="method-intro">The software I would reinstall first.</p>
+  <h2 id="app-library-title">In my toolkit.</h2>
+  <p class="method-intro">A few of the apps I use.</p>
   <ol class="method-list">
     {
       records.map((record, index) => (
         <li>
-          <a href={record.data.canonicalPath}>
+          <a href={recordDestination(record)}>
             <span data-utility-label>{String(index + 1).padStart(2, '0')}</span>
             <Icon name={appIcons[record.id] ?? 'asterisk'} decorative={true} />
             <strong data-record-title>{record.data.title}</strong>

@@ -2,7 +2,7 @@
 layout: post
 title: "ListWithMe, Creating an iMessage-only Application"
 description: "1m 30s read time"
-excerpt: "Here is a list of what I listened to throughout the past year."
+excerpt: "Building a shared-list app inside iMessage, and what I learned about the Messages framework and app discovery."
 tags: ios imessages xcode swift
 comments: true
 ---

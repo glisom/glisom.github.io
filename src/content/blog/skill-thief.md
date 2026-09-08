@@ -12,14 +12,8 @@ tags:
   - agents
   - open source
 links: []
-relationships:
-  - label: Related authored skill
-    collection: skills
-    id: write-like-grant
-  - label: Related authored skill
-    collection: skills
-    id: goodreads-export
-publishedAt: "2026-09-01"
+relationships: []
+publishedAt: '2026-09-01'
 kind: Post
 comments: true
 preservedHeadingIds:
@@ -30,7 +24,7 @@ preservedHeadingIds:
   - its-not-an-installer
   - try-it
 numberHeadings: false
-originalTimestamp: "2026-09-01T12:00:00.000Z"
+originalTimestamp: '2026-09-01T12:00:00.000Z'
 ---
 I read a lot of other people's agent setups. Skills repos, plugins, conference talks, that one blog post everybody links. There are almost always good ideas in there. What I kept getting wrong was what to do next.
 

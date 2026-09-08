@@ -5,6 +5,7 @@ export const SOCIAL_LINKS = [
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/grantisom',
   },
+  { id: 'twitter', label: 'X (Twitter)', href: 'https://x.com/grantisom' },
   { id: 'rss', label: 'RSS', href: 'https://grantisom.com/feed.xml' },
   {
     id: 'email',

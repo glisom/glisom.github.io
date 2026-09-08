@@ -2,39 +2,35 @@
 title: Obsidian
 slug: obsidian
 canonicalPath: /app-library/obsidian/
-summary: The place I keep notes, projects, and the connections between them.
+summary: A place for Markdown notes, including the book records from my Goodreads exports.
+updatedAt: '2026-09-07'
 draft: false
-hasDetailPage: true
+hasDetailPage: false
 featured: false
 displayOrder: 1
-homepageSlot: app-library
-homepageOrder: 1
-tags: [notes, knowledge]
+tags:
+  - notes
+  - knowledge
 ownership: used
-category: Thinking and notes
-reasonItStays: It gives my notes enough structure to stay useful without making them rigid.
-reviewedAt: '2026-09-02'
+category: Notes and reading
+reasonItStays: My Goodreads backup becomes a collection of book notes I can browse alongside other notes.
 links:
-  - { label: 'Visit Obsidian', href: 'https://obsidian.md', kind: 'primary' }
+  - label: Visit Obsidian
+    href: https://obsidian.md
+    kind: primary
 relationships: []
 facts:
-  - { label: 'Job', value: 'Notes and connected knowledge' }
-  - { label: 'Cadence', value: 'Daily' }
+  - label: Format
+    value: Markdown notes
+  - label: Example
+    value: Goodreads library backup
 fieldNotes:
   - key: workflow
-    heading: The job it does
+    heading: How it fits my setup
     body:
-      - I use Obsidian as the durable home for notes, active projects, and the connections I want to find again later.
+      - My Goodreads export skill creates book notes and an Obsidian Bases view, with a copy of each CSV export.
   - key: details-i-love
-    heading: The details I love
+    heading: Why plain files help
     body:
-      - Plain text keeps the underlying work portable, while links and structure let the vault grow without turning into a filing cabinet.
-  - key: friction-and-limits
-    heading: Friction and limits
-    body:
-      - 'The flexibility is also the trap: without a small set of conventions, it is easy for capture to outrun the work of making notes useful again.'
-  - key: who-it-suits
-    heading: Who it suits
-    body:
-      - It is especially useful for someone who values local files, wants to shape their own system, and does not mind tending that system over time.
+      - The backup keeps the original export and readable notes. The sync also preserves handwritten notes about each book.
 ---

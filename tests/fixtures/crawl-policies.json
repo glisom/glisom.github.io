@@ -1,19 +1,33 @@
 {
-  "redesignedExisting": ["/", "/projects/", "/about/", "/listwithme/", "/404.html"],
+  "redesignedExisting": [
+    "/",
+    "/projects/",
+    "/about/",
+    "/listwithme/",
+    "/404.html"
+  ],
   "legalParity": {
     "/listwithme/support/": "support",
     "/listwithme/privacy/": "privacy"
   },
   "newRoutes": [
-    "/blog/", "/app-library/", "/skill-library/", "/skills/",
-    "/app-library/obsidian/", "/app-library/codex/", "/app-library/hermes-agent/", "/app-library/superhuman/",
-    "/projects/hermes-ios/", "/projects/healthql/", "/projects/drift-dreams/",
-    "/skill-library/deep-research/", "/skill-library/browser-control/", "/skill-library/frontend-design/", "/skill-library/documents/", "/skill-library/pdf/",
-    "/skills/write-like-grant/", "/skills/goodreads-export/", "/skills/hatch-pet/"
+    "/blog/",
+    "/app-library/",
+    "/skill-library/",
+    "/skills/"
   ],
   "discovery": {
-    "/feed.xml": { "baselineStatus": 200, "expectedContentType": "application/xml" },
-    "/sitemap.xml": { "baselineStatus": 200, "expectedContentType": "application/xml" },
-    "/robots.txt": { "baselineStatus": 404, "expectedContentType": "text/plain" }
+    "/feed.xml": {
+      "baselineStatus": 200,
+      "expectedContentType": "application/xml"
+    },
+    "/sitemap.xml": {
+      "baselineStatus": 200,
+      "expectedContentType": "application/xml"
+    },
+    "/robots.txt": {
+      "baselineStatus": 404,
+      "expectedContentType": "text/plain"
+    }
   }
 }
