@@ -78,7 +78,7 @@ describe('built homepage', () => {
 
   it('renders curated and computed records from the content graph', () => {
     expect($('[data-home-slot="featured-writing"] h2').text()).toBe(
-      'Bringing ListWithMe Back to Life',
+      'Vampire: Keep Your MacBook Awake',
     );
     expect($('[data-home-slot="featured-project-primary"] h2').text()).toBe(
       'Hermes iOS',
@@ -90,17 +90,18 @@ describe('built homepage', () => {
       $('[data-home-slot="app-library"] [data-record-title]')
         .map((_, node) => $(node).text().trim())
         .get(),
-    ).toEqual(['Obsidian', 'Codex', 'Hermes Agent', 'Superhuman']);
+    ).toEqual(['Notion', 'Claude', 'Linear', 'Slack']);
     expect(
       $('[data-home-slot="skill-library"] [data-record-title]')
         .map((_, node) => $(node).text().trim())
         .get(),
     ).toEqual([
-      'Deep Research',
-      'Browser Control',
-      'Frontend Design',
-      'Documents',
-      'PDF',
+      'Impeccable',
+      'Superpowers',
+      'Compound Engineering',
+      'Obsidian Markdown',
+      'Obsidian Bases',
+      'JSON Canvas',
     ]);
     expect(
       $('[data-home-slot="latest-posts"] [data-post-row] > a'),
@@ -109,7 +110,15 @@ describe('built homepage', () => {
       $('[data-home-slot="my-skills"] [data-record-title]')
         .map((_, node) => $(node).text().trim())
         .get(),
-    ).toEqual(['write-like-grant', 'goodreads-export', 'hatch-pet']);
+    ).toEqual([
+      'write-like-grant',
+      'goodreads-export',
+      'skill-thief',
+      'comment-detective',
+      'comment-conductor',
+      'change-review-digest',
+      'ux-deep-dive',
+    ]);
   });
 
   it('keeps the static mobile card order and shared shell boundaries', () => {

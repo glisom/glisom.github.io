@@ -6,21 +6,13 @@ import {
   test,
 } from './helpers';
 
-const variants = [
-  ['my-app', '/listwithme/'],
-  ['used-app', '/app-library/obsidian/'],
-  ['used-skill', '/skill-library/deep-research/'],
-  ['my-skill', '/skills/write-like-grant/'],
-] as const;
+const variants = [['my-app', '/listwithme/']] as const;
 
 for (const [variant, path] of variants) baseline(`detail-${variant}`, path);
 
 for (const [variant, path] of variants) {
   test(`capture ${variant} detail comparison`, async ({ page }, testInfo) => {
-    test.skip(
-      !comparisonMode ||
-        (variant !== 'my-app' && testInfo.project.name === 'tablet'),
-    );
+    test.skip(!comparisonMode);
     await capturePair(
       page,
       `detail-${variant}-${testInfo.project.name}`,

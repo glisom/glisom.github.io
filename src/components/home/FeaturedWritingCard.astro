@@ -8,6 +8,11 @@ interface Props {
 }
 
 const { record } = Astro.props;
+const art = record.data.featuredArt ?? {
+  src: 'evidence/production-hands.png',
+  alt: 'Two halftone hands reaching toward one another',
+  decorative: false,
+};
 ---
 
 <article
@@ -24,8 +29,9 @@ const { record } = Astro.props;
   <p>{record.data.summary}</p>
   <HalftoneImage
     class="production-art"
-    src="evidence/production-hands.png"
-    alt="Two halftone hands reaching toward one another"
+    src={art.src}
+    alt={art.alt}
+    decorative={art.decorative}
     widths={[400, 640, 800, 1000]}
     sizes="(max-width: 820px) calc(100vw - 32px), (max-width: 1120px) 50vw, (max-width: 1219px) calc(50vw - 134px), (max-width: 1320px) calc(50vw - 160px), 26vw"
   />

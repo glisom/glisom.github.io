@@ -71,24 +71,37 @@ describe('launch content', () => {
       'codex',
       'hermes-agent',
       'superhuman',
+      'notion',
+      'claude',
+      'linear',
+      'slack',
+      'poolsuite-fm',
+      'spotify',
+      'wispr-flow',
     ]);
     expect(ids(graph.projects)).toEqual([
       'hermes-ios',
       'listwithme',
       'healthql',
+      'vampire',
       'drift-dreams',
     ]);
     expect(ids(graph['skill-library'])).toEqual([
-      'deep-research',
-      'browser-control',
-      'frontend-design',
-      'documents',
-      'pdf',
+      'impeccable',
+      'superpowers',
+      'compound-engineering',
+      'obsidian-markdown',
+      'obsidian-bases',
+      'json-canvas',
     ]);
     expect(ids(graph.skills)).toEqual([
       'write-like-grant',
       'goodreads-export',
-      'hatch-pet',
+      'skill-thief',
+      'comment-detective',
+      'comment-conductor',
+      'change-review-digest',
+      'ux-deep-dive',
     ]);
     expect(find(graph, 'projects', 'listwithme').data.canonicalPath).toBe(
       '/listwithme/',

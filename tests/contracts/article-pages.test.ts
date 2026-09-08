@@ -34,7 +34,6 @@ const EXPECTED_RELATIONSHIPS: Record<string, readonly ExpectedRelationship[]> =
         label: 'Continued in',
         href: '/2023/01/02/mustread-books-for.html',
       },
-      { label: 'Related skill', href: '/skills/goodreads-export/' },
     ],
     '/2018/11/27/playlists.html': [
       { label: 'Continued in', href: '/2020/02/10/2019-playlists.html' },
@@ -44,7 +43,10 @@ const EXPECTED_RELATIONSHIPS: Record<string, readonly ExpectedRelationship[]> =
       },
     ],
     '/2019/05/30/listwithme.html': [
-      { label: 'Built as', href: '/listwithme/' },
+      {
+        label: 'Built as',
+        href: 'https://apps.apple.com/us/app/listwithme/id1224284271',
+      },
       {
         label: 'Rebuilt later',
         href: '/2026/02/24/listwithme-returns.html',
@@ -77,7 +79,7 @@ const EXPECTED_RELATIONSHIPS: Record<string, readonly ExpectedRelationship[]> =
       { label: 'Another annual list', href: '/2018/04/02/reading-list.html' },
     ],
     '/2020/05/23/mac_apps.html': [
-      { label: 'Current notes tool', href: '/app-library/obsidian/' },
+      { label: 'Current notes tool', href: 'https://obsidian.md' },
       {
         label: 'One developer workflow',
         href: '/2020/05/29/safari-inspecting-simulators.html',
@@ -116,10 +118,9 @@ const EXPECTED_RELATIONSHIPS: Record<string, readonly ExpectedRelationship[]> =
     ],
     '/2023/01/02/mustread-books-for.html': [
       { label: 'Earlier reading list', href: '/2018/04/02/reading-list.html' },
-      { label: 'Related skill', href: '/skills/goodreads-export/' },
     ],
     '/2023/01/14/notion-for-software.html': [
-      { label: 'What I use now', href: '/app-library/obsidian/' },
+      { label: 'What I use now', href: 'https://obsidian.md' },
       { label: 'Earlier tools list', href: '/2020/05/23/mac_apps.html' },
     ],
     '/2023/02/01/expo-app-config.html': [
@@ -157,14 +158,14 @@ const EXPECTED_RELATIONSHIPS: Record<string, readonly ExpectedRelationship[]> =
       },
     ],
     '/2026/02/01/healthql-sql-for-healthkit.html': [
-      { label: 'Built as', href: '/projects/healthql/' },
+      { label: 'Built as', href: 'https://github.com/glisom/HealthQL' },
       {
         label: 'Expanded in',
         href: '/2026/02/07/healthql-react-native.html',
       },
     ],
     '/2026/02/07/healthql-react-native.html': [
-      { label: 'Built as', href: '/projects/healthql/' },
+      { label: 'Built as', href: 'https://github.com/glisom/HealthQL' },
       {
         label: 'Built on',
         href: '/2026/02/01/healthql-sql-for-healthkit.html',
@@ -175,13 +176,13 @@ const EXPECTED_RELATIONSHIPS: Record<string, readonly ExpectedRelationship[]> =
       },
     ],
     '/2026/02/24/listwithme-returns.html': [
-      { label: 'Built as', href: '/listwithme/' },
+      {
+        label: 'Built as',
+        href: 'https://apps.apple.com/us/app/listwithme/id1224284271',
+      },
       { label: 'Earlier chapter', href: '/2019/05/30/listwithme.html' },
     ],
-    '/2026/09/01/skill-thief.html': [
-      { label: 'Related authored skill', href: '/skills/write-like-grant/' },
-      { label: 'Related authored skill', href: '/skills/goodreads-export/' },
-    ],
+    '/2026/09/01/skill-thief.html': [],
     '/2026/09/01/vampire.html': [
       { label: 'Earlier Mac toolkit', href: '/2020/05/23/mac_apps.html' },
       {
@@ -624,7 +625,7 @@ describe('authored article endings', () => {
     for (const [pathname, expected] of Object.entries(EXPECTED_RELATIONSHIPS)) {
       const { $ } = article(pathname);
       const records = $('[data-related-record]');
-      expect(records.length, pathname).toBeGreaterThanOrEqual(2);
+      expect(records.length, pathname).toBe(expected.length);
       expect(records.length, pathname).toBeLessThanOrEqual(3);
       expect(
         records

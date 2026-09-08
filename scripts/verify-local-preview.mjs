@@ -176,7 +176,7 @@ async function main() {
       );
     }
     console.log(
-      'Fresh production and built-preview crawls satisfy all 76 policies.',
+      'Fresh production and built-preview crawls satisfy all 61 policies.',
     );
   } finally {
     for (const [signal, handler] of signalHandlers)

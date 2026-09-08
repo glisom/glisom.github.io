@@ -1,4 +1,5 @@
 ---
+import { recordDestination } from '../../lib/content/destination';
 import type { SkillLibraryRecord } from '../../types/content';
 import Icon from '../media/Icon.astro';
 
@@ -13,14 +14,11 @@ for (const record of records) {
   group.push(record);
   groups.set(record.data.category, group);
 }
-const destinationFor = (record: SkillLibraryRecord) =>
-  record.data.hasDetailPage
-    ? record.data.canonicalPath
-    : record.data.links.find((link) => link.href.startsWith('https://'))?.href;
+const destinationFor = recordDestination;
 ---
 
 <div class="section-heading">
-  <h2>The skills I reach for</h2><p>A field manual, not a marketplace</p>
+  <h2>Skills in my toolkit</h2><p>What they do and who made them</p>
 </div>
 <div class="skill-manual">
   {

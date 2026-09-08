@@ -27,7 +27,7 @@ async function exists(path: string): Promise<boolean> {
 
 describe('built-site release contract', () => {
   it('catches missing routes, compatibility bytes, or broken rendered HTML', async () => {
-    expect(routeManifest).toHaveLength(52);
+    expect(routeManifest).toHaveLength(37);
     await expect(
       assertDistContract(dist, routeManifest),
     ).resolves.toBeUndefined();

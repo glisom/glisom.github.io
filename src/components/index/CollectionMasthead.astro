@@ -24,16 +24,16 @@ const mastheadDetails = {
   'app-library': {
     noun: 'tools',
     ownership: 'Used by Grant',
-    accent: 'earns its place.',
+    accent: 'my toolkit.',
     image: 'evidence/groundwork-surveyor.png',
     alt: 'A technical blue drawing of a surveyor instrument',
-    caption: 'Index / Daily tools',
+    caption: 'Index / Apps',
     note: 'Grouped by job',
   },
   projects: {
     noun: 'apps',
     ownership: 'Made by Grant',
-    accent: 'make.',
+    accent: 'I’ve built.',
     image: 'evidence/healthql-hands.png',
     alt: 'A sequence of fine-line blue hand gestures',
     caption: 'Index / Software',
@@ -42,26 +42,27 @@ const mastheadDetails = {
   'skill-library': {
     noun: 'skills',
     ownership: 'Used by Grant',
-    accent: 'close.',
+    accent: 'other people.',
     image: 'evidence/evidence-map.png',
     alt: 'Abstract blue halftone terrain marked with system checkpoints',
-    caption: 'Index / Field manual',
+    caption: 'Index / AI skills',
     note: 'Grouped by category',
   },
   skills: {
     noun: 'skills',
     ownership: 'Made by Grant',
-    accent: 'work.',
+    accent: 'I’ve made.',
     image: 'evidence/belief-rings.png',
     alt: 'Concentric acid-lime halftone rings',
     caption: 'Index / Authored skills',
-    note: 'Lime marks authorship',
+    note: 'Personal and public skills',
   },
 } as const;
 const detail = mastheadDetails[collection];
 const accentIndex = title.lastIndexOf(detail.accent);
-const titleBefore = title.slice(0, accentIndex);
-const titleAfter = title.slice(accentIndex + detail.accent.length);
+const titleBefore = accentIndex < 0 ? title : title.slice(0, accentIndex);
+const titleAfter =
+  accentIndex < 0 ? '' : title.slice(accentIndex + detail.accent.length);
 ---
 
 <header class="collection-masthead">
@@ -80,7 +81,9 @@ const titleAfter = title.slice(accentIndex + detail.accent.length);
         )
       }
     </p>
-    <h1>{titleBefore}<em>{detail.accent}</em>{titleAfter}</h1>
+    <h1>
+      {titleBefore}{accentIndex >= 0 && <em>{detail.accent}</em>}{titleAfter}
+    </h1>
     <p class="collection-masthead-intro">{description}</p>
   </div>
   <figure class="collection-mark">

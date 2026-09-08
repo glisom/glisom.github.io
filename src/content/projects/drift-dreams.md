@@ -3,22 +3,29 @@ title: Drift Dreams
 slug: drift-dreams
 canonicalPath: /projects/drift-dreams/
 summary: A dream journal for capturing what I remember and finding patterns with AI-powered insights.
+updatedAt: '2026-09-07'
 draft: false
-hasDetailPage: true
+hasDetailPage: false
 featured: false
-displayOrder: 4
-tags: [dreams, journaling, ios, android]
+displayOrder: 5
+tags:
+  - dreams
+  - journaling
+  - ios
+  - android
 ownership: made
-status: Dormant, public site offline
+status: Archived
 platform: iOS and Android
-reviewedAt: '2026-09-02'
 links: []
-actionState: The original public site is currently offline.
+actionState: No public download is linked here.
 relationships: []
 facts:
-  - { label: 'Platforms', value: 'iOS and Android' }
-  - { label: 'Journal details', value: 'Moods, sleep quality, and tags' }
-  - { label: 'Insights', value: 'AI interpretations and pattern discovery' }
+  - label: Platforms
+    value: iOS and Android
+  - label: Journal details
+    value: Moods, sleep quality, and tags
+  - label: Insights
+    value: AI interpretations and pattern discovery
 fieldNotes:
   - key: why-it-exists
     heading: Why I made it
@@ -31,5 +38,5 @@ fieldNotes:
   - key: current-state
     heading: Current state
     body:
-      - The original public site is currently offline, so this record preserves what the product did without linking to a broken destination.
+      - This page describes the original app. A current public release has not been verified.
 ---

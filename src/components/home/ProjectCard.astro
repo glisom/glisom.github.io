@@ -1,4 +1,5 @@
 ---
+import { recordDestination } from '../../lib/content/destination';
 import type { ProjectRecord } from '../../types/content';
 import HalftoneImage from '../media/HalftoneImage.astro';
 import Icon from '../media/Icon.astro';
@@ -43,7 +44,7 @@ const imageSizes =
     widths={[320, 480, 640, 720]}
     sizes={imageSizes}
   />
-  <a class="arrow-link" href={record.data.canonicalPath}>
+  <a class="arrow-link" href={recordDestination(record)}>
     <span>Open the project</span>
     <Icon name="arrow-right" decorative={true} />
   </a>

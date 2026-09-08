@@ -20,7 +20,11 @@ const copy = COLLECTIONS.projects;
 <CollectionIndexLayout
   collection="projects"
   count={records.length}
-  updatedAt={records[0]?.data.reviewedAt}
+  updatedAt={records
+    .map(({ data }) => data.updatedAt ?? data.reviewedAt)
+    .filter((date): date is string => Boolean(date))
+    .sort()
+    .at(-1)}
   title={copy.title}
   description={copy.description}
 >

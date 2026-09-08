@@ -21,7 +21,7 @@ const indexes = new Map<string, CheerioAPI>();
 let indexStyles: Root;
 
 const EXPECTED_BLOG_TITLES = [
-  "Vampire: The Hard Part Isn't Keeping the Mac Awake",
+  'Vampire: Keep Your MacBook Awake',
   'skill-thief: Steal the Ideas, Not the Install',
   'Bringing ListWithMe Back to Life',
   'HealthQL Now Supports React Native',
@@ -133,10 +133,10 @@ describe('built collection indexes', () => {
     ).toBe('23');
     expect(index('/blog/')('[data-year-group="2026"]')).toHaveLength(1);
     expect(index('/blog/')('.post-row')).toHaveLength(23);
-    expect(index('/app-library/')('[data-tool-record]')).toHaveLength(4);
-    expect(index('/projects/')('[data-app-record]')).toHaveLength(4);
-    expect(index('/skill-library/')('[data-skill-record]')).toHaveLength(5);
-    expect(index('/skills/')('[data-authored-skill]')).toHaveLength(3);
+    expect(index('/app-library/')('[data-tool-record]')).toHaveLength(11);
+    expect(index('/projects/')('[data-app-record]')).toHaveLength(5);
+    expect(index('/skill-library/')('[data-skill-record]')).toHaveLength(6);
+    expect(index('/skills/')('[data-authored-skill]')).toHaveLength(7);
   });
 
   it('launches without search or filter controls', () => {
@@ -170,7 +170,7 @@ describe('built collection indexes', () => {
       { year: '2018', count: 2 },
     ]);
     expect($('.featured-story h2').text()).toBe(
-      'Bringing ListWithMe Back to Life',
+      'Vampire: Keep Your MacBook Awake',
     );
     expect(
       $('.post-row h3').filter((_, node) =>
@@ -211,43 +211,72 @@ describe('built collection indexes', () => {
 
   it('renders the selected feature record authored artwork', () => {
     const $ = index('/blog/');
-    expect($('.featured-art img').attr('src')).toContain('listwithme-hand');
+    expect($('.featured-art img').attr('src')).toContain('vampire-laptop');
     expect($('.featured-art img').attr('alt')).toBe(
-      'A fine blue halftone drawing of a hand holding a pen',
+      'A closed laptop glowing blue above a circular return arrow and a small bat silhouette.',
     );
   });
 
   it('groups the app library by its authored categories and uses dossier destinations', () => {
     const $ = index('/app-library/');
-    expect($('.section-heading h2').text()).toBe(
-      'Software that earns its place',
-    );
+    expect($('.section-heading h2').text()).toBe('Apps in my toolkit');
     expect(
       $('[data-tool-group]')
         .map((_, node) => $(node).attr('data-tool-group'))
         .get(),
     ).toEqual([
-      'Thinking and notes',
-      'Briefings and connected work',
+      'Notes and reading',
+      'Coding and AI',
       'Agents and automation',
       'Email',
+      'Notes and documents',
+      'Project planning',
+      'Team communication',
+      'Music',
+      'Voice and dictation',
     ]);
     expect(
       $('[data-tool-record] h3')
         .map((_, node) => $(node).text().trim())
         .get(),
-    ).toEqual(['Obsidian', 'Codex', 'Hermes Agent', 'Superhuman']);
+    ).toEqual([
+      'Obsidian',
+      'Codex',
+      'Claude',
+      'Hermes Agent',
+      'Superhuman',
+      'Notion',
+      'Linear',
+      'Slack',
+      'Poolsuite FM',
+      'Spotify',
+      'Wispr Flow',
+    ]);
     expect(
       $('[data-tool-record]')
         .map((_, node) => $(node).attr('href'))
         .get(),
     ).toEqual([
-      '/app-library/obsidian/',
-      '/app-library/codex/',
-      '/app-library/hermes-agent/',
-      '/app-library/superhuman/',
+      'https://obsidian.md',
+      'https://openai.com/codex/',
+      'https://claude.ai/',
+      'https://github.com/NousResearch/hermes-agent',
+      'https://superhuman.com',
+      'https://www.notion.com/product',
+      'https://linear.app/',
+      'https://slack.com/',
+      'https://poolsuite.net/',
+      'https://open.spotify.com/',
+      'https://wisprflow.ai/',
     ]);
-    expect($('[data-tool-record] [data-record-reason]')).toHaveLength(4);
+    expect($('[data-tool-record] [data-record-reason]')).toHaveLength(11);
+    expect(
+      $('[data-tool-record] .tool-number')
+        .map((_, node) => $(node).text().trim())
+        .get(),
+    ).toEqual(
+      Array.from({ length: 11 }, (_, i) => String(i + 1).padStart(2, '0')),
+    );
     expect($('[data-empty-field]')).toHaveLength(0);
   });
 
@@ -257,21 +286,27 @@ describe('built collection indexes', () => {
       $('[data-app-record] h2')
         .map((_, node) => $(node).text().trim())
         .get(),
-    ).toEqual(['Hermes iOS', 'ListWithMe', 'HealthQL', 'Drift Dreams']);
+    ).toEqual([
+      'Hermes iOS',
+      'ListWithMe',
+      'HealthQL',
+      'Vampire',
+      'Drift Dreams',
+    ]);
     expect(
       $('[data-app-record]')
         .map((_, node) => $(node).attr('data-app-state'))
         .get(),
-    ).toEqual(['current', 'current', 'current', 'archived']);
+    ).toEqual(['current', 'current', 'current', 'current', 'archived']);
     expect(
       $('[data-app-record] a[data-record-action]')
         .map((_, node) => $(node).attr('href'))
         .get(),
     ).toEqual([
-      '/projects/hermes-ios/',
-      '/listwithme/',
-      '/projects/healthql/',
-      '/projects/drift-dreams/',
+      'https://github.com/glisom/hermes-ios',
+      'https://apps.apple.com/us/app/listwithme/id1224284271',
+      'https://github.com/glisom/HealthQL',
+      'https://github.com/glisom/vampire',
     ]);
     expect($('[data-app-record] [data-halftone-image]')).toHaveLength(3);
     expect(
@@ -281,73 +316,64 @@ describe('built collection indexes', () => {
       $('[data-app-record][data-app-state="archived"] [data-action-state]')
         .text()
         .trim(),
-    ).toBe('The original public site is currently offline.');
-    expect($('[data-app-record] [data-record-summary]')).toHaveLength(4);
-    expect($('[data-app-record] [data-record-platform]')).toHaveLength(4);
+    ).toBe('No public download is linked here.');
+    expect($('[data-app-record] [data-record-summary]')).toHaveLength(5);
+    expect($('[data-app-record] [data-record-platform]')).toHaveLength(5);
   });
 
-  it('credits every field-manual record and names its authored trigger honestly', () => {
+  it('credits the six community skills and links directly to their sources', () => {
     const $ = index('/skill-library/');
     expect(
       $('[data-skill-record] h3')
         .map((_, node) => $(node).text().trim())
         .get(),
     ).toEqual([
-      'Deep Research',
-      'Browser Control',
-      'Frontend Design',
-      'Documents',
-      'PDF',
+      'Impeccable',
+      'Superpowers',
+      'Compound Engineering',
+      'Obsidian Markdown',
+      'Obsidian Bases',
+      'JSON Canvas',
     ]);
-    expect($('[data-skill-record] [data-source-credit]')).toHaveLength(5);
     expect(
-      $('[data-skill-record] [data-source-credit]')
+      $('[data-source-credit]')
         .map((_, node) => $(node).text().replace(/\s+/g, ' ').trim())
         .get(),
     ).toEqual([
-      'OpenAI · OpenAI Deep Research skill',
-      'OpenAI · OpenAI bundled Browser skill',
-      'Anthropic · Claude Plugins Official frontend design skill',
-      'OpenAI · OpenAI Documents skill',
-      'OpenAI · OpenAI PDF skill',
+      'Paul Bakaus · Impeccable',
+      'Jesse Vincent · Superpowers',
+      'Every · Compound Engineering plugin',
+      'kepano · Obsidian Skills',
+      'kepano · Obsidian Skills',
+      'kepano · Obsidian Skills',
     ]);
-    expect($('[data-skill-record] [data-capability]')).toHaveLength(5);
     expect(
-      $('[data-skill-record] [data-usage-fact]')
-        .map((_, node) => ({
-          kind: $(node).attr('data-usage-kind'),
-          value: $(node).find('[data-usage-value]').text().trim(),
-        }))
+      $('[data-skill-record]')
+        .map((_, node) => $(node).attr('href'))
         .get(),
     ).toEqual([
-      {
-        kind: 'trigger',
-        value:
-          'A question needs deeper evidence, source reconciliation, and a durable report.',
-      },
-      {
-        kind: 'trigger',
-        value: 'The task depends on visible or interactive browser state.',
-      },
-      {
-        kind: 'trigger',
-        value:
-          'A new interface needs a visual direction, or an existing one needs a more coherent point of view.',
-      },
-      {
-        kind: 'trigger',
-        value:
-          'A task needs a polished Word document, redline, comment pass, or Google Docs-ready file.',
-      },
-      {
-        kind: 'trigger',
-        value:
-          'A PDF task depends on layout, visual fidelity, or interactive form state.',
-      },
+      'https://github.com/pbakaus/impeccable',
+      'https://github.com/obra/superpowers',
+      'https://github.com/EveryInc/compound-engineering-plugin',
+      'https://github.com/kepano/obsidian-skills/tree/main/skills/obsidian-markdown',
+      'https://github.com/kepano/obsidian-skills/tree/main/skills/obsidian-bases',
+      'https://github.com/kepano/obsidian-skills/tree/main/skills/json-canvas',
     ]);
-    expect($('[data-skill-record] [data-where-used]')).toHaveLength(0);
-    expect(normalizedText($, '[data-skill-record]')).not.toContain(
-      'Kept in my toolkit.',
+    expect(
+      $('[data-usage-value]')
+        .map((_, node) => $(node).text().trim())
+        .get(),
+    ).toEqual([
+      'An interface needs a design review or a polish pass.',
+      'A coding task needs a plan, careful debugging, or verification.',
+      'A feature needs to move from an idea through implementation and review.',
+      'A note needs Obsidian-specific formatting or links.',
+      'Notes need a table or card view with filters and calculated fields.',
+      'An idea is easier to work through as a connected visual canvas.',
+    ]);
+    expect($('[data-capability]')).toHaveLength(6);
+    expect(normalizedText($, '[data-skill-record]')).not.toMatch(
+      /OpenAI|Anthropic/,
     );
   });
 
@@ -357,23 +383,41 @@ describe('built collection indexes', () => {
       $('[data-authored-skill] h2')
         .map((_, node) => $(node).text().trim())
         .get(),
-    ).toEqual(['write-like-grant', 'goodreads-export', 'hatch-pet']);
-    expect($('[data-authored-skill] [data-ownership-stamp]')).toHaveLength(3);
+    ).toEqual([
+      'write-like-grant',
+      'goodreads-export',
+      'skill-thief',
+      'comment-detective',
+      'comment-conductor',
+      'change-review-digest',
+      'ux-deep-dive',
+    ]);
+    expect($('[data-authored-skill] [data-ownership-stamp]')).toHaveLength(7);
     expect(
       $('[data-authored-skill] [data-ownership-stamp]')
         .map((_, node) => $(node).text().trim())
         .get(),
-    ).toEqual(['Made by Grant', 'Made by Grant', 'Made by Grant']);
-    expect($('[data-authored-skill] [data-record-status]')).toHaveLength(3);
-    expect($('[data-authored-skill] [data-supported-tools]')).toHaveLength(3);
+    ).toEqual([
+      'Made by Grant',
+      'Made by Grant',
+      'Made by Grant',
+      'Made by Grant',
+      'Made by Grant',
+      'Made by Grant',
+      'Made by Grant',
+    ]);
+    expect($('[data-authored-skill] [data-record-status]')).toHaveLength(7);
+    expect($('[data-authored-skill] [data-supported-tools]')).toHaveLength(7);
     expect(
       $('[data-authored-skill] a[data-record-action]')
         .map((_, node) => $(node).attr('href'))
         .get(),
     ).toEqual([
-      '/skills/write-like-grant/',
-      '/skills/goodreads-export/',
-      '/skills/hatch-pet/',
+      'https://github.com/glisom/skill-thief',
+      'https://github.com/limelighthq/vercel-comment-skills/tree/main/skills/comment-detective',
+      'https://github.com/limelighthq/vercel-comment-skills/tree/main/skills/comment-conductor',
+      'https://github.com/limelighthq/vercel-comment-skills/tree/main/skills/change-review-digest',
+      'https://github.com/glisom/ux-deep-dive',
     ]);
     expect(normalizedText($, '[data-authored-skill]')).not.toMatch(/Install/i);
   });
@@ -391,39 +435,39 @@ describe('built collection indexes', () => {
       ],
       [
         '/app-library/',
-        'Software that earns its place.',
+        'Apps in my toolkit.',
         '/app-library/',
-        '4 records',
-        'App Library / 4 tools',
+        '11 records',
+        'App Library / 11 tools',
         'Used by Grant',
-        'Last updated September 2, 2026',
+        'Last updated September 7, 2026',
       ],
       [
         '/projects/',
-        'Small software I wanted enough to make.',
+        'Apps and libraries I’ve built.',
         '/projects/',
-        '4 records',
-        'My Apps / 4 apps',
-        'Made by Grant',
-        'Last updated September 2, 2026',
-      ],
-      [
-        '/skill-library/',
-        'Capabilities I keep close.',
-        '/skill-library/',
         '5 records',
-        'Skill Library / 5 skills',
+        'My Apps / 5 apps',
+        'Made by Grant',
+        'Last updated September 7, 2026',
+      ],
+      [
+        '/skill-library/',
+        'AI skills from other people.',
+        '/skill-library/',
+        '6 records',
+        'Skill Library / 6 skills',
         'Used by Grant',
-        'Last updated September 2, 2026',
+        'Last updated September 7, 2026',
       ],
       [
         '/skills/',
-        'Reusable ways I taught my tools to work.',
+        'AI skills I’ve made.',
         '/skills/',
-        '3 records',
-        'My Skills / 3 skills',
+        '7 records',
+        'My Skills / 7 skills',
         'Made by Grant',
-        'Last updated September 2, 2026',
+        'Last updated September 7, 2026',
       ],
     ] as const;
 

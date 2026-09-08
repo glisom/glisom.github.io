@@ -140,9 +140,9 @@ async function loadCrawlPaths() {
     ...routes.routes.map(({ canonicalPath }) => canonicalPath),
     ...assets.assets.map(({ path }) => path),
   ];
-  if (paths.length !== 76 || new Set(paths).size !== 76) {
+  if (paths.length !== 61 || new Set(paths).size !== 61) {
     throw new Error(
-      `Expected exactly 76 unique crawl policy paths; found ${paths.length}`,
+      `Expected exactly 61 unique crawl policy paths; found ${paths.length}`,
     );
   }
   return paths;
@@ -273,9 +273,9 @@ export async function verifyIsolatedPreview({
     readFile(baselineCrawlPath, 'utf8').then(JSON.parse),
     loadComparisonContext(),
   ]);
-  if (context.policies.length !== 76) {
+  if (context.policies.length !== 61) {
     throw new Error(
-      `Expected exactly 76 structured crawl policies; found ${context.policies.length}`,
+      `Expected exactly 61 structured crawl policies; found ${context.policies.length}`,
     );
   }
   const candidate = await crawlSite(

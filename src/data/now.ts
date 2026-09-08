@@ -1,5 +1,5 @@
 export const NOW_ITEMS = [
-  { eyebrow: 'Writing', title: 'Notes from the workbench', icon: 'pen-nib' },
-  { eyebrow: 'Building', title: 'Hermes iOS', icon: 'device-mobile' },
-  { eyebrow: 'Using', title: 'Obsidian + Codex', icon: 'stack-simple' },
+  { eyebrow: 'Writing', title: 'Thoughts about AI', icon: 'pen-nib' },
+  { eyebrow: 'Building', title: 'AI agents at Limelight', icon: 'robot' },
+  { eyebrow: 'Using', title: 'Hermes Agent + Obsidian', icon: 'stack-simple' },
 ] as const;

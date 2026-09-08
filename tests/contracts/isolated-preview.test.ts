@@ -175,6 +175,10 @@ async function createHarness() {
       ],
     ),
   );
+  // These pages were added after the captured launch crawl.
+  for (const path of ['/projects/vampire/', '/skills/skill-thief/']) {
+    responseContractByPath.set(path, { status: 200, contentType: 'text/html' });
+  }
   const requestedUrls: string[] = [];
 
   function fetchFixture({
@@ -503,7 +507,7 @@ describe('isolated preview policy', () => {
     await expect(readFile(harness.previewManifestPath)).rejects.toThrow();
   });
 
-  it('accepts matching bytes and all 76 policies, then records exact provenance', async () => {
+  it('accepts matching bytes and all 61 policies, then records exact provenance', async () => {
     const { verifyIsolatedPreview } = await loadVerifier();
     const harness = await createHarness();
 

@@ -1,3 +1,4 @@
+import { recordDestination } from './destination';
 import type {
   AnySiteRecord,
   ContentGraph,
@@ -100,7 +101,7 @@ export function relationshipTargetIssueMessage(
   if (reason === 'missing') {
     return `${source.data.canonicalPath} references ${target}, but that relationship target does not exist.`;
   }
-  return `${source.data.canonicalPath} references ${target}, but that relationship target is not published and generated.`;
+  return `${source.data.canonicalPath} references ${target}, but that relationship target has no public destination.`;
 }
 
 export function validateContentGraph(
@@ -166,7 +167,7 @@ export function validateContentGraph(
           record,
           relationshipTargetIssueMessage(record, relationship, 'missing'),
         );
-      } else if (!isGenerated(target)) {
+      } else if (!recordDestination(target)) {
         add(
           'unpublished-relationship-target',
           record,
@@ -183,11 +184,11 @@ export function validateContentGraph(
           record,
           `${record.data.canonicalPath} names projects/${record.data.relatedProject}, but that related project does not exist.`,
         );
-      } else if (!isGenerated(target)) {
+      } else if (!recordDestination(target)) {
         add(
           'missing-related-project',
           record,
-          `${record.data.canonicalPath} names projects/${record.data.relatedProject}, but that related project is not published and generated.`,
+          `${record.data.canonicalPath} names projects/${record.data.relatedProject}, but that related project has no public destination.`,
         );
       }
     }

@@ -1,11 +1,16 @@
 ---
-title: "Vampire: The Hard Part Isn't Keeping the Mac Awake"
+title: "Vampire: Keep Your MacBook Awake"
 slug: vampire
 canonicalPath: /2026/09/01/vampire.html
-summary: A macOS menu bar app for one pmset flag, where almost all the engineering went into making sure the flag gets turned back off.
+summary: I built a menu bar app to keep my MacBook awake with the lid closed, then made sure it could reliably restore normal sleep.
 draft: false
 hasDetailPage: true
-featured: false
+featured: true
+homepageSlot: featured-writing
+featuredArt:
+  src: evidence/vampire-laptop.png
+  alt: A closed laptop glowing blue above a circular return arrow and a small bat silhouette.
+  decorative: false
 tags:
   - macos
   - swift

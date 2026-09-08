@@ -2,7 +2,7 @@
 title: ListWithMe, Creating an iMessage-only Application
 slug: listwithme
 canonicalPath: /2019/05/30/listwithme.html
-summary: Here is a list of what I listened to throughout the past year.
+summary: Building a shared-list app inside iMessage, and what I learned about the Messages framework and app discovery.
 draft: false
 hasDetailPage: true
 featured: false

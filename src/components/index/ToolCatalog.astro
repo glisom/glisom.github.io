@@ -1,4 +1,5 @@
 ---
+import { recordDestination } from '../../lib/content/destination';
 import type { AppLibraryRecord } from '../../types/content';
 import Icon from '../media/Icon.astro';
 
@@ -13,26 +14,26 @@ for (const record of records) {
   group.push(record);
   groups.set(record.data.category, group);
 }
-const destinationFor = (record: AppLibraryRecord) =>
-  record.data.hasDetailPage
-    ? record.data.canonicalPath
-    : record.data.links.find((link) => link.href.startsWith('https://'))?.href;
+const destinationFor = recordDestination;
+const toolNumbers = new Map(
+  [...groups.values()].flat().map((record, index) => [record.id, index + 1]),
+);
 ---
 
 <div class="section-heading">
-  <h2>Software that earns its place</h2><p>Grouped by the job it does</p>
+  <h2>Apps in my toolkit</h2><p>Grouped by what they do</p>
 </div>
 <div class="tool-groups">
   {
-    [...groups].map(([category, group], groupIndex) => (
+    [...groups].map(([category, group]) => (
       <section class="tool-group" data-tool-group={category}>
         <h2>{category}</h2>
-        {group.map((record, recordIndex) => {
+        {group.map((record) => {
           const destination = destinationFor(record);
           const content = (
             <>
               <span class="tool-number">
-                {String(groupIndex + recordIndex + 1).padStart(2, '0')}
+                {String(toolNumbers.get(record.id)).padStart(2, '0')}
               </span>
               <div>
                 <h3>{record.data.title}</h3>

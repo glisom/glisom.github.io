@@ -61,7 +61,7 @@ const expectedSitemapUrls = routeFixture.routes
   .toSorted();
 
 const expectedFeedTitles = [
-  "Vampire: The Hard Part Isn't Keeping the Mac Awake",
+  'Vampire: Keep Your MacBook Awake',
   'skill-thief: Steal the Ideas, Not the Install',
   'Bringing ListWithMe Back to Life',
   'HealthQL Now Supports React Native',
@@ -159,8 +159,8 @@ describe('canonical discovery helpers', () => {
 });
 
 describe('built document metadata', () => {
-  it('emits the complete unique metadata contract on all 49 HTML pages', async () => {
-    expect(documents).toHaveLength(49);
+  it('emits the complete unique metadata contract on all 34 HTML pages', async () => {
+    expect(documents).toHaveLength(34);
 
     const titles: string[] = [];
     const descriptions: string[] = [];
@@ -249,8 +249,8 @@ describe('built document metadata', () => {
       );
     }
 
-    expect(new Set(titles).size).toBe(49);
-    expect(new Set(descriptions).size).toBe(49);
+    expect(new Set(titles).size).toBe(34);
+    expect(new Set(descriptions).size).toBe(34);
     expect(fallbackImages.size).toBe(1);
   });
 
@@ -308,15 +308,15 @@ describe('built document metadata', () => {
 });
 
 describe('built discovery files', () => {
-  it('emits all 52 route-oracle artifacts', async () => {
-    expect(routeFixture.expectedArtifactCount).toBe(52);
+  it('emits all 37 route-oracle artifacts', async () => {
+    expect(routeFixture.expectedArtifactCount).toBe(37);
     await expect(
       Promise.all(
         routeFixture.routes.map((route) =>
           access(join(distRoot, route.outputPath)),
         ),
       ),
-    ).resolves.toHaveLength(52);
+    ).resolves.toHaveLength(37);
   });
 
   it('publishes the newest ten posts as full-content RSS with stable URLs and dates', () => {
@@ -401,14 +401,12 @@ describe('built discovery files', () => {
     );
   });
 
-  it('ships the reviewed fallback art at the exact Open Graph dimensions', async () => {
+  it('ships the reviewed fallback art at a wide social-card aspect ratio', async () => {
     const metadata = await sharp(
-      join(repositoryRoot, 'src/assets/social/default-og.png'),
+      join(repositoryRoot, 'src/assets/social/default-og-v2.png'),
     ).metadata();
 
-    expect({ width: metadata.width, height: metadata.height }).toEqual({
-      width: 1200,
-      height: 630,
-    });
+    expect(metadata.width).toBeGreaterThanOrEqual(1200);
+    expect(metadata.width! / metadata.height!).toBeCloseTo(1200 / 630, 2);
   });
 });

@@ -5,8 +5,7 @@ canonicalPath: /2026/02/24/listwithme-returns.html
 summary: After years off the App Store, I've completely rebuilt ListWithMe from the ground up with SwiftUI and modern iOS features.
 draft: false
 hasDetailPage: true
-featured: true
-homepageSlot: featured-writing
+featured: false
 tags:
   - ios
   - imessages

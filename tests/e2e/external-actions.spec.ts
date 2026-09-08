@@ -52,37 +52,30 @@ test('authored external actions expose exact, safe destinations', async ({
     'https://github.com/glisom/ListWithMe',
     true,
   );
-  await exercise(
-    page,
-    '/app-library/obsidian/',
-    'Visit Obsidian',
-    'primary',
-    'https://obsidian.md',
-  );
-  await exercise(
-    page,
-    '/projects/healthql/',
-    'Read the documentation',
-    'quiet',
-    'https://glisom.github.io/HealthQL',
-    true,
-  );
 });
 
-test('Skill Library source action is safe when a record authors one', async ({
+test('catalog entries link straight to their products or public sources', async ({
   page,
 }) => {
-  await page.goto('/skill-library/deep-research/');
-  const source = page.locator('[data-action="source"]');
-  if ((await source.count()) === 0) {
-    expect(
-      await page.locator('[data-action-group] [data-action-role]').count(),
-    ).toBe(0);
-    return;
+  for (const [path, , url] of [
+    ['/app-library/', 'Obsidian', 'https://obsidian.md'],
+    ['/projects/', 'HealthQL', 'https://github.com/glisom/HealthQL'],
+    ['/skill-library/', 'Impeccable', 'https://github.com/pbakaus/impeccable'],
+    ['/skills/', 'skill-thief', 'https://github.com/glisom/skill-thief'],
+  ]) {
+    await page.goto(path);
+    const link = page.locator(`a[href="${url}"]`);
+    await expect(link).toHaveCount(1);
+    await expect(link).toBeVisible();
   }
-  await expect(source).toHaveAttribute('target', '_blank');
-  await expect(source).toHaveAttribute(
-    'rel',
-    /\bnoopener\b.*\bnoreferrer\b|\bnoreferrer\b.*\bnoopener\b/,
-  );
+  await page.goto('/skills/');
+  await expect(
+    page.locator('a[href^="/skills/"]:not([href="/skills/"])'),
+  ).toHaveCount(0);
+  await expect(
+    page
+      .locator('[data-authored-skill]')
+      .filter({ hasText: 'write-like-grant' })
+      .locator('a'),
+  ).toHaveCount(0);
 });

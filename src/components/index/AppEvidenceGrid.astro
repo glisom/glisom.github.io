@@ -1,4 +1,5 @@
 ---
+import { recordDestination } from '../../lib/content/destination';
 import type { ProjectRecord } from '../../types/content';
 import HalftoneImage from '../media/HalftoneImage.astro';
 import Icon from '../media/Icon.astro';
@@ -13,10 +14,7 @@ const isArchived = (record: ProjectRecord) =>
 const current = records.filter((record) => !isArchived(record));
 const archived = records.filter(isArchived);
 const ordered = [...current, ...archived];
-const destinationFor = (record: ProjectRecord) =>
-  record.data.hasDetailPage
-    ? record.data.canonicalPath
-    : record.data.links.find((link) => link.href.startsWith('https://'))?.href;
+const destinationFor = recordDestination;
 const artById: Partial<
   Record<ProjectRecord['id'], { src: string; alt: string }>
 > = {
@@ -80,7 +78,7 @@ const artById: Partial<
             )}
             {destination && (
               <a class="arrow-link" href={destination} data-record-action>
-                <span>Open the record</span>
+                <span>Visit the project</span>
                 <Icon name="arrow-right" decorative={true} />
               </a>
             )}

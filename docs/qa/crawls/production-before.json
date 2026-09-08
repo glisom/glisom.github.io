@@ -2463,5 +2463,63 @@
     "embedContracts": [],
     "legalSemantic": null,
     "bodySha256": "7503f2beccb066be33135b8b30eb08c59a69469db09ef2e62b51710ec06143cc"
+  },
+  {
+    "requestedPath": "/projects/vampire/",
+    "status": 404,
+    "finalUrl": "/projects/vampire/",
+    "canonical": "https://grantisom.com/404.html",
+    "contentType": "text/html",
+    "title": "Page not found — Grant Isom",
+    "description": "That page is not here, but the useful parts of Grant Isom’s site are still close by.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/projects/vampire/#main-content",
+      "/skill-library/",
+      "/skills/"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/UtilityLayout.JaGJ-622.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "ec5067d453b08d9c3ae8ade250a63e29b04a32ee77515b99f434ffb149c2c2c1"
+  },
+  {
+    "requestedPath": "/skills/skill-thief/",
+    "status": 404,
+    "finalUrl": "/skills/skill-thief/",
+    "canonical": "https://grantisom.com/404.html",
+    "contentType": "text/html",
+    "title": "Page not found — Grant Isom",
+    "description": "That page is not here, but the useful parts of Grant Isom’s site are still close by.",
+    "links": [
+      "/",
+      "/about/",
+      "/app-library/",
+      "/blog/",
+      "/feed.xml",
+      "/projects/",
+      "/skill-library/",
+      "/skills/",
+      "/skills/skill-thief/#main-content"
+    ],
+    "assets": [
+      "/_astro/BaseLayout.BGwS88Aa.css",
+      "/_astro/UtilityLayout.JaGJ-622.css",
+      "/favicon.ico"
+    ],
+    "articleSemantic": null,
+    "embedContracts": [],
+    "legalSemantic": null,
+    "bodySha256": "ec5067d453b08d9c3ae8ade250a63e29b04a32ee77515b99f434ffb149c2c2c1"
   }
 ]
