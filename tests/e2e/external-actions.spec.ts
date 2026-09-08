@@ -60,11 +60,7 @@ test('catalog entries link straight to their products or public sources', async 
   for (const [path, , url] of [
     ['/app-library/', 'Obsidian', 'https://obsidian.md'],
     ['/projects/', 'HealthQL', 'https://github.com/glisom/HealthQL'],
-    [
-      '/skill-library/',
-      'Frontend Design',
-      'https://github.com/anthropics/skills/tree/main/skills/frontend-design',
-    ],
+    ['/skill-library/', 'Impeccable', 'https://github.com/pbakaus/impeccable'],
     ['/skills/', 'skill-thief', 'https://github.com/glisom/skill-thief'],
   ]) {
     await page.goto(path);
