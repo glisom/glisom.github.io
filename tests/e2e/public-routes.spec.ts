@@ -11,10 +11,10 @@ const routes = routeFixture.routes.filter(
   ({ canonicalPath }) => canonicalPath !== '/404.html',
 );
 
-test('all 51 non-error public artifacts return their independently expected media type', async ({
+test('all 36 non-error public artifacts return their independently expected media type', async ({
   request,
 }) => {
-  expect(routes).toHaveLength(51);
+  expect(routes).toHaveLength(36);
   for (const route of routes) {
     const response = await request.get(route.canonicalPath);
     expect(response.status(), route.canonicalPath).toBe(200);

@@ -193,7 +193,7 @@ test('every phone control, including prose links, renders a 44px hit rectangle',
         ),
     )
     .map(({ canonicalPath }) => canonicalPath);
-  expect(paths).toHaveLength(48);
+  expect(paths).toHaveLength(33);
   const failures: string[] = [];
   for (const path of [...paths, '/404.html']) {
     await interceptThirdParties(page);
