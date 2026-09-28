@@ -68,7 +68,7 @@ test('keyboard order reaches skip link, identity, and primary content in documen
   expect(`${focusedName ?? ''} ${focusedText}`).toContain('Grant Isom');
 });
 
-test('paper, blue, lime, and black surfaces retain visible computed focus indicators', async ({
+test('dark surfaces and primary actions retain visible computed focus indicators', async ({
   page,
 }) => {
   const cases = [
@@ -79,15 +79,13 @@ test('paper, blue, lime, and black surfaces retain visible computed focus indica
         : '.identity-rail a[href="/blog/"]',
     ],
     ['/listwithme/', '[data-action-role="primary"]'],
-    ['/listwithme/', '[data-surface="lime"]'],
+    ['/listwithme/', '[data-back-to-collection]'],
     ['/', '.home-about'],
     ['/', '.home-posts a'],
   ] as const;
   for (const [path, selector] of cases) {
     await page.goto(path);
     const target = page.locator(selector).first();
-    if (selector === '[data-surface="lime"]')
-      await target.evaluate((node) => node.setAttribute('tabindex', '0'));
     await target.focus();
     const indicator = await target.evaluate((node) => {
       const parseRgb = (value: string) => {

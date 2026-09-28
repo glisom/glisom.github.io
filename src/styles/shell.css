@@ -211,3 +211,9 @@
     margin-top: 48px;
   }
 }
+
+.site-footer {
+  width: 100%;
+  max-width: 720px;
+  margin-inline: auto;
+}

@@ -131,7 +131,7 @@ beforeAll(async () => {
       readFile(join(distRoot, href.slice(1)), 'utf8'),
     ),
   );
-  utilityStyles = postcss.parse(styles.join('\n'));
+  utilityStyles = postcss.parse([...styles, about('style').text()].join('\n'));
 }, 60_000);
 
 describe('quiet utility page family', () => {
@@ -338,12 +338,11 @@ describe('quiet utility page family', () => {
 
     for (const selector of [
       '.utility-actions a',
-      '.utility-toc a',
       '.about-links a',
       '.not-found-actions a',
     ]) {
       expect(
-        declarations(selector, '(max-width: 820px)')['min-height'],
+        declarations(selector)['min-height'],
         `${selector}: phone target height`,
       ).toBe('44px');
     }

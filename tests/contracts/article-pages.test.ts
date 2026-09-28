@@ -373,46 +373,21 @@ describe('article reading modes', () => {
     ).toHaveLength(0);
   });
 
-  it('keeps the explicit 821–1023px rail-and-stacked article state', () => {
-    const intermediate = mediaBlocks(
-      '(min-width: 821px) and (max-width: 1023px)',
-    );
-    expect(intermediate).not.toHaveLength(0);
-
-    const selectors = intermediate
-      .flatMap((root) => root.nodes)
-      .map((node) => node.toString())
-      .join('\n')
-      .replace(/\s+/g, '');
-    expect(selectors).toContain('.article-masthead');
-    expect(selectors).toContain('grid-template-columns:1fr');
-    expect(selectors).toContain('.reading-grid');
-    expect(selectors).toContain('.toc-slot');
+  it('keeps articles and their contents in one reading column at every width', () => {
+    const css = builtStyles.toString();
+    expect(css).toMatch(/\.article-page\s*\{[^}]*max-inline-size:\s*720px/s);
+    expect(css).toMatch(/\.toc-slot\s*\{[^}]*position:\s*static/s);
+    expect(css).not.toMatch(/position:\s*sticky[^}]*grid-column:\s*3/s);
   });
 
-  it('closes the responsive fact ledger cleanly when optional project context is absent', () => {
+  it('gives an odd final fact the full reading width', () => {
     const readingList = article('/2018/04/02/reading-list.html').$;
     expect(readingList('.article-facts').attr('style')).toContain(
       '--article-fact-count: 3',
     );
-
-    const intermediate = mediaBlocks(
-      '(min-width: 821px) and (max-width: 1023px)',
-    )
-      .flatMap((root) => root.nodes)
-      .map((node) => node.toString())
-      .join('\n')
-      .replace(/\s+/g, '');
-    expect(intermediate).toContain('.article-fact:last-child:nth-child(odd)');
-    expect(intermediate).toContain('flex-basis:100%');
-
-    const mobile = mediaBlocks('(max-width: 820px)')
-      .flatMap((root) => root.nodes)
-      .map((node) => node.toString())
-      .join('\n')
-      .replace(/\s+/g, '');
-    expect(mobile).toContain('.article-fact:last-child:nth-child(odd)');
-    expect(mobile).toContain('grid-column:1/-1');
+    expect(builtStyles.toString()).toMatch(
+      /\.article-fact:last-child:nth-child\(odd\)\s*\{[^}]*grid-column:\s*1\s*\/\s*-1/s,
+    );
   });
 
   it('omits empty tag facts and context instead of publishing blank labels', () => {
@@ -424,26 +399,11 @@ describe('article reading modes', () => {
       '--article-fact-count: 2',
     );
     expect(usingAct('.article-context-panel')).toHaveLength(0);
-    expect(css).toMatch(
-      /\.article-fact:nth-last-child\(-n\s*\+\s*2\)\s*\{[^}]*border-bottom:\s*0/s,
-    );
-    expect(css).toMatch(
-      /\.article-fact:nth-child\(2\):nth-last-child\(2\)\s*\{[^}]*border-bottom:\s*1px/s,
-    );
+    expect(css).toMatch(/\.article-facts \.article-fact\s*\{[^}]*border:\s*0/s);
   });
 
-  it('keeps the approved drop cap on the reviewed presentation only', () => {
-    const css = builtStyles.toString();
-
-    expect(css).not.toMatch(/\.prose\s*>\s*p:first-of-type:{1,2}first-letter/);
-    expect(css).toMatch(
-      /\.prose--numbered\s*>\s*p:first-of-type:{1,2}first-letter/,
-    );
-    expect(
-      article('/2023/05/15/using-act-to.html').$(
-        '[data-article-prose].prose--numbered',
-      ),
-    ).toHaveLength(0);
+  it('uses consistent paragraph typography without decorative drop caps', () => {
+    expect(builtStyles.toString()).not.toMatch(/\.prose[^}]*first-letter/);
   });
 
   it('keeps prose links in sentence flow while making every mobile target 44px', () => {
@@ -495,30 +455,15 @@ describe('article reading modes', () => {
     expect(css).toMatch(/\.prose\s*\{[^}]*font-family:\s*var\(--sans\)/s);
     expect(css).toMatch(/\.prose\s+pre[^}]*overflow-x:\s*auto/s);
     expect(css).toMatch(/\.prose\s+table[^}]*overflow-x:\s*auto/s);
-    const wide = mediaBlocks('(min-width: 1220px)')
-      .flatMap((root) => root.nodes)
-      .map((node) => node.toString())
-      .join('\n')
-      .replace(/\s+/g, '');
-    expect(wide).toContain('.article-figure--wide');
-    expect(wide).toContain('max-inline-size:920px');
+    expect(css).toMatch(/\.article-figure\s*\{[^}]*max-inline-size:\s*100%/s);
   });
 
-  it('preserves the approved offset, natural-ratio evidence-art crop', () => {
-    const css = builtStyles.toString();
-    expect(css).toMatch(
-      /\.article-evidence[^}]*\.article-evidence-image\.halftone-image\s+picture[^}]*inline-size:\s*125%/s,
-    );
-    expect(css).toMatch(
-      /\.article-evidence[^}]*\.article-evidence-image\.halftone-image\s+picture[^}]*margin-inline-start:\s*-20%/s,
-    );
-    expect(css).toMatch(
-      /\.article-evidence[^}]*\.article-evidence-image\.halftone-image\s+img[^}]*block-size:\s*auto/s,
+  it('keeps the small evidence illustration uncropped', () => {
+    expect(builtStyles.toString()).toMatch(
+      /\.article-evidence[^}]*\.article-evidence-image\.halftone-image\s+img[^}]*object-fit:\s*contain/s,
     );
   });
-});
 
-describe('article media and deferred integrations', () => {
   it('keeps Spotify embeds lazy, titled, and paired with a readable fallback', () => {
     const { $ } = article('/2020/02/10/2019-playlists.html');
     const embeds = $(

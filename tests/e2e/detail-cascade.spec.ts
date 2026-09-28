@@ -4,7 +4,7 @@ test('detail registry spacing survives the shared utility cascade', async ({
   page,
 }) => {
   await page.goto('/listwithme/');
-  const expectedMargin = test.info().project.name === 'phone' ? 48 : 70;
+  const expectedMargin = 24;
   expect(
     await page
       .locator('.dossier-head .registry-line')

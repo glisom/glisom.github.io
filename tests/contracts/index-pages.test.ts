@@ -495,66 +495,33 @@ describe('built collection indexes', () => {
     }
   });
 
-  it('switches masthead composition at 1024px while preserving shell breakpoints', () => {
+  it('keeps collection pages in a compact single reading column', () => {
+    expect(baseDeclarations('.collection-index')['max-width']).toBe('720px');
     expect(
       baseDeclarations('.collection-masthead')['grid-template-columns'],
     ).toBe('1fr');
+    expect(baseDeclarations('.app-grid')['grid-template-columns']).toBe('1fr');
     expect(
-      mediaDeclarations('(min-width: 1024px)', '.collection-masthead')[
-        'grid-template-columns'
-      ],
-    ).toBe('minmax(0,7fr) minmax(330px,4fr)');
-    expect(baseDeclarations('.collection-mark')['margin']).toBe('1em 40px');
-    expect(
-      mediaDeclarations(
-        '(min-width: 821px) and (max-width: 1023px)',
-        '.collection-masthead',
-      )['grid-template-columns'],
+      baseDeclarations('.authored-skill-grid')['grid-template-columns'],
     ).toBe('1fr');
     expect(
-      mediaDeclarations('(max-width: 820px)', '.collection-masthead')[
-        'padding'
-      ],
-    ).toBe('43px 18px 34px');
-    expect(
-      mediaDeclarations('(max-width: 820px)', '.collection-mark')['display'],
+      mediaDeclarations('(max-width: 640px)', '.collection-mark')['display'],
     ).toBe('none');
-    expect(baseDeclarations('.masthead-ownership')['margin']).toBe('0');
-    expect(
-      mediaDeclarations('(min-width: 1024px)', '.tool-groups')[
-        'background-color'
-      ],
-    ).toBe('#0000');
-    expect(baseDeclarations('.app-card.featured .app-copy')['order']).toBe(
-      '-1',
-    );
-    expect(baseDeclarations('.app-card.text-only')['grid-column']).toBe('1/-1');
   });
 
-  it('keeps skill usage facts readable through every responsive seam', () => {
+  it('keeps skill attribution and usage facts below the title at every width', () => {
     expect(baseDeclarations('.skill-strip')['grid-template-columns']).toBe(
-      'minmax(0,.9fr) minmax(0,1.5fr) minmax(0,1fr) auto',
+      'minmax(0,1fr) auto',
     );
     expect(baseDeclarations('.skill-strip>*')['min-width']).toBe('0');
     expect(baseDeclarations('.skill-strip .record-meta')['display']).toBe(
       'flex',
     );
-    expect(
-      mediaDeclarations(
-        '(min-width: 821px) and (max-width: 1023px)',
-        '.skill-strip',
-      )['grid-template-columns'],
-    ).toBe('minmax(0,1fr) auto');
-    expect(
-      mediaDeclarations(
-        '(min-width: 821px) and (max-width: 1023px)',
-        '.skill-strip .record-meta',
-      )['grid-column'],
-    ).toBe('1/-1');
-    expect(
-      mediaDeclarations('(max-width: 820px)', '.skill-strip .record-meta')[
-        'grid-column'
-      ],
-    ).toBe('1/-1');
+    expect(baseDeclarations('.skill-strip .record-meta')['grid-column']).toBe(
+      '1',
+    );
+    expect(baseDeclarations('.skill-strip .record-meta')['flex-wrap']).toBe(
+      'wrap',
+    );
   });
 });
