@@ -1,22 +1,23 @@
 :root {
-  color-scheme: light;
-  --paper: #f7f6f2;
-  --paper-bright: #fbfaf6;
-  --ink: #141516;
-  --muted: #62645f;
-  --line: #d5d4ce;
-  --line-dark: #b8b7b0;
-  --blue: #2348f5;
-  --blue-dark: #1739cf;
-  --lime: #bdd600;
+  color-scheme: dark;
+  --paper: #171819;
+  --paper-bright: #202224;
+  --ink: #eeede9;
+  --muted: #a5a7aa;
+  --line: #333638;
+  --line-dark: #464a4d;
+  --blue: #9aafff;
+  --blue-dark: #b6c5ff;
+  --lime: #cedb95;
   --black: #111214;
   --rail-wide: 250px;
   --rail-compact: 210px;
   --mobile-header: 62px;
-  --radius: 4px;
+  --accent-surface: #344b9b;
+  --accent-surface-hover: #354e9c;
+  --radius: 14px;
   --utility-small: 0.625rem;
   --utility: 0.75rem;
-  --serif: 'Source Serif 4', Georgia, serif;
-  --sans: 'DM Sans', system-ui, sans-serif;
-  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: ui-monospace, 'SFMono-Regular', Consolas, monospace;
 }

@@ -1,7 +1,7 @@
 .eyebrow,
 .registry-line {
   margin: 0;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -16,7 +16,7 @@
   justify-content: space-between;
   gap: 1rem;
   border-bottom: 1px solid currentColor;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   font-weight: 500;
   letter-spacing: 0.09em;

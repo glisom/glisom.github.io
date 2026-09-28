@@ -106,11 +106,20 @@ describe('built site shell', () => {
     expect($('html').attr('lang')).toBe('en');
     expect($('a[href="#main-content"]').text().trim()).toBe('Skip to content');
     expect($('main#main-content')).toHaveLength(1);
+    expect($('.site-mark[alt=""]')).toHaveLength(2);
+    expect($('.monogram')).toHaveLength(0);
     expect(
       $('nav[aria-label="Browse"] a')
         .map((_, element) => $(element).text().trim())
         .get(),
-    ).toEqual(['Blog', 'App Library', 'My Apps', 'Skill Library', 'My Skills']);
+    ).toEqual([
+      'Blog',
+      'App Library',
+      'My Apps',
+      'Skill Library',
+      'My Skills',
+      'About',
+    ]);
     expect($('nav[aria-label="Mobile browse"] a[href="/about/"]')).toHaveLength(
       1,
     );
@@ -131,61 +140,12 @@ describe('built site shell', () => {
     });
   });
 
-  it('keeps the desktop identity rail on paper with blue limited to active navigation', () => {
-    expect(declarationsFor('.identity-rail')).toMatchObject({
-      'border-right': '1px solid var(--line)',
-      color: 'var(--ink)',
-      background: 'var(--paper)',
-    });
-    expect(declarationsFor('.identity-copy small').color).toBe('var(--muted)');
-    expect(declarationsFor('.status-line')).toMatchObject({
-      'border-top': '1px solid var(--line)',
-      'border-bottom': '1px solid var(--line)',
-      color: 'var(--muted)',
-    });
-    expect(declarationsFor('.rail-nav-item')['border-bottom']).toBe(
-      '1px solid var(--line)',
-    );
-    expect(declarationsFor('.rail-label').color).toBe('var(--muted)');
-    expect(declarationsFor('.rail-about')).toMatchObject({
-      'border-bottom': '1px solid var(--ink)',
-      color: 'var(--ink)',
-    });
-    expect(declarationsFor('.rail-context')['border-top']).toBe(
-      '1px solid var(--line)',
-    );
-    expect(declarationsFor('.rail-context-title').color).toBe('var(--ink)');
-    expect(declarationsFor('.rail-context-meta').color).toBe('var(--muted)');
-    expect(declarationsFor('.rail-utility-context').opacity).toBeUndefined();
-    expect(declarationsFor('.rail-now-list li')['border-left']).toBe(
-      '2px solid var(--line-dark)',
-    );
-    expect(declarationsFor('.rail-now-list strong').color).toBe('var(--ink)');
-    expect(declarationsFor('.rail-socials')['border-top']).toBe(
-      '1px solid var(--line)',
-    );
-    expect(declarationsFor('.rail-socials a').color).toBe('var(--muted)');
-    expect(declarationsFor('.rail-footer-line').color).toBe('var(--muted)');
-    expect(declarationsFor('.rail-nav-item.is-active:before').background).toBe(
-      'var(--blue)',
-    );
-    expect(declarationsFor('.rail-active-state').color).toBe(
-      'var(--blue-dark)',
-    );
-
-    const railBlueUses: string[] = [];
-    builtStyles.walkRules((rule) => {
-      if (!rule.selector.includes('rail')) return;
-      rule.walkDecls((declaration) => {
-        if (declaration.value.includes('var(--blue')) {
-          railBlueUses.push(rule.selector);
-        }
-      });
-    });
-    expect(railBlueUses.length).toBeGreaterThan(0);
-    expect(railBlueUses.every((selector) => selector.includes('active'))).toBe(
-      true,
-    );
+  it('uses a dark document with compact navigation and footer social links', () => {
+    expect(declarationsFor(':root')['color-scheme']).toBe('dark');
+    expect($('meta[name="theme-color"]').attr('content')).toBe('#171819');
+    expect($('.identity-rail nav a')).toHaveLength(6);
+    expect($('.rail-context')).toHaveLength(0);
+    expect($('.site-footer nav[aria-label="Social links"] a')).toHaveLength(5);
   });
 
   it('builds without the frozen design reference in the production source graph', async () => {

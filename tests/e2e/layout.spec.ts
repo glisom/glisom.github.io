@@ -3,30 +3,23 @@ import { expect, test } from './fixtures';
 const paths = ['/', '/2019/05/30/listwithme.html', '/blog/', '/listwithme/'];
 
 for (const path of paths) {
-  test(`shell geometry and utility typography hold on ${path}`, async ({
+  test(`centered shell geometry and utility typography hold on ${path}`, async ({
     page,
   }) => {
     await page.goto(path);
     const viewport = page.viewportSize()!;
-    const expectedRailWidth =
-      viewport.width >= 1220 ? 250 : viewport.width >= 821 ? 210 : 0;
-    const actualRailWidth = await page
-      .locator('.identity-rail')
-      .evaluate((node) => {
-        const style = getComputedStyle(node);
-        return style.display === 'none'
-          ? 0
-          : node.getBoundingClientRect().width;
-      });
-    const actualPrimaryLeft = await page
-      .locator('.site-frame')
-      .evaluate((node) => node.getBoundingClientRect().left);
-    expect(Math.abs(actualRailWidth - expectedRailWidth)).toBeLessThanOrEqual(
-      1,
-    );
-    expect(Math.abs(actualPrimaryLeft - expectedRailWidth)).toBeLessThanOrEqual(
-      4,
-    );
+    const header = page.locator('.identity-rail');
+    if (viewport.width > 820) {
+      await expect(header).toBeVisible();
+      const box = await header.boundingBox();
+      const main = await page.locator('.site-frame').boundingBox();
+      expect(box!.width).toBeLessThanOrEqual(1120);
+      expect(Math.abs(box!.x - main!.x)).toBeLessThanOrEqual(1);
+      expect(main!.y).toBeGreaterThanOrEqual(box!.y + box!.height);
+    } else {
+      await expect(header).toBeHidden();
+      await expect(page.locator('.mobile-header')).toBeVisible();
+    }
     expect(
       await page.evaluate(
         () =>
@@ -36,10 +29,12 @@ for (const path of paths) {
     ).toBe(true);
     expect(
       await page.locator('[data-utility-label]').evaluateAll((nodes) =>
-        nodes.every((node) => {
-          const size = Number.parseFloat(getComputedStyle(node).fontSize);
-          return size >= 10 && size <= 12;
-        }),
+        nodes
+          .filter((node) => node.getBoundingClientRect().width > 0)
+          .every((node) => {
+            const size = Number.parseFloat(getComputedStyle(node).fontSize);
+            return size >= 10 && size <= 12;
+          }),
       ),
     ).toBe(true);
   });
@@ -75,7 +70,7 @@ for (const [family, path] of [
       await page
         .locator('.identity-rail')
         .evaluate((node) => node.getBoundingClientRect().width),
-    ).toBe(210);
+    ).toBe(852);
     const mastheadSelector = {
       Article: '.article-masthead',
       Index: '.collection-masthead',

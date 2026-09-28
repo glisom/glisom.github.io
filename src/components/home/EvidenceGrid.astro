@@ -1,43 +1,61 @@
 ---
 import type { HomepageContent } from '../../types/content';
-import AuthoredSkillsCard from './AuthoredSkillsCard.astro';
-import FeaturedWritingCard from './FeaturedWritingCard.astro';
-import LatestPostsCard from './LatestPostsCard.astro';
-import ProjectCard from './ProjectCard.astro';
-import SkillLibraryCard from './SkillLibraryCard.astro';
-import ToolListCard from './ToolListCard.astro';
+import { recordDestination } from '../../lib/content/destination';
+import Icon from '../media/Icon.astro';
 
 interface Props {
   content: HomepageContent;
 }
-
 const { content } = Astro.props;
+const posts = [content.featuredWriting, ...content.latestPosts];
+const projects = [
+  content.featuredProjectPrimary,
+  content.featuredProjectSecondary,
+];
 ---
 
-<section class="evidence-grid" aria-label="Grant’s personal index">
-  <FeaturedWritingCard record={content.featuredWriting} />
-  <ProjectCard
-    record={content.featuredProjectPrimary}
-    slot="featured-project-primary"
-    number="02"
-    variant="primary"
-    art={{
-      src: 'evidence/healthql-hands.png',
-      alt: 'A sequence of fine-line hand gestures',
-    }}
-  />
-  <ProjectCard
-    record={content.featuredProjectSecondary}
-    slot="featured-project-secondary"
-    number="03"
-    variant="secondary"
-    art={{
-      src: 'evidence/listwithme-hand.png',
-      alt: 'A stippled hand holding a pen',
-    }}
-  />
-  <ToolListCard records={content.appLibrary} />
-  <LatestPostsCard records={content.latestPosts} />
-  <AuthoredSkillsCard records={content.authoredSkills} />
-  <SkillLibraryCard records={content.skillLibrary} />
-</section>
+<div class="home-index">
+  <section class="home-section" aria-labelledby="home-writing-title">
+    <div class="home-section-heading">
+      <h2 id="home-writing-title">Writing</h2>
+      <a href="/blog/"
+        >All writing <Icon name="arrow-right" decorative={true} /></a
+      >
+    </div>
+    <ul class="home-posts">
+      {
+        posts.map((record) => (
+          <li data-post-row>
+            <a href={record.data.canonicalPath}>
+              <span>{record.data.title}</span>
+              <Icon name="arrow-right" decorative={true} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <section class="home-section" aria-labelledby="home-projects-title">
+    <div class="home-section-heading">
+      <h2 id="home-projects-title">Selected projects</h2>
+      <a href="/projects/"
+        >All projects <Icon name="arrow-right" decorative={true} /></a
+      >
+    </div>
+    <ul class="home-projects">
+      {
+        projects.map((record) => (
+          <li>
+            <a href={recordDestination(record)}>
+              <span>
+                <strong>{record.data.title}</strong>
+                <span class="home-project-summary">{record.data.summary}</span>
+              </span>
+              <Icon name="arrow-right" decorative={true} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</div>

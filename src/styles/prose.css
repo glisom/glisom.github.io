@@ -26,7 +26,7 @@
   gap: 9px;
   margin-block-end: 42px;
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -50,7 +50,7 @@
 .article-callout-label,
 .relationship-label,
 .post-navigation-card > span {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -77,11 +77,11 @@
   max-inline-size: 920px;
   margin: 0;
   overflow-wrap: anywhere;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(2.9375rem, 14vw, 4.25rem);
   font-weight: 400;
   letter-spacing: -0.052em;
-  line-height: 0.94;
+  line-height: 1.08;
 }
 
 .article-masthead h1 em {
@@ -92,8 +92,8 @@
 .article-dek {
   max-inline-size: 690px;
   margin: 22px 0 0;
-  color: #50514d;
-  font-family: var(--serif);
+  color: var(--muted);
+  font-family: var(--sans);
   font-size: 1.1875rem;
   line-height: 1.48;
 }
@@ -169,7 +169,7 @@
 
 .article-fact strong {
   overflow-wrap: anywhere;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 0.9375rem;
   font-weight: 600;
   line-height: 1.35;
@@ -177,7 +177,7 @@
 
 .article-fact--tags strong {
   color: var(--blue-dark);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 0.6875rem;
   font-weight: 500;
 }
@@ -205,7 +205,7 @@
   inline-size: 100%;
   max-inline-size: 720px;
   min-inline-size: 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.15625rem;
   line-height: 1.68;
 }
@@ -232,7 +232,7 @@
 .prose h4 {
   scroll-margin-top: 24px;
   overflow-wrap: anywhere;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-weight: 600;
 }
 
@@ -257,7 +257,7 @@
 .prose--numbered > h2::before {
   padding-block-start: 9px;
   color: var(--blue);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -302,7 +302,7 @@
   margin: 2em 0;
   padding: 0.2em 0 0.2em 1.25em;
   border-left: 4px solid var(--blue);
-  color: #40413d;
+  color: var(--muted);
   font-size: 1.125em;
   font-style: italic;
 }
@@ -409,7 +409,7 @@
 .article-figure figcaption {
   margin-block-start: 9px;
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   line-height: 1.5;
 }
@@ -434,7 +434,7 @@
   padding: 10px 12px;
   border-top: 1px solid var(--line);
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   line-height: 1.45;
 }
@@ -494,7 +494,7 @@
   min-block-size: 44px;
   padding: 13px 2px 11px;
   color: var(--blue-dark);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -528,7 +528,7 @@
   align-items: center;
   padding: 9px 0;
   color: var(--muted);
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 0.8125rem;
   line-height: 1.3;
 }
@@ -548,7 +548,7 @@
 
 .toc-number {
   color: var(--blue);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
 }
 
@@ -562,7 +562,7 @@
 
 .article-section-heading > h2 {
   margin-block-start: 8px;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.625rem;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -604,7 +604,7 @@
   border: 1px solid var(--line-dark);
   color: var(--blue-dark);
   background: var(--paper-bright);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
 }
 
@@ -620,14 +620,14 @@
 
 .article-project-link > span {
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .article-project-link strong {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.0625rem;
 }
 
@@ -658,7 +658,7 @@
 
 .related-record strong {
   margin-block-start: 13px;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.1875rem;
   line-height: 1.18;
 }
@@ -694,7 +694,7 @@
 .post-navigation-card > strong {
   margin-block-start: 12px;
   overflow-wrap: anywhere;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.25rem;
   line-height: 1.18;
 }
@@ -709,7 +709,7 @@
 
 .post-navigation-card--next {
   color: #fff;
-  background: var(--blue);
+  background: var(--accent-surface);
 }
 
 .post-navigation-card--next > span {
@@ -909,7 +909,7 @@
 
   .article-masthead h1 {
     font-size: clamp(3.625rem, 6vw, 5.75rem);
-    line-height: 0.92;
+    line-height: 1.08;
   }
 
   .article-dek {

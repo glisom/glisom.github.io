@@ -1,8 +1,14 @@
 ---
 import { SITE } from '../../data/site';
+import { SOCIAL_LINKS } from '../../data/social';
 ---
 
 <footer class="site-footer">
-  <p data-utility-label>{SITE.footerLine}</p>
-  <p data-utility-label>{SITE.locationLine}</p>
+  <div>
+    <p>{SITE.footerLine}</p>
+    <p class="footer-location">{SITE.locationLine}</p>
+  </div>
+  <nav class="footer-socials" aria-label="Social links">
+    {SOCIAL_LINKS.map((link) => <a href={link.href}>{link.label}</a>)}
+  </nav>
 </footer>

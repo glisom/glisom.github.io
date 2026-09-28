@@ -492,7 +492,7 @@ describe('article reading modes', () => {
   it('keeps article prose and wide content inside bounded reading regions', () => {
     const css = builtStyles.toString();
     expect(css).toMatch(/\.prose\s*\{[^}]*max-inline-size:\s*720px/s);
-    expect(css).toMatch(/\.prose\s*\{[^}]*font-family:\s*var\(--serif\)/s);
+    expect(css).toMatch(/\.prose\s*\{[^}]*font-family:\s*var\(--sans\)/s);
     expect(css).toMatch(/\.prose\s+pre[^}]*overflow-x:\s*auto/s);
     expect(css).toMatch(/\.prose\s+table[^}]*overflow-x:\s*auto/s);
     const wide = mediaBlocks('(min-width: 1220px)')
@@ -606,7 +606,7 @@ describe('article media and deferred integrations', () => {
       expect(comments.attr('data-repo')).toBe('glisom/grantisom-com-comments');
       expect(comments.attr('data-issue-term')).toBe('pathname');
       expect(comments.attr('data-label')).toBe('Comment');
-      expect(comments.attr('data-theme')).toBe('github-light');
+      expect(comments.attr('data-theme')).toBe('github-dark');
       expect($('script[src="https://utteranc.es/client.js"]')).toHaveLength(0);
       expect($('script[data-comments-loader]').text()).toContain(
         'IntersectionObserver',

@@ -475,10 +475,10 @@ describe('built collection indexes', () => {
       pathname,
       title,
       activeHref,
-      context,
+      ,
       countPhrase,
       ownership,
-      updated,
+      ,
     ] of cases) {
       const $ = index(pathname);
       expect($('h1').text()).toBe(title);
@@ -487,8 +487,7 @@ describe('built collection indexes', () => {
       expect(
         $(`.rail-nav a[href="${activeHref}"][aria-current="page"]`),
       ).toHaveLength(1);
-      expect(normalizedText($, '.rail-context-title')).toBe(context);
-      expect(normalizedText($, '.rail-context-meta')).toBe(updated);
+      expect($('.rail-context')).toHaveLength(0);
       expect($('.collection-mark [data-halftone-image]')).toHaveLength(1);
       expect($('script')).toHaveLength(0);
       expect(normalizedText($, 'body')).not.toContain('Feels right');

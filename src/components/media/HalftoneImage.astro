@@ -24,7 +24,14 @@ const {
 } = Astro.props;
 ---
 
-<div class:list={['halftone-image', className]} data-halftone-image>
+<div
+  class:list={[
+    'halftone-image',
+    { 'halftone-image--dark': src === 'evidence/vampire-laptop.png' },
+    className,
+  ]}
+  data-halftone-image
+>
   <ResponsiveImage
     src={src}
     alt={alt}
@@ -52,6 +59,13 @@ const {
 
   .halftone-image :global(img) {
     object-fit: cover;
-    mix-blend-mode: multiply;
+    filter: invert(1) hue-rotate(180deg) saturate(0.55);
+    mix-blend-mode: screen;
+  }
+  .halftone-image--dark :global(img) {
+    filter: saturate(0.65) contrast(1.3) brightness(1.1);
+  }
+  .halftone-image--fine :global(img) {
+    filter: grayscale(1) invert(1) brightness(3);
   }
 </style>
