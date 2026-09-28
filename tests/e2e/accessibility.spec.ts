@@ -80,8 +80,8 @@ test('paper, blue, lime, and black surfaces retain visible computed focus indica
     ],
     ['/listwithme/', '[data-action-role="primary"]'],
     ['/listwithme/', '[data-surface="lime"]'],
-    ['/', '.home-hero .primary-action'],
-    ['/', '[data-surface="black"] a'],
+    ['/', '.home-about'],
+    ['/', '.home-posts a'],
   ] as const;
   for (const [path, selector] of cases) {
     await page.goto(path);

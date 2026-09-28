@@ -35,11 +35,11 @@
 .collection-masthead h1 {
   max-width: 880px;
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(3.625rem, 6.3vw, 6rem);
   font-weight: 400;
   letter-spacing: -0.055em;
-  line-height: 0.92;
+  line-height: 1.08;
 }
 
 .collection-masthead h1 em {
@@ -50,8 +50,8 @@
 .collection-masthead-intro {
   max-width: 640px;
   margin: 27px 0 0;
-  color: #50514d;
-  font-family: var(--serif);
+  color: var(--muted);
+  font-family: var(--sans);
   font-size: clamp(1.1875rem, 1.5vw, 1.4375rem);
   line-height: 1.48;
 }
@@ -60,9 +60,9 @@
   width: fit-content;
   margin: 0;
   padding: 4px 6px;
-  color: var(--ink);
+  color: var(--black);
   background: var(--lime);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -88,7 +88,7 @@
   padding: 12px 14px;
   border-top: 1px solid var(--line);
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -113,7 +113,7 @@
 
 .section-heading h2 {
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: -0.03em;
@@ -122,7 +122,7 @@
 .section-heading p {
   margin: 0;
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -134,7 +134,7 @@
 .ownership-stamp,
 .authored-skill-status,
 .authored-intro-copy > span {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -166,18 +166,18 @@
 .featured-copy h2 {
   max-width: 690px;
   margin: 30px 0 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: clamp(2.5rem, 4.4vw, 4.125rem);
   font-weight: 400;
   letter-spacing: -0.045em;
-  line-height: 0.98;
+  line-height: 1.08;
 }
 
 .featured-copy p {
   max-width: 580px;
   margin: 22px 0 0;
   color: #c8c8c5;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.125rem;
   line-height: 1.55;
 }
@@ -212,7 +212,7 @@
 .year {
   padding-top: 21px;
   color: var(--blue-dark);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility);
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -236,7 +236,7 @@
 .post-date,
 .post-kind {
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -244,7 +244,7 @@
 
 .post-row h3 {
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.4375rem;
   font-weight: 400;
   line-height: 1.18;
@@ -270,7 +270,7 @@
 .tool-group h2 {
   margin: 0 0 15px;
   color: var(--blue-dark);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -291,13 +291,13 @@
 
 .tool-number {
   color: var(--muted);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
 }
 
 .tool-record h3 {
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.4375rem;
   font-weight: 600;
 }
@@ -311,7 +311,7 @@
 
 .tool-record .tool-category {
   color: var(--blue-dark);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -391,7 +391,7 @@
 
 .app-copy h2 {
   margin: 24px 0 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 2.3125rem;
   font-weight: 400;
   letter-spacing: -0.035em;
@@ -401,7 +401,7 @@
 .app-copy > p {
   margin: 14px 0 0;
   color: var(--muted);
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.0625rem;
   line-height: 1.45;
 }
@@ -412,7 +412,7 @@
 
 .app-copy .app-platform {
   color: var(--blue-dark);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -449,7 +449,7 @@
 
 .manual-heading span {
   color: var(--blue-dark);
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -457,7 +457,7 @@
 
 .manual-heading h2 {
   margin: 9px 0 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.5rem;
   font-weight: 600;
 }
@@ -482,7 +482,7 @@
 
 .skill-strip h3 {
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.3125rem;
   font-weight: 600;
 }
@@ -496,7 +496,7 @@
 
 .skill-strip .source-credit {
   margin-top: 5px;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
 }
 
@@ -545,7 +545,7 @@
   max-width: 640px;
   margin: 18px 0 0;
   color: #c8c8c5;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.3125rem;
   line-height: 1.5;
 }
@@ -591,7 +591,7 @@
 .authored-skill-card h2 {
   margin: 32px 0 0;
   overflow-wrap: anywhere;
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 1.875rem;
   font-weight: 400;
   letter-spacing: -0.03em;
@@ -606,7 +606,7 @@
 }
 
 .authored-skill-card .supported-tools {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: var(--utility-small);
 }
 

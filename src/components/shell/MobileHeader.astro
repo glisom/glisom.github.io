@@ -1,4 +1,5 @@
 ---
+import SiteMark from './SiteMark.astro';
 import type { PrimaryCollection } from '../../types/content';
 import MobileNav from './MobileNav.astro';
 
@@ -12,7 +13,7 @@ const { activeCollection, activeAbout = false } = Astro.props;
 
 <header class="mobile-header">
   <a class="mobile-identity" href="/" aria-label="Grant Isom, home">
-    <span class="monogram" aria-hidden="true">GI</span>
+    <SiteMark />
     <span>Grant Isom</span>
   </a>
   <MobileNav activeCollection={activeCollection} activeAbout={activeAbout} />

@@ -1,0 +1,17 @@
+---
+import { Picture } from 'astro:assets';
+import cloud from '../../assets/identity/cloud-halftone.png';
+---
+
+<Picture
+  src={cloud}
+  alt=""
+  width={96}
+  height={96}
+  widths={[48, 96, 144]}
+  sizes="48px"
+  formats={['avif', 'webp']}
+  loading="eager"
+  class="site-mark"
+  data-decorative="true"
+/>

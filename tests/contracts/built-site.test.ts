@@ -204,22 +204,30 @@ describe('built-site release contract', () => {
       });
       const pagePath = join(candidate, '2020/09/28/next-chapter.html');
       const original = await readFile(pagePath, 'utf8');
-      const wrapperlessMissingAvif = original
-        .replace(
-          'class="article-figure article-figure--full"',
-          'class="renamed-article-figure"',
-        )
-        .replace(/<source type="image\/avif"[^>]*>/, '');
+      const mainStart = original.indexOf('<main ');
+      expect(mainStart).toBeGreaterThan(0);
+      const shell = original.slice(0, mainStart);
+      const article = original.slice(mainStart);
+      const wrapperlessMissingAvif =
+        shell +
+        article
+          .replace(
+            'class="article-figure article-figure--full"',
+            'class="renamed-article-figure"',
+          )
+          .replace(/<source type="image\/avif"[^>]*>/, '');
       expect(wrapperlessMissingAvif).not.toBe(original);
       await writeFile(pagePath, wrapperlessMissingAvif);
       await expect(
         assertDistContract(pathToFileURL(`${candidate}/`), routeManifest),
       ).rejects.toThrow(/image\/avif/i);
 
-      const nakedImage = original.replace(
-        /<picture><source[^>]+><source[^>]+>(<img[^>]+>)<\/picture>/,
-        '$1',
-      );
+      const nakedImage =
+        shell +
+        article.replace(
+          /<picture><source[^>]+><source[^>]+>(<img[^>]+>)<\/picture>/,
+          '$1',
+        );
       expect(nakedImage).not.toBe(original);
       await writeFile(pagePath, nakedImage);
       await expect(

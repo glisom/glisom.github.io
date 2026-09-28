@@ -227,14 +227,17 @@ describe('quiet utility page family', () => {
       '/listwithme/privacy/',
       '/404.html',
     ]) {
-      expect(page(pathname)('picture, [data-halftone-image]')).toHaveLength(0);
+      expect(
+        page(pathname)('main picture, main [data-halftone-image]'),
+      ).toHaveLength(0);
     }
   });
 
   it('marks About as current in desktop and mobile navigation without making it a collection', () => {
     const about = page('/about/');
-    expect(about('.rail-about[aria-current="page"]')).toHaveLength(1);
-    expect(about('.rail-about-state').text().trim()).toBe('Current');
+    expect(
+      about('.rail-nav a[href="/about/"][aria-current="page"]'),
+    ).toHaveLength(1);
     expect(
       about(
         'nav[aria-label="Mobile browse"] a[href="/about/"][aria-current="page"]',
@@ -245,7 +248,7 @@ describe('quiet utility page family', () => {
     ).toHaveLength(1);
     expect(
       about('nav[aria-label="Browse"] a[aria-current="page"]'),
-    ).toHaveLength(0);
+    ).toHaveLength(1);
   });
 
   it.each([

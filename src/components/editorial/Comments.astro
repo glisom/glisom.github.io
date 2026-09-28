@@ -19,7 +19,7 @@ const commentsLoader = String.raw`
       script.setAttribute('repo', region.dataset.repo ?? '');
       script.setAttribute('issue-term', region.dataset.issueTerm ?? 'pathname');
       script.setAttribute('label', region.dataset.label ?? 'Comment');
-      script.setAttribute('theme', region.dataset.theme ?? 'github-light');
+      script.setAttribute('theme', region.dataset.theme ?? 'github-dark');
       mount.append(script);
       region.dataset.commentsLoaded = 'true';
     };
@@ -62,7 +62,7 @@ const commentsLoader = String.raw`
       data-repo="glisom/grantisom-com-comments"
       data-issue-term="pathname"
       data-label="Comment"
-      data-theme="github-light"
+      data-theme="github-dark"
     >
       <div class="article-section-heading">
         <p>Conversation</p>

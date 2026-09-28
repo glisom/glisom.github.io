@@ -574,13 +574,13 @@ describe('detail component guards and responsive contract', () => {
   it('keeps lime utility labels AA-readable on their blue card surfaces', () => {
     const tokens = declarations(':root');
     expect(declarations('.connected-card--lead').background).toBe(
-      'var(--blue-dark)',
+      'var(--accent-surface-hover)',
     );
     expect(declarations('.record-navigation-card--next').background).toBe(
-      'var(--blue-dark)',
+      'var(--accent-surface-hover)',
     );
     expect(
-      contrastRatio(tokens['--lime'], tokens['--blue-dark']),
+      contrastRatio(tokens['--lime'], tokens['--accent-surface-hover']),
     ).toBeGreaterThanOrEqual(4.5);
   });
 });
