@@ -332,7 +332,7 @@ describe('shared dossier anatomy', () => {
     }
   });
 
-  it('sizes the connected-record grid to its real records without an empty card slot', () => {
+  it('lists connected records without empty card slots', () => {
     const $ = detail('/listwithme/');
     expect($('.connected-grid').attr('style')).toContain(
       '--connected-count: 2',
@@ -342,7 +342,7 @@ describe('shared dossier anatomy', () => {
         /\s+/g,
         '',
       ),
-    ).toBe('repeat(var(--connected-count),minmax(0,1fr))');
+    ).toBe('1fr');
   });
 
   it('sizes ending navigation to its real cards without an empty final-record panel', () => {
@@ -545,42 +545,33 @@ describe('detail component guards and responsive contract', () => {
     ).rejects.toThrow(/at most three connected records/i);
   });
 
-  it('keeps sticky context and gallery columns at the approved breakpoint seams', () => {
+  it('keeps context in flow and preserves a swipeable phone gallery', () => {
+    expect(declarations('.detail-page')['max-width']).toBe('720px');
     expect(declarations('.dossier-aside').position).toBe('static');
-    expect(declarations('.dossier-aside', '(min-width: 1220px)').position).toBe(
-      'sticky',
-    );
     expect(
-      declarations('.screenshot-grid', '(min-width: 1220px)')[
-        'grid-template-columns'
-      ]?.replace(/\s+/g, ''),
+      declarations('.screenshot-grid')['grid-template-columns']?.replace(
+        /\s+/g,
+        '',
+      ),
     ).toBe('repeat(4,minmax(0,1fr))');
     expect(
-      declarations(
-        '.screenshot-grid',
-        '(min-width: 821px) and (max-width: 1219px)',
-      )['grid-template-columns']?.replace(/\s+/g, ''),
-    ).toBe('repeat(2,minmax(0,1fr))');
-    expect(
-      declarations('.screenshot-grid', '(max-width: 820px)')['overflow-x'],
+      declarations('.screenshot-grid', '(max-width: 640px)')['overflow-x'],
     ).toBe('auto');
     expect(
-      declarations('.screenshot-card', '(max-width: 820px)')[
+      declarations('.screenshot-card', '(max-width: 640px)')[
         'scroll-snap-align'
       ],
     ).toBe('start');
   });
 
-  it('keeps lime utility labels AA-readable on their blue card surfaces', () => {
+  it('keeps quiet metadata AA-readable against the shared dark surface', () => {
     const tokens = declarations(':root');
-    expect(declarations('.connected-card--lead').background).toBe(
-      'var(--accent-surface-hover)',
-    );
-    expect(declarations('.record-navigation-card--next').background).toBe(
-      'var(--accent-surface-hover)',
-    );
     expect(
-      contrastRatio(tokens['--lime'], tokens['--accent-surface-hover']),
+      contrastRatio(tokens['--muted'], tokens['--paper']),
     ).toBeGreaterThanOrEqual(4.5);
+    expect(declarations('.connected-label').color).toBe('var(--muted)');
+    expect(declarations('.record-navigation-card>span').color).toBe(
+      'var(--muted)',
+    );
   });
 });

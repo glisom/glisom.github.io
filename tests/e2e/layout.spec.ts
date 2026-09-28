@@ -1,6 +1,15 @@
+import { readFileSync } from 'node:fs';
 import { expect, test } from './fixtures';
 
-const paths = ['/', '/2019/05/30/listwithme.html', '/blog/', '/listwithme/'];
+const fixture = JSON.parse(
+  readFileSync(
+    new URL('../fixtures/public-routes.json', import.meta.url),
+    'utf8',
+  ),
+) as { routes: Array<{ canonicalPath: string; outputPath: string }> };
+const paths = fixture.routes
+  .filter((route) => route.outputPath.endsWith('.html'))
+  .map((route) => route.canonicalPath);
 
 for (const path of paths) {
   test(`centered shell geometry and utility typography hold on ${path}`, async ({
@@ -8,6 +17,17 @@ for (const path of paths) {
   }) => {
     await page.goto(path);
     const viewport = page.viewportSize()!;
+    if (path !== '/') {
+      const content = page.locator(
+        '.collection-index, .article-page, .detail-page, .utility-page',
+      );
+      expect((await content.boundingBox())!.width).toBeLessThanOrEqual(720);
+      expect(
+        await page
+          .locator('h1')
+          .evaluate((node) => parseFloat(getComputedStyle(node).fontSize)),
+      ).toBeLessThanOrEqual(36);
+    }
     const header = page.locator('.identity-rail');
     if (viewport.width > 820) {
       await expect(header).toBeVisible();
@@ -92,7 +112,7 @@ for (const [family, path] of [
           .evaluate((node) => getComputedStyle(node).position),
       ).toBe('static');
       const tocBottom = await page
-        .locator('[data-toc-state="ledger"]')
+        .locator('[data-toc-state="disclosure"]')
         .evaluate((node) => node.getBoundingClientRect().bottom);
       const proseTop = await page
         .locator('[data-article-prose]')
